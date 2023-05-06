@@ -2475,7 +2475,18 @@ void CLuaBaseEntity::updateToEntireZone(uint8 statusID, uint8 animation, sol::ob
         PNpc->name[8]                  = 8;
     }
 
-    PNpc->loc.zone->UpdateEntityPacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT);
+    PNpc->loc.zone->UpdateEntityPacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT, true);
+}
+
+// Sends an arbitrary entity update to a specific player only
+void CLuaBaseEntity::sendEntityUpdateToPlayer(CLuaBaseEntity* entityToUpdate, uint8 entityUpdate, uint8 updateMask)
+{
+    if (m_PBaseEntity->objtype == TYPE_PC && entityToUpdate->GetBaseEntity())
+    {
+        CCharEntity* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+
+        PChar->updateEntityPacket(entityToUpdate->GetBaseEntity(), static_cast<ENTITYUPDATE>(entityUpdate), updateMask);
+    }
 }
 
 /************************************************************************
@@ -3251,8 +3262,8 @@ bool CLuaBaseEntity::gotoPlayer(std::string const& playerName)
         char buf[30];
         memset(&buf[0], 0, sizeof(buf));
 
-        ref<uint16>(&buf, 0) = sql->GetUIntData(0); // target char
-        ref<uint16>(&buf, 4) = m_PBaseEntity->id;   // warping to target char, their server will send us a zoning message with their pos
+        ref<uint32>(&buf, 0) = sql->GetUIntData(0); // target char
+        ref<uint32>(&buf, 4) = m_PBaseEntity->id;   // warping to target char, their server will send us a zoning message with their pos
 
         message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
         found = true;
@@ -3283,8 +3294,8 @@ bool CLuaBaseEntity::bringPlayer(std::string const& playerName)
         char buf[30];
         memset(&buf[0], 0, sizeof(buf));
 
-        ref<uint16>(&buf, 0)  = sql->GetUIntData(0); // target char
-        ref<uint16>(&buf, 4)  = 0;                   // wanting to bring target char here so wont give our id
+        ref<uint32>(&buf, 0)  = sql->GetUIntData(0); // target char
+        ref<uint32>(&buf, 4)  = 0;                   // wanting to bring target char here so wont give our id
         ref<uint16>(&buf, 8)  = m_PBaseEntity->getZone();
         ref<uint16>(&buf, 10) = static_cast<uint16>(m_PBaseEntity->loc.p.x);
         ref<uint16>(&buf, 14) = static_cast<uint16>(m_PBaseEntity->loc.p.y);
@@ -13225,13 +13236,13 @@ void CLuaBaseEntity::setMobLevel(uint8 level)
 }
 
 /************************************************************************
- *  Function: getSystem()
+ *  Function: getEcosystem()
  *  Purpose : Returns integer value of system associated with an Entity
- *  Example : if pet:getSystem() ~= xi.ecosystem.AVATAR then -- Not an avatar
+ *  Example : if pet:getEcosystem() ~= xi.ecosystem.AVATAR then -- Not an avatar
  *  Notes   :
  ************************************************************************/
 
-uint8 CLuaBaseEntity::getSystem()
+uint8 CLuaBaseEntity::getEcosystem()
 {
     XI_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
@@ -14634,16 +14645,18 @@ bool CLuaBaseEntity::itemStolen()
 
 /************************************************************************
  *  Function: getTHlevel()
- *  Purpose : Return mob's current Treasure Hunter tier if alive, or its last if dead.
+ *  Purpose : Return mob's current Treasure Hunter tier
  *  Example : local TH = target:getTHlevel()
  ************************************************************************/
 
 int16 CLuaBaseEntity::getTHlevel()
 {
-    XI_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-
-    auto* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
-    return PMob->isDead() ? PMob->m_THLvl : PMob->PEnmityContainer->GetHighestTH();
+    if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+        return PMob->m_THLvl;
+    }
+    return 0;
 }
 
 /************************************************************************
@@ -15776,7 +15789,7 @@ void CLuaBaseEntity::Register()
 
     // Mob Entity-Specific
     SOL_REGISTER("setMobLevel", CLuaBaseEntity::setMobLevel);
-    SOL_REGISTER("getSystem", CLuaBaseEntity::getSystem); // TODO: rename to getEcoSystem()
+    SOL_REGISTER("getEcosystem", CLuaBaseEntity::getEcosystem);
     SOL_REGISTER("getSuperFamily", CLuaBaseEntity::getSuperFamily);
     SOL_REGISTER("getFamily", CLuaBaseEntity::getFamily);
     SOL_REGISTER("isMobType", CLuaBaseEntity::isMobType);
@@ -15861,6 +15874,7 @@ void CLuaBaseEntity::Register()
 
     SOL_REGISTER("getPlayerTriggerAreaInZone", CLuaBaseEntity::getPlayerTriggerAreaInZone);
     SOL_REGISTER("updateToEntireZone", CLuaBaseEntity::updateToEntireZone);
+    SOL_REGISTER("sendEntityUpdateToPlayer", CLuaBaseEntity::sendEntityUpdateToPlayer);
 
     // Abyssea
     SOL_REGISTER("getAvailableTraverserStones", CLuaBaseEntity::getAvailableTraverserStones);

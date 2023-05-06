@@ -179,6 +179,8 @@ public:
     uint32 getPlayerTriggerAreaInZone();                                                      // Returns the player's current trigger area in the zone.
     void   updateToEntireZone(uint8 statusID, uint8 animation, sol::object const& matchTime); // Forces an update packet to update the NPC entity zone-wide
 
+    void sendEntityUpdateToPlayer(CLuaBaseEntity* entityToUpdate, uint8 entityUpdate, uint8 updateMask); // sends a specific entity's update packet to a specific player only
+
     auto  getPos() -> sol::table;      // Get Entity position (x,y,z)
     void  showPosition();              // Display current position of character
     float getXPos();                   // Get Entity X position
@@ -752,7 +754,7 @@ public:
 
     // Mob Entity-Specific
     void   setMobLevel(uint8 level);
-    uint8  getSystem(); // TODO: rename this to getEcosystem()
+    uint8  getEcosystem();
     uint16 getSuperFamily();
     uint16 getFamily();
     bool   isMobType(uint8 mobType); // True if mob is of type passed to function
