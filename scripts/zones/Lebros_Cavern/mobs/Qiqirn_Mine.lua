@@ -2,8 +2,7 @@
 -- Area: Lebros Cavern (Excavation Duty)
 --  Mob: Qiqirn Mine
 -----------------------------------
-local ID = require("scripts/zones/Lebros_Cavern/IDs")
-require("scripts/globals/status")
+local ID = zones[xi.zone.LEBROS_CAVERN]
 -----------------------------------
 local entity = {}
 

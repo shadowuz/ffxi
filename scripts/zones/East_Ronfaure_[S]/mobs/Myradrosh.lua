@@ -2,9 +2,6 @@
 -- Area: East Ronfaure [S]
 --   NM: Myradrosh
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)

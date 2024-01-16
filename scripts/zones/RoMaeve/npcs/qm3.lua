@@ -3,10 +3,7 @@
 --  NPC: qm3 (Moongate Pass QM)
 -- !pos -277.651, -3.765, -17.895 122 and many <pos>
 -----------------------------------
-local ID = require("scripts/zones/RoMaeve/IDs")
-require("scripts/globals/npc_util")
-require("scripts/globals/settings")
-require("scripts/globals/keyitems")
+local ID = zones[xi.zone.ROMAEVE]
 -----------------------------------
 local entity = {}
 
@@ -32,10 +29,10 @@ entity.onTrigger = function(player, npc)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

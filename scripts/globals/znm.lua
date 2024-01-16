@@ -7,17 +7,11 @@
 -- Soul Plate          : !additem 2477
 -- Sanraku & Ryo       : !pos -127.0 0.9 22.6 50
 -----------------------------------
-require("scripts/globals/items")
-require("scripts/globals/keyitems")
-require("scripts/globals/settings")
-require("scripts/globals/status")
-require("scripts/globals/magic")
-require("scripts/globals/msg")
-require("scripts/globals/npc_util")
-require("scripts/globals/pankration")
-require("scripts/globals/utils")
+require('scripts/globals/magic')
+require('scripts/globals/npc_util')
+require('scripts/globals/pankration')
+require('scripts/globals/utils')
 -----------------------------------
-
 xi = xi or {}
 xi.znm = xi.znm or {}
 
@@ -39,8 +33,8 @@ xi.znm.soultrapper.onItemCheck = function(target, user)
     -- Equipment checks.
     local id = user:getEquipID(xi.slot.AMMO)
     if
-        id ~= xi.items.BLANK_SOUL_PLATE and
-        id ~= xi.items.BLANK_HIGH_SPEED_SOUL_PLATE
+        id ~= xi.item.BLANK_SOUL_PLATE and
+        id ~= xi.item.BLANK_HIGH_SPEED_SOUL_PLATE
     then
         return xi.msg.basic.ITEM_UNABLE_TO_USE
     end
@@ -92,7 +86,7 @@ xi.znm.soultrapper.getZeniValue = function(target, user, item)
     end
 
     -- Bonus for HS Soul Plate
-    if user:getEquipID(xi.slot.AMMO) == xi.items.BLANK_HIGH_SPEED_SOUL_PLATE then
+    if user:getEquipID(xi.slot.AMMO) == xi.item.BLANK_HIGH_SPEED_SOUL_PLATE then
         zeni = zeni * 1.5
     end
 
@@ -125,11 +119,11 @@ end
 xi.znm.ryo = xi.znm.ryo or {}
 
 xi.znm.ryo.onTrade = function(player, npc, trade)
-    if npcUtil.tradeHasExactly(trade, xi.items.SOUL_PLATE) then
+    if npcUtil.tradeHasExactly(trade, xi.item.SOUL_PLATE) then
         -- Cache the soulplate value on the player
         local item = trade:getItem(0)
         local plateData = item:getSoulPlateData()
-        player:setLocalVar("[ZNM][Ryo]SoulPlateValue", plateData.zeni)
+        player:setLocalVar('[ZNM][Ryo]SoulPlateValue', plateData.zeni)
         player:startEvent(914)
     end
 end
@@ -138,21 +132,21 @@ xi.znm.ryo.onTrigger = function(player, npc)
     player:startEvent(913)
 end
 
-xi.znm.ryo.onEventUpdate = function(player, csid, option)
+xi.znm.ryo.onEventUpdate = function(player, csid, option, npc)
     if csid == 914 then
-        local zeniValue = player:getLocalVar("[ZNM][Ryo]SoulPlateValue")
-        player:setLocalVar("[ZNM][Ryo]SoulPlateValue", 0)
+        local zeniValue = player:getLocalVar('[ZNM][Ryo]SoulPlateValue')
+        player:setLocalVar('[ZNM][Ryo]SoulPlateValue', 0)
         player:updateEvent(zeniValue)
     elseif csid == 913 then
         if option == 300 then
-            player:updateEvent(player:getCurrency("zeni_point"), 0)
+            player:updateEvent(player:getCurrency('zeni_point'), 0)
         else
             player:updateEvent(0, 0)
         end
     end
 end
 
-xi.znm.ryo.onEventFinish = function(player, csid, option)
+xi.znm.ryo.onEventFinish = function(player, csid, option, npc)
 end
 
 -----------------------------------
@@ -162,15 +156,15 @@ xi.znm.sanraku = xi.znm.sanraku or {}
 
 local platesTradedToday = function(player)
     local currentDay = VanadielUniqueDay()
-    local storedDay = player:getCharVar("[ZNM][Sanraku]TradingDay")
+    local storedDay = player:getCharVar('[ZNM][Sanraku]TradingDay')
 
     if currentDay ~= storedDay then
-        player:setCharVar("[ZNM][Sanraku]TradingDay", 0)
-        player:setCharVar("[ZNM][Sanraku]TradedPlates", 0)
+        player:setCharVar('[ZNM][Sanraku]TradingDay', 0)
+        player:setCharVar('[ZNM][Sanraku]TradedPlates', 0)
         return 0
     end
 
-    return player:getCharVar("[ZNM][Sanraku]TradedPlates")
+    return player:getCharVar('[ZNM][Sanraku]TradedPlates')
 end
 
 xi.znm.sanraku.onTrade = function(player, npc, trade)
@@ -180,15 +174,15 @@ xi.znm.sanraku.onTrade = function(player, npc, trade)
             return
         end
     else -- If you have the KI, clear out the tracking vars!
-        player:setCharVar("[ZNM][Sanraku]TradingDay", 0)
-        player:setCharVar("[ZNM][Sanraku]TradedPlates", 0)
+        player:setCharVar('[ZNM][Sanraku]TradingDay', 0)
+        player:setCharVar('[ZNM][Sanraku]TradedPlates', 0)
     end
 
-    if npcUtil.tradeHasExactly(trade, xi.items.SOUL_PLATE) then
+    if npcUtil.tradeHasExactly(trade, xi.item.SOUL_PLATE) then
         -- Cache the soulplate value on the player
         local item = trade:getItem(0)
         local plateData = item:getSoulPlateData()
-        player:setLocalVar("[ZNM][Sanraku]SoulPlateValue", plateData.zeni)
+        player:setLocalVar('[ZNM][Sanraku]SoulPlateValue', plateData.zeni)
         player:startEvent(910, plateData.zeni)
     end
 end
@@ -198,18 +192,18 @@ xi.znm.sanraku.onTrigger = function(player, npc)
     -- 909: Further interactions
 end
 
-xi.znm.sanraku.onEventUpdate = function(player, csid, option)
+xi.znm.sanraku.onEventUpdate = function(player, csid, option, npc)
 end
 
-xi.znm.sanraku.onEventFinish = function(player, csid, option)
+xi.znm.sanraku.onEventFinish = function(player, csid, option, npc)
     if csid == 910 then
         player:confirmTrade()
-        player:setCharVar("[ZNM][Sanraku]TradingDay", VanadielUniqueDay())
-        player:incrementCharVar("[ZNM][Sanraku]TradedPlates", 1)
+        player:setCharVar('[ZNM][Sanraku]TradingDay', VanadielUniqueDay())
+        player:incrementCharVar('[ZNM][Sanraku]TradedPlates', 1)
 
-        local zeniValue = player:getLocalVar("[ZNM][Sanraku]SoulPlateValue")
-        player:setLocalVar("[ZNM][Sanraku]SoulPlateValue", 0)
+        local zeniValue = player:getLocalVar('[ZNM][Sanraku]SoulPlateValue')
+        player:setLocalVar('[ZNM][Sanraku]SoulPlateValue', 0)
 
-        player:addCurrency("zeni_point", zeniValue)
+        player:addCurrency('zeni_point', zeniValue)
     end
 end

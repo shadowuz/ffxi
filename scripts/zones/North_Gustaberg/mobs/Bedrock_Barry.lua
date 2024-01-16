@@ -2,10 +2,6 @@
 -- Area: North Gustaberg
 --   NM: Bedrock Barry
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/regimes")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobSpawn = function(mob)

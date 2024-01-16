@@ -3,8 +3,6 @@
 --   NM: Small Box
 -- BCNM: Treasures and Tribulations
 -----------------------------------
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 local function replaceWithCrate(mob)
@@ -22,8 +20,8 @@ end
 entity.onMobEngaged = function(mob, target)
     local mobId = mob:getID()
 
-    if mob:getLocalVar("engaged") == 0 then
-        mob:setLocalVar("engaged", 1)
+    if mob:getLocalVar('engaged') == 0 then
+        mob:setLocalVar('engaged', 1)
 
         mob:setMobMod(xi.mobMod.DRAW_IN, 1)
         DespawnMob(mobId + 1)

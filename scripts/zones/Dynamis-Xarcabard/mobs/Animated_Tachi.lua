@@ -2,8 +2,7 @@
 -- Area: Dynamis - Xarcabard
 --  Mob: Animated Tachi
 -----------------------------------
-local ID = require("scripts/zones/Dynamis-Xarcabard/IDs")
-require("scripts/globals/status")
+local ID = zones[xi.zone.DYNAMIS_XARCABARD]
 -----------------------------------
 local entity = {}
 
@@ -21,6 +20,7 @@ end
 
 entity.onMobDeath = function(mob, player, optParams)
     player:showText(mob, ID.text.ANIMATED_TACHI_DIALOG + 1)
+    xi.magian.onMobDeath(mob, player, optParams, set{ 3115 })
 end
 
 return entity

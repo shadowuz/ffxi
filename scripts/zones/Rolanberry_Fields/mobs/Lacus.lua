@@ -1,10 +1,6 @@
 -----------------------------------
 --  Mob: Lacus
 -----------------------------------
-require("scripts/globals/keyitems")
-require("scripts/globals/voidwalker")
------------------------------------
-
 local entity = {}
 
 entity.onMobInitialize = function(mob)

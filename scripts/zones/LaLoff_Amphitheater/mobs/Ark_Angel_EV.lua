@@ -2,8 +2,7 @@
 -- Area: LaLoff Amphitheater
 --  Mob: Ark Angel EV
 -----------------------------------
-mixins = { require("scripts/mixins/job_special") }
-require("scripts/globals/status")
+mixins = { require('scripts/mixins/job_special') }
 -----------------------------------
 local entity = {}
 

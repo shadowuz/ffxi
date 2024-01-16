@@ -19,8 +19,8 @@
 ===========================================================================
 */
 
-#include "../common/logging.h"
-#include "../common/timer.h"
+#include "common/logging.h"
+#include "common/timer.h"
 #include "roe.h"
 
 #include "packets/treasure_find_item.h"
@@ -35,17 +35,10 @@
 static constexpr duration treasure_checktime = 3s;
 static constexpr duration treasure_livetime  = 5min;
 
-/************************************************************************
- *                                                                       *
- *  Инициализация TreasurePool                                           *
- *                                                                       *
- ************************************************************************/
-
 CTreasurePool::CTreasurePool(TREASUREPOOLTYPE PoolType)
+: m_count(0)
+, m_TreasurePoolType(PoolType)
 {
-    m_count            = 0;
-    m_TreasurePoolType = PoolType;
-
     for (uint8 i = 0; i < TREASUREPOOL_SIZE; ++i)
     {
         m_PoolItems[i].ID     = 0;
@@ -54,22 +47,10 @@ CTreasurePool::CTreasurePool(TREASUREPOOLTYPE PoolType)
     members.reserve(PoolType);
 }
 
-/************************************************************************
- *                                                                       *
- *  Узнаем текущий тип контейнера                                        *
- *                                                                       *
- ************************************************************************/
-
 TREASUREPOOLTYPE CTreasurePool::GetPoolType()
 {
     return m_TreasurePoolType;
 }
-
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
 
 void CTreasurePool::AddMember(CCharEntity* PChar)
 {
@@ -79,7 +60,13 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
         return;
     }
 
-    members.push_back(PChar);
+    if (std::find(members.begin(), members.end(), PChar) != members.end())
+    {
+        ShowWarning("CTreasurePool::AddMember() - PChar was already in the members list!");
+        return;
+    }
+
+    members.emplace_back(PChar);
 
     if (m_TreasurePoolType == TREASUREPOOL_SOLO && members.size() > 1)
     {
@@ -91,12 +78,6 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
     }
 }
 
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
-
 void CTreasurePool::DelMember(CCharEntity* PChar)
 {
     if (PChar == nullptr || PChar->PTreasurePool != this)
@@ -105,33 +86,33 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
         return;
     }
 
-    // if(m_TreasurePoolType != TREASUREPOOL_ZONE){
+    // if(m_TreasurePoolType != TREASUREPOOL_ZONE)
     // Zone drops e.g. Dynamis DO NOT remove previous lot info. Everything else does.
     // ^ TODO: verify what happens when a winner leaves zone
     for (int i = 0; i < 10; i++)
     {
         if (!m_PoolItems[i].Lotters.empty())
         {
-            for (size_t j = 0; j < m_PoolItems[i].Lotters.size(); j++)
+            auto lotterIterator = m_PoolItems[i].Lotters.begin();
+            while (lotterIterator != m_PoolItems[i].Lotters.end())
             {
                 // remove their lot info
-                if (PChar->id == m_PoolItems[i].Lotters[j].member->id)
+                LotInfo* info = &(*lotterIterator);
+                if (PChar->id == info->member->id)
                 {
-                    m_PoolItems[i].Lotters.erase(m_PoolItems[i].Lotters.begin() + j);
+                    lotterIterator = m_PoolItems[i].Lotters.erase(lotterIterator);
+                    continue;
                 }
+                lotterIterator++;
             }
         }
     }
-    //}
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    auto memberToDelete = std::find(members.begin(), members.end(), PChar);
+    if (memberToDelete != members.end())
     {
-        if (PChar == members.at(i))
-        {
-            PChar->PTreasurePool = nullptr;
-            members.erase(members.begin() + i);
-            break;
-        }
+        PChar->PTreasurePool = nullptr;
+        members.erase(memberToDelete);
     }
 
     if ((m_TreasurePoolType == TREASUREPOOL_PARTY || m_TreasurePoolType == TREASUREPOOL_ALLIANCE) && members.size() == 1)
@@ -151,13 +132,13 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 
 /************************************************************************
  *                                                                       *
- *  Добавляем предмет в хранилище                                        *
+ *  Adding an item to treasure pool                                      *
  *                                                                       *
  ************************************************************************/
 
 uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 {
-    uint8      SlotID;
+    uint8      SlotID     = 0;
     uint8      FreeSlotID = -1;
     time_point oldest     = time_point::max();
 
@@ -249,12 +230,6 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
     return m_count;
 }
 
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
-
 void CTreasurePool::UpdatePool(CCharEntity* PChar)
 {
     if (PChar == nullptr || PChar->PTreasurePool != this)
@@ -274,7 +249,7 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 
 /************************************************************************
  *                                                                       *
- *  Персонаж отказывается/голосует за предмет в хранилище                *
+ *  Character refuses/votes for item in treasure pool                    *
  *                                                                       *
  ************************************************************************/
 
@@ -295,7 +270,7 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
     li.lot    = Lot;
     li.member = PChar;
 
-    m_PoolItems[SlotID].Lotters.push_back(li);
+    m_PoolItems[SlotID].Lotters.emplace_back(li);
 
     // Find the highest lotter
     CCharEntity* highestLotter = nullptr;
@@ -353,7 +328,7 @@ void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
 
     if (!hasLottedBefore)
     {
-        m_PoolItems[SlotID].Lotters.push_back(li);
+        m_PoolItems[SlotID].Lotters.emplace_back(li);
     }
 
     // Find the highest lotter
@@ -422,12 +397,6 @@ bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
     return false;
 }
 
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
-
 void CTreasurePool::CheckItems(time_point tick)
 {
     if (m_count != 0)
@@ -442,12 +411,6 @@ void CTreasurePool::CheckItems(time_point tick)
         }
     }
 }
-
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
 
 void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
 {
@@ -505,7 +468,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
 
                 if (member->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !HasPassedItem(member, SlotID))
                 {
-                    candidates.push_back(member);
+                    candidates.emplace_back(member);
                 }
             }
 
@@ -530,12 +493,6 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
     }
 }
 
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
-
 void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 {
     if (winner == nullptr || winner->PTreasurePool != this || m_PoolItems[SlotID].ID == 0)
@@ -558,12 +515,6 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
     m_PoolItems[SlotID].Lotters.clear();
 }
 
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
-
 void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 {
     if (winner == nullptr || winner->PTreasurePool != this || m_PoolItems[SlotID].ID == 0)
@@ -584,15 +535,13 @@ void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
     m_PoolItems[SlotID].Lotters.clear();
 }
 
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
-
 void CTreasurePool::TreasureLost(uint8 SlotID)
 {
-    XI_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
+    if (m_PoolItems[SlotID].ID == 0)
+    {
+        ShowWarning("Pool Items for SlotID (%d) was 0.", SlotID);
+        return;
+    }
 
     m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
@@ -605,12 +554,6 @@ void CTreasurePool::TreasureLost(uint8 SlotID)
     m_PoolItems[SlotID].ID = 0;
     m_PoolItems[SlotID].Lotters.clear();
 }
-
-/************************************************************************
- *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
 
 bool CTreasurePool::CanAddSeal()
 {

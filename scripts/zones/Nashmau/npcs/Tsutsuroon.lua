@@ -4,10 +4,7 @@
 -- Type: Tenshodo Merchant
 -- !pos -15.193 0.000 31.356 53
 -----------------------------------
-require("scripts/globals/settings")
-require("scripts/globals/shop")
-require("scripts/globals/keyitems")
-local ID = require("scripts/zones/Nashmau/IDs")
+local ID = zones[xi.zone.NASHMAU]
 -----------------------------------
 local entity = {}
 
@@ -24,10 +21,10 @@ entity.onTrigger = function(player, npc)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

@@ -1,17 +1,13 @@
 -----------------------------------
 -- Zone: Sacrarium (28)
 -----------------------------------
-local ID = require('scripts/zones/Sacrarium/IDs')
-require('scripts/globals/conquest')
-require('scripts/globals/settings')
-require('scripts/globals/treasure')
-require('scripts/globals/status')
+local ID = zones[xi.zone.SACRARIUM]
 -----------------------------------
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     -- randomize Old Prof. Mariselle's spawn location
-    GetNPCByID(ID.npc.QM_MARISELLE_OFFSET + math.random(0, 5)):setLocalVar("hasProfessorMariselle", 1)
+    GetNPCByID(ID.npc.QM_MARISELLE_OFFSET + math.random(0, 5)):setLocalVar('hasProfessorMariselle', 1)
 
     xi.treasure.initZone(zone)
 end
@@ -33,8 +29,8 @@ end
 zoneObject.afterZoneIn = function(player)
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
@@ -60,10 +56,10 @@ zoneObject.onGameDay = function()
     end
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

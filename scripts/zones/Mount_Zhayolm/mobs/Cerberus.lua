@@ -2,9 +2,6 @@
 -- Area: Mount Zhayolm
 --   NM: Cerberus
 -----------------------------------
-require("scripts/globals/status")
-require("scripts/globals/titles")
------------------------------------
 local entity = {}
 
 entity.onMobFight = function(mob, target)

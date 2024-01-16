@@ -2,9 +2,6 @@
 -- Area: Al'Taieu
 --  Mob: Ul'xzomit
 -----------------------------------
-require("scripts/globals/follow")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 local followOptions = { forceRepathInterval = 1 }
@@ -24,7 +21,7 @@ entity.onMobSpawn = function(mob)
             local leader = GetMobByID(mobId - i)
 
             if leader and leader:getMobMod(xi.mobMod.LEADER) >= i then
-                mob:setLocalVar("leaderID", leader:getID())
+                mob:setLocalVar('leaderID', leader:getID())
 
                 if leader:isSpawned() then
                     xi.follow.follow(mob, leader, followOptions)
@@ -51,7 +48,7 @@ entity.onMobRoamAction = function(mob)
         return
     end
 
-    local leader = GetMobByID(mob:getLocalVar("leaderID"))
+    local leader = GetMobByID(mob:getLocalVar('leaderID'))
 
     if not leader or not leader:isSpawned() then
         return

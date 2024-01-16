@@ -4,10 +4,7 @@
 -- Guild Merchant NPC: Bonecrafting Guild
 -- !pos -6.142 -6.55 -132.639 241
 -----------------------------------
-local ID = require("scripts/zones/Windurst_Woods/IDs")
-require("scripts/globals/shop")
-require("scripts/globals/settings")
-require("scripts/globals/status")
+local ID = zones[xi.zone.WINDURST_WOODS]
 -----------------------------------
 local entity = {}
 
@@ -21,10 +18,10 @@ entity.onTrigger = function(player, npc)
     player:showText(npc, ID.text.RETTO_MARUTTO_DIALOG)
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

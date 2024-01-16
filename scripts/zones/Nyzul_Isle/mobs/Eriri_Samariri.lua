@@ -3,9 +3,6 @@
 -- Area: Nyzul Isle
 -- Info: Enemy Leader, Spams Frog Song
 -----------------------------------
-require('scripts/globals/status')
-require('scripts/globals/nyzul')
------------------------------------
 local entity = {}
 
 entity.onMonsterAbilityPrepare = function(mob, skill)

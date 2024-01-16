@@ -1,14 +1,18 @@
 -----------------------------------
 -- Zone: West_Sarutabaruta_[S] (95)
 -----------------------------------
-local ID = require('scripts/zones/West_Sarutabaruta_[S]/IDs')
-require('scripts/globals/helm')
+require('scripts/globals/dark_ixion')
 -----------------------------------
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     xi.helm.initZone(zone, xi.helm.type.HARVESTING)
     xi.voidwalker.zoneOnInit(zone)
+    xi.darkixion.zoneOnInit(zone)
+end
+
+zoneObject.onGameHour = function(zone)
+    xi.darkixion.zoneOnGameHour(zone)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -28,10 +32,10 @@ end
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

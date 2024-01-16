@@ -1,9 +1,7 @@
 -----------------------------------
 -- Zone: Meriphataud_Mountains_[S] (97)
 -----------------------------------
-local ID = require('scripts/zones/Meriphataud_Mountains_[S]/IDs')
-require('scripts/globals/chocobo')
-require('scripts/globals/status')
+local ID = zones[xi.zone.MERIPHATAUD_MOUNTAINS_S]
 -----------------------------------
 local zoneObject = {}
 
@@ -42,10 +40,10 @@ zoneObject.onGameHour = function(zone)
     end
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

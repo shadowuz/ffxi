@@ -29,7 +29,7 @@ CREATE TABLE `status_effects` (
   `min_duration` smallint(5) unsigned NOT NULL DEFAULT 0,
   `sort_key` smallint(5) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=Aria TRANSACTIONAL=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +210,7 @@ INSERT INTO `status_effects` VALUES (172,'intension',40,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (173,'dread_spikes',41,34,0,0,0,0,0,0,800);
 INSERT INTO `status_effects` VALUES (174,'magic_acc_down',16418,0,0,0,0,0,1,0,0);
 INSERT INTO `status_effects` VALUES (175,'magic_atk_down',16418,0,0,0,0,0,4,0,0);
-INSERT INTO `status_effects` VALUES (176,'quickening',4194476,0,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (176,'quickening',4194348,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (177,'encumbrance',8388608,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (178,'firestorm',4194336,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (179,'hailstorm',4194336,0,0,0,0,0,0,0,0);
@@ -387,7 +387,7 @@ INSERT INTO `status_effects` VALUES (354,'seigan',41,353,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (355,'convergence',4194336,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (356,'diffusion',4194336,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (357,'snake_eye',4194336,0,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (358,'light_arts',4194592,0,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (358,'light_arts',13631776,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (359,'dark_arts',4194592,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (360,'penury',4194336,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (361,'parsimony',4194336,0,0,0,0,0,0,0,0);
@@ -656,7 +656,6 @@ INSERT INTO `status_effects` VALUES (785,'prowess_macc_matk',768,0,0,0,0,0,0,0,0
 INSERT INTO `status_effects` VALUES (786,'prowess_cure_potency',768,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (787,'prowess_ws_dmg',768,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (788,'prowess_killer',768,0,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (789,'field_support_food',8421408,0,0,2,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (790,'mark_of_seed',768,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (791,'all_miss',32,0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (792,'super_buff',32,0,0,0,0,0,0,0,0);

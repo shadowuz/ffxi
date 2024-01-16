@@ -12,7 +12,7 @@
 -- 01 00 00 00 00 00 00 00 00 00 00 00 6B 09 72 2C 00 00 00 00 00 00 00 00
 --  ^-- ticket type                     ^-- signature: PlanA
 -----------------------------------
-local ID = require("scripts/zones/Upper_Jeuno/IDs")
+local ID = zones[xi.zone.UPPER_JEUNO]
 -----------------------------------
 local entity = {}
 
@@ -21,7 +21,7 @@ entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    --player:startEvent(10101, 0) -- Rambling about chocobo breeding
+    --player:startEvent(10101, 0) -- Rambling about chocobo breeding (This CS is displayed when interacting for the first time, 10108 after)
 
     --player:startEvent(10102, 0) -- We might have a new egg tomorrow (CS)
 
@@ -53,10 +53,10 @@ entity.onTrigger = function(player, npc)
     --player:startEvent(10108) -- Purchase menu
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
     -- 1: purchase gourmet
     -- 2: purchase sports
     -- 3: purchase hiking
@@ -69,18 +69,18 @@ entity.onEventFinish = function(player, csid, option)
 
         if
             player:getFreeSlotsCount() > 0 and
-            not player:hasItem(xi.items.VCS_HONEYMOON_TICKET)
+            not player:hasItem(xi.item.VCS_HONEYMOON_TICKET)
         then
             player:delGil(3500)
-            local signatures = { "PlanA", "PlanB", "PlanC", "PlanD" }
+            local signatures = { 'PlanA', 'PlanB', 'PlanC', 'PlanD' }
             player:addItem({
-                id = xi.items.VCS_HONEYMOON_TICKET,
+                id = xi.item.VCS_HONEYMOON_TICKET,
                 exdata = { [0] = option },
                 signature = signatures[option]
             })
-            player:messageSpecial(ID.text.YOU_OBTAIN_A_X, xi.items.VCS_HONEYMOON_TICKET)
+            player:messageSpecial(ID.text.YOU_OBTAIN_A_X, xi.item.VCS_HONEYMOON_TICKET)
         else
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, xi.items.VCS_HONEYMOON_TICKET)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.VCS_HONEYMOON_TICKET)
         end
     end
 end

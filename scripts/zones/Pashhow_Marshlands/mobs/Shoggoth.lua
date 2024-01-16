@@ -1,11 +1,6 @@
 -----------------------------------
 --  Mob: Shoggoth
 -----------------------------------
-require("scripts/globals/keyitems")
-require("scripts/globals/voidwalker")
-require("scripts/globals/hunts")
------------------------------------
-
 local entity = {}
 
 entity.onMobInitialize = function(mob)
@@ -31,6 +26,7 @@ end
 entity.onMobDeath = function(mob, player, optParams)
     xi.voidwalker.onMobDeath(mob, player, optParams, xi.keyItem.ORANGE_ABYSSITE)
     xi.hunts.checkHunt(mob, player, 548)
+    xi.magian.onMobDeath(mob, player, optParams, set{ 74, 288, 436 })
 end
 
 return entity

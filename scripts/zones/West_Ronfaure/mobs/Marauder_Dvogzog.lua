@@ -2,9 +2,7 @@
 -- Area: West Ronfaure
 --  Mob: Marauder Dvogzog
 -----------------------------------
-mixins = { require("scripts/mixins/job_special") }
-require("scripts/globals/regimes")
-require("scripts/globals/status")
+mixins = { require('scripts/mixins/job_special') }
 -----------------------------------
 local entity = {}
 

@@ -19,34 +19,15 @@
 ===========================================================================
 */
 
-#include "common/logging.h"
+#include "logging.h"
 
 #include <ctime>
 
 #include "vana_time.h"
 
-CVanaTime* CVanaTime::_instance = nullptr;
-
 CVanaTime::CVanaTime()
 {
     setCustomEpoch(0);
-}
-
-CVanaTime* CVanaTime::getInstance()
-{
-    if (_instance == nullptr)
-    {
-        _instance = new CVanaTime();
-    }
-    return _instance;
-}
-
-void CVanaTime::delInstance()
-{
-    if (_instance)
-    {
-        destroy(_instance);
-    }
 }
 
 uint32 CVanaTime::getDate() const
@@ -84,10 +65,15 @@ uint32 CVanaTime::getWeekday() const
     return m_vDay;
 }
 
+uint32 CVanaTime::getSysTime()
+{
+    return static_cast<uint32>(time(nullptr));
+}
+
 uint32 CVanaTime::getSysHour()
 {
     time_t now = time(nullptr);
-    tm     ltm;
+    tm     ltm{};
 
     _localtime_s(&ltm, &now);
 
@@ -97,7 +83,7 @@ uint32 CVanaTime::getSysHour()
 uint32 CVanaTime::getSysMinute()
 {
     time_t now = time(nullptr);
-    tm     ltm;
+    tm     ltm{};
 
     _localtime_s(&ltm, &now);
 
@@ -107,7 +93,7 @@ uint32 CVanaTime::getSysMinute()
 uint32 CVanaTime::getSysSecond()
 {
     time_t now = time(nullptr);
-    tm     ltm;
+    tm     ltm{};
 
     _localtime_s(&ltm, &now);
 
@@ -117,7 +103,7 @@ uint32 CVanaTime::getSysSecond()
 uint32 CVanaTime::getSysWeekDay()
 {
     time_t now = time(nullptr);
-    tm     ltm;
+    tm     ltm{};
 
     _localtime_s(&ltm, &now);
 
@@ -127,7 +113,7 @@ uint32 CVanaTime::getSysWeekDay()
 uint32 CVanaTime::getSysYearDay()
 {
     time_t now = time(nullptr);
-    tm     ltm;
+    tm     ltm{};
 
     _localtime_s(&ltm, &now);
 
@@ -137,7 +123,7 @@ uint32 CVanaTime::getSysYearDay()
 uint32 CVanaTime::getJstHour()
 {
     auto now = time(nullptr) + JST_OFFSET;
-    tm   jtm;
+    tm   jtm{};
 
     _gmtime_s(&jtm, &now);
 
@@ -147,7 +133,7 @@ uint32 CVanaTime::getJstHour()
 uint32 CVanaTime::getJstMinute()
 {
     auto now = time(nullptr) + JST_OFFSET;
-    tm   jtm;
+    tm   jtm{};
 
     _gmtime_s(&jtm, &now);
 
@@ -157,7 +143,7 @@ uint32 CVanaTime::getJstMinute()
 uint32 CVanaTime::getJstSecond()
 {
     auto now = time(nullptr) + JST_OFFSET;
-    tm   jtm;
+    tm   jtm{};
 
     _gmtime_s(&jtm, &now);
 
@@ -167,7 +153,7 @@ uint32 CVanaTime::getJstSecond()
 uint32 CVanaTime::getJstWeekDay()
 {
     auto now = time(nullptr) + JST_OFFSET;
-    tm   jtm;
+    tm   jtm{};
 
     _gmtime_s(&jtm, &now);
 
@@ -177,7 +163,7 @@ uint32 CVanaTime::getJstWeekDay()
 uint32 CVanaTime::getJstDayOfMonth()
 {
     auto now = time(nullptr) + JST_OFFSET;
-    tm   jtm;
+    tm   jtm{};
 
     _gmtime_s(&jtm, &now);
 
@@ -187,7 +173,7 @@ uint32 CVanaTime::getJstDayOfMonth()
 uint32 CVanaTime::getJstYearDay()
 {
     auto now = time(nullptr) + JST_OFFSET;
-    tm   jtm;
+    tm   jtm{};
 
     _gmtime_s(&jtm, &now);
 
@@ -197,7 +183,7 @@ uint32 CVanaTime::getJstYearDay()
 uint32 CVanaTime::getJstMidnight()
 {
     auto now = time(nullptr) + JST_OFFSET;
-    tm   jst;
+    tm   jst{};
 
     _gmtime_s(&jst, &now);
 
@@ -214,7 +200,12 @@ uint32 CVanaTime::getVanaTime() const
     return (uint32)time(nullptr) - (m_customEpoch ? m_customEpoch : VTIME_BASEDATE);
 }
 
-int32 CVanaTime::getCustomEpoch() const
+uint32 CVanaTime::getEpoch() const
+{
+    return m_customEpoch ? m_customEpoch : VTIME_BASEDATE;
+}
+
+uint32 CVanaTime::getCustomEpoch() const
 {
     return m_customEpoch;
 }

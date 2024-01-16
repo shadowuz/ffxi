@@ -1,20 +1,13 @@
 -----------------------------------
 -- Zone: Windurst_Waters (238)
 -----------------------------------
-local ID = require('scripts/zones/Windurst_Waters/IDs')
-require('scripts/globals/events/harvest_festivals')
-require('scripts/globals/conquest')
-require('scripts/globals/cutscenes')
-require('scripts/globals/settings')
-require('scripts/globals/zone')
------------------------------------
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     -- Used for Windurst Mission 1-3
     zone:registerTriggerArea(1, 23, -12, -208, 31, -8, -197)
 
-    applyHalloweenNpcCostumes(zone:getID())
+    xi.events.harvestFestival.applyHalloweenNpcCostumes(zone:getID())
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -29,17 +22,17 @@ zoneObject.onZoneIn = function(player, prevZone)
     end
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

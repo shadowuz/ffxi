@@ -20,7 +20,7 @@
 */
 
 #include "lua_action.h"
-#include "../packets/action.h"
+#include "packets/action.h"
 
 CLuaAction::CLuaAction(action_t* Action)
 : m_PLuaAction(Action)
@@ -41,6 +41,17 @@ void CLuaAction::ID(uint32 actionTargetID, uint32 newActionTargetID)
             return;
         }
     }
+}
+
+// Get the first (primary) target's long ID, if available.
+uint32 CLuaAction::getPrimaryTargetID()
+{
+    if (!m_PLuaAction->actionLists.empty())
+    {
+        return m_PLuaAction->actionLists[0].ActionTargetID;
+    }
+
+    return 0;
 }
 
 void CLuaAction::setRecast(uint16 recast)
@@ -225,6 +236,7 @@ void CLuaAction::Register()
 {
     SOL_USERTYPE("CAction", CLuaAction);
     SOL_REGISTER("ID", CLuaAction::ID);
+    SOL_REGISTER("getPrimaryTargetID", CLuaAction::getPrimaryTargetID);
     SOL_REGISTER("getRecast", CLuaAction::getRecast);
     SOL_REGISTER("setRecast", CLuaAction::setRecast);
     SOL_REGISTER("actionID", CLuaAction::actionID);

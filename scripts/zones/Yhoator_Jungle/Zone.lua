@@ -1,14 +1,8 @@
 -----------------------------------
 -- Zone: Yhoator_Jungle (124)
 -----------------------------------
-local ID = require('scripts/zones/Yhoator_Jungle/IDs')
+local ID = zones[xi.zone.YHOATOR_JUNGLE]
 require('scripts/quests/i_can_hear_a_rainbow')
-require('scripts/globals/chocobo_digging')
-require('scripts/globals/conquest')
-require('scripts/globals/chocobo')
-require('scripts/globals/helm')
-require('scripts/globals/zone')
-require('scripts/globals/beastmentreasure')
 require('scripts/missions/amk/helpers')
 -----------------------------------
 local zoneObject = {}
@@ -43,8 +37,8 @@ zoneObject.onGameDay = function()
     xi.bmt.updatePeddlestox(xi.zone.YHOATOR_JUNGLE, ID.npc.PEDDLESTOX)
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)

@@ -1,14 +1,25 @@
-require("scripts/globals/spell_data")
-require("scripts/globals/jobpoints")
-require("scripts/globals/magicburst")
-require("scripts/globals/settings")
-require("scripts/globals/status")
-require("scripts/globals/utils")
-require("scripts/globals/msg")
+require('scripts/globals/jobpoints')
+require('scripts/globals/magicburst')
+require('scripts/globals/utils')
 -----------------------------------
-
 xi = xi or {}
 xi.magic = xi.magic or {}
+
+-----------------------------------
+-- Day to Element Mapping
+-----------------------------------
+
+xi.magic.dayElement =
+{
+    [xi.day.FIRESDAY]     = xi.element.FIRE,
+    [xi.day.ICEDAY]       = xi.element.ICE,
+    [xi.day.WINDSDAY]     = xi.element.WIND,
+    [xi.day.EARTHSDAY]    = xi.element.EARTH,
+    [xi.day.LIGHTNINGDAY] = xi.element.THUNDER,
+    [xi.day.WATERSDAY]    = xi.element.WATER,
+    [xi.day.LIGHTSDAY]    = xi.element.LIGHT,
+    [xi.day.DARKSDAY]     = xi.element.DARK,
+}
 
 -----------------------------------
 -- Tables by element
@@ -32,6 +43,18 @@ xi.magic.barSpell            = { xi.effect.BARFIRE,            xi.effect.BARBLIZ
 xi.magic.dayWeak             = { xi.day.WATERSDAY,             xi.day.FIRESDAY,             xi.day.ICEDAY,                 xi.day.WINDSDAY,               xi.day.EARTHSDAY,                  xi.day.LIGHTNINGDAY,            xi.day.DARKSDAY,            xi.day.LIGHTSDAY           }
 xi.magic.singleWeatherWeak   = { xi.weather.RAIN,              xi.weather.HOT_SPELL,        xi.weather.SNOW,               xi.weather.WIND,               xi.weather.DUST_STORM,             xi.weather.THUNDER,             xi.weather.GLOOM,           xi.weather.AURORAS         }
 xi.magic.doubleWeatherWeak   = { xi.weather.SQUALL,            xi.weather.HEAT_WAVE,        xi.weather.BLIZZARDS,          xi.weather.GALES,              xi.weather.SAND_STORM,             xi.weather.THUNDERSTORMS,       xi.weather.DARKNESS,        xi.weather.STELLAR_GLARE   }
+
+local elementDescendant =
+{
+    [xi.element.FIRE   ] = xi.element.WATER,
+    [xi.element.ICE    ] = xi.element.FIRE,
+    [xi.element.WIND   ] = xi.element.ICE,
+    [xi.element.EARTH  ] = xi.element.WIND,
+    [xi.element.THUNDER] = xi.element.EARTH,
+    [xi.element.WATER  ] = xi.element.THUNDER,
+    [xi.element.LIGHT  ] = xi.element.DARK,
+    [xi.element.DARK   ] = xi.element.LIGHT,
+}
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
@@ -105,7 +128,7 @@ local function getSpellBonusAcc(caster, target, spell, params)
         magicAccBonus = magicAccBonus + 256
     end
 
-    local skillchainTier, _ = FormMagicBurst(element, target)
+    local skillchainTier, _ = xi.magicburst.formMagicBurst(element, target)
 
     -- Add acc for skillchains
     if skillchainTier > 0 then
@@ -153,7 +176,7 @@ local function getSpellBonusAcc(caster, target, spell, params)
 
         [xi.job.RDM] = function()
             -- Add MACC for RDM group 1 merits
-            if element >= xi.magic.element.FIRE and element <= xi.magic.element.WATER then
+            if element >= xi.element.FIRE and element <= xi.element.WATER then
                 magicAccBonus = magicAccBonus + caster:getMerit(rdmMerit[element])
             end
 
@@ -201,11 +224,10 @@ local function getSpellBonusAcc(caster, target, spell, params)
 end
 
 local function calculateMagicHitRate(magicacc, magiceva, percentBonus, casterLvl, targetLvl)
-    local p = 0
     --add a scaling bonus or penalty based on difference of targets level from caster
     local levelDiff = utils.clamp(casterLvl - targetLvl, -5, 5)
 
-    p = 70 - 0.5 * (magiceva - magicacc) + levelDiff * 3 + percentBonus
+    local p = 70 - 0.5 * (magiceva - magicacc) + levelDiff * 3 + percentBonus
 
     return utils.clamp(p, 5, 95)
 end
@@ -227,10 +249,17 @@ local function calculateMagicBurst(caster, spell, target, params)
     local modburst = 1.0
 
     if
-        spell:getSpellGroup() == 3 and
-        not (caster:hasStatusEffect(xi.effect.BURST_AFFINITY) or caster:hasStatusEffect(xi.effect.AZURE_LORE))
+        spell and
+        spell:getSpellGroup() == xi.magic.spellGroup.BLUE
     then
-        return burst
+        if
+            not (caster:hasStatusEffect(xi.effect.BURST_AFFINITY) or
+            caster:hasStatusEffect(xi.effect.AZURE_LORE))
+        then
+            return burst
+        end
+
+        caster:delStatusEffectSilent(xi.effect.BURST_AFFINITY)
     end
 
     -- Obtain first multiplier from gear, atma and job traits
@@ -250,7 +279,7 @@ local function calculateMagicBurst(caster, spell, target, params)
 
     -- Obtain second multiplier from skillchain
     -- Starts at 35% damage bonus, increases by 10% for every additional weaponskill in the chain
-    local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target)
+    local skillchainTier, skillchainCount = xi.magicburst.formMagicBurst(spell:getElement(), target)
 
     if skillchainTier > 0 then
         if skillchainCount == 1 then -- two weaponskills
@@ -411,7 +440,7 @@ function getCureFinal(caster, spell, basecure, minCure, isBlueMagic)
         if math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 then
             dayWeatherBonus = dayWeatherBonus + 0.10
         end
-    elseif dayElement == xi.magic.elementDescendant[ele] then
+    elseif dayElement == elementDescendant[ele] then
         if math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 then
             dayWeatherBonus = dayWeatherBonus - 0.10
         end
@@ -472,7 +501,7 @@ function applyResistanceEffect(caster, target, spell, params)
         -- Fealty allows the PLD to resist all status inflicting spells except Threnody and Requiem
         elseif
             target:hasStatusEffect(xi.effect.FEALTY) and
-            not family == xi.magic.spellFamily.FOE_REQUIEM and
+            family ~= xi.magic.spellFamily.FOE_REQUIEM and
             not (family >= xi.magic.spellFamily.FIRE_THRENODY and
             family <= xi.magic.spellFamily.DARK_THRENODY)
         then
@@ -504,7 +533,7 @@ function applyResistanceEffect(caster, target, spell, params)
     end
 
     if effect ~= nil then
-        percentBonus = percentBonus - getEffectResistance(target, effect)
+        percentBonus = percentBonus - xi.magic.getEffectResistance(target, effect)
     end
 
     local p = getMagicHitRate(caster, target, skill, element, percentBonus, magicaccbonus)
@@ -551,7 +580,7 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     end
 
     local resMod = 0 -- Some spells may possibly be non elemental, but have status effects.
-    if element ~= xi.magic.ele.NONE then
+    if element ~= xi.element.NONE then
         resMod = target:getMod(xi.magic.resistMod[element])
 
         -- Add acc for elemental affinity accuracy and element specific accuracy
@@ -580,7 +609,7 @@ end
 -- Returns resistance value from given magic hit rate (p)
 function getMagicResist(magicHitRate)
     local p = magicHitRate / 100
-    local resist = 1
+    local resist = 1.0
 
     -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
     local half      = (1 - p)
@@ -598,60 +627,45 @@ function getMagicResist(magicHitRate)
         resist = 0.25
     elseif resvar <= half then
         resist = 0.5
-    else
-        resist = 1.0
     end
 
     return resist
 end
 
--- Returns the amount of resistance the
--- target has to the given effect (stun, sleep, etc..)
--- TODO: Use keyed table and lookup
-function getEffectResistance(target, effect)
-    local effectres = 0
-    local statusres = target:getMod(xi.mod.STATUSRES)
-    if effect == xi.effect.SLEEP_I or effect == xi.effect.SLEEP_II then
-        effectres = xi.mod.SLEEPRES
-    elseif effect == xi.effect.LULLABY then
-        effectres = xi.mod.LULLABYRES
-    elseif effect == xi.effect.POISON then
-        effectres = xi.mod.POISONRES
-    elseif effect == xi.effect.PARALYSIS then
-        effectres = xi.mod.PARALYZERES
-    elseif effect == xi.effect.BLINDNESS then
-        effectres = xi.mod.BLINDRES
-    elseif effect == xi.effect.SILENCE then
-        effectres = xi.mod.SILENCERES
-    elseif effect == xi.effect.PLAGUE or effect == xi.effect.DISEASE then
-        effectres = xi.mod.VIRUSRES
-    elseif effect == xi.effect.PETRIFICATION then
-        effectres = xi.mod.PETRIFYRES
-    elseif effect == xi.effect.BIND then
-        effectres = xi.mod.BINDRES
-    elseif
-        effect == xi.effect.CURSE_I or
-        effect == xi.effect.CURSE_II or
-        effect == xi.effect.BANE
-    then
-        effectres = xi.mod.CURSERES
-    elseif effect == xi.effect.WEIGHT then
-        effectres = xi.mod.GRAVITYRES
-    elseif effect == xi.effect.SLOW or effect == xi.effect.ELEGY then
-        effectres = xi.mod.SLOWRES
-    elseif effect == xi.effect.STUN then
-        effectres = xi.mod.STUNRES
-    elseif effect == xi.effect.CHARM_I or effect == xi.effect.CHARM_II then
-        effectres = xi.mod.CHARMRES
-    elseif effect == xi.effect.AMNESIA then
-        effectres = xi.mod.AMNESIARES
+-- Returns the amount of resistance the target has to the given effect
+local effectToResistanceMod =
+{
+    [xi.effect.SLEEP_I      ] = xi.mod.SLEEPRES,
+    [xi.effect.SLEEP_II     ] = xi.mod.SLEEPRES,
+    [xi.effect.LULLABY      ] = xi.mod.LULLABYRES,
+    [xi.effect.POISON       ] = xi.mod.POISONRES,
+    [xi.effect.PARALYSIS    ] = xi.mod.PARALYZERES,
+    [xi.effect.BLINDNESS    ] = xi.mod.BLINDRES,
+    [xi.effect.SILENCE      ] = xi.mod.SILENCERES,
+    [xi.effect.PLAGUE       ] = xi.mod.VIRUSRES,
+    [xi.effect.DISEASE      ] = xi.mod.VIRUSRES,
+    [xi.effect.PETRIFICATION] = xi.mod.PETRIFYRES,
+    [xi.effect.BIND         ] = xi.mod.BINDRES,
+    [xi.effect.CURSE_I      ] = xi.mod.CURSERES,
+    [xi.effect.CURSE_II     ] = xi.mod.CURSERES,
+    [xi.effect.BANE         ] = xi.mod.CURSERES,
+    [xi.effect.WEIGHT       ] = xi.mod.GRAVITYRES,
+    [xi.effect.SLOW         ] = xi.mod.SLOWRES,
+    [xi.effect.ELEGY        ] = xi.mod.SLOWRES,
+    [xi.effect.STUN         ] = xi.mod.STUNRES,
+    [xi.effect.CHARM_I      ] = xi.mod.CHARMRES,
+    [xi.effect.CHARM_II     ] = xi.mod.CHARMRES,
+    [xi.effect.AMNESIA      ] = xi.mod.AMNESIARES,
+}
+
+xi.magic.getEffectResistance = function(target, effectId)
+    local statusResistance = target:getMod(xi.mod.STATUSRES)
+
+    if effectToResistanceMod[effectId] then
+        statusResistance = statusResistance + target:getMod(effectToResistanceMod[effectId])
     end
 
-    if effectres ~= 0 then
-        return target:getMod(effectres) + statusres
-    end
-
-    return statusres
+    return statusResistance
 end
 
 function handleAfflatusMisery(caster, spell, dmg)
@@ -836,7 +850,7 @@ function addBonuses(caster, spell, target, dmg, params)
         if dayWeatherBonusCheck then
             dayWeatherBonus = dayWeatherBonus + 0.10
         end
-    elseif dayElement == xi.magic.elementDescendant[ele] then
+    elseif dayElement == elementDescendant[ele] then
         if dayWeatherBonusCheck then
             dayWeatherBonus = dayWeatherBonus - 0.10
         end
@@ -851,11 +865,11 @@ function addBonuses(caster, spell, target, dmg, params)
     if burst > 1.0 then
         spell:setMsg(spell:getMagicBurstMessage()) -- "Magic Burst!"
 
-        caster:triggerRoeEvent(xi.roe.triggers.magicBurst)
+        caster:triggerRoeEvent(xi.roeTrigger.MAGIC_BURST)
     end
 
     dmg = math.floor(dmg * burst)
-    local mabbonus = 0
+    local mabbonus
     local spellId = spell:getID()
 
     if spellId >= 245 and spellId <= 248 then -- Drain/Aspir (II)
@@ -876,7 +890,7 @@ function addBonuses(caster, spell, target, dmg, params)
         end
 
         local mdefBarBonus = 0
-        if ele >= xi.magic.element.FIRE and ele <= xi.magic.element.WATER then
+        if ele >= xi.element.FIRE and ele <= xi.element.WATER then
             mab = mab + caster:getMerit(blmMerit[ele])
             if target:hasStatusEffect(xi.magic.barSpell[ele]) then -- bar- spell magic defense bonus
                 mdefBarBonus = target:getStatusEffect(xi.magic.barSpell[ele]):getSubPower()
@@ -941,7 +955,7 @@ function addBonusesAbility(caster, ele, target, dmg, params)
         if math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 then
             dayWeatherBonus = dayWeatherBonus + 0.10
         end
-    elseif dayElement == xi.magic.elementDescendant[ele] then
+    elseif dayElement == elementDescendant[ele] then
         if math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 then
             dayWeatherBonus = dayWeatherBonus - 0.10
         end
@@ -954,8 +968,8 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     local mab = 1
     local mdefBarBonus = 0
     if
-        ele >= xi.magic.element.FIRE and
-        ele <= xi.magic.element.WATER and
+        ele >= xi.element.FIRE and
+        ele <= xi.element.WATER and
         target:hasStatusEffect(xi.magic.barSpell[ele])
     then -- bar- spell magic defense bonus
         mdefBarBonus = target:getStatusEffect(xi.magic.barSpell[ele]):getSubPower()
@@ -1074,14 +1088,6 @@ function canOverwrite(target, effect, power, mod)
     return true
 end
 
-function calculateDurationForLvl(duration, spellLvl, targetLvl)
-    if targetLvl < spellLvl then
-        return duration * targetLvl / spellLvl
-    end
-
-    return duration
-end
-
 function calculateDuration(duration, magicSkill, spellGroup, caster, target, useComposure)
     local casterJob = caster:getMainJob()
 
@@ -1140,22 +1146,6 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
     end
 
     return math.floor(duration)
-end
-
-function calculatePotency(basePotency, magicSkill, caster, target)
-    if magicSkill ~= xi.skill.ENFEEBLING_MAGIC then
-        return basePotency
-    end
-
-    if caster:hasStatusEffect(xi.effect.SABOTEUR) then
-        if target:isNM() then
-            basePotency = math.floor(basePotency * (1.3 + caster:getMod(xi.mod.ENHANCES_SABOTEUR)))
-        else
-            basePotency = math.floor(basePotency * (2 + caster:getMod(xi.mod.ENHANCES_SABOTEUR)))
-        end
-    end
-
-    return math.floor(basePotency * (1 + caster:getMod(xi.mod.ENF_MAG_POTENCY) / 100))
 end
 
 xi.ma = xi.magic

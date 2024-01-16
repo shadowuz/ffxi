@@ -56,6 +56,11 @@ xi.settings.map =
     EXP_LOSS_RATE           = 1.0,
     EXP_PARTY_GAP_PENALTIES = true,
 
+    -- A party member's experience points are nullified if the level difference with the highest-level party member exceeds this value.
+    -- When set to 0, there is no nullification of EXP regardless of how wide the gap is between party members.
+    -- When set to 10, if you are level 65 or below in a party with a level 75, you will receive no EXP.
+    EXP_PARTY_GAP_NO_EXP = 0,
+
     -- Capacity Point Settings
     CAPACITY_RATE = 1.0,
 
@@ -212,7 +217,7 @@ xi.settings.map =
     BATTLE_CAP_TWEAK = 0,
 
     -- Enable/disable level cap of mission battlefields stored in database.
-    LV_CAP_MISSION_BCNM = 0,
+    LV_CAP_MISSION_BCNM = false,
 
     -- Max allowed merits points players can hold
     -- 10 classic
@@ -224,6 +229,9 @@ xi.settings.map =
 
     -- Prevent players from sending tells to hidden GMs. You will still receive them from other GMs.
     BLOCK_TELL_TO_HIDDEN_GM = false,
+
+    -- Prevent players from performing WS while unengaged using packet injection.
+    PREVENT_UNENGAGED_WS = false,
 
     -- Command Audit [logging] commands with lower permission than this will not be logged.
     -- Zero for no logging at all. Commands given to non GMs are not logged.
@@ -252,6 +260,11 @@ xi.settings.map =
 
     -- Enable/disable keeping jug pets through zoning
     KEEP_JUGPET_THROUGH_ZONING = false,
+
+    -- Despawn jug pets that have a minimum level below level sync or zone level restriction.
+    -- Such as despawning Courier Carrie in a level 20 cap when their minimum level to summon is 23.
+    -- While the default value of false is retail accurate, there are some balance concerns such as using 1000 needles at low levels from the cactuar pet.
+    DESPAWN_JUGPETS_BELOW_MINIMUM_LEVEL = false,
 
     -- Send stack traces to the client after caught Lua errors if
     -- their GM level is the same or higher than this number.

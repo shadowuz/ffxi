@@ -8,11 +8,7 @@
 -- !addkeyitem cosmo_cleanse
 -- !pos 580.000 -2.375 104.000 37
 -----------------------------------
-local ID = require("scripts/zones/Temenos/IDs")
-require("scripts/globals/battlefield")
-require("scripts/globals/limbus")
-require("scripts/globals/items")
-require("scripts/globals/keyitems")
+local ID = zones[xi.zone.TEMENOS]
 -----------------------------------
 
 local content = Limbus:new({
@@ -24,15 +20,16 @@ local content = Limbus:new({
     area             = 4,
     entryNpc         = 'Matter_Diffusion_Module',
     requiredKeyItems = { xi.ki.COSMO_CLEANSE, xi.ki.WHITE_CARD, message = ID.text.YOU_INSERT_THE_CARD_POLISHED },
-    requiredItems    = { xi.items.SILVER_CHIP, xi.items.CERULEAN_CHIP, xi.items.ORCHID_CHIP },
-    name             = "CENTRAL_TEMENOS_4TH_FLOOR",
+    requiredItems    = { xi.item.SILVER_CHIP, xi.item.CERULEAN_CHIP, xi.item.ORCHID_CHIP },
+    name             = 'CENTRAL_TEMENOS_4TH_FLOOR',
 })
 
 local despawnGroupCrates = function(crateGroup)
     for i = 1, crateGroup.count do
         local crate = GetEntityByID(crateGroup.offset + i - 1)
-        if crate:getLocalVar("opened") == 0 then
-            crate:setLocalVar("opened", 1)
+
+        if crate:getLocalVar('opened') == 0 then
+            crate:setLocalVar('opened', 1)
             npcUtil.disappearCrate(crate)
         end
     end
@@ -45,15 +42,17 @@ function content:onBattlefieldInitialise(battlefield)
     -- Randomize crate type order by shuffling setup functions
     for index, group in ipairs(ID.CENTRAL_TEMENOS_4TH_FLOOR.npc.GROUPS) do
         local itemIndex = math.random(1, group.count)
+
         for j = 1, group.count do
             local crateID = group.offset + j - 1
-            local crate = GetEntityByID(crateID)
+            local crate   = GetEntityByID(crateID)
+
             crate:setStatus(xi.status.NORMAL)
             crate:setUntargetable(false)
             crate:setAnimationSub(8)
             crate:setModelId(961)
 
-            crate:addListener("ON_TRIGGER", "TRIGGER_CRATE", function(player, npc)
+            crate:addListener('ON_TRIGGER', 'TRIGGER_CRATE', function(player, npc)
                 npcUtil.openCrate(npc, function()
                     despawnGroupCrates(group)
 
@@ -62,8 +61,9 @@ function content:onBattlefieldInitialise(battlefield)
                     else
                         -- Spawn a random mob from the corresponding mob group
                         local mobGroup = ID.CENTRAL_TEMENOS_4TH_FLOOR.mob.GROUPS[index]
-                        local mobID = mobGroup.offset + math.random(0, mobGroup.count - 1)
-                        local mob = GetMobByID(mobID)
+                        local mobID    = mobGroup.offset + math.random(0, mobGroup.count - 1)
+                        local mob      = GetMobByID(mobID)
+
                         mob:setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos(), npc:getRotPos())
                         mob:spawn()
                         mob:updateEnmity(player)
@@ -77,7 +77,7 @@ end
 content.groups =
 {
     {
-        mobs = { "Armoury_Crate_Fourth" },
+        mobs  = { 'Armoury_Crate_Fourth' },
         setup = function(battlefield, crates)
             for _, crate in ipairs(crates) do
                 crate:setBattleID(1) -- Different battle ID prevents the crate from being hit by AOEs
@@ -88,24 +88,24 @@ content.groups =
     {
         mobs =
         {
-            "Kingslayer_Doggvdegg",
-            "JiGho_Ageless",
-            "Koo_Buzu_the_Theomanic",
-            "Yagudos_Elemental",
-            "Yagudos_Avatar",
-            "Mystic_Avatar_Ifrit",
-            "Mystic_Avatar_Shiva",
-            "Mystic_Avatar_Garuda",
-            "Mystic_Avatar_Titan",
-            "Mystic_Avatar_Ramuh",
-            "Mystic_Avatar_Leviathan",
-            "Enhanced_Koenigstiger",
-            "Enhanced_Pygmaioi",
-            "Enhanced_Kettenkaefer",
-            "Enhanced_Salamander",
-            "Enhanced_Jelly",
-            "Enhanced_Makara",
-            "Enhanced_Akbaba",
+            'Kingslayer_Doggvdegg',
+            'JiGho_Ageless',
+            'Koo_Buzu_the_Theomanic',
+            'Yagudos_Elemental',
+            'Yagudos_Avatar',
+            'Mystic_Avatar_Ifrit',
+            'Mystic_Avatar_Shiva',
+            'Mystic_Avatar_Garuda',
+            'Mystic_Avatar_Titan',
+            'Mystic_Avatar_Ramuh',
+            'Mystic_Avatar_Leviathan',
+            'Enhanced_Koenigstiger',
+            'Enhanced_Pygmaioi',
+            'Enhanced_Kettenkaefer',
+            'Enhanced_Salamander',
+            'Enhanced_Jelly',
+            'Enhanced_Makara',
+            'Enhanced_Akbaba',
         },
 
         spawned = false,
@@ -114,21 +114,22 @@ content.groups =
     {
         mobs =
         {
-            "Kingslayer_Doggvdegg",
-            "JiGho_Ageless",
-            "Koo_Buzu_the_Theomanic",
+            'Kingslayer_Doggvdegg',
+            'JiGho_Ageless',
+            'Koo_Buzu_the_Theomanic',
         },
 
         spawned = false,
-        mixins = { require("scripts/mixins/job_special") }
+        mixins  = { require('scripts/mixins/job_special') }
     },
 
     {
-        mobs = { "Proto-Ultima" },
+        mobs  = { 'Proto-Ultima' },
         setup = function(battlefield, mobs)
             local ultima = mobs[1]
+
             -- Despawn all crates when Proto-Ultima is engaged
-            ultima:addListener("ENGAGE", "ULTIMA_ENGAGED", function(mob, target)
+            ultima:addListener('ENGAGE', 'ULTIMA_ENGAGED', function(mob, target)
                 for _, group in ipairs(ID.CENTRAL_TEMENOS_4TH_FLOOR.npc.GROUPS) do
                     despawnGroupCrates(group)
                 end
@@ -137,6 +138,7 @@ content.groups =
 
         allDeath = function(battlefield, mob)
             local pos = mob:getSpawnPos()
+
             mob:setPos(pos.x, pos.y, pos.z, 64)
             xi.limbus.spawnFrom(mob, ID.CENTRAL_TEMENOS_4TH_FLOOR.npc.LOOT_CRATE)
         end
@@ -149,37 +151,37 @@ content.loot =
     {
         {
             quantity = 5,
-            { item = xi.items.ANCIENT_BEASTCOIN, weight = xi.loot.weight.NORMAL },
+            { item = xi.item.ANCIENT_BEASTCOIN, weight = xi.loot.weight.NORMAL },
         },
 
         {
             quantity = 2,
-            { item = xi.items.NONE, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.ANCIENT_BEASTCOIN, weight = xi.loot.weight.NORMAL },
+            { item = xi.item.NONE,              weight = xi.loot.weight.NORMAL },
+            { item = xi.item.ANCIENT_BEASTCOIN, weight = xi.loot.weight.NORMAL },
         },
 
         {
             quantity = 2,
-            { item = xi.items.SQUARE_OF_ECARLATE_CLOTH, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.UTOPIAN_GOLD_THREAD, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SQUARE_OF_BENEDICT_SILK, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SQUARE_OF_DIABOLIC_SILK, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SPOOL_OF_RUBY_SILK_THREAD, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SQUARE_OF_SUPPLE_SKIN, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.CHUNK_OF_SNOWY_CERMET, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.DARK_ORICHALCUM_INGOT, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SQUARE_OF_SMALT_LEATHER, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SPOOL_OF_COILED_YARN, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SPOOL_OF_CHAMELEON_YARN, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SPOOL_OF_SCARLET_ODOSHI, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.PLAITED_CORD, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SHEET_OF_COBALT_MYTHRIL, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SPOOL_OF_GLITTERING_YARN, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SPOOL_OF_LUMINIAN_THREAD, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SPOOL_OF_SILKWORM_THREAD, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.PANTIN_WIRE, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SQUARE_OF_FILET_LACE, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SQUARE_OF_BRILLIANTINE, weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SQUARE_OF_ECARLATE_CLOTH,  weight = xi.loot.weight.NORMAL },
+            { item = xi.item.UTOPIAN_GOLD_THREAD,       weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SQUARE_OF_BENEDICT_SILK,   weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SQUARE_OF_DIABOLIC_SILK,   weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SPOOL_OF_RUBY_SILK_THREAD, weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SQUARE_OF_SUPPLE_SKIN,     weight = xi.loot.weight.NORMAL },
+            { item = xi.item.CHUNK_OF_SNOWY_CERMET,     weight = xi.loot.weight.NORMAL },
+            { item = xi.item.DARK_ORICHALCUM_INGOT,     weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SQUARE_OF_SMALT_LEATHER,   weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SPOOL_OF_COILED_YARN,      weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SPOOL_OF_CHAMELEON_YARN,   weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SPOOL_OF_SCARLET_ODOSHI,   weight = xi.loot.weight.NORMAL },
+            { item = xi.item.PLAITED_CORD,              weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SHEET_OF_COBALT_MYTHRIL,   weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SPOOL_OF_GLITTERING_YARN,  weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SPOOL_OF_LUMINIAN_THREAD,  weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SPOOL_OF_SILKWORM_THREAD,  weight = xi.loot.weight.NORMAL },
+            { item = xi.item.PANTIN_WIRE,               weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SQUARE_OF_FILET_LACE,      weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SQUARE_OF_BRILLIANTINE,    weight = xi.loot.weight.NORMAL },
         },
     },
 
@@ -187,20 +189,20 @@ content.loot =
     {
         {
             quantity = 7,
-            { item = xi.items.ANCIENT_BEASTCOIN, weight = xi.loot.weight.NORMAL },
+            { item = xi.item.ANCIENT_BEASTCOIN, weight = xi.loot.weight.NORMAL },
         },
 
         {
             quantity = 2,
-            { item = xi.items.PIECE_OF_ULTIMAS_CEREBRUM, weight = xi.loot.weight.NORMAL },
-            { item = xi.items.SEGMENT_OF_ULTIMAS_CLAW, weight = xi.loot.weight.LOW },
-            { item = xi.items.SEGMENT_OF_ULTIMAS_LEG, weight = xi.loot.weight.LOW },
-            { item = xi.items.SEGMENT_OF_ULTIMAS_TAIL, weight = xi.loot.weight.LOW },
+            { item = xi.item.PIECE_OF_ULTIMAS_CEREBRUM, weight = xi.loot.weight.NORMAL },
+            { item = xi.item.SEGMENT_OF_ULTIMAS_CLAW,   weight = xi.loot.weight.LOW    },
+            { item = xi.item.SEGMENT_OF_ULTIMAS_LEG,    weight = xi.loot.weight.LOW    },
+            { item = xi.item.SEGMENT_OF_ULTIMAS_TAIL,   weight = xi.loot.weight.LOW    },
         },
 
         {
-            { item = xi.items.NONE, weight = xi.loot.weight.EXTREMELY_HIGH },
-            { item = xi.items.PIECE_OF_ULTIMAS_HEART, weight = xi.loot.weight.NORMAL },
+            { item = xi.item.NONE,                   weight = xi.loot.weight.EXTREMELY_HIGH },
+            { item = xi.item.PIECE_OF_ULTIMAS_HEART, weight = xi.loot.weight.NORMAL         },
         },
     },
 }

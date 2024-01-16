@@ -2,9 +2,7 @@
 -- Area: Kuftal Tunnel
 --  Mob: Robber Crab
 -----------------------------------
-local ID = require("scripts/zones/Kuftal_Tunnel/IDs")
-require("scripts/globals/regimes")
-require("scripts/globals/status")
+local ID = zones[xi.zone.KUFTAL_TUNNEL]
 -----------------------------------
 local entity = {}
 

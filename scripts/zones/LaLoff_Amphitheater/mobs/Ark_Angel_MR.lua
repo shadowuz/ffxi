@@ -2,8 +2,7 @@
 -- Area: LaLoff Amphitheater
 --  Mob: Ark Angel MR
 -----------------------------------
-mixins = { require("scripts/mixins/job_special") }
-require("scripts/globals/status")
+mixins = { require('scripts/mixins/job_special') }
 -----------------------------------
 local entity = {}
 
@@ -36,9 +35,9 @@ entity.onMobEngaged = function(mob, target)
 end
 
 entity.onMobFight = function(mob, target)
-    if mob:getLocalVar("Charm") == 0 and mob:getHPP() <  50 then
+    if mob:getLocalVar('Charm') == 0 and mob:getHPP() < 50 then
         mob:useMobAbility(710)
-        mob:setLocalVar("Charm", 1)
+        mob:setLocalVar('Charm', 1)
     end
 end
 

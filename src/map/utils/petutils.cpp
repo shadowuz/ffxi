@@ -26,177 +26,42 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include <cstring>
 #include <vector>
 
-#include "../ability.h"
-#include "../enmity_container.h"
-#include "../entities/automatonentity.h"
-#include "../entities/mobentity.h"
-#include "../grades.h"
-#include "../items/item_weapon.h"
-#include "../job_points.h"
-#include "../latent_effect_container.h"
-#include "../map.h"
-#include "../mob_spell_list.h"
-#include "../status_effect_container.h"
-#include "../zone_instance.h"
+#include "ability.h"
 #include "battleutils.h"
 #include "charutils.h"
+#include "enmity_container.h"
+#include "entities/automatonentity.h"
+#include "entities/mobentity.h"
+#include "grades.h"
+#include "items/item_weapon.h"
+#include "job_points.h"
+#include "latent_effect_container.h"
+#include "map.h"
+#include "mob_spell_list.h"
 #include "petutils.h"
 #include "puppetutils.h"
+#include "status_effect_container.h"
+#include "zone_instance.h"
 #include "zoneutils.h"
 
-#include "../ai/ai_container.h"
-#include "../ai/controllers/automaton_controller.h"
-#include "../ai/controllers/mob_controller.h"
-#include "../ai/controllers/pet_controller.h"
-#include "../ai/states/ability_state.h"
+#include "ai/ai_container.h"
+#include "ai/controllers/automaton_controller.h"
+#include "ai/controllers/mob_controller.h"
+#include "ai/controllers/pet_controller.h"
+#include "ai/states/ability_state.h"
 
-#include "../mob_modifier.h"
-#include "../packets/char_abilities.h"
-#include "../packets/char_sync.h"
-#include "../packets/char_update.h"
-#include "../packets/entity_update.h"
-#include "../packets/message_standard.h"
-#include "../packets/pet_sync.h"
-
-struct Pet_t
-{
-    uint16      PetID;     // ID in pet_list.sql
-    look_t      look;      // внешний вид
-    std::string name;      // имя
-    ECOSYSTEM   EcoSystem; // эко-система
-
-    uint8 minLevel; // минимально-возможный  уровень
-    uint8 maxLevel; // максимально-возможный уровень
-
-    uint8  name_prefix;
-    uint8  radius; // Model Radius - affects melee range etc.
-    uint16 m_Family;
-    uint32 time; // время существования (будет использоваться для задания длительности статус эффекта)
-
-    uint8 mJob;
-    uint8 sJob;
-    uint8 m_Element;
-    float HPscale; // HP boost percentage
-    float MPscale; // MP boost percentage
-
-    uint16 cmbDelay;
-    uint8  speed;
-    // stat ranks
-    uint8 strRank;
-    uint8 dexRank;
-    uint8 vitRank;
-    uint8 agiRank;
-    uint8 intRank;
-    uint8 mndRank;
-    uint8 chrRank;
-    uint8 attRank;
-    uint8 defRank;
-    uint8 evaRank;
-    uint8 accRank;
-
-    uint16 m_MobSkillList;
-
-    // magic stuff
-    bool   hasSpellScript;
-    uint16 spellList;
-
-    // resists
-    int16 slash_sdt;
-    int16 pierce_sdt;
-    int16 hth_sdt;
-    int16 impact_sdt;
-
-    int16 fire_sdt;
-    int16 ice_sdt;
-    int16 wind_sdt;
-    int16 earth_sdt;
-    int16 thunder_sdt;
-    int16 water_sdt;
-    int16 light_sdt;
-    int16 dark_sdt;
-
-    int8 fire_res_rank;
-    int8 ice_res_rank;
-    int8 wind_res_rank;
-    int8 earth_res_rank;
-    int8 thunder_res_rank;
-    int8 water_res_rank;
-    int8 light_res_rank;
-    int8 dark_res_rank;
-
-    Pet_t()
-    : EcoSystem(ECOSYSTEM::ECO_ERROR)
-    {
-        PetID = 0;
-
-        minLevel = -1;
-        maxLevel = 99;
-
-        name_prefix = 0;
-        radius      = 0;
-        m_Family    = 0;
-        time        = 0;
-
-        mJob      = 0;
-        sJob      = 0;
-        m_Element = 0;
-        HPscale   = 0.f;
-        MPscale   = 0.f;
-
-        cmbDelay = 0;
-        speed    = 0;
-
-        strRank = 0;
-        dexRank = 0;
-        vitRank = 0;
-        agiRank = 0;
-        intRank = 0;
-        mndRank = 0;
-        chrRank = 0;
-        attRank = 0;
-        defRank = 0;
-        evaRank = 0;
-        accRank = 0;
-
-        m_MobSkillList = 0;
-
-        hasSpellScript = false;
-        spellList      = 0;
-
-        slash_sdt  = 0;
-        pierce_sdt = 0;
-        hth_sdt    = 0;
-        impact_sdt = 0;
-
-        fire_sdt    = 0;
-        ice_sdt     = 0;
-        wind_sdt    = 0;
-        earth_sdt   = 0;
-        thunder_sdt = 0;
-        water_sdt   = 0;
-        light_sdt   = 0;
-        dark_sdt    = 0;
-
-        fire_res_rank    = 0;
-        ice_res_rank     = 0;
-        wind_res_rank    = 0;
-        earth_res_rank   = 0;
-        thunder_res_rank = 0;
-        water_res_rank   = 0;
-        light_res_rank   = 0;
-        dark_res_rank    = 0;
-    }
-};
+#include "mob_modifier.h"
+#include "packets/char_abilities.h"
+#include "packets/char_sync.h"
+#include "packets/char_update.h"
+#include "packets/entity_update.h"
+#include "packets/message_standard.h"
+#include "packets/pet_sync.h"
 
 std::vector<Pet_t*> g_PPetList;
 
 namespace petutils
 {
-    /************************************************************************
-     *                                                                      *
-     *  Загружаем список прототипов питомцев                                    *
-     *                                                                      *
-     ************************************************************************/
 
     void LoadPetList()
     {
@@ -231,7 +96,7 @@ namespace petutils
                 mob_family_system.EVA, \
                 hasSpellScript, spellList, \
                 slash_sdt, pierce_sdt, h2h_sdt, impact_sdt, \
-                fire_sdt, ice_sdt, wind_sdt, earth_sdt, lightning_sdt, water_sdt, light_sdt, dark_sdt, \
+                magical_sdt, fire_sdt, ice_sdt, wind_sdt, earth_sdt, lightning_sdt, water_sdt, light_sdt, dark_sdt, \
                 fire_res_rank, ice_res_rank, wind_res_rank, earth_res_rank, lightning_res_rank, water_res_rank, light_res_rank, dark_res_rank, \
                 cmbDelay, name_prefix, mob_pools.skill_list_id \
                 FROM pet_list, mob_pools, mob_resistances, mob_family_system \
@@ -287,39 +152,35 @@ namespace petutils
                 Pet->hth_sdt    = (uint16)(sql->GetFloatData(30) * 1000);
                 Pet->impact_sdt = (uint16)(sql->GetFloatData(31) * 1000);
 
-                Pet->fire_sdt    = (int16)sql->GetIntData(32); // Modifier 54, base 10000 stored as signed integer. Positives signify less damage.
-                Pet->ice_sdt     = (int16)sql->GetIntData(33); // Modifier 55, base 10000 stored as signed integer. Positives signify less damage.
-                Pet->wind_sdt    = (int16)sql->GetIntData(34); // Modifier 56, base 10000 stored as signed integer. Positives signify less damage.
-                Pet->earth_sdt   = (int16)sql->GetIntData(35); // Modifier 57, base 10000 stored as signed integer. Positives signify less damage.
-                Pet->thunder_sdt = (int16)sql->GetIntData(36); // Modifier 58, base 10000 stored as signed integer. Positives signify less damage.
-                Pet->water_sdt   = (int16)sql->GetIntData(37); // Modifier 59, base 10000 stored as signed integer. Positives signify less damage.
-                Pet->light_sdt   = (int16)sql->GetIntData(38); // Modifier 60, base 10000 stored as signed integer. Positives signify less damage.
-                Pet->dark_sdt    = (int16)sql->GetIntData(39); // Modifier 61, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->magical_sdt = (int16)sql->GetIntData(32); // Modifier 389, base 10000 stored as signed integer. Positives signify less damage.
+
+                Pet->fire_sdt    = (int16)sql->GetIntData(33); // Modifier 54, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->ice_sdt     = (int16)sql->GetIntData(34); // Modifier 55, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->wind_sdt    = (int16)sql->GetIntData(35); // Modifier 56, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->earth_sdt   = (int16)sql->GetIntData(36); // Modifier 57, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->thunder_sdt = (int16)sql->GetIntData(37); // Modifier 58, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->water_sdt   = (int16)sql->GetIntData(38); // Modifier 59, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->light_sdt   = (int16)sql->GetIntData(39); // Modifier 60, base 10000 stored as signed integer. Positives signify less damage.
+                Pet->dark_sdt    = (int16)sql->GetIntData(40); // Modifier 61, base 10000 stored as signed integer. Positives signify less damage.
 
                 // resistances
-                Pet->fire_res_rank    = (int8)sql->GetIntData(40);
-                Pet->ice_res_rank     = (int8)sql->GetIntData(41);
-                Pet->wind_res_rank    = (int8)sql->GetIntData(42);
-                Pet->earth_res_rank   = (int8)sql->GetIntData(43);
-                Pet->thunder_res_rank = (int8)sql->GetIntData(44);
-                Pet->water_res_rank   = (int8)sql->GetIntData(45);
-                Pet->light_res_rank   = (int8)sql->GetIntData(46);
-                Pet->dark_res_rank    = (int8)sql->GetIntData(47);
+                Pet->fire_res_rank    = (int8)sql->GetIntData(41);
+                Pet->ice_res_rank     = (int8)sql->GetIntData(42);
+                Pet->wind_res_rank    = (int8)sql->GetIntData(43);
+                Pet->earth_res_rank   = (int8)sql->GetIntData(44);
+                Pet->thunder_res_rank = (int8)sql->GetIntData(45);
+                Pet->water_res_rank   = (int8)sql->GetIntData(46);
+                Pet->light_res_rank   = (int8)sql->GetIntData(47);
+                Pet->dark_res_rank    = (int8)sql->GetIntData(48);
 
-                Pet->cmbDelay       = (uint16)sql->GetIntData(48);
-                Pet->name_prefix    = (uint8)sql->GetUIntData(49);
-                Pet->m_MobSkillList = (uint16)sql->GetUIntData(50);
+                Pet->cmbDelay       = (uint16)sql->GetIntData(49);
+                Pet->name_prefix    = (uint8)sql->GetUIntData(50);
+                Pet->m_MobSkillList = (uint16)sql->GetUIntData(51);
 
-                g_PPetList.push_back(Pet);
+                g_PPetList.emplace_back(Pet);
             }
         }
     }
-
-    /************************************************************************
-     *                                                                      *
-     *  Освобождаем список прототипов питомцев                              *
-     *                                                                      *
-     ************************************************************************/
 
     void FreePetList()
     {
@@ -576,7 +437,7 @@ namespace petutils
         int32 scaleOver60       = 2; // Column number with a modifier for calculating MP after level 60
         // int32 scaleOver75       = 3; // Column number with a modifier for calculating Stats after level 75
 
-        uint8 grade;
+        uint8 grade = 0;
 
         uint8   mlvl = PPet->GetMLevel();
         JOBTYPE mjob = PPet->GetMJob();
@@ -745,7 +606,7 @@ namespace petutils
         int32 scaleOver60       = 2; // column number with a modifier for calculating MP after level 60
         int32 scaleOver75       = 3; // column number with a modifier for calculating Stats after level 75
 
-        uint8 grade;
+        uint8 grade = 0;
 
         uint8   mlvl = PPet->GetMLevel();
         JOBTYPE mjob = PPet->GetMJob();
@@ -780,7 +641,7 @@ namespace petutils
                   (grade::GetHPScale(grade, scaleOver30Column) * mainLevelOver30) + (grade::GetHPScale(grade, scaleOver60Column) * mainLevelOver60To75) +
                   (grade::GetHPScale(grade, scaleOver75Column) * mainLevelOver75);
 
-        // Расчет бонусных HP
+        // Bonus HP calculation
         bonusStat = (mainLevelOver10 + mainLevelOver50andUnder60) * 2;
         if (PPet->m_PetID == PETID_ODIN || PPet->m_PetID == PETID_ALEXANDER)
         {
@@ -879,11 +740,19 @@ namespace petutils
         uint32 petID = PPet->m_PetID;
 
         // clang-format off
-        Pet_t* PPetData = *std::find_if(g_PPetList.begin(), g_PPetList.end(), [petID](Pet_t* t)
+        auto maybePetData = std::find_if(g_PPetList.begin(), g_PPetList.end(), [petID](Pet_t* t)
         {
             return t->PetID == petID;
         });
         // clang-format on
+
+        if (maybePetData == g_PPetList.end())
+        {
+            ShowError(fmt::format("Could not look up pet data for id: {}", petID));
+            return;
+        }
+
+        auto* PPetData = *maybePetData;
 
         uint8 mLvl = PMaster->GetMLevel();
 
@@ -907,7 +776,7 @@ namespace petutils
         }
         else
         { // should never happen
-            ShowDebug("%s summoned an avatar but is not SMN main or SMN sub! Please report. ", PMaster->GetName());
+            ShowDebug("%s summoned an avatar but is not SMN main or SMN sub! Please report. ", PMaster->getName());
             PPet->SetMLevel(1);
         }
 
@@ -1059,11 +928,19 @@ namespace petutils
         uint32 petID = PPet->m_PetID;
 
         // clang-format off
-        Pet_t* PPetData = *std::find_if(g_PPetList.begin(), g_PPetList.end(), [petID](Pet_t* t)
+        auto maybePetData = std::find_if(g_PPetList.begin(), g_PPetList.end(), [petID](Pet_t* t)
         {
             return t->PetID == petID;
         });
         // clang-format on
+
+        if (maybePetData == g_PPetList.end())
+        {
+            ShowError(fmt::format("Could not look up pet data for id: {}", petID));
+            return;
+        }
+
+        auto* PPetData = *maybePetData;
 
         static_cast<CItemWeapon*>(PPet->m_Weapons[SLOT_MAIN])->setDelay((uint16)(floor(1000.0f * (240.0f / 60.0f))));
         static_cast<CItemWeapon*>(PPet->m_Weapons[SLOT_MAIN])->setBaseDelay((uint16)(floor(1000.0f * (240.0f / 60.0f))));
@@ -1222,15 +1099,13 @@ namespace petutils
         }
     }
 
-    /************************************************************************
-     *                                                                      *
-     *                                                                      *
-     *                                                                      *
-     ************************************************************************/
-
     void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
-        XI_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
+        if (PMaster->PPet != nullptr)
+        {
+            ShowWarning("Pet was not null for %s.", PMaster->getName());
+            return;
+        }
 
         if (PMaster->objtype == TYPE_PC &&
             (PetID == PETID_HARLEQUINFRAME || PetID == PETID_VALOREDGEFRAME || PetID == PETID_SHARPSHOTFRAME || PetID == PETID_STORMWAKERFRAME))
@@ -1327,6 +1202,8 @@ namespace petutils
             PPet->setModifier(Mod::HTH_SDT, petData->hth_sdt);
             PPet->setModifier(Mod::IMPACT_SDT, petData->impact_sdt);
 
+            PPet->setModifier(Mod::UDMGMAGIC, petData->magical_sdt);
+
             PPet->setModifier(Mod::FIRE_SDT, petData->fire_sdt);
             PPet->setModifier(Mod::ICE_SDT, petData->ice_sdt);
             PPet->setModifier(Mod::WIND_SDT, petData->wind_sdt);
@@ -1349,9 +1226,23 @@ namespace petutils
 
     void DetachPet(CBattleEntity* PMaster)
     {
-        XI_DEBUG_BREAK_IF(PMaster == nullptr);
-        XI_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
-        XI_DEBUG_BREAK_IF(PMaster->objtype != TYPE_PC);
+        if (PMaster == nullptr)
+        {
+            ShowWarning("PMaster is null.");
+            return;
+        }
+
+        if (PMaster->PPet == nullptr)
+        {
+            ShowWarning("Pet is null for %s.", PMaster->getName());
+            return;
+        }
+
+        if (PMaster->objtype != TYPE_PC)
+        {
+            ShowWarning("Non-PC passed into function (%s)", PMaster->getName());
+            return;
+        }
 
         CBattleEntity* PPet  = PMaster->PPet;
         CCharEntity*   PChar = static_cast<CCharEntity*>(PMaster);
@@ -1441,16 +1332,19 @@ namespace petutils
         PChar->pushPacket(new CPetSyncPacket(PChar));
     }
 
-    /************************************************************************
-     *                                                                      *
-     *                                                                      *
-     *                                                                      *
-     ************************************************************************/
-
     void DespawnPet(CBattleEntity* PMaster)
     {
-        XI_DEBUG_BREAK_IF(PMaster == nullptr);
-        XI_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
+        if (PMaster == nullptr)
+        {
+            ShowWarning("PMaster is null.");
+            return;
+        }
+
+        if (PMaster->PPet == nullptr)
+        {
+            ShowWarning("Pet is null for %s.", PMaster->getName());
+            return;
+        }
 
         petutils::DetachPet(PMaster);
     }
@@ -1491,7 +1385,7 @@ namespace petutils
                 cost = 7;
             }
         }
-        else if (id == PETID_CARBUNCLE)
+        else if (id == PETID_CARBUNCLE || id == PETID_CAIT_SITH)
         {
             if (level < 10)
             {
@@ -1690,15 +1584,32 @@ namespace petutils
 
     void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
-        XI_DEBUG_BREAK_IF(PMaster == nullptr);
-        XI_DEBUG_BREAK_IF(PetID >= MAX_PETID);
+        if (PMaster == nullptr)
+        {
+            ShowWarning("PMaster is null.");
+            return;
+        }
+
+        if (PetID >= MAX_PETID)
+        {
+            ShowWarning("PetID (%d) exceeds MAX_PETID", PetID);
+            return;
+        }
 
         // clang-format off
-        Pet_t* PPetData = *std::find_if(g_PPetList.begin(), g_PPetList.end(), [PetID](Pet_t* t)
+        auto maybePetData = std::find_if(g_PPetList.begin(), g_PPetList.end(), [PetID](Pet_t* t)
         {
             return t->PetID == PetID;
         });
         // clang-format on
+
+        if (maybePetData == g_PPetList.end())
+        {
+            ShowError(fmt::format("Could not look up pet data for id: {}", PetID));
+            return;
+        }
+
+        auto* PPetData = *maybePetData;
 
         if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN)
         {
@@ -1790,6 +1701,19 @@ namespace petutils
         else if (PetID == PETID_LUOPAN)
         {
             petType = PET_TYPE::LUOPAN;
+        }
+
+        if (settings::get<bool>("map.DESPAWN_JUGPETS_BELOW_MINIMUM_LEVEL"))
+        {
+            // Don't spawn jugpet if min level is above master's level
+            if (petType == PET_TYPE::JUG_PET && PMaster->loc.zone)
+            {
+                uint8 levelRestriction = PMaster->loc.zone->getLevelRestriction();
+                if (levelRestriction != 0 && (PMaster->loc.zone->getLevelRestriction() < PPetData->minLevel))
+                {
+                    return;
+                }
+            }
         }
 
         CPetEntity* PPet = nullptr;
@@ -1902,4 +1826,16 @@ namespace petutils
         }
         return false;
     }
+
+    Pet_t* GetPetInfo(uint32 PetID)
+    {
+        for (Pet_t* info : g_PPetList)
+        {
+            if (info->PetID == PetID)
+                return info;
+        }
+
+        return nullptr;
+    }
+
 }; // namespace petutils

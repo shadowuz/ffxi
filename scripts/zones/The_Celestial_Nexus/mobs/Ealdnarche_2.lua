@@ -3,10 +3,6 @@
 --  Mob: Eald'narche (Phase 2)
 -- Zilart Mission 16 BCNM Fight
 -----------------------------------
-require("scripts/globals/titles")
-require("scripts/globals/status")
-require("scripts/globals/magic")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)
@@ -23,7 +19,7 @@ entity.onMobSpawn = function(mob)
         GetMobByID(mob:getID() - 1):isDead() and
         GetMobByID(mob:getID() - 2):isDead()
     then
-        mob:getBattlefield():setLocalVar("phaseChange", 0)
+        mob:getBattlefield():setLocalVar('phaseChange', 0)
     end
 end
 

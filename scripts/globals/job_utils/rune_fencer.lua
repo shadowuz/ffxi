@@ -1,13 +1,11 @@
 -----------------------------------
 -- Rune Fencer Job Utilities
 -----------------------------------
-require("scripts/globals/ability")
-require("scripts/globals/status")
-require("scripts/globals/msg")
-require("scripts/globals/weaponskills")
-require("scripts/globals/jobpoints")
-require("scripts/globals/spells/damage_spell")
-require("scripts/globals/utils")
+require('scripts/globals/ability')
+require('scripts/globals/weaponskills')
+require('scripts/globals/jobpoints')
+require('scripts/globals/spells/damage_spell')
+require('scripts/globals/utils')
 -----------------------------------
 xi = xi or {}
 xi.job_utils = xi.job_utils or {}
@@ -28,7 +26,7 @@ local function applyRuneEnhancement(effectType, player)
     local jobPointBonus = player:getJobPointLevel(xi.jp.RUNE_ENCHANTMENT_EFFECT) -- 1 more elemental resistance per level for a maximum total of 20
 
     -- see https://www.bg-wiki.com/ffxi/Category:Rune
-    local power = math.floor((49 * runLevel / 99) + 5.5) + meritBonus  + jobPointBonus
+    local power = math.floor((49 * runLevel / 99) + 5.5) + meritBonus + jobPointBonus
     player:addStatusEffect(effectType, power, 0, 300)
 end
 
@@ -92,7 +90,7 @@ local function calculateVivaciousPulseHealing(target)
 
     local effects = target:getStatusEffects()
     for _, effect in ipairs(effects) do
-        local type = effect:getType()
+        local type = effect:getEffectType()
 
         hpHealAmount = hpHealAmount + getRuneHealAmount(type, target) -- type checked internally
 
@@ -224,14 +222,14 @@ end
 local function getSwipeLungeElement(type)
     local runeElementEffectMap =
     {
-        [xi.effect.IGNIS]    = xi.magic.ele.FIRE,
-        [xi.effect.GELUS]    = xi.magic.ele.ICE,
-        [xi.effect.FLABRA]   = xi.magic.ele.WIND,
-        [xi.effect.TELLUS]   = xi.magic.ele.EARTH,
-        [xi.effect.SULPOR]   = xi.magic.ele.THUNDER,
-        [xi.effect.UNDA]     = xi.magic.ele.WATER,
-        [xi.effect.LUX]      = xi.magic.ele.LIGHT,
-        [xi.effect.TENEBRAE] = xi.magic.ele.DARK,
+        [xi.effect.IGNIS]    = xi.element.FIRE,
+        [xi.effect.GELUS]    = xi.element.ICE,
+        [xi.effect.FLABRA]   = xi.element.WIND,
+        [xi.effect.TELLUS]   = xi.element.EARTH,
+        [xi.effect.SULPOR]   = xi.element.THUNDER,
+        [xi.effect.UNDA]     = xi.element.WATER,
+        [xi.effect.LUX]      = xi.element.LIGHT,
+        [xi.effect.TENEBRAE] = xi.element.DARK,
     }
 
     return runeElementEffectMap[type]
@@ -304,7 +302,7 @@ xi.job_utils.rune_fencer.useSwordplay = function(player, target, ability)
         power = tickPower + player:getMod(xi.mod.SWORDPLAY)
     end
 
-    if power > 0 then -- add aug bonus if appropriate gear is equipped. Note: ilvl 109+ "relic" or "AF2" gear always has the augment, so no need to check extdata. RUN does not have AF/AF2/AF3 gear below i109.
+    if power > 0 then -- add aug bonus if appropriate gear is equipped. Note: ilvl 109+ "relic" or "AF2" gear always has the augment, so no need to check exdata. RUN does not have AF/AF2/AF3 gear below i109.
         augBonus = (meritBonus / 5) * 2
     end
 
@@ -459,7 +457,7 @@ end
 -- see https://www.bg-wiki.com/ffxi/Battuta
 xi.job_utils.rune_fencer.useBattuta = function(player, target, ability, action)
     local meritPower      = player:getMerit(xi.merit.MERIT_BATTUTA) -- power is 4
-    local modBonus        = (100 + (player:getMod(xi.mod.ENHANCES_BATTUTA) *  meritPower / 4)) / 100
+    local modBonus        = (100 + (player:getMod(xi.mod.ENHANCES_BATTUTA) * meritPower / 4)) / 100
     local inquartataPower = 36 + meritPower -- base 36% + merit power of 4% each = max of 56%
     local spikesPower     = 6 + meritPower  -- damage is static 26 per rune barring SDT/MDT at 5/5 Battuta merits. 6 + 4*5 = 26.
     local runeCount       = target:getActiveRuneCount()
@@ -492,22 +490,22 @@ end
 local function getSwipeLungeDamageMultipliers(player, target, element, bonusMacc) -- get these multipliers once and store them
     local multipliers = {}
 
-    multipliers.eleStaffBonus       = xi.spells.damage.calculateEleStaffBonus(player, nil, element)
-    multipliers.magianAffinity      = xi.spells.damage.calculateMagianAffinity(player, nil)         -- presumed but untested
-    multipliers.SDT                 = xi.spells.damage.calculateSDT(player, target, nil, element)
-    multipliers.resist              = xi.spells.damage.calculateResist(player, target,  nil, 0, element, 0, bonusMacc)
-    multipliers.magicBurst          = xi.spells.damage.calculateIfMagicBurst(player, target,  0, element)
-    multipliers.magicBurstBonus     = xi.spells.damage.calculateIfMagicBurstBonus(player, target, nil, 0, element)
-    multipliers.dayAndWeather       = xi.spells.damage.calculateDayAndWeather(player, target, nil, 0, element)
-    multipliers.magicBonusDiff      = xi.spells.damage.calculateMagicBonusDiff(player, target, nil, 0, 0, element)
-    multipliers.TMDA                = xi.spells.damage.calculateTMDA(player, target, xi.damageType.ELEMENTAL + element)
-    multipliers.nukeAbsorbOrNullify = xi.spells.damage.calculateNukeAbsorbOrNullify(player, target, nil, element)
+    multipliers.eleStaffBonus       = xi.spells.damage.calculateEleStaffBonus(player, element)
+    multipliers.magianAffinity      = xi.spells.damage.calculateMagianAffinity() -- Presumed but untested.
+    multipliers.SDT                 = xi.spells.damage.calculateSDT(target, element)
+    multipliers.resist              = xi.spells.damage.calculateResist(player, target, 0, 0, element, 0, bonusMacc)
+    multipliers.magicBurst          = xi.spells.damage.calculateIfMagicBurst(target, element)
+    multipliers.magicBurstBonus     = xi.spells.damage.calculateIfMagicBurstBonus(player, target, 0, 0, element)
+    multipliers.dayAndWeather       = xi.spells.damage.calculateDayAndWeather(player, 0, element)
+    multipliers.magicBonusDiff      = xi.spells.damage.calculateMagicBonusDiff(player, target, 0, 0, element)
+    multipliers.TMDA                = xi.spells.damage.calculateTMDA(target, element)
+    multipliers.nukeAbsorbOrNullify = xi.spells.damage.calculateNukeAbsorbOrNullify(target, element)
 
     return multipliers
 end
 
 local function calculateSwipeLungeDamage(player, target, skillModifier, gearBonus, numHits, multipliers)
-    local damage = math.floor(skillModifier *  (0.50 + 0.25 * numHits  + (gearBonus / 100)))
+    local damage = math.floor(skillModifier * (0.50 + 0.25 * numHits + (gearBonus / 100)))
 
     damage = damage + player:getMod(xi.mod.MAGIC_DAMAGE) -- add mdamage to base damage
 
@@ -773,7 +771,7 @@ local function applyLiementEffect(target, absorbTypes, absorbPower, duration)
     end
 
     if i * 4 > 16 then -- This will trip if a custom module overrides current retail behavior and give RUN 5 runes or more.
-        print("ERROR: applyLiementEffect trying to pack more than 16 bits into 16 bit datatype! Does Rune Fencer have 5 or more runes enabled?")
+        print('ERROR: applyLiementEffect trying to pack more than 16 bits into 16 bit datatype! Does Rune Fencer have 5 or more runes enabled?')
     end
 
     target:delStatusEffectSilent(xi.effect.VALLATION) -- Liement overwrites Vallation

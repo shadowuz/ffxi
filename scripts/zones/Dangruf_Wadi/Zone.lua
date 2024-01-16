@@ -1,11 +1,7 @@
 -----------------------------------
 -- Zone: Dangruf_Wadi (191)
 -----------------------------------
-local ID = require('scripts/zones/Dangruf_Wadi/IDs')
-require('scripts/globals/conquest')
-require('scripts/globals/keyitems')
-require('scripts/globals/treasure')
-require('scripts/globals/status')
+local ID = zones[xi.zone.DANGRUF_WADI]
 -----------------------------------
 local zoneObject = {}
 
@@ -17,8 +13,8 @@ zoneObject.onInitialize = function(zone)
     xi.treasure.initZone(zone)
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -40,17 +36,17 @@ zoneObject.onTriggerAreaEnter = function(player, triggerArea)
     {
         [1] = function()
             player:startEvent(10)
-            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET, "kkj2")
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET, 'kkj2')
         end,
 
         [2] = function()
             player:startEvent(11)
-            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 1, "kkj1")
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 1, 'kkj1')
         end,
 
         [3] = function()
             player:startEvent(12)
-            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 2, "kkj3")
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 2, 'kkj3')
         end,
     }
 end
@@ -58,15 +54,15 @@ end
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 zoneObject.onGameHour = function(zone)
     local nm = GetMobByID(ID.mob.GEYSER_LIZARD)
-    local pop = nm:getLocalVar("pop")
+    local pop = nm:getLocalVar('pop')
 
     if
         os.time() > pop and

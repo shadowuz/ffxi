@@ -1,11 +1,6 @@
 -----------------------------------
 --  Mob: Verthandi
 -----------------------------------
-require("scripts/globals/keyitems")
-require("scripts/globals/voidwalker")
-require("scripts/globals/hunts")
------------------------------------
-
 local entity = {}
 
 entity.onMobInitialize = function(mob)

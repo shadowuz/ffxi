@@ -33,45 +33,33 @@
 #include "utils/zoneutils.h"
 #include "zone.h"
 
-std::unique_ptr<CTransportHandler> CTransportHandler::_instance;
-
-CTransportHandler* CTransportHandler::getInstance()
-{
-    if (!_instance)
-    {
-        _instance.reset(new CTransportHandler);
-    }
-
-    return _instance.get();
-}
-
 void Transport_Ship::setVisible(bool visible) const
 {
     if (visible)
     {
         this->npc->status = STATUS_TYPE::NORMAL;
+        // This appears to be some sort of magic bit/flag set. In QSC 0x8001 is observed on the effects that light up the weight on the weighted doors.
+        // The effect of 0x8001 appears to be to "stay in place" and not "stand on top of" things, such as the floor -- most likely fixes positions to the exact X/Y/Z coords supplied in 0x00E.
+        this->npc->loc.p.moving = 0x8007;
     }
     else
     {
         this->npc->status = STATUS_TYPE::DISAPPEAR;
+        // Missing 0x0001 bit here
+        this->npc->loc.p.moving = 0x8006;
     }
 }
 
 void Transport_Ship::animateSetup(uint8 animationID, uint32 horizonTime) const
 {
     this->npc->animation = animationID;
-    this->setName(horizonTime);
+    this->npc->SetLocalVar("TransportTimestamp", horizonTime);
 }
 
 void Transport_Ship::spawn() const
 {
     this->npc->loc = this->dock;
     this->setVisible(true);
-}
-
-void Transport_Ship::setName(uint32 value) const
-{
-    ref<uint32>(&this->npc->name[0], 4) = value;
 }
 
 void TransportZone_Town::updateShip() const
@@ -124,7 +112,11 @@ void Elevator_t::closeDoor(CNpcEntity* npc) const
 
 void CTransportHandler::InitializeTransport()
 {
-    XI_DEBUG_BREAK_IF(townZoneList.size() != 0);
+    if (townZoneList.size() != 0)
+    {
+        ShowError("townZoneList is not empty.");
+        return;
+    }
 
     const char* fmtQuery = "SELECT id, transport, door, dock_x, dock_y, dock_z, dock_rot, \
                             boundary, zone, anim_arrive, anim_depart, time_offset, time_interval, \
@@ -153,7 +145,11 @@ void CTransportHandler::InitializeTransport()
 
             zoneTown.npcDoor  = zoneutils::GetEntity(sql->GetUIntData(2), TYPE_NPC);
             zoneTown.ship.npc = zoneutils::GetEntity(sql->GetUIntData(1), TYPE_SHIP);
-            zoneTown.ship.npc->name.resize(8);
+            if (!zoneTown.ship.npc)
+            {
+                ShowError("Transport <%u>: transport not found", (uint8)sql->GetIntData(0));
+                continue;
+            }
 
             zoneTown.ship.animationArrive = (uint8)sql->GetIntData(9);
             zoneTown.ship.animationDepart = (uint8)sql->GetIntData(10);
@@ -168,9 +164,9 @@ void CTransportHandler::InitializeTransport()
             zoneTown.ship.setVisible(false);
             zoneTown.closeDoor(false);
 
-            if (zoneTown.npcDoor == nullptr || zoneTown.ship.npc == nullptr)
+            if (zoneTown.npcDoor == nullptr)
             {
-                ShowError("Transport <%u>: transport or door not found", (uint8)sql->GetIntData(0));
+                ShowError("Transport <%u>: door not found", (uint8)sql->GetIntData(0));
                 continue;
             }
             if (zoneTown.ship.timeArriveDock < 10)
@@ -184,7 +180,7 @@ void CTransportHandler::InitializeTransport()
                 continue;
             }
 
-            townZoneList.push_back(zoneTown);
+            townZoneList.emplace_back(zoneTown);
         }
     }
 
@@ -199,7 +195,7 @@ void CTransportHandler::InitializeTransport()
     {
         while (sql->NextRow() == SQL_SUCCESS)
         {
-            TransportZone_Voyage voyageZone;
+            TransportZone_Voyage voyageZone{};
 
             voyageZone.voyageZone = nullptr;
             voyageZone.voyageZone = zoneutils::GetZone((uint8)sql->GetUIntData(0));
@@ -215,7 +211,7 @@ void CTransportHandler::InitializeTransport()
 
                 voyageZone.state = STATE_TRANSPORTZONE_INIT;
 
-                voyageZoneList.push_back(voyageZone);
+                voyageZoneList.emplace_back(voyageZone);
             }
             else
             {
@@ -431,9 +427,10 @@ void CTransportHandler::insertElevator(Elevator_t elevator)
     {
         Elevator_t* PElevator = &i;
 
-        if (PElevator->Elevator->GetName() == elevator.Elevator->GetName() && PElevator->zoneID == elevator.zoneID)
+        if (PElevator->Elevator->getName() == elevator.Elevator->getName() && PElevator->zoneID == elevator.zoneID)
         {
-            XI_DEBUG_BREAK_IF(true);
+            ShowError("Elevator already exists.");
+            return;
         }
     }
 
@@ -445,9 +442,8 @@ void CTransportHandler::insertElevator(Elevator_t elevator)
     }
 
     // Have permanent elevators wait until their next cycle to begin moving
-    uint32 VanaTime            = CVanaTime::getInstance()->getDate();
-    elevator.lastTrigger       = VanaTime - (VanaTime % elevator.interval) + elevator.interval;
-    elevator.Elevator->name[8] = 8;
+    uint32 VanaTime      = CVanaTime::getInstance()->getDate();
+    elevator.lastTrigger = VanaTime - (VanaTime % elevator.interval) + elevator.interval;
 
     // Initialize the elevator into the correct state based on
     // its animation value in the database.
@@ -477,7 +473,7 @@ void CTransportHandler::insertElevator(Elevator_t elevator)
     elevator.LowerDoor->animation = (elevator.state == STATE_ELEVATOR_TOP) ? ANIMATION_CLOSE_DOOR : ANIMATION_OPEN_DOOR;
     elevator.UpperDoor->animation = (elevator.state == STATE_ELEVATOR_TOP) ? ANIMATION_OPEN_DOOR : ANIMATION_CLOSE_DOOR;
 
-    ElevatorList.push_back(elevator);
+    ElevatorList.emplace_back(elevator);
 }
 
 /************************************************************************
@@ -538,7 +534,7 @@ void CTransportHandler::startElevator(Elevator_t* elevator)
         elevator->lastTrigger = VanaTime - VanaTime % elevator->interval; // Keep the elevators synced to Vanadiel time
     }
 
-    ref<uint32>(&elevator->Elevator->name[0], 4) = CVanaTime::getInstance()->getVanaTime();
+    elevator->Elevator->SetLocalVar("TransportTimestamp", CVanaTime::getInstance()->getVanaTime());
 
     zoneutils::GetZone(elevator->zoneID)->UpdateEntityPacket(elevator->Elevator, ENTITY_UPDATE, UPDATE_COMBAT, true);
 }

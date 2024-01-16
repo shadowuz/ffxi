@@ -2,9 +2,6 @@
 -- Area: Central Temenos 2nd Floor
 --  Mob: Ice Elemental
 -----------------------------------
-require("scripts/globals/mobs")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)

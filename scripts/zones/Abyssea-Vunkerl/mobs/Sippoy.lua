@@ -2,9 +2,6 @@
 -- Area: Abyssea - Vunkerl
 --   NM: Sippoy
 -----------------------------------
-require("scripts/globals/status")
-require("scripts/globals/titles")
------------------------------------
 local entity = {}
 
 entity.onMobFight = function(mob, target)

@@ -2,9 +2,6 @@
 -- Area: Buburimu Peninsula
 --   NM: Wake Warder Wanda
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)

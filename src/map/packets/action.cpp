@@ -27,13 +27,13 @@
 
 #include "action.h"
 
-#include "../ability.h"
-#include "../entities/battleentity.h"
-#include "../items/item_weapon.h"
-#include "../mobskill.h"
-#include "../spell.h"
-#include "../utils/battleutils.h"
-#include "../weapon_skill.h"
+#include "ability.h"
+#include "entities/battleentity.h"
+#include "items/item_weapon.h"
+#include "mobskill.h"
+#include "spell.h"
+#include "utils/battleutils.h"
+#include "weapon_skill.h"
 
 /************************************************************************
  *
@@ -71,6 +71,20 @@ CActionPacket::CActionPacket(action_t& action)
         break;
         case ACTION_JOBABILITY_START:
         {
+        }
+        break;
+        // Only currently used for Wyvern Breaths when going out of range and/or otherwise interrupted.
+        case ACTION_JOBABILITY_INTERRUPT:
+        {
+            // This block was observed on a "Too far away" wyvern healing breath.
+            // Is this different for different breaths -- remove/offensive breaths?
+            // Do Automatons use this?
+            ActionType = ACTION_WEAPONSKILL_START;
+
+            // Magic numbers?
+            packBitsBE(data, 28787, 86, 16);
+            ref<uint8>(0x0D) = 0x5D;
+            ref<uint8>(0x0E) = 0x19;
         }
         break;
         case ACTION_DANCE:
@@ -113,8 +127,8 @@ CActionPacket::CActionPacket(action_t& action)
         {
             uint16 id = action.actionid;
 
-            // higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
-            packBitsBE(data, id, 86, 12);
+            // higher number of bits than anything else that we know of. CAP OF 8191 (2300ish is abyssea tp moves)!
+            packBitsBE(data, id, 86, 13);
         }
         break;
         case ACTION_ITEM_START:

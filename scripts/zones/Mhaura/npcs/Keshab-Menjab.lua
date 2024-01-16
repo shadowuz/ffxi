@@ -1,10 +1,7 @@
 -----------------------------------
 -- Area: Mhaura
 --  NPC: Keshab-Menjab
--- Type: Standard NPC
 -- !pos -15.727 -9.032 54.049 249
------------------------------------
-require("scripts/globals/settings")
 -----------------------------------
 local entity = {}
 
@@ -14,10 +11,10 @@ end
 entity.onTrigger = function(player, npc)
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

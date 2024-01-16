@@ -1,22 +1,19 @@
 -----------------------------------
 -- Zone: Temenos (37)
 -----------------------------------
-local ID = require('scripts/zones/Temenos/IDs')
-require('scripts/globals/conquest')
-require('scripts/globals/settings')
-require('scripts/globals/status')
+local ID = zones[xi.zone.TEMENOS]
 -----------------------------------
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
-    SetServerVariable("[TEMENOS_NORTHERN_TOWER]Time", 0)
-    SetServerVariable("[TEMENOS_EASTERN_TOWER]Time", 0)
-    SetServerVariable("[TEMENOS_WESTERN_TOWER]Time", 0)
-    SetServerVariable("[CENTRAL_TEMENOS_4TH_FLOOR]Time", 0)
-    SetServerVariable("[CENTRAL_TEMENOS_3RD_FLOOR]Time", 0)
-    SetServerVariable("[CENTRAL_TEMENOS_2ND_FLOOR]Time", 0)
-    SetServerVariable("[CENTRAL_TEMENOS_1ST_FLOOR]Time", 0)
-    SetServerVariable("[CENTRAL_TEMENOS_BASEMENT]Time", 0)
+    SetServerVariable('[TEMENOS_NORTHERN_TOWER]Time', 0)
+    SetServerVariable('[TEMENOS_EASTERN_TOWER]Time', 0)
+    SetServerVariable('[TEMENOS_WESTERN_TOWER]Time', 0)
+    SetServerVariable('[CENTRAL_TEMENOS_4TH_FLOOR]Time', 0)
+    SetServerVariable('[CENTRAL_TEMENOS_3RD_FLOOR]Time', 0)
+    SetServerVariable('[CENTRAL_TEMENOS_2ND_FLOOR]Time', 0)
+    SetServerVariable('[CENTRAL_TEMENOS_1ST_FLOOR]Time', 0)
+    SetServerVariable('[CENTRAL_TEMENOS_BASEMENT]Time', 0)
 
     -- Temenos North Elevators
     zone:registerTriggerArea(1,   340.000, 5,  376.000, 0, 0, 0) -- F1 -> F2
@@ -53,8 +50,8 @@ zoneObject.onInitialize = function(zone)
     zone:registerTriggerArea(26, -580.000, 5, -584.000, 0, 0, 0) -- F4 -> Entrance
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -89,13 +86,13 @@ end
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
     if csid == 32001 or csid == 32002 then
         player:messageSpecial(ID.text.HUM + 1)
     end
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

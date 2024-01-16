@@ -21,15 +21,14 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 
 #include "ai/ai_container.h"
 
-#include "../entities/baseentity.h"
-#include "../entities/battleentity.h"
-#include "../entities/charentity.h"
-#include "../entities/mobentity.h"
-#include "../packets/entity_animation.h"
-#include "../status_effect_container.h"
-#include "controllers/mob_controller.h"
-#include "controllers/pet_controller.h"
-#include "controllers/player_controller.h"
+#include "ai/controllers/mob_controller.h"
+#include "ai/controllers/pet_controller.h"
+#include "ai/controllers/player_controller.h"
+#include "entities/baseentity.h"
+#include "entities/battleentity.h"
+#include "entities/charentity.h"
+#include "entities/mobentity.h"
+#include "packets/entity_animation.h"
 #include "states/ability_state.h"
 #include "states/attack_state.h"
 #include "states/death_state.h"
@@ -44,6 +43,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "states/respawn_state.h"
 #include "states/trigger_state.h"
 #include "states/weaponskill_state.h"
+#include "status_effect_container.h"
 
 CAIContainer::CAIContainer(CBaseEntity* _PEntity)
 : CAIContainer(_PEntity, nullptr, nullptr, nullptr)
@@ -226,7 +226,7 @@ bool CAIContainer::Internal_Cast(uint16 targetid, SpellID spellid)
     auto* entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
     {
-        if (auto target = entity->GetEntity(targetid); target && target->PAI->IsUntargetable())
+        if (auto* target = entity->GetEntity(targetid); target && target->PAI->IsUntargetable())
         {
             return false;
         }
@@ -269,7 +269,7 @@ bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
     auto* entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
     {
-        if (auto target = entity->GetEntity(targid); target && target->PAI->IsUntargetable())
+        if (auto* target = entity->GetEntity(targid); target && target->PAI->IsUntargetable())
         {
             return false;
         }
@@ -280,10 +280,10 @@ bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
 
 bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 {
-    auto* entity = dynamic_cast<CMobEntity*>(PEntity);
+    auto* entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
     {
-        if (auto target = entity->GetEntity(targid); target && target->PAI->IsUntargetable())
+        if (auto* target = entity->GetEntity(targid); target && target->PAI->IsUntargetable())
         {
             return false;
         }
@@ -297,7 +297,7 @@ bool CAIContainer::Internal_PetSkill(uint16 targid, uint16 abilityid)
     auto* entity = dynamic_cast<CPetEntity*>(PEntity);
     if (entity)
     {
-        if (auto target = entity->GetEntity(targid); target && target->PAI->IsUntargetable())
+        if (auto* target = entity->GetEntity(targid); target && target->PAI->IsUntargetable())
         {
             return false;
         }
@@ -311,7 +311,7 @@ bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
     auto* entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
     {
-        if (auto target = entity->GetEntity(targetid); target && target->PAI->IsUntargetable())
+        if (auto* target = entity->GetEntity(targetid); target && target->PAI->IsUntargetable())
         {
             return false;
         }
@@ -325,7 +325,7 @@ bool CAIContainer::Internal_RangedAttack(uint16 targetid)
     auto* entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
     {
-        if (auto target = entity->GetEntity(targetid); target && target->PAI->IsUntargetable())
+        if (auto* target = entity->GetEntity(targetid); target && target->PAI->IsUntargetable())
         {
             return false;
         }
@@ -494,7 +494,7 @@ bool CAIContainer::IsEngaged()
 
 bool CAIContainer::IsUntargetable()
 {
-    return PEntity->PAI->IsCurrentState<CInactiveState>() && static_cast<CInactiveState*>(PEntity->PAI->GetCurrentState())->GetUntargetable();
+    return (PEntity->PAI->IsCurrentState<CInactiveState>() && static_cast<CInactiveState*>(PEntity->PAI->GetCurrentState())->GetUntargetable()) || PEntity->GetUntargetable();
 }
 
 time_point CAIContainer::getTick()

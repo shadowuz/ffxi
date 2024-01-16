@@ -1,11 +1,6 @@
 -----------------------------------
 --  Mob: Globster
 -----------------------------------
-require("scripts/globals/keyitems")
-require("scripts/globals/regimes")
-require("scripts/globals/voidwalker")
------------------------------------
-
 local entity = {}
 
 entity.onMobInitialize = function(mob)

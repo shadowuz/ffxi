@@ -2,13 +2,10 @@
 -- Area: Vunkerl Inlet [S]
 --   NM: Big Bang
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)
-    mob:setMod(xi.mod.MOVE, 12)
+    mob:setMod(xi.mod.MOVE_SPEED_STACKABLE, 12)
 end
 
 entity.onMobDeath = function(mob, player, optParams)

@@ -4,14 +4,7 @@
 -- Log ID: 6, Quest ID: 5
 -- Waoud : !pos 65 -6 -78 50
 -----------------------------------
-require('scripts/globals/interaction/quest')
-require('scripts/globals/items')
-require('scripts/globals/keyitems')
-require('scripts/globals/npc_util')
-require('scripts/globals/quests')
-require('scripts/globals/settings')
------------------------------------
-local whitegateID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+local whitegateID = zones[xi.zone.AHT_URHGAN_WHITEGATE]
 -----------------------------------
 
 local quest = Quest:new(xi.quest.log_id.AHT_URHGAN, xi.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
@@ -23,9 +16,9 @@ quest.reward =
 
 local requiredItemList =
 {
-    xi.items.SIRENS_TEAR,
-    xi.items.PINCH_OF_VALKURM_SUNSAND,
-    xi.items.DANGRUF_STONE,
+    xi.item.SIRENS_TEAR,
+    xi.item.PINCH_OF_VALKURM_SUNSAND,
+    xi.item.DANGRUF_STONE,
 }
 
 quest.sections =

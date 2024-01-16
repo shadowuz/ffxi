@@ -3,8 +3,7 @@
 --  Mob: Yali
 -- Windurst Mission 9-2
 -----------------------------------
-require("scripts/globals/status")
-local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
+local ID = zones[xi.zone.FULL_MOON_FOUNTAIN]
 -----------------------------------
 local entity = {}
 
@@ -22,7 +21,7 @@ entity.onMobSpawn = function(mob)
         GetMobByID(instOffset + 2):isDead() and
         GetMobByID(instOffset + 3):isDead()
     then
-        battlefield:setLocalVar("phaseChange", 0)
+        battlefield:setLocalVar('phaseChange', 0)
     end
 end
 

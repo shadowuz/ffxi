@@ -1,8 +1,7 @@
 -----------------------------------
 -- Zone: Gustav Tunnel (212)
 -----------------------------------
-local ID = require('scripts/zones/Gustav_Tunnel/IDs')
-require('scripts/globals/conquest')
+local ID = zones[xi.zone.GUSTAV_TUNNEL]
 -----------------------------------
 local zoneObject = {}
 
@@ -11,8 +10,8 @@ zoneObject.onInitialize = function(zone)
     GetMobByID(ID.mob.BUNE):setRespawnTime(math.random(900, 10800))
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -32,10 +31,10 @@ end
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

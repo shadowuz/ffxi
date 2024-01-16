@@ -4,18 +4,14 @@
 -- Optional Involvement in Quest: A Squire's Test II
 -- !pos -152 -2 55 230
 -----------------------------------
-require("scripts/globals/quests")
------------------------------------
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    if player:getQuestStatus(xi.quest.log_id.SANDORIA, xi.quest.id.sandoria.A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED then
-        player:startEvent(629)
-    elseif player:getQuestStatus(xi.quest.log_id.SANDORIA, xi.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM) == QUEST_COMPLETED then
-        local fired = player:getCharVar("Fired")
+    if player:getQuestStatus(xi.quest.log_id.SANDORIA, xi.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM) == QUEST_COMPLETED then
+        local fired = player:getCharVar('Fired')
 
         if fired == 1 then
             player:startEvent(567) -- i got fired in a day
@@ -27,12 +23,12 @@ entity.onTrigger = function(player, npc)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
     if csid == 505 then
-        player:setCharVar("Fired", 1)
+        player:setCharVar('Fired', 1)
     end
 end
 

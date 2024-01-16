@@ -2,8 +2,7 @@
 -- Zone: Korroloka Tunnel (173)
 -- Desc: this file contains functions that are shared by multiple luas in this zone's directory
 -----------------------------------
-local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
-require("scripts/globals/status")
+local ID = zones[xi.zone.KORROLOKA_TUNNEL]
 -----------------------------------
 
 local korrolokaGlobal = {}

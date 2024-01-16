@@ -19,6 +19,9 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 ===========================================================================
 */
 
+#ifndef _MESSAGE_H_
+#define _MESSAGE_H_
+
 #include "common/cbasetypes.h"
 #include "common/lua.h"
 #include "common/mmo.h"
@@ -75,7 +78,7 @@ namespace message
     void send(uint16 zone, std::string const& luaFunc);
     void send(uint32 playerId, CBasicPacket* packet);
     void send(std::string const& playerName, CBasicPacket* packet);
-    void send_charvar_update(uint32 charId, std::string const& varName, uint32 value);
+    void send_charvar_update(uint32 charId, std::string const& varName, uint32 value, uint32 expiry);
     void rpc_send(uint16 sendZone, uint16 recvZone, std::string const& sendStr, sol::function recvFunc);
 
     void close();
@@ -85,3 +88,5 @@ namespace message
     void listen();
     void send_queue();
 }; // namespace message
+
+#endif

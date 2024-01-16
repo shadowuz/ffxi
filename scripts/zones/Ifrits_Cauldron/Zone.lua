@@ -1,10 +1,7 @@
 -----------------------------------
 -- Zone: Ifrits_Cauldron (205)
 -----------------------------------
-local ID = require('scripts/zones/Ifrits_Cauldron/IDs')
-require('scripts/globals/conquest')
-require('scripts/globals/treasure')
-require('scripts/globals/helm')
+local ID = zones[xi.zone.IFRITS_CAULDRON]
 -----------------------------------
 local zoneObject = {}
 
@@ -16,8 +13,8 @@ zoneObject.onInitialize = function(zone)
     xi.helm.initZone(zone, xi.helm.type.MINING)
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -46,10 +43,10 @@ zoneObject.onGameHour = function(zone)
     end
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

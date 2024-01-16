@@ -4,8 +4,7 @@
 -- Notes: Red Bracelet Door
 -- !pos -310.000 -1.925 -238.399 9
 -----------------------------------
-local ID = require("scripts/zones/PsoXja/IDs")
-require("scripts/globals/keyitems")
+local ID = zones[xi.zone.PSOXJA]
 -----------------------------------
 local entity = {}
 
@@ -26,7 +25,7 @@ entity.onTrigger = function(player, npc)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
 entity.onEventFinish = function(player, csid, option, npc)

@@ -34,6 +34,12 @@
 #include <string>
 #include <thread>
 
+// TODO: Since kernel.cpp isn't used by the processes which now use Application, we can't
+//     : store this global flag there. So we're storing it here until all processes are
+//     : refactored to use Application. Once that's done this should be moved out of static
+//     : storage in this unit to a member of Application.
+std::atomic<bool> gProcessLoaded = false;
+
 SqlConnection::SqlConnection()
 : SqlConnection(settings::get<std::string>("network.SQL_LOGIN").c_str(),
                 settings::get<std::string>("network.SQL_PASSWORD").c_str(),
@@ -41,12 +47,11 @@ SqlConnection::SqlConnection()
                 settings::get<uint16>("network.SQL_PORT"),
                 settings::get<std::string>("network.SQL_DATABASE").c_str())
 {
-    // Just forwarding the default credentials to the next contrictor
+    // Just forwarding the default credentials to the next constructor
 }
 
 SqlConnection::SqlConnection(const char* user, const char* passwd, const char* host, uint16 port, const char* db)
-: m_LatencyWarning(false)
-, m_ThreadId(std::this_thread::get_id())
+: m_ThreadId(std::this_thread::get_id())
 {
     TracyZoneScoped;
 
@@ -79,8 +84,9 @@ SqlConnection::SqlConnection(const char* user, const char* passwd, const char* h
     m_Port   = port;
     m_Db     = db;
 
-    InitPreparedStatements();
-
+    // these members will be set up in SetupKeepalive(), they need to be init'd here to appease clang-tidy
+    m_PingInterval = 0;
+    m_LastPing     = 0;
     SetupKeepalive();
 }
 
@@ -116,8 +122,8 @@ int32 SqlConnection::GetTimeout(uint32* out_timeout)
 {
     if (out_timeout && SQL_SUCCESS == Query("SHOW VARIABLES LIKE 'wait_timeout'"))
     {
-        char*  data;
-        size_t len;
+        char*  data = nullptr;
+        size_t len  = 0;
         if (SQL_SUCCESS == NextRow() && SQL_SUCCESS == GetData(1, &data, &len))
         {
             *out_timeout = (uint32)strtoul(data, nullptr, 10);
@@ -133,9 +139,9 @@ int32 SqlConnection::GetTimeout(uint32* out_timeout)
 
 int32 SqlConnection::GetColumnNames(const char* table, char* out_buf, size_t buf_len, char sep)
 {
-    char*  data;
-    size_t len;
-    size_t off = 0;
+    char*  data = nullptr;
+    size_t len  = 0;
+    size_t off  = 0;
 
     if (self == nullptr || SQL_ERROR == Query("EXPLAIN `%s`", table))
     {
@@ -243,7 +249,6 @@ int32 SqlConnection::TryPing()
                 if (startId != endId)
                 {
                     ShowWarning("DB thread ID has changed. You have been reconnected.");
-                    // TODO: Maybe we need to refresh the prepared statements now?
                 }
                 return SQL_SUCCESS;
             }
@@ -332,15 +337,16 @@ int32 SqlConnection::QueryStr(const char* query)
 
     auto endTime = hires_clock::now();
     auto dTime   = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-    if (m_LatencyWarning)
+
+    if (gProcessLoaded && settings::get<bool>("logging.SQL_SLOW_QUERY_LOG_ENABLE"))
     {
-        if (dTime > 250ms)
+        if (dTime > std::chrono::milliseconds(settings::get<uint32>("logging.SQL_SLOW_QUERY_ERROR_TIME")))
         {
-            ShowError(fmt::format("Query took {}ms: {}", dTime.count(), self->buf));
+            ShowError(fmt::format("SQL query took {}ms: {}", dTime.count(), self->buf));
         }
-        else if (dTime > 100ms)
+        else if (dTime > std::chrono::milliseconds(settings::get<uint32>("logging.SQL_SLOW_QUERY_WARNING_TIME")))
         {
-            ShowWarning(fmt::format("Query took {}ms: {}", dTime.count(), self->buf));
+            ShowWarning(fmt::format("SQL query took {}ms: {}", dTime.count(), self->buf));
         }
     }
 
@@ -485,7 +491,7 @@ uint64 SqlConnection::GetUInt64Data(size_t col)
     {
         if (col < NumColumns())
         {
-            return (self->row[col] ? (uint64)strtoull(self->row[col], NULL, 10) : 0);
+            return (self->row[col] ? (uint64)strtoull(self->row[col], nullptr, 10) : 0);
         }
     }
     ShowCritical("Query: %s", self->buf);
@@ -653,22 +659,4 @@ void SqlConnection::FinishProfiling()
 
     ShowCritical("Query: %s", self->buf);
     ShowCritical("FinishProfiling: SQL_ERROR: %s (%u)", mysql_error(&self->handle), mysql_errno(&self->handle));
-}
-
-void SqlConnection::InitPreparedStatements()
-{
-    TracyZoneScoped;
-    auto add = [&](std::string const& name, std::string const& query)
-    {
-        auto st                    = std::make_shared<SqlPreparedStatement>(&self->handle, query);
-        m_PreparedStatements[name] = st;
-    };
-
-    add("GET_CHAR_VAR", "SELECT value FROM char_vars WHERE charid = (?) AND varname = (?) LIMIT 1;");
-}
-
-std::shared_ptr<SqlPreparedStatement> SqlConnection::GetPreparedStatement(std::string const& name)
-{
-    TracyZoneScoped;
-    return m_PreparedStatements[name];
 }

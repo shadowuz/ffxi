@@ -4,10 +4,7 @@
 -- Involved In Quest: The Fumbling Friar
 -- !pos 80 -1 457 89
 -----------------------------------
-local ID = require("scripts/zones/Grauberg_[S]/IDs")
-require("scripts/globals/npc_util")
-require("scripts/globals/keyitems")
-require("scripts/globals/quests")
+local ID = zones[xi.zone.GRAUBERG_S]
 -----------------------------------
 local entity = {}
 
@@ -25,10 +22,10 @@ entity.onTrigger = function(player, npc)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

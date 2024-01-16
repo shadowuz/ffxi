@@ -3,8 +3,7 @@
 --  NPC: Starway Stairway
 -- !pos -10 0.1 30 242
 -----------------------------------
-local ID = require("scripts/zones/Heavens_Tower/IDs")
-require("scripts/globals/keyitems")
+local ID = zones[xi.zone.HEAVENS_TOWER]
 -----------------------------------
 local entity = {}
 
@@ -29,10 +28,10 @@ entity.onTrigger = function(player, npc)
     return 1
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

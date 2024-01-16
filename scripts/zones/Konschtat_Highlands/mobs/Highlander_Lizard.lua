@@ -2,10 +2,7 @@
 -- Area: Konschtat Highlands
 --   NM: Highlander Lizard
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/regimes")
-require("scripts/globals/status")
-require("scripts/quests/tutorial")
+require('scripts/quests/tutorial')
 -----------------------------------
 local entity = {}
 

@@ -4,8 +4,7 @@
 -- !pos 203.939 0.000 -238.811 120
 -- Notes: Spawns Dribblix Greasemaw for ACP mission "Gatherer of Light (I)"
 -----------------------------------
-local ID = require("scripts/zones/Sauromugue_Champaign/IDs")
-require("scripts/globals/keyitems")
+local ID = zones[xi.zone.SAUROMUGUE_CHAMPAIGN]
 -----------------------------------
 local entity = {}
 
@@ -25,10 +24,10 @@ entity.onTrigger = function(player, npc)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

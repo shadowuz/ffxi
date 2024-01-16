@@ -20,9 +20,12 @@
 */
 
 #include "logging.h"
+
 #include "settings.h"
 #include "tracy.h"
 #include "utils.h"
+
+#include "circular_buffer.h"
 
 #include "spdlog/common.h"
 
@@ -32,7 +35,12 @@
 #include "spdlog/sinks/daily_file_sink.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
-std::string ServerName;
+namespace
+{
+    std::string ServerName;
+
+    CircularBuffer<std::string> BacktraceBuffer(16);
+} // namespace
 
 class star_formatter_flag : public spdlog::custom_flag_formatter
 {
@@ -130,17 +138,17 @@ namespace logging
 
         // Sink to console
         std::vector<spdlog::sink_ptr> sinks;
-        sinks.push_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+        sinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
 
         // Daily Sink, creating new files at midnight
         if (appendDate)
         {
-            sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_mt>(logFile, 0, 0, false, 0));
+            sinks.emplace_back(std::make_shared<spdlog::sinks::daily_file_sink_mt>(logFile, 0, 0, false, 0));
         }
         // Basic sink, sink to file with name specified in main routine
         else
         {
-            sinks.push_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>(logFile));
+            sinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>(logFile));
         }
 
         for (auto& name : logNames)
@@ -170,5 +178,27 @@ namespace logging
         formatter->add_flag<q_formatter_flag>('q');
         formatter->set_pattern(str);
         spdlog::set_formatter(std::move(formatter));
+    }
+
+    void AddBacktrace(std::string const& str)
+    {
+        if (BacktraceBuffer.is_full())
+        {
+            BacktraceBuffer.dequeue();
+        }
+
+        BacktraceBuffer.enqueue(str);
+    }
+
+    auto GetBacktrace() -> std::vector<std::string>
+    {
+        std::vector<std::string> backtrace;
+
+        while (!BacktraceBuffer.is_empty())
+        {
+            backtrace.push_back(BacktraceBuffer.dequeue());
+        }
+
+        return backtrace;
     }
 } // namespace logging

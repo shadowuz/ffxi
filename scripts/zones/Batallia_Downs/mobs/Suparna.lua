@@ -3,8 +3,7 @@
 --  Mob: Suparna
 -- Involved in Mission: San d'Orian 9-1
 -----------------------------------
-mixins = { require("scripts/mixins/job_special") }
-require("scripts/globals/status")
+mixins = { require('scripts/mixins/job_special') }
 -----------------------------------
 local entity = {}
 

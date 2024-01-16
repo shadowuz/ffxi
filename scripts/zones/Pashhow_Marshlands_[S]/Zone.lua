@@ -1,9 +1,7 @@
 -----------------------------------
 -- Zone: Pashhow_Marshlands_[S] (90)
 -----------------------------------
-local ID = require('scripts/zones/Pashhow_Marshlands_[S]/IDs')
-require('scripts/globals/chocobo')
-require('scripts/globals/status')
+local ID = zones[xi.zone.PASHHOW_MARSHLANDS_S]
 -----------------------------------
 local zoneObject = {}
 
@@ -50,10 +48,10 @@ zoneObject.onZoneWeatherChange = function(weather)
     end
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

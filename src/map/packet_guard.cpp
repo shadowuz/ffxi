@@ -112,12 +112,19 @@ namespace PacketGuard
         // Sort
         using pair_t = std::pair<std::string, uint32>;
         std::vector<pair_t> sortedVec;
+        sortedVec.reserve(packetCounterMap.size());
         for (auto& entry : packetCounterMap)
         {
             sortedVec.emplace_back(entry);
         }
-        std::sort(sortedVec.begin(), sortedVec.end(), [](pair_t& a, pair_t& b)
-                  { return a.second < b.second; });
+
+        // clang-format off
+        std::sort(sortedVec.begin(), sortedVec.end(),
+        [](pair_t& a, pair_t& b)
+        {
+            return a.second < b.second;
+        });
+        // clang-format on
 
         // Print
         std::string output;
@@ -128,5 +135,10 @@ namespace PacketGuard
         }
         output += "=======================================\n";
         ShowInfo(output);
+    }
+
+    auto GetPacketAllowList() -> std::unordered_map<CHAR_SUBSTATE, std::unordered_map<uint16, bool>>&
+    {
+        return allowList;
     }
 } // namespace PacketGuard

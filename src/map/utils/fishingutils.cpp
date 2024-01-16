@@ -24,37 +24,38 @@
 #include <cmath>
 #include <cstring>
 
-#include "../packets/caught_fish.h"
-#include "../packets/caught_monster.h"
-#include "../packets/char_skills.h"
-#include "../packets/char_sync.h"
-#include "../packets/char_update.h"
-#include "../packets/chat_message.h"
-#include "../packets/entity_animation.h"
-#include "../packets/event.h"
-#include "../packets/fishing.h"
-#include "../packets/inventory_finish.h"
-#include "../packets/inventory_item.h"
-#include "../packets/message_special.h"
-#include "../packets/message_system.h"
-#include "../packets/message_text.h"
-#include "../packets/release.h"
+#include "packets/caught_fish.h"
+#include "packets/caught_monster.h"
+#include "packets/char_skills.h"
+#include "packets/char_sync.h"
+#include "packets/char_update.h"
+#include "packets/chat_message.h"
+#include "packets/entity_animation.h"
+#include "packets/event.h"
+#include "packets/fishing.h"
+#include "packets/inventory_finish.h"
+#include "packets/inventory_item.h"
+#include "packets/message_special.h"
+#include "packets/message_system.h"
+#include "packets/message_text.h"
+#include "packets/release.h"
 
-#include "../entities/battleentity.h"
-#include "../entities/mobentity.h"
-#include "../entities/npcentity.h"
+#include "entities/battleentity.h"
+#include "entities/mobentity.h"
+#include "entities/npcentity.h"
 
-#include "../ai/ai_container.h"
+#include "ai/ai_container.h"
 
-#include "../enmity_container.h"
-#include "../item_container.h"
-#include "../mob_modifier.h"
-#include "../status_effect_container.h"
-#include "../trade_container.h"
-#include "../universal_container.h"
+#include "enmity_container.h"
+#include "item_container.h"
+#include "mob_modifier.h"
+#include "status_effect_container.h"
+#include "trade_container.h"
+#include "universal_container.h"
 
 #include "battleutils.h"
 #include "charutils.h"
+#include "common/vana_time.h"
 #include "itemutils.h"
 #include "zoneutils.h"
 
@@ -1075,9 +1076,7 @@ namespace fishingutils
 
     uint8 GetFishingSkill(CCharEntity* PChar)
     {
-        uint8 rawSkill = (uint8)std::min(100, (int)std::floor(PChar->RealSkills.skill[SKILL_FISHING] / 10));
-
-        return rawSkill + PChar->getMod(Mod::FISH);
+        return static_cast<uint8>(std::floor(PChar->RealSkills.skill[SKILL_FISHING] / 10) + PChar->getMod(Mod::FISH));
     }
 
     uint8 GetBaitPower(bait_t* bait, fish_t* fish)
@@ -1115,7 +1114,7 @@ namespace fishingutils
         {
             if (FishList[fish.first]->item)
             {
-                pool.push_back(FishList[fish.first]);
+                pool.emplace_back(FishList[fish.first]);
             }
         }
 
@@ -1132,7 +1131,7 @@ namespace fishingutils
             {
                 if (!mob.second->questOnly)
                 {
-                    pool.push_back(mob.second);
+                    pool.emplace_back(mob.second);
                 }
             }
         }
@@ -1336,12 +1335,21 @@ namespace fishingutils
     bool BaitLoss(CCharEntity* PChar, bool RemoveFly, bool SendUpdate)
     {
         CItemWeapon* PBait = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_AMMO));
-        XI_DEBUG_BREAK_IF(PBait == nullptr);
-        XI_DEBUG_BREAK_IF(PBait->isType(ITEM_WEAPON) == false);
-        XI_DEBUG_BREAK_IF(PBait->getSkillType() != SKILL_FISHING);
 
         if (PBait != nullptr)
         {
+            if (!PBait->isType(ITEM_WEAPON))
+            {
+                ShowWarning("PBait is not of Weapon Type.");
+                return false;
+            }
+
+            if (PBait->getSkillType() != SKILL_FISHING)
+            {
+                ShowWarning("PBait Skilltype is not Fishing.");
+                return false;
+            }
+
             if (!RemoveFly && (PBait->getStackSize() == 1))
             {
                 return false;
@@ -1369,8 +1377,18 @@ namespace fishingutils
     {
         CItemWeapon* PRanged = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_RANGED));
         rod_t*       PRod    = FishingRods[PRanged->getID()];
-        XI_DEBUG_BREAK_IF(PRanged == nullptr);
-        XI_DEBUG_BREAK_IF(PRod == nullptr);
+
+        if (PRanged == nullptr)
+        {
+            ShowWarning("PRod was null.");
+            return;
+        }
+
+        if (PRod == nullptr)
+        {
+            ShowWarning("PRod was null.");
+            return;
+        }
 
         if (PRanged != nullptr && PRod != nullptr)
         {
@@ -1831,7 +1849,8 @@ namespace fishingutils
         }
 
         // Not in City bonus
-        if (zoneutils::GetZone(PChar->getZone())->GetType() > ZONE_TYPE::CITY)
+        CZone* PZone = zoneutils::GetZone(PChar->getZone());
+        if (!(PZone && PZone->GetTypeMask() & ZONE_TYPE::CITY))
         {
             skillRoll -= 10;
         }
@@ -2103,7 +2122,8 @@ namespace fishingutils
         float  mobPoolMoonModifier  = MOONPATTERN_3(GetMoonPhase());
         float  noCatchMoonModifier  = MOONPATTERN_5(GetMoonPhase());
 
-        if (zoneutils::GetZone(PChar->getZone())->GetType() <= ZONE_TYPE::CITY)
+        CZone* PZone = zoneutils::GetZone(PChar->getZone());
+        if (PZone && PZone->GetTypeMask() & ZONE_TYPE::CITY)
         {
             FishPoolWeight = (uint16)std::floor(15 * fishPoolMoonModifier);
             ItemPoolWeight = 25 + (uint16)std::floor(20 * itemPoolMoonModifier);
@@ -3014,7 +3034,7 @@ namespace fishingutils
                     {
                         uint16 fishid = 0;
                         memcpy(&fishid, &reqFish[i * sizeof(uint16)], sizeof(uint16));
-                        fish->reqFish->push_back(fishid);
+                        fish->reqFish->emplace_back(fishid);
                     }
                 }
 

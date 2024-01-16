@@ -2,9 +2,6 @@
 -- Area: Temenos Eastern Tower
 --  Mob: Fire Elemental
 -----------------------------------
-require("scripts/globals/mobs")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)

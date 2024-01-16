@@ -5,9 +5,7 @@
 -- Involved in Quest: Gates of Paradise
 -- !pos 484 24 -89 102
 -----------------------------------
-require("scripts/globals/quests")
-require("scripts/globals/keyitems")
-local ID = require("scripts/zones/La_Theine_Plateau/IDs")
+local ID = zones[xi.zone.LA_THEINE_PLATEAU]
 -----------------------------------
 local entity = {}
 
@@ -32,10 +30,10 @@ entity.onTrigger = function(player, npc)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
+entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity

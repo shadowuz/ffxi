@@ -1,8 +1,9 @@
-﻿#include "../src/map/utils/moduleutils.h"
+﻿#include "../src/map/packet_guard.h"
+#include "../src/map/utils/moduleutils.h"
 #include "../src/map/zone.h"
 
-extern uint8 PacketSize[512];
-extern std::function<void(map_session_data_t* const, CCharEntity* const, CBasicPacket)> PacketParser[512];
+extern uint8                                                                             PacketSize[512];
+extern std::function<void(map_session_data_t* const, CCharEntity* const, CBasicPacket&)> PacketParser[512];
 
 class RenamerModule : public CPPModule
 {
@@ -49,11 +50,11 @@ class RenamerModule : public CPPModule
         lua[sol::create_if_nil]["xi"]["renamerTable"] = result;
 
         // Add a custom packet handler to the PacketParser array for id 0x01
-        PacketParser[0x01] = [&](map_session_data_t* const, CCharEntity* const PChar, CBasicPacket)
+        PacketParser[0x01] = [&](map_session_data_t* const, CCharEntity* const PChar, CBasicPacket&)
         {
-            ShowInfo(fmt::format("{} requested renamer list for {}", PChar->GetName(), PChar->loc.zone->GetName()));
+            ShowInfo(fmt::format("{} requested renamer list for {}", PChar->getName(), PChar->loc.zone->getName()));
 
-            auto zoneId = PChar->getZone();
+            auto zoneId       = PChar->getZone();
             auto renamerTable = lua["xi"]["renamerTable"].get<sol::table>();
 
             auto zoneTable = renamerTable[zoneId].get_or<sol::table>(sol::lua_nil);
@@ -70,7 +71,7 @@ class RenamerModule : public CPPModule
                 // convert entityId to targid
                 auto entityCodedName   = entryTable[1].get<std::string>();
                 auto entityDisplayName = entryTable[2].get<std::string>();
-                auto packedString = fmt::format("{},{}.", entityCodedName, entityDisplayName);
+                auto packedString      = fmt::format("{},{}.", entityCodedName, entityDisplayName);
 
                 // If the dataString gets too large, send a packet with what we've
                 // already prepared so we don't exceed the target size of 0x100.
@@ -87,6 +88,11 @@ class RenamerModule : public CPPModule
 
             SendListPacket(PChar, dataString);
         };
+
+        // Add new possible packet to PacketGuard allow list
+        auto& allowList = PacketGuard::GetPacketAllowList();
+
+        allowList[SUBSTATE_IN_CS][0x01] = true;
     }
 };
 

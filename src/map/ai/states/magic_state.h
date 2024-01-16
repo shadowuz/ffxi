@@ -22,7 +22,7 @@
 #ifndef _CMAGIC_STATE_H
 #define _CMAGIC_STATE_H
 
-#include "../../spell.h"
+#include "spell.h"
 #include "state.h"
 
 struct action_t;
@@ -58,7 +58,7 @@ public:
     void   ApplyEnmity(CBattleEntity* PTarget, int ce, int ve);
     void   ApplyMagicCoverEnmity(CBattleEntity* PCoverAbilityTarget, CBattleEntity* PCoverAbilityUser, CMobEntity* PMob);
 
-    void SetInstantCast(const bool bInstantCast)
+    void SetInstantCast(bool const bInstantCast)
     {
         m_instantCast = bInstantCast;
     }
@@ -77,7 +77,7 @@ protected:
 
     CBattleEntity* const    m_PEntity;
     std::unique_ptr<CSpell> m_PSpell;
-    duration                m_castTime;
+    duration                m_castTime{};
     position_t              m_startPos;
     bool                    m_interrupted{ false };
     bool                    m_instantCast{ false };

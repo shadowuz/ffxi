@@ -3,8 +3,6 @@
 --  Mob: Opo-opo Heir
 -- BCNM: Royal Succession
 -----------------------------------
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobSpawn = function(mob)
@@ -14,8 +12,8 @@ end
 
 entity.onMobFight = function(mob, target)
     local partner = (mob:getID() - 1)
-    if GetMobByID(partner):isDead() and mob:getLocalVar("buffed") == 0 then
-        mob:setLocalVar("buffed", 1)
+    if GetMobByID(partner):isDead() and mob:getLocalVar('buffed') == 0 then
+        mob:setLocalVar('buffed', 1)
         mob:setAutoAttackEnabled(true)
         mob:setMobAbilityEnabled(true)
         mob:addHP(mob:getMaxHP() / 2)

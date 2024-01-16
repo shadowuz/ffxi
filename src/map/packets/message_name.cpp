@@ -21,7 +21,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 
 #include "message_name.h"
 
-#include "../entities/baseentity.h"
+#include "entities/baseentity.h"
 
 CMessageNamePacket::CMessageNamePacket(CBaseEntity* PActor, uint16 messageID, CBaseEntity* PNameActor /* = nullptr*/, int32 param0 /* = 0*/,
                                        int32 param1 /* = 0*/, int32 param2 /* = 0*/, int32 param3 /* = 0*/, int32 chatType /* = 4*/,
@@ -47,5 +47,5 @@ CMessageNamePacket::CMessageNamePacket(CBaseEntity* PActor, uint16 messageID, CB
     ref<int32>(0x1C) = param3;
 
     CBaseEntity* PNameEntity = PNameActor ? PNameActor : PActor;
-    memcpy(data + 0x20, PNameEntity->GetName().c_str(), PNameEntity->GetName().size());
+    memcpy(data + 0x20, PNameEntity->getName().c_str(), PNameEntity->getName().size());
 }

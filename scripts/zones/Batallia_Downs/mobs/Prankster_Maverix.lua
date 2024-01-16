@@ -2,9 +2,6 @@
 -- Area: Batallia Downs
 --   NM: Prankster Maverix
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)

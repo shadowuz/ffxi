@@ -22,7 +22,7 @@
 
 extern uint8 PacketSize[512];
 
-extern std::function<void(map_session_data_t* const, CCharEntity* const, CBasicPacket)> PacketParser[512];
+extern std::function<void(map_session_data_t* const, CCharEntity* const, CBasicPacket&)> PacketParser[512];
 
 class AHAnnouncementModule : public CPPModule
 {
@@ -32,7 +32,7 @@ class AHAnnouncementModule : public CPPModule
 
         auto originalHandler = PacketParser[0x04E];
 
-        auto newHandler = [this, originalHandler](map_session_data_t* const PSession, CCharEntity* const PChar, CBasicPacket data) -> void
+        auto newHandler = [this, originalHandler](map_session_data_t* const PSession, CCharEntity* const PChar, CBasicPacket& data) -> void
         {
             TracyZoneScoped;
 
@@ -90,7 +90,7 @@ class AHAnnouncementModule : public CPPModule
                                 ORDER BY price
                                 LIMIT 1;
                                 )",
-                                PChar->GetName(), price, (uint32)time(nullptr), itemid, quantity == 0, price).c_str());
+                                PChar->getName(), price, (uint32)time(nullptr), itemid, quantity == 0, price).c_str());
                             // clang-format on
 
                             if (ret != SQL_ERROR && sql->AffectedRows() != 0)
@@ -125,7 +125,7 @@ class AHAnnouncementModule : public CPPModule
                                         auto        parts = split(name, "_");
                                         name              = "";
                                         name += std::accumulate(std::begin(parts), std::end(parts), std::string(),
-                                        [](std::string& ss, std::string& s)
+                                        [](std::string const& ss, std::string const& s)
                                         {
                                             return ss.empty() ? s : ss + " " + s;
                                         });

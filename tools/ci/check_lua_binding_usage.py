@@ -46,6 +46,8 @@ def main():
     function_names.append("keyItem")
     function_names.append("setMustZone")
     function_names.append("getMustZone")
+    function_names.append("setTimedVar")
+    function_names.append("setVarExpiration")
     function_names.append("oncePerZone")
     function_names.append("incrementVar")
     function_names.append("replaceDefault")
@@ -118,9 +120,9 @@ def main():
                     # Try and ignore comments
                     line = line.split("--", 1)[0]
 
-                    # Don't look inside strings
-                    line = line.split("printf", 1)[0]
-                    line = line.split("print", 1)[0]
+                    # Don't look inside strings (replace with placeholder)
+                    line = re.sub('\"([^\"]*?)\"', "strVal", line)
+                    line = re.sub("\'([^\"]*?)\'", "strVal", line)
 
                     # Try and ignore function definitions
                     line = line.split("function", 1)[0]

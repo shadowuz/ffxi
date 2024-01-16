@@ -1,4 +1,4 @@
-local ID = require('scripts/zones/Bastok_Mines/IDs')
+-- local ID = zones[xi.zone.BASTOK_MINES]
 
 return {
     ['Babenn']         = { event = 40 },
@@ -21,4 +21,5 @@ return {
     ['Tami']           = { event = 115 },
     ['Virnage']        = { event = 140 },
     ['Wahid']          = { event = 28 },
+    ['Wobke']          = { event = 244 },
 }

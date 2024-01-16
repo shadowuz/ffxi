@@ -2,8 +2,7 @@
 -- Area: Arrapago Remnants
 --  Mob: Princess Pudding
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Remnants/IDs")
-require("scripts/globals/status")
+local ID = zones[xi.zone.ARRAPAGO_REMNANTS]
 -----------------------------------
 local entity = {}
 

@@ -2,9 +2,6 @@
 -- Area: Uleguerand Range
 --   NM: Skvader
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)

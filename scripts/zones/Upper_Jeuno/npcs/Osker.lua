@@ -3,17 +3,15 @@
 --  NPC: Osker
 -- Involved in Quest: Chocobo's Wounds
 -----------------------------------
-local ID = require("scripts/zones/Upper_Jeuno/IDs")
-require("scripts/globals/quests")
-require("scripts/globals/keyitems")
+local ID = zones[xi.zone.UPPER_JEUNO]
 -----------------------------------
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
-    local aNewDawnEvent = player:getCharVar("ANewDawn_Event")
+    local aNewDawnEvent = player:getCharVar('ANewDawn_Event')
 
     if
-        trade:hasItemQty(717, 1) and
+        trade:hasItemQty(xi.item.PIECE_OF_MAHOGANY_LUMBER, 1) and
         trade:getItemCount() == 1 and
         aNewDawnEvent == 3
     then
@@ -24,7 +22,7 @@ end
 
 entity.onTrigger = function(player, npc)
     local aNewDawn = player:getQuestStatus(xi.quest.log_id.JEUNO, xi.quest.id.jeuno.A_NEW_DAWN)
-    local aNewDawnEvent = player:getCharVar("ANewDawn_Event")
+    local aNewDawnEvent = player:getCharVar('ANewDawn_Event')
 
     -- A New Dawn
     if aNewDawn == QUEST_ACCEPTED then
@@ -34,28 +32,25 @@ entity.onTrigger = function(player, npc)
             player:startEvent(147)
         end
 
-    -- Standard Dialog 54 probably isnt correct (Which is why its not living in DefaultActions)
     elseif aNewDawn == QUEST_COMPLETED then
         player:startEvent(145)
-    else
-        player:startEvent(54)
     end
 end
 
-entity.onEventUpdate = function(player, csid, option)
+entity.onEventUpdate = function(player, csid, option, npc)
 end
 
-entity.onEventFinish = function(player, csid, option)
-    local aNewDawnEvent = player:getCharVar("ANewDawn_Event")
+entity.onEventFinish = function(player, csid, option, npc)
+    local aNewDawnEvent = player:getCharVar('ANewDawn_Event')
 
     if csid == 146 then
         if aNewDawnEvent == 2 then
-            player:setCharVar("ANewDawn_Event", 3)
+            player:setCharVar('ANewDawn_Event', 3)
         end
     elseif csid == 148 then
         player:addKeyItem(xi.ki.TAMERS_WHISTLE)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, xi.ki.TAMERS_WHISTLE)
-        player:setCharVar("ANewDawn_Event", 4)
+        player:setCharVar('ANewDawn_Event', 4)
     end
 end
 

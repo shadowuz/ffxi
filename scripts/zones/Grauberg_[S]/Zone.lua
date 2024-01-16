@@ -1,14 +1,19 @@
 -----------------------------------
 -- Zone: Grauberg_[S] (89)
 -----------------------------------
-local ID = require('scripts/zones/Grauberg_[S]/IDs')
-require('scripts/globals/status')
-require('scripts/globals/helm')
+require('scripts/globals/dark_ixion')
+-----------------------------------
+local ID = zones[xi.zone.GRAUBERG_S]
 -----------------------------------
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     xi.helm.initZone(zone, xi.helm.type.HARVESTING)
+    xi.darkixion.zoneOnInit(zone)
+end
+
+zoneObject.onGameHour = function(zone)
+    xi.darkixion.zoneOnGameHour(zone)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -43,10 +48,10 @@ zoneObject.onZoneWeatherChange = function(weather)
     end
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

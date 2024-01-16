@@ -1,9 +1,7 @@
 -----------------------------------
 -- Zone: Attohwa_Chasm (7)
 -----------------------------------
-local ID = require('scripts/zones/Attohwa_Chasm/IDs')
-require('scripts/globals/helm')
-require('scripts/globals/zone')
+local ID = zones[xi.zone.ATTOHWA_CHASM]
 -----------------------------------
 local zoneObject = {}
 
@@ -60,8 +58,8 @@ zoneObject.onZoneIn = function(player, prevZone)
     return cs
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
@@ -93,10 +91,10 @@ zoneObject.onGameHour = function(zone)
     --]]
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

@@ -1,10 +1,7 @@
 -----------------------------------
 --    Functions for Shop system
 -----------------------------------
-require("scripts/globals/conquest")
-require("scripts/globals/settings")
-require("scripts/globals/status")
-require("scripts/globals/keyitems")
+require('scripts/globals/conquest')
 -----------------------------------
 
 -----------------------------------
@@ -13,12 +10,12 @@ require("scripts/globals/keyitems")
 
 local curio =
 {
-    ["medicine"]        = 1,
-    ["ammunition"]      = 2,
-    ["ninjutsuTools"]   = 3,
-    ["foodStuffs"]      = 4,
-    ["scrolls"]         = 5,
-    ["keys"]            = 6,
+    ['medicine']        = 1,
+    ['ammunition']      = 2,
+    ['ninjutsuTools']   = 3,
+    ['foodStuffs']      = 4,
+    ['scrolls']         = 5,
+    ['keys']            = 6,
     -- keyitems not implemented yet
 }
 
@@ -84,7 +81,7 @@ xi.shop =
     -- stock cuts off after 16 items. if you add more, extras will not display
     -- stock is of form { itemId1, price1, place1, itemId2, price2, place2, ... }
     --     where place is what place the nation must be in for item to be stocked
-    -- nation is a xi.nation ID from scripts/globals/zone.lua
+    -- nation is a xi.nation ID from scripts/enum/nation.lua
     nation = function(player, stock, nation)
         local rank = GetNationRank(nation)
         local newStock = {}

@@ -191,7 +191,7 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
         for (uint8 i = 0; i < count; ++i)
         {
             CAttack attack(m_attacker, m_defender, type, direction, this);
-            m_attackSwings.push_back(attack);
+            m_attackSwings.emplace_back(attack);
 
             if (m_attackSwings.size() == MAX_ATTACKS)
             {
@@ -386,7 +386,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
             if (PAmmo->getQuantity() == ammoCount)
             {
                 charutils::UnequipItem(PChar, SLOT_AMMO);
-                charutils::SaveCharEquip(PChar);
+                PChar->RequestPersist(CHAR_PERSIST::EQUIP);
             }
             charutils::UpdateItem(PChar, loc, slot, -ammoCount);
             PChar->pushPacket(new CInventoryFinishPacket());

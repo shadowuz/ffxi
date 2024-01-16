@@ -24,10 +24,10 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 
 #include <cstring>
 
-#include "../entities/charentity.h"
+#include "entities/charentity.h"
 
-#include "../recast_container.h"
 #include "char_recast.h"
+#include "recast_container.h"
 
 CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
 {
@@ -63,7 +63,7 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
         // This may change with Master Levels, as there is some padding that appears to be not used for each recast that could be removed to add more abilities.
         if (count > 30)
         {
-            ShowDebug("CCharRecastPacket constructor attempting to send recast packet to player '%s' with > 31 abilities. This is unsupported.", PChar->GetName());
+            ShowDebug("CCharRecastPacket constructor attempting to send recast packet to player '%s' with > 31 abilities. This is unsupported.", PChar->getName());
             break;
         }
     }

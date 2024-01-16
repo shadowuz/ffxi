@@ -1,12 +1,6 @@
 -----------------------------------
 -- Zone: Port_Bastok (236)
 -----------------------------------
-local ID = require('scripts/zones/Port_Bastok/IDs')
-require('scripts/globals/conquest')
-require('scripts/globals/cutscenes')
-require('scripts/globals/settings')
-require('scripts/globals/zone')
------------------------------------
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
@@ -15,8 +9,8 @@ zoneObject.onInitialize = function(zone)
     xi.conquest.toggleRegionalNPCs(zone)
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -49,10 +43,10 @@ zoneObject.onTransportEvent = function(player, transport)
     player:startEvent(71)
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
     if csid == 71 then
         player:setPos(0, 0, 0, 0, 224)
     end

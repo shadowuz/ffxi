@@ -2,9 +2,6 @@
 -- Area: Sea Serpent Grotto
 --   NM: Masan
 -----------------------------------
-require("scripts/globals/hunts")
-require("scripts/globals/status")
------------------------------------
 local entity = {}
 
 entity.onMobInitialize = function(mob)

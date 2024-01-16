@@ -25,19 +25,17 @@
 
 #include "party_invite.h"
 
-#include "../entities/charentity.h"
+#include "entities/charentity.h"
 
 CPartyInvitePacket::CPartyInvitePacket(uint32 id, uint16 targid, CCharEntity* PInviter, INVITETYPE InviteType)
 {
     this->setType(0xDC);
     this->setSize(0x20);
 
-    // XI_DEBUG_BREAK_IF(PInviter->name.size() > 15);
-
     ref<uint32>(0x04) = id;
     ref<uint16>(0x08) = targid;
 
     ref<uint8>(0x0B) = InviteType;
 
-    memcpy(data + (0x0C), PInviter->GetName().c_str(), PInviter->GetName().size());
+    memcpy(data + (0x0C), PInviter->getName().c_str(), PInviter->getName().size());
 }

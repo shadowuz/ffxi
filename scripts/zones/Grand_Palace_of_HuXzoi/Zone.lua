@@ -2,9 +2,6 @@
 -- Zone: Grand_Palace_of_HuXzoi (34)
 -----------------------------------
 local huxzoiGlobal = require('scripts/zones/Grand_Palace_of_HuXzoi/globals')
-local ID = require('scripts/zones/Grand_Palace_of_HuXzoi/IDs')
-require('scripts/globals/conquest')
-require('scripts/globals/status')
 -----------------------------------
 local zoneObject = {}
 
@@ -23,8 +20,8 @@ zoneObject.onInitialize = function(zone)
     huxzoiGlobal.pickTemperancePH()
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -38,21 +35,21 @@ zoneObject.onZoneIn = function(player, prevZone)
         player:setPos(-20, -1.5, -355.482, 192)
     end
 
-    player:setCharVar("Hu-Xzoi-TP", 0)
+    player:setCharVar('Hu-Xzoi-TP', 0)
 
     return cs
 end
 
 zoneObject.afterZoneIn = function(player)
-    player:entityVisualPacket("door")
-    player:entityVisualPacket("dtuk")
-    player:entityVisualPacket("2dor")
-    player:entityVisualPacket("cryq")
+    player:entityVisualPacket('door')
+    player:entityVisualPacket('dtuk')
+    player:entityVisualPacket('2dor')
+    player:entityVisualPacket('cryq')
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
     if
-        player:getLocalVar("Hu-Xzoi-TP") == 0 and
+        player:getLocalVar('Hu-Xzoi-TP') == 0 and
         player:getAnimation() == xi.anim.NONE
     then
         -- prevent 2cs at same time
@@ -63,15 +60,15 @@ end
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
     if csid >= 150 and csid <= 159 then
-        player:setLocalVar("Hu-Xzoi-TP", 1)
+        player:setLocalVar('Hu-Xzoi-TP', 1)
     end
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
     if csid >= 150 and csid <= 159 then
-        player:setLocalVar("Hu-Xzoi-TP", 0)
+        player:setLocalVar('Hu-Xzoi-TP', 0)
     end
 end
 

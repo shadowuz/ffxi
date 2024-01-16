@@ -1,9 +1,6 @@
 -----------------------------------
 -- Zone: Misareaux_Coast (25)
 -----------------------------------
-require('scripts/globals/conquest')
-require('scripts/globals/helm')
-local ID = require('scripts/zones/Misareaux_Coast/IDs')
 local misareauxGlobal = require('scripts/zones/Misareaux_Coast/globals')
 -----------------------------------
 local zoneObject = {}
@@ -13,8 +10,8 @@ zoneObject.onInitialize = function(zone)
     misareauxGlobal.ziphiusHandleQM()
 end
 
-zoneObject.onConquestUpdate = function(zone, updatetype)
-    xi.conq.onConquestUpdate(zone, updatetype)
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -42,10 +39,10 @@ zoneObject.onGameHour = function(zone)
     end
 end
 
-zoneObject.onEventUpdate = function(player, csid, option)
+zoneObject.onEventUpdate = function(player, csid, option, npc)
 end
 
-zoneObject.onEventFinish = function(player, csid, option)
+zoneObject.onEventFinish = function(player, csid, option, npc)
 end
 
 return zoneObject

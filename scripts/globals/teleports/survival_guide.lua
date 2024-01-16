@@ -1,11 +1,10 @@
 -----------------------------------
 -- Survival guides global file
 -----------------------------------
-require("scripts/globals/settings")
-require("scripts/globals/teleports")
-require("scripts/globals/utils")
+require('scripts/globals/teleports')
+require('scripts/globals/utils')
 -----------------------------------
-local survival = require("scripts/globals/teleports/survival_guide_map")
+local survival = require('scripts/globals/teleports/survival_guide_map')
 -----------------------------------
 xi = xi or {}
 xi.survivalGuide = xi.survivalGuide or {}
@@ -52,7 +51,7 @@ xi.survivalGuide.onTrigger = function(player)
         local foundRegisteredGuide = checkForRegisteredSurvivalGuide(player, guide)
 
         if foundRegisteredGuide then
-            local param = bit.bor(tableIndex, bit.lshift(player:getCurrency("valor_point"), 16))
+            local param = bit.bor(tableIndex, bit.lshift(player:getCurrency('valor_point'), 16))
 
             -- Get the teleport menu option.
             -- Menu options can be organized by Region or Content.
@@ -81,11 +80,11 @@ xi.survivalGuide.onTrigger = function(player)
             player:startEvent(8500, 0, param, player:getGil(), g1, g2, g3, g4, expansions)
         end
     else
-        player:PrintToPlayer('Survival guides are not enabled!')
+        player:printToPlayer('Survival guides are not enabled!')
     end
 end
 
-xi.survivalGuide.onEventUpdate = function(player, csid, option)
+xi.survivalGuide.onEventUpdate = function(player, csid, option, npc)
     local choice = bit.band(option, 0xFF)
 
     if
@@ -97,10 +96,8 @@ xi.survivalGuide.onEventUpdate = function(player, csid, option)
 
         if choice ~= optionMap.TELEPORT_MENU then
             if choice == optionMap.ADD_FAVORITE then
-                local temp = 0
-
                 for x = 1, 9 do
-                    temp = favorites[x]
+                    local temp = favorites[x]
                     favorites[x] = index
                     index = temp
                 end
@@ -135,7 +132,7 @@ xi.survivalGuide.onEventUpdate = function(player, csid, option)
     end
 end
 
-xi.survivalGuide.onEventFinish = function(player, eventId, option)
+xi.survivalGuide.onEventFinish = function(player, eventId, option, npc)
     if
         eventId == 8500 and
         bit.band(option, 0xFF) == optionMap.TELEPORT

@@ -56,6 +56,7 @@ enum FLAGTYPE : uint32
     FLAG_GM_PRODUCER = 0x07000000,
     FLAG_BAZAAR      = 0x80000000,
 };
+DECLARE_FORMAT_AS_UNDERLYING(FLAGTYPE);
 
 enum NFLAGTYPE : uint32
 {
@@ -71,6 +72,7 @@ enum NFLAGTYPE : uint32
     NFLAG_DISPLAY_HEAD    = 0x08000000,
     NFLAG_RECRUIT         = 0x20000000,
 };
+DECLARE_FORMAT_AS_UNDERLYING(NFLAGTYPE);
 
 enum CHATFILTERTYPE : uint64
 {
@@ -126,12 +128,14 @@ enum CHATFILTERTYPE : uint64
     // NFLAG_SYSTEM_FILTER_H
     // Filter level is 0-3
 };
+DECLARE_FORMAT_AS_UNDERLYING(CHATFILTERTYPE);
 
 enum MSGSERVTYPE : uint8
 {
     MSG_LOGIN,
     MSG_CHAT_TELL,
     MSG_CHAT_PARTY,
+    MSG_CHAT_ALLIANCE,
     MSG_CHAT_LINKSHELL,
     MSG_CHAT_UNITY,
     MSG_CHAT_YELL,
@@ -140,11 +144,18 @@ enum MSGSERVTYPE : uint8
     MSG_PT_INV_RES,
     MSG_PT_RELOAD,
     MSG_PT_DISBAND,
+    MSG_ALLIANCE_RELOAD,
+    MSG_ALLIANCE_DISSOLVE,
+    MSG_PLAYER_KICK,
     MSG_DIRECT,
     MSG_LINKSHELL_RANK_CHANGE,
     MSG_LINKSHELL_REMOVE,
     MSG_LUA_FUNCTION,
     MSG_CHARVAR_UPDATE,
+
+    // conquest, besieged, campaign..
+    MSG_WORLD2MAP_REGIONAL_EVENT,
+    MSG_MAP2WORLD_REGIONAL_EVENT,
 
     // gm commands
     MSG_SEND_TO_ZONE,
@@ -154,6 +165,45 @@ enum MSGSERVTYPE : uint8
     MSG_RPC_SEND, // sent by sender -> reciever
     MSG_RPC_RECV, // sent by reciever -> sender
 };
+DECLARE_FORMAT_AS_UNDERLYING(MSGSERVTYPE);
+
+enum REGIONALMSGTYPE : uint8
+{
+    REGIONAL_EVT_MSG_CONQUEST,
+    REGIONAL_EVT_MSG_BESIEGED,
+    REGIONAL_EVT_MSG_CAMPAIGN,
+    REGIONAL_EVT_MSG_COLONIZATION,
+};
+DECLARE_FORMAT_AS_UNDERLYING(REGIONALMSGTYPE);
+
+enum CONQUESTMSGTYPE : uint8
+{
+    // WORLD --------> MAP
+
+    // World map broadcasts weekly update started to all zones
+    CONQUEST_WORLD2MAP_WEEKLY_UPDATE_START,
+    // World map broadcasts that update is done, with the respective tally
+    CONQUEST_WORLD2MAP_WEEKLY_UPDATE_END,
+    // World map broadcasts influence point updates to all zones.
+    // Used for periodic updates or initialization.
+    CONQUEST_WORLD2MAP_INFLUENCE_POINTS,
+    // World map broadcasts region control data to all zones.
+    // Used for initialization.
+    CONQUEST_WORLD2MAP_REGION_CONTROL,
+
+    // MAP ----------> WORLD
+
+    // A GM Triggers a weekly update. From one zone to world.
+    // World should send CONQUEST_WORLD2MAP_WEEKLY_UPDATE_START and
+    // CONQUEST_WORLD2MAP_WEEKLY_UPDATE_END when done
+    CONQUEST_MAP2WORLD_GM_WEEKLY_UPDATE,
+    // A GM requests houry conquest data (just influence points).
+    // World server should respond with CONQUEST_WORLD2MAP_INFLUENCE_POINTS triggering a zone update
+    CONQUEST_MAP2WORLD_GM_CONQUEST_UPDATE,
+    // Influence point update from any zone to world.
+    CONQUEST_MAP2WORLD_ADD_INFLUENCE_POINTS,
+};
+DECLARE_FORMAT_AS_UNDERLYING(CONQUESTMSGTYPE);
 
 constexpr auto msgTypeToStr = [](uint8 msgtype)
 {
@@ -165,6 +215,8 @@ constexpr auto msgTypeToStr = [](uint8 msgtype)
             return "MSG_CHAT_TELL";
         case MSG_CHAT_PARTY:
             return "MSG_CHAT_PARTY";
+        case MSG_CHAT_ALLIANCE:
+            return "MSG_CHAT_ALLIANCE";
         case MSG_CHAT_LINKSHELL:
             return "MSG_CHAT_LINKSHELL";
         case MSG_CHAT_UNITY:
@@ -181,6 +233,12 @@ constexpr auto msgTypeToStr = [](uint8 msgtype)
             return "MSG_PT_RELOAD";
         case MSG_PT_DISBAND:
             return "MSG_PT_DISBAND";
+        case MSG_ALLIANCE_RELOAD:
+            return "MSG_ALLIANCE_RELOAD";
+        case MSG_ALLIANCE_DISSOLVE:
+            return "MSG_ALLIANCE_DISSOLVE";
+        case MSG_PLAYER_KICK:
+            return "MSG_PLAYER_KICK";
         case MSG_DIRECT:
             return "MSG_DIRECT";
         case MSG_LINKSHELL_RANK_CHANGE:
@@ -199,6 +257,8 @@ constexpr auto msgTypeToStr = [](uint8 msgtype)
             return "MSG_RPC_SEND";
         case MSG_RPC_RECV:
             return "MSG_RPC_RECV";
+        case MSG_WORLD2MAP_REGIONAL_EVENT:
+            return "MSG_WORLD2MAP_REGIONAL_EVENT";
         default:
             return "Unknown";
     };
@@ -314,16 +374,16 @@ struct keyitems_t
 
 struct position_t
 {
-    float  x;
-    float  y; // Entity height, relative to "sea level"
-    float  z;
-    uint16 moving; // Something like the travel distance, the number of steps required for correct rendering in the client.
+    float  x      = 0.0f;
+    float  y      = 0.0f; // Entity height, relative to "sea level"
+    float  z      = 0.0f;
+    uint16 moving = 0; // Something like the travel distance, the number of steps required for correct rendering in the client.
 
     // The angle of rotation of the entity relative to its position. A maximum rotation value of
     // 255 is used as the rotation is stored in `uint8`. Use `rotationToRadian()` and
     // `radianToRotation()` util functions to convert back and forth between the 255-encoded
     // rotation value and the radian value.
-    uint8 rotation;
+    uint8 rotation = 0;
 
     position_t()
     {
@@ -346,7 +406,13 @@ struct position_t
 
 struct stats_t
 {
-    uint16 STR, DEX, VIT, AGI, INT, MND, CHR;
+    uint16 STR;
+    uint16 DEX;
+    uint16 VIT;
+    uint16 AGI;
+    uint16 INT;
+    uint16 MND;
+    uint16 CHR;
 
     stats_t()
     {
@@ -485,8 +551,8 @@ struct bazaar_t
 
 struct pathpoint_t
 {
-    position_t position;
-    uint32     wait;
+    position_t position{};
+    uint32     wait        = 0;
     bool       setRotation = false;
 };
 
