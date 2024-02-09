@@ -8,10 +8,9 @@ abilityObject.onAbilityCheck = function(player, target, ability)
 end
 
 abilityObject.onPetAbility = function(target, pet, petskill, summoner, action)
-    xi.job_utils.summoner.onUseBloodPact(summoner, pet, target, petskill)
+    xi.job_utils.summoner.onUseBloodPact(target, petskill, summoner, action)
 
-    local typeEffect = xi.effect.CURING_CONDUIT
-    if target:addStatusEffect(typeEffect, 15, 0, 180) then
+    if target:addStatusEffect(xi.effect.CURING_CONDUIT, 15, 0, 180) then
         if target:getID() == action:getPrimaryTargetID() then
             petskill:setMsg(xi.msg.basic.SKILL_GAIN_EFFECT_2)
         else
@@ -22,7 +21,7 @@ abilityObject.onPetAbility = function(target, pet, petskill, summoner, action)
         return
     end
 
-    return typeEffect
+    return xi.effect.CURING_CONDUIT
 end
 
 return abilityObject
