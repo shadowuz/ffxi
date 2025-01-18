@@ -3,9 +3,10 @@
 -- Spartan Bullet Pouch
 -- When used, you will obtain one stack of Spartan Bullets
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

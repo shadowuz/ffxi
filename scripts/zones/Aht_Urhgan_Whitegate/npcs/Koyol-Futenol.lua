@@ -4,6 +4,7 @@
 -- Title Change NPC
 -- !pos -129 2 -20 50
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 local eventId = 644
@@ -88,6 +89,7 @@ local titleInfo =
             xi.title.MOON_CHARIOTEER,
             xi.title.BLOODY_BERSERKER,
             xi.title.THE_SIXTH_SERPENT,
+            xi.title.PANDEMONIUM_QUELLER,
             xi.title.OUPIRE_IMPALER,
             xi.title.HEIR_OF_THE_BLESSED_RADIANCE,
             xi.title.HEIR_OF_THE_BLIGHTED_GLOOM,

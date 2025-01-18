@@ -3,13 +3,14 @@
 --  NPC: Domenic
 -- BCNM/KSNM Teleporter
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    if player:hasCompletedQuest(xi.quest.log_id.JEUNO, xi.quest.id.jeuno.BEYOND_INFINITY) then
+    if player:hasCompletedQuest(xi.questLog.JEUNO, xi.quest.id.jeuno.BEYOND_INFINITY) then
         player:startEvent(10115, player:getGil())
     else
         player:startEvent(10116)

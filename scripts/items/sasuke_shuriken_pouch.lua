@@ -3,9 +3,10 @@
 -- Sasu. Sh. Pouch
 -- A small leather pouch made for storing sasuke shuriken.
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

@@ -7,11 +7,12 @@
 -----------------------------------
 local ID = zones[xi.zone.WEST_SARUTABARUTA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
     if
-        player:getQuestStatus(xi.quest.log_id.WINDURST, xi.quest.id.windurst.TO_CATCH_A_FALLING_STAR) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.TO_CATCH_A_FALLING_STAR) == xi.questStatus.QUEST_ACCEPTED and
         VanadielHour() <= 3
     then
         if

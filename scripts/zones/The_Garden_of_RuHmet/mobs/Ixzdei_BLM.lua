@@ -6,6 +6,7 @@
 local ID = zones[xi.zone.THE_GARDEN_OF_RUHMET]
 mixins = { require('scripts/mixins/job_special') }
 -----------------------------------
+---@type TMobEntity
 local entity = {}
 
 local chargeOptic = function(mob)
@@ -54,7 +55,7 @@ entity.onMobEngage = function(mob, target)
     mob:setMobMod(xi.mobMod.NO_MOVE, 0)
     mob:setLocalVar('changeTime', 0)
     local firstCast = { 144, 149, 154, 164, 169 }
-    mob:castSpell(firstCast[math.random(#firstCast)])
+    mob:castSpell(firstCast[math.random(1, #firstCast)])
 end
 
 entity.onMobFight = function(mob, target)
@@ -110,7 +111,6 @@ entity.onMobFight = function(mob, target)
 
     local hpp = mob:getHPP()
     local healpercent = mob:getLocalVar('healpercent')
-    print(healpercent)
     local heal = mob:getLocalVar('heal')
     local zdeiOne = GetMobByID(ID.mob.IXZDEI_BASE + 2)
     local zdeiTwo = GetMobByID(ID.mob.IXZDEI_BASE + 3)
@@ -122,10 +122,14 @@ entity.onMobFight = function(mob, target)
         switch (mobID): caseof
         {
             [ID.mob.IXZDEI_BASE + 2] = function()
+                if not zdeiOne then
+                    return
+                end
+
                 local spawnPos = zdeiOne:getSpawnPos()
                 mob:setMagicCastingEnabled(false)
                 mob:pathTo(spawnPos.x, spawnPos.y, spawnPos.z)
-                mob:setBehaviour(bit.bor(mob:getBehaviour(), xi.behavior.STANDBACK))
+                mob:setBehavior(bit.bor(mob:getBehavior(), xi.behavior.STANDBACK))
                 mob:timer(8000, function(mobArg)
                     if
                         mob:checkDistance(spawnPos.x, spawnPos.y, spawnPos.z) < 2 and
@@ -141,10 +145,14 @@ entity.onMobFight = function(mob, target)
             end,
 
             [ID.mob.IXZDEI_BASE + 3] = function()
+                if not zdeiTwo then
+                    return
+                end
+
                 local spawnPos = zdeiTwo:getSpawnPos()
                 mob:setMagicCastingEnabled(false)
                 mob:pathTo(spawnPos.x, spawnPos.y, spawnPos.z)
-                mob:setBehaviour(bit.bor(mob:getBehaviour(), xi.behavior.STANDBACK))
+                mob:setBehavior(bit.bor(mob:getBehavior(), xi.behavior.STANDBACK))
                 mob:timer(8000, function(mobArg)
                     if
                         mob:checkDistance(spawnPos.x, spawnPos.y, spawnPos.z) < 2 and

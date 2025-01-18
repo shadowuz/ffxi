@@ -3,9 +3,10 @@
 --  Sha Wujing's lance +1
 --  When used, you will obtain a stack of Distilled Water
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

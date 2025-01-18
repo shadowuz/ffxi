@@ -1,20 +1,20 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
 
 ===========================================================================
 */
@@ -297,22 +297,22 @@ bool CInstance::CheckFirstEntry(uint32 id)
     return m_enteredChars.insert(id).second;
 }
 
-uint8 CInstance::GetSoloBattleMusic()
+uint16 CInstance::GetSoloBattleMusic()
 {
-    return m_zone_music_override.m_bSongS != (uint8)-1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
+    return m_zone_music_override.m_bSongS != (uint16)-1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
 }
 
-uint8 CInstance::GetPartyBattleMusic()
+uint16 CInstance::GetPartyBattleMusic()
 {
-    return m_zone_music_override.m_bSongM != (uint8)-1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
+    return m_zone_music_override.m_bSongM != (uint16)-1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
 }
 
-uint8 CInstance::GetBackgroundMusicDay()
+uint16 CInstance::GetBackgroundMusicDay()
 {
-    return m_zone_music_override.m_songDay != (uint8)-1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
+    return m_zone_music_override.m_songDay != (uint16)-1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
 }
 
-uint8 CInstance::GetBackgroundMusicNight()
+uint16 CInstance::GetBackgroundMusicNight()
 {
-    return m_zone_music_override.m_songNight != (uint8)-1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
+    return m_zone_music_override.m_songNight != (uint16)-1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
 }

@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Beadeaux
 --  NPC: Ge'Fhu Yagudoeye
--- Type: Quest NPC
 -- !pos -91.354 -4.251 -127.831 147
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

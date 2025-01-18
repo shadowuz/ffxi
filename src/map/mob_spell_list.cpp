@@ -35,6 +35,18 @@ void CMobSpellList::AddSpell(SpellID spellId, uint16 minLvl, uint16 maxLvl)
     m_spellList.emplace_back(Mob_Spell);
 }
 
+uint16 CMobSpellList::GetSpellMinLevel(SpellID spellId)
+{
+    for (auto const& Mob_Spell : m_spellList)
+    {
+        if (spellId == Mob_Spell.spellId)
+        {
+            return Mob_Spell.min_level;
+        }
+    }
+    return 255;
+}
+
 // Implement namespace to work with spells
 namespace mobSpellList
 {
@@ -43,7 +55,7 @@ namespace mobSpellList
     // Load list of spells
     void LoadMobSpellList()
     {
-        memset(PMobSpellList, 0, sizeof(PMobSpellList));
+        std::memset(PMobSpellList, 0, sizeof(PMobSpellList));
         PMobSpellList[0] = new CMobSpellList();
 
         const char* Query = "SELECT mob_spell_lists.spell_list_id, \

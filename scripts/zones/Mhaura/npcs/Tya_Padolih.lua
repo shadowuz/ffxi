@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Mhaura
 --  NPC: Tya Padolih
--- Standard Merchant NPC
 -- !pos -48 -4 30 249
 -----------------------------------
 local ID = zones[xi.zone.MHAURA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: The Boyahda Tree
 --  NPC: Mandragora Warden
--- Type: NPC
 -- !pos 101.978 8.369 121.969 153
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

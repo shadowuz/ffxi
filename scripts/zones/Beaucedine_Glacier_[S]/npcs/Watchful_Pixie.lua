@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Beaucedine Glacier (S)
 --  NPC: Watchful Pixie
--- Type: Quest NPC
 -- !pos -56.000 -1.3 -392.000 136
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

@@ -1141,8 +1141,10 @@ local function lampsActivate(instance)
         local runicLamp1 = GetNPCByID(ID.npc.RUNIC_LAMP_OFFSET, instance)
 
         -- Spawn lamps.
-        runicLamp1:setPos(dTableLampPoints[spawnPoint])
-        runicLamp1:setStatus(xi.status.NORMAL)
+        if runicLamp1 then
+            runicLamp1:setPos(dTableLampPoints[spawnPoint])
+            runicLamp1:setStatus(xi.status.NORMAL)
+        end
 
         -- Save data.
         instance:setLocalVar('[Lamp]PartySize', instance:getLocalVar('partySize'))
@@ -1198,6 +1200,9 @@ end
 
 xi.nyzul.prepareMobs = function(instance)
     local currentFloor = instance:getLocalVar('Nyzul_Current_Floor')
+
+    -- Failsafe: Initialize variable
+    instance:setLocalVar('Nyzul_Specified_Enemy', 0)
 
     -- 20th floor bosses.
     if currentFloor % 20 == 0 then
@@ -1266,6 +1271,12 @@ xi.nyzul.prepareMobs = function(instance)
                     -- Spawn Mob.
                     GetMobByID(enemy, instance):setSpawn(spawnPoint.x, spawnPoint.y, spawnPoint.z, math.random(0, 255))
                     SpawnMob(enemy, instance)
+
+                    -- Set mobs of the specified group to CHECK_AS_NM
+                    local groupMob = GetMobByID(enemy, instance)
+                    if groupMob then
+                        groupMob:setMobMod(xi.mobMod.CHECK_AS_NM, 1)
+                    end
 
                     -- Remove table entry.
                     table.remove(dTableSpawnPoint, spawnPointIndex)

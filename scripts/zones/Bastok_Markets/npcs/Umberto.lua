@@ -6,6 +6,7 @@
 -----------------------------------
 local ID = zones[xi.zone.BASTOK_MARKETS]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -27,9 +28,9 @@ entity.onEventFinish = function(player, csid, option, npc)
         else
             player:addItem(xi.item.AILEENS_DELIGHT)
             player:messageSpecial(ID.text.ITEM_OBTAINED, xi.item.AILEENS_DELIGHT)
-            player:addFame(xi.quest.fame_area.BASTOK, 30)
+            player:addFame(xi.fameArea.BASTOK, 30)
             player:setCharVar('TOO_MANY_CHEFS', 0)
-            player:completeQuest(xi.quest.log_id.BASTOK, xi.quest.id.bastok.TOO_MANY_CHEFS)
+            player:completeQuest(xi.questLog.BASTOK, xi.quest.id.bastok.TOO_MANY_CHEFS)
         end
     end
 end

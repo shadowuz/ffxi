@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Upper Jeuno
 --  NPC: Afdeen
--- Standard Merchant NPC
 -- !pos 1.462 0.000 21.627 244
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

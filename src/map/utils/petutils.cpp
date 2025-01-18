@@ -1,20 +1,20 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
 
 ===========================================================================
 */
@@ -113,7 +113,7 @@ namespace petutils
                 Pet->name.insert(0, (const char*)_sql->GetData(1));
 
                 uint16 sqlModelID[10];
-                memcpy(&sqlModelID, _sql->GetData(2), 20);
+                std::memcpy(&sqlModelID, _sql->GetData(2), 20);
                 Pet->look = look_t(sqlModelID);
 
                 Pet->minLevel  = (uint8)_sql->GetIntData(3);
@@ -352,8 +352,9 @@ namespace petutils
                 break;
         }
 
-        PMob->speed    = petStats->speed;
-        PMob->speedsub = petStats->speed;
+        PMob->baseSpeed      = petStats->speed;
+        PMob->speed          = petStats->speed;
+        PMob->animationSpeed = petStats->speed;
 
         PMob->UpdateHealth();
         PMob->health.tp = 0;
@@ -723,19 +724,6 @@ namespace petutils
             ref<uint16>(&PPet->stats, counter) = (uint16)(raceStat + jobStat);
             counter += 2;
         }
-
-        // SMN Job Gift Bonuses, DRG and PUP handled in their respective functions
-        if (PMaster->GetMJob() == JOB_SMN)
-        {
-            PPet->addModifier(Mod::ATT, PMaster->getMod(Mod::PET_ATK_DEF));
-            PPet->addModifier(Mod::DEF, PMaster->getMod(Mod::PET_ATK_DEF));
-            PPet->addModifier(Mod::ACC, PMaster->getMod(Mod::PET_ACC_EVA));
-            PPet->addModifier(Mod::EVA, PMaster->getMod(Mod::PET_ACC_EVA));
-            PPet->addModifier(Mod::MATT, PMaster->getMod(Mod::PET_MAB_MDB));
-            PPet->addModifier(Mod::MDEF, PMaster->getMod(Mod::PET_MAB_MDB));
-            PPet->addModifier(Mod::MACC, PMaster->getMod(Mod::PET_MACC_MEVA));
-            PPet->addModifier(Mod::MEVA, PMaster->getMod(Mod::PET_MACC_MEVA));
-        }
     }
 
     void CalculateAvatarStats(CBattleEntity* PMaster, CPetEntity* PPet)
@@ -831,6 +819,7 @@ namespace petutils
         // Set E evasion and def
         PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, mLvl > 99 ? 99 : mLvl));
         PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, mLvl > 99 ? 99 : mLvl));
+
         // cap all magic skills so they play nice with spell scripts
         for (int i = SKILL_DIVINE_MAGIC; i <= SKILL_BLUE_MAGIC; i++)
         {
@@ -864,6 +853,19 @@ namespace petutils
             PPet->addModifier(Mod::ATT, PChar->PJobPoints->GetJobPointValue(JP_SUMMON_PHYS_ATK_BONUS) * 2);
             PPet->addModifier(Mod::MAGIC_DAMAGE, PChar->PJobPoints->GetJobPointValue(JP_SUMMON_MAGIC_DMG_BONUS) * 5);
             PPet->addModifier(Mod::BP_DAMAGE, PChar->PJobPoints->GetJobPointValue(JP_BLOOD_PACT_DMG_BONUS) * 3);
+        }
+
+        // SMN Job Gift Bonuses, DRG and PUP handled in their respective functions
+        if (PMaster->GetMJob() == JOB_SMN)
+        {
+            PPet->addModifier(Mod::ATT, PMaster->getMod(Mod::PET_ATK_DEF));
+            PPet->addModifier(Mod::DEF, PMaster->getMod(Mod::PET_ATK_DEF));
+            PPet->addModifier(Mod::ACC, PMaster->getMod(Mod::PET_ACC_EVA));
+            PPet->addModifier(Mod::EVA, PMaster->getMod(Mod::PET_ACC_EVA));
+            PPet->addModifier(Mod::MATT, PMaster->getMod(Mod::PET_MAB_MDB));
+            PPet->addModifier(Mod::MDEF, PMaster->getMod(Mod::PET_MAB_MDB));
+            PPet->addModifier(Mod::MACC, PMaster->getMod(Mod::PET_MACC_MEVA));
+            PPet->addModifier(Mod::MEVA, PMaster->getMod(Mod::PET_MACC_MEVA));
         }
 
         PMaster->setModifier(Mod::AVATAR_PERPETUATION, PerpetuationCost(petID, mLvl));
@@ -1074,20 +1076,28 @@ namespace petutils
             battleutils::AddTraits(PPet, traits::GetTraits(PPet->GetSJob()), PPet->GetSLevel());
         }
 
-        charutils::BuildingCharAbilityTable(static_cast<CCharEntity*>(PMaster));
-        charutils::BuildingCharPetAbilityTable(static_cast<CCharEntity*>(PMaster), PPet, PPet->m_PetID);
-        static_cast<CCharEntity*>(PMaster)->pushPacket(new CCharUpdatePacket(static_cast<CCharEntity*>(PMaster)));
-        static_cast<CCharEntity*>(PMaster)->pushPacket(new CPetSyncPacket(static_cast<CCharEntity*>(PMaster)));
+        if (auto* PMasterChar = dynamic_cast<CCharEntity*>(PMaster))
+        {
+            charutils::BuildingCharAbilityTable(PMasterChar);
+            charutils::BuildingCharPetAbilityTable(PMasterChar, PPet, PPet->m_PetID);
 
-        // check latents affected by pets
-        static_cast<CCharEntity*>(PMaster)->PLatentEffectContainer->CheckLatentsPetType();
+            PMasterChar->pushPacket<CCharUpdatePacket>(PMasterChar);
+            PMasterChar->pushPacket<CPetSyncPacket>(PMasterChar);
 
-        // clang-format off
-                PMaster->ForParty([](CBattleEntity* PMember)
+            // check latents affected by pets
+            PMasterChar->PLatentEffectContainer->CheckLatentsPetType();
+
+            // clang-format off
+            PMasterChar->ForParty([](CBattleEntity* PMember)
+            {
+                if (const auto* PMemberChar = dynamic_cast<CCharEntity*>(PMember))
                 {
-                    static_cast<CCharEntity*>(PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
-                });
-        // clang-format on
+                    PMemberChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+                }
+            });
+            // clang-format on
+        }
+
         if (PMaster->StatusEffectContainer->HasStatusEffect(EFFECT_DEBILITATION))
         {
             PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DEBILITATION, EFFECT_DEBILITATION, PMaster->StatusEffectContainer->GetStatusEffect(EFFECT_DEBILITATION)->GetPower(), 0, PMaster->StatusEffectContainer->GetStatusEffect(EFFECT_DEBILITATION)->GetDuration()), true);
@@ -1350,9 +1360,9 @@ namespace petutils
 
         charutils::BuildingCharAbilityTable(PChar);
         PChar->PPet = nullptr;
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
-        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-        PChar->pushPacket(new CPetSyncPacket(PChar));
+        PChar->pushPacket<CCharUpdatePacket>(PChar);
+        PChar->pushPacket<CCharAbilitiesPacket>(PChar);
+        PChar->pushPacket<CPetSyncPacket>(PChar);
     }
 
     void DespawnPet(CBattleEntity* PMaster)
@@ -1790,7 +1800,7 @@ namespace petutils
         {
             uint8 spawnLevel = static_cast<CCharEntity*>(PMaster)->petZoningInfo.petLevel;
             PPet->setSpawnLevel(spawnLevel > 0 ? spawnLevel : UINT8_MAX);
-            PPet->setJugDuration(static_cast<int32>(PPetData->time));
+            PPet->setJugDuration(PPetData->time);
             CalculateJugPetStats(PMaster, PPet);
         }
         else if (PPet->getPetType() == PET_TYPE::WYVERN)

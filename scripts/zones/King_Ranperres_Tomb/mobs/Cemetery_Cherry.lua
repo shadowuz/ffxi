@@ -4,8 +4,13 @@
 -- !pos 33.000 0.500 -287.000 190
 -----------------------------------
 local ID = zones[xi.zone.KING_RANPERRES_TOMB]
-mixins = { require('scripts/mixins/job_special') }
+mixins =
+{
+    require('scripts/mixins/job_special'),
+    require('scripts/mixins/draw_in'),
+}
 -----------------------------------
+---@type TMobEntity
 local entity = {}
 
 local function spawnSaplings()
@@ -19,7 +24,6 @@ end
 
 entity.onMobInitialize = function(mob)
     mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 180)
-    mob:setMobMod(xi.mobMod.DRAW_IN, 1)
 
     local saplingsRespawn = math.random(1800, 3600) -- 30 to 60 minutes
     mob:timer(saplingsRespawn * 1000, function(mobArg)

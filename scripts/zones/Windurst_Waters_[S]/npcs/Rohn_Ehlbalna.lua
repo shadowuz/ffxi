@@ -3,6 +3,7 @@
 --  NPC: Rohn Ehlbalna
 -- !pos -43.473 -4.5 46.496 94
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -10,7 +11,7 @@ end
 
 entity.onTrigger = function(player, npc)
     if
-        player:getQuestStatus(xi.quest.log_id.CRYSTAL_WAR, xi.quest.id.crystalWar.REDEEMING_ROCKS) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.CRYSTAL_WAR, xi.quest.id.crystalWar.REDEEMING_ROCKS) == xi.questStatus.QUEST_ACCEPTED and
         player:getCharVar('RedeemingRocksProg') == 1
     then
         player:startEvent(114) -- 2nd CS quest "Redeeming Rocks"

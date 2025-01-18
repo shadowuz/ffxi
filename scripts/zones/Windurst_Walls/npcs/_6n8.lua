@@ -3,6 +3,7 @@
 --  Door: Priming Gate
 --  Involved in quest: Toraimarai Turmoil
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -21,8 +22,6 @@ entity.onTrigger = function(player, npc)
     else
         player:startEvent(395)
     end
-
-    return 1
 end
 
 entity.onEventUpdate = function(player, csid, option, npc)

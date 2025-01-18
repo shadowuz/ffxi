@@ -2,9 +2,18 @@
 -- Area: King Ranperre's Tomb
 --   NM: Vrtra
 -----------------------------------
+---@type TMobEntity
 local entity = {}
 
 local offsets = { 1, 3, 5, 2, 4, 6 }
+
+entity.onMobSpawn = function(mob)
+    mob:setMobMod(xi.mobMod.NO_MOVE, 0)
+end
+
+entity.onMobRoam = function(mob)
+    mob:setMobMod(xi.mobMod.NO_MOVE, 0)
+end
 
 entity.onMobEngage = function(mob, target)
     -- Reset the onMobFight variables
@@ -36,7 +45,7 @@ entity.onMobFight = function(mob, target)
         for i, offset in ipairs(offsets) do
             local pet = GetMobByID(mobId + offset)
 
-            if not pet:isSpawned() then
+            if pet and not pet:isSpawned() then
                 pet:spawn(60)
                 local pos = mob:getPos()
                 pet:setPos(pos.x, pos.y, pos.z)
@@ -47,9 +56,26 @@ entity.onMobFight = function(mob, target)
 
         mob:setLocalVar('spawnTime', fifteenBlock + 4)
     end
+
+    -- Vrtra draws in if you attempt to leave the room
+    local drawInTable =
+    {
+        conditions =
+        {
+            target:getXPos() < 180 and target:getZPos() > -305 and target:getZPos() < -290,
+        },
+        position = mob:getPos(),
+        wait = 3,
+    }
+    if drawInTable.conditions[1] then
+        mob:setMobMod(xi.mobMod.NO_MOVE, 1)
+        utils.drawIn(target, drawInTable)
+    else
+        mob:setMobMod(xi.mobMod.NO_MOVE, 0)
+    end
 end
 
-entity.onMobDisengage = function(mob, weather)
+entity.onMobDisengage = function(mob)
     for i, offset in ipairs(offsets) do
         DespawnMob(mob:getID() + offset)
     end

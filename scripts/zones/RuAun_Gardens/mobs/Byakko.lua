@@ -5,10 +5,11 @@
 local ID = zones[xi.zone.RUAUN_GARDENS]
 mixins = { require('scripts/mixins/job_special') }
 -----------------------------------
+---@type TMobEntity
 local entity = {}
 
-entity.onMobSpawn = function(mob, target)
-    GetNPCByID(ID.npc.PORTAL_TO_BYAKKO):setAnimation(xi.anim.CLOSE_DOOR)
+entity.onMobSpawn = function(mob)
+    GetNPCByID(ID.npc.PORTAL_OFFSET + 8):setAnimation(xi.anim.CLOSE_DOOR)
 end
 
 entity.onMobInitialize = function(mob)
@@ -21,11 +22,11 @@ end
 
 entity.onMobDeath = function(mob, player, optParams)
     player:showText(mob, ID.text.SKY_GOD_OFFSET + 12)
-    GetNPCByID(ID.npc.PORTAL_TO_BYAKKO):setAnimation(xi.anim.OPEN_DOOR)
+    GetNPCByID(ID.npc.PORTAL_OFFSET + 8):setAnimation(xi.anim.OPEN_DOOR)
 end
 
 entity.onMobDespawn = function(mob)
-    GetNPCByID(ID.npc.PORTAL_TO_BYAKKO):setAnimation(xi.anim.OPEN_DOOR)
+    GetNPCByID(ID.npc.PORTAL_OFFSET + 8):setAnimation(xi.anim.OPEN_DOOR)
 end
 
 return entity

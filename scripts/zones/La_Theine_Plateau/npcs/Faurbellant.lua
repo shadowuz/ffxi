@@ -1,22 +1,22 @@
 -----------------------------------
 -- Area: La Theine Plateau
 --  NPC: Faurbellant
--- Type: Quest NPC
 -- Involved in Quest: Gates of Paradise
 -- !pos 484 24 -89 102
 -----------------------------------
 local ID = zones[xi.zone.LA_THEINE_PLATEAU]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    local gates = player:getQuestStatus(xi.quest.log_id.SANDORIA, xi.quest.id.sandoria.GATES_TO_PARADISE)
-    if gates == QUEST_COMPLETED then
+    local gates = player:getQuestStatus(xi.questLog.SANDORIA, xi.quest.id.sandoria.GATES_TO_PARADISE)
+    if gates == xi.questStatus.QUEST_COMPLETED then
         player:showText(npc, ID.text.FAURBELLANT_4)
-    elseif gates == QUEST_ACCEPTED then
+    elseif gates == xi.questStatus.QUEST_ACCEPTED then
         if player:hasKeyItem(xi.ki.SCRIPTURE_OF_WIND) then
             player:showText(npc, ID.text.FAURBELLANT_2, 0, xi.ki.SCRIPTURE_OF_WIND)
             player:delKeyItem(xi.ki.SCRIPTURE_OF_WIND)

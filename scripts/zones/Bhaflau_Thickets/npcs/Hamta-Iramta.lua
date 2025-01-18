@@ -4,6 +4,7 @@
 -- Type: Alzadaal Undersea Ruins
 -- !pos -459.942 -20.048 -4.999 52
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -14,7 +15,6 @@ entity.onTrade = function(player, npc, trade)
         player:tradeComplete()
         player:setPos(-458, -16, 0, 189) -- using the pos method until the problem below is fixed
         -- player:startEvent(135) -- << this CS goes black at the end, never fades in
-        return 1
     end
 end
 

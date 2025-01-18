@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Mhaura
 --  NPC: Graine
--- Standard Merchant NPC
 -----------------------------------
 local ID = zones[xi.zone.MHAURA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

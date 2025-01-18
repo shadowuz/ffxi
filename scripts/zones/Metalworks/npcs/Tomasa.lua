@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Metalworks
 --  NPC: Tomasa
--- Standard Merchant NPC
 -----------------------------------
 local ID = zones[xi.zone.METALWORKS]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 local pathNodes =

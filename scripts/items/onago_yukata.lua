@@ -3,9 +3,10 @@
 -- onago_yukata
 -- Dispense: Muteppo x99
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

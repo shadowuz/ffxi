@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Garlaige Citadel
 --  NPC: Wanzo-Unzozo
--- Type: Quest NPC
 -- !pos -379.420 -10.749 383.312 200
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

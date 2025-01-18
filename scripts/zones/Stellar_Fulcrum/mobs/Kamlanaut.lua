@@ -3,6 +3,7 @@
 --  Mob: Kam'lanaut
 -- Zilart Mission 8 BCNM Fight
 -----------------------------------
+---@type TMobEntity
 local entity = {}
 
 local skillToAbsorb =
@@ -54,7 +55,6 @@ entity.onMobWeaponSkill = function(target, mob, skill)
 end
 
 entity.onMobDeath = function(mob, player, optParams)
-    player:addTitle(xi.title.DESTROYER_OF_ANTIQUITY)
 end
 
 return entity

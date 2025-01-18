@@ -6,6 +6,7 @@
 -----------------------------------
 local ID = zones[xi.zone.VUNKERL_INLET_S]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -13,7 +14,7 @@ end
 
 entity.onTrigger = function(player, npc)
     if
-        player:getQuestStatus(xi.quest.log_id.CRYSTAL_WAR, xi.quest.id.crystalWar.REDEEMING_ROCKS) and
+        player:getQuestStatus(xi.questLog.CRYSTAL_WAR, xi.quest.id.crystalWar.REDEEMING_ROCKS) and
         player:getCharVar('RedeemingRocksProg') == 3
     then
         player:addKeyItem(xi.ki.PIECE_OF_KIONITE) -- 4th stop for quest "Redeeming Rocks"

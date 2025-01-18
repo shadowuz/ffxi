@@ -69,9 +69,6 @@ INSERT INTO `mob_pool_mods` VALUES (242,47,22,1);  -- SPAWN_LEASH: 22
 INSERT INTO `mob_pool_mods` VALUES (268,368,150,0); -- REGAIN: 150
 INSERT INTO `mob_pool_mods` VALUES (268,370,50,0);  -- REGEN: 50
 
--- Athamas
-INSERT INTO `mob_pool_mods` VALUES (276,12,1,1); -- DRAW_IN: 1
-
 -- Aura Statue
 INSERT INTO `mob_pool_mods` VALUES (289,4,4,1); -- SIGHT_RANGE: 4
 
@@ -89,12 +86,6 @@ INSERT INTO `mob_pool_mods` VALUES (459,23,50,0);  -- ATT: 50
 INSERT INTO `mob_pool_mods` VALUES (459,73,25,0);  -- STORETP: 25
 INSERT INTO `mob_pool_mods` VALUES (459,430,20,0); -- QUAD_ATTACK: 20
 
--- Bowho Warmonger
-INSERT INTO `mob_pool_mods` VALUES (519,160,-50,0); -- DMG: -50
-
--- Bright-Handed Kunberry
-INSERT INTO `mob_pool_mods` VALUES (532,160,-50,0); -- DMG: -50
-
 -- Bugbby
 INSERT INTO `mob_pool_mods` VALUES (559,62,-50,0);   -- ATTP: -50
 -- Byakko
@@ -104,9 +95,6 @@ INSERT INTO `mob_pool_mods` VALUES (592,302,45,0); -- TRIPLE_ATTACK: 45
 
 -- Cargo Crab Colin
 INSERT INTO `mob_pool_mods` VALUES (639,63,25,0); -- DEFP: 25
-
--- Centurio Xii-I
-INSERT INTO `mob_pool_mods` VALUES (676,160,-50,0); -- DMG: -50
 
 -- Cerberus
 INSERT INTO `mob_pool_mods` VALUES (680,1,322,0);   -- DEF: 322
@@ -131,9 +119,6 @@ INSERT INTO `mob_pool_mods` VALUES (820,368,10,0); -- REGAIN: 10
 -- Darksteel Golem
 INSERT INTO `mob_pool_mods` VALUES (906,4,4,1); -- SIGHT_RANGE: 4
 
--- Dark Dragon
-INSERT INTO `mob_pool_mods` VALUES (912,12,25,1); -- DRAW_IN: 25
-
 -- Dea
 INSERT INTO `mob_pool_mods` VALUES (930,370,15,0); -- REGEN: 15
 
@@ -152,9 +137,6 @@ INSERT INTO `mob_pool_mods` VALUES (979,9,60,1); -- HP_HEAL_CHANCE: 60
 
 -- Detector
 INSERT INTO `mob_pool_mods` VALUES (1013,28,-100,1); -- EXP_BONUS: -100
-
--- Diabolos
-INSERT INTO `mob_pool_mods` VALUES (1027,12,1,1); -- DRAW_IN: 1
 
 -- Effigy Prototype
 INSERT INTO `mob_pool_mods` VALUES (1178,163,-100,0); -- DMGMAGIC: -100
@@ -274,18 +256,6 @@ INSERT INTO `mob_pool_mods` VALUES (2499,240,90,0); -- SLEEPRES: 90
 
 -- Mammet-22 Zeta
 INSERT INTO `mob_pool_mods` VALUES (2500,240,90,0); -- SLEEPRES: 90
-
--- Memory Receptacle Ph
-INSERT INTO `mob_pool_mods` VALUES (2614,368,100,0); -- REGAIN: 100
-
--- Meteormauler Zhagtegg
-INSERT INTO `mob_pool_mods` VALUES (2643,160,-50,0); -- DMG: -50
-
--- Meww The Turtlerider
-INSERT INTO `mob_pool_mods` VALUES (2647,160,-50,0); -- DMG: -50
-
--- Mimic
-INSERT INTO `mob_pool_mods` VALUES (2664,12,1,1); -- DRAW_IN: 1
 
 -- Minotaur
 INSERT INTO `mob_pool_mods` VALUES (2675,4,25,1); -- SIGHT_RANGE: 25
@@ -440,15 +410,6 @@ INSERT INTO `mob_pool_mods` VALUES (4082,4,4,1); -- SIGHT_RANGE: 4
 INSERT INTO `mob_pool_mods` VALUES (4083,368,30,0); -- REGAIN: 30
 INSERT INTO `mob_pool_mods` VALUES (4083,370,1,0);  -- REGEN: 1
 
--- Vanguard_Alchemist
-INSERT INTO `mob_pool_mods` VALUES (4133,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Ambusher
-INSERT INTO `mob_pool_mods` VALUES (4134,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Amputator
-INSERT INTO `mob_pool_mods` VALUES (4135,75,3,1); -- CAN_PARRY: 3
-
 -- Vanguard_Armorer
 INSERT INTO `mob_pool_mods` VALUES (4136,75,3,1); -- CAN_PARRY: 3
 
@@ -470,12 +431,6 @@ INSERT INTO `mob_pool_mods` VALUES (4141,75,3,1); -- CAN_PARRY: 3
 -- Vanguard_Defender
 INSERT INTO `mob_pool_mods` VALUES (4143,75,3,1); -- CAN_PARRY: 3
 
--- Vanguard_Dollmaster
-INSERT INTO `mob_pool_mods` VALUES (4144,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Dragon
-INSERT INTO `mob_pool_mods` VALUES (4145,75,3,1); -- CAN_PARRY: 3
-
 -- Vanguard_Drakekeeper
 INSERT INTO `mob_pool_mods` VALUES (4146,75,3,1); -- CAN_PARRY: 3
 
@@ -485,14 +440,8 @@ INSERT INTO `mob_pool_mods` VALUES (4147,75,3,1); -- CAN_PARRY: 3
 -- Vanguard_Exemplar
 INSERT INTO `mob_pool_mods` VALUES (4148,75,3,1); -- CAN_PARRY: 3
 
--- Vanguard_Eye
-INSERT INTO `mob_pool_mods` VALUES (4149,75,3,1); -- CAN_PARRY: 3
-
 -- Vanguard_Footsoldier
 INSERT INTO `mob_pool_mods` VALUES (4150,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Grappler
-INSERT INTO `mob_pool_mods` VALUES (4151,75,3,1); -- CAN_PARRY: 3
 
 -- Vanguard_Gutslasher
 INSERT INTO `mob_pool_mods` VALUES (4152,75,3,1); -- CAN_PARRY: 3
@@ -521,26 +470,14 @@ INSERT INTO `mob_pool_mods` VALUES (4159,75,3,1); -- CAN_PARRY: 3
 -- Vanguard_Maestro
 INSERT INTO `mob_pool_mods` VALUES (4160,75,3,1); -- CAN_PARRY: 3
 
--- Vanguard_Mesmerizer
-INSERT INTO `mob_pool_mods` VALUES (4162,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Militant
-INSERT INTO `mob_pool_mods` VALUES (4163,75,3,1); -- CAN_PARRY: 3
-
 -- Vanguard_Minstrel
 INSERT INTO `mob_pool_mods` VALUES (4164,75,3,1); -- CAN_PARRY: 3
 
 -- Vanguard_Neckchopper
 INSERT INTO `mob_pool_mods` VALUES (4165,75,3,1); -- CAN_PARRY: 3
 
--- Vanguard_Necromancer
-INSERT INTO `mob_pool_mods` VALUES (4166,75,3,1); -- CAN_PARRY: 3
-
 -- Vanguard_Ogresoother
 INSERT INTO `mob_pool_mods` VALUES (4167,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Oracle
-INSERT INTO `mob_pool_mods` VALUES (4168,75,3,1); -- CAN_PARRY: 3
 
 -- Vanguard_Partisan
 INSERT INTO `mob_pool_mods` VALUES (4169,75,3,1); -- CAN_PARRY: 3
@@ -554,18 +491,6 @@ INSERT INTO `mob_pool_mods` VALUES (4171,75,3,1); -- CAN_PARRY: 3
 -- Vanguard_Pillager
 INSERT INTO `mob_pool_mods` VALUES (4172,75,3,1); -- CAN_PARRY: 3
 
--- Vanguard_Pitfighter
-INSERT INTO `mob_pool_mods` VALUES (4173,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Predator
-INSERT INTO `mob_pool_mods` VALUES (4174,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Prelate
-INSERT INTO `mob_pool_mods` VALUES (4175,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Priest
-INSERT INTO `mob_pool_mods` VALUES (4176,75,3,1); -- CAN_PARRY: 3
-
 -- Vanguard_Protector
 INSERT INTO `mob_pool_mods` VALUES (4177,75,3,1); -- CAN_PARRY: 3
 
@@ -574,15 +499,6 @@ INSERT INTO `mob_pool_mods` VALUES (4178,75,3,1); -- CAN_PARRY: 3
 
 -- Vanguard_Ronin
 INSERT INTO `mob_pool_mods` VALUES (4179,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Salvager
-INSERT INTO `mob_pool_mods` VALUES (4180,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Sentinel
-INSERT INTO `mob_pool_mods` VALUES (4181,75,3,1); -- CAN_PARRY: 3
-
--- Vanguard_Shaman
-INSERT INTO `mob_pool_mods` VALUES (4182,75,3,1); -- CAN_PARRY: 3
 
 -- Vanguard_Skirmisher
 INSERT INTO `mob_pool_mods` VALUES (4183,75,3,1); -- CAN_PARRY: 3
@@ -700,6 +616,9 @@ INSERT INTO `mob_pool_mods` VALUES (5915,6,100,0);      -- MPP: 100
 
 -- Trust: Lehko
 INSERT INTO `mob_pool_mods` VALUES (5922,6,150,0);      -- MPP: 150
+
+-- Trust: Fablinix
+INSERT INTO `mob_pool_mods` VALUES (5932,6,250,0);    -- MPP: 250
 
 -- Trust: Ferreous Coffin
 INSERT INTO `mob_pool_mods` VALUES (5944,3,-10,0);      -- HPP: -10

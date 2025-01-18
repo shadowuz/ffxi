@@ -41,7 +41,7 @@ local helmInfo =
                     { 1880, xi.item.SPRIG_OF_FRESH_MARJORAM      },
                     { 1060, xi.item.BAG_OF_SIMSIM                },
                     { 1310, xi.item.CLUMP_OF_MOHBWA_GRASS        },
-                    { 1760, xi.item.PEPHEDRO_HIVE_CHIP           },
+                    { 1760, xi.item.PEPHREDO_HIVE_CHIP           },
                     {  590, xi.item.EGGPLANT                     },
                     {  960, xi.item.BAG_OF_COFFEE_CHERRIES       },
                     {  450, xi.item.EASTERN_GINGER_ROOT          },
@@ -80,7 +80,7 @@ local helmInfo =
                 {
                     { 1510, xi.item.CLUMP_OF_MOHBWA_GRASS        },
                     { 1470, xi.item.SPRIG_OF_FRESH_MARJORAM      },
-                    { 1480, xi.item.PEPHEDRO_HIVE_CHIP           },
+                    { 1480, xi.item.PEPHREDO_HIVE_CHIP           },
                     { 1170, xi.item.BAG_OF_SIMSIM                },
                     { 1100, xi.item.CLUMP_OF_IMPERIAL_TEA_LEAVES },
                     { 1000, xi.item.BAG_OF_COFFEE_CHERRIES       },
@@ -417,7 +417,7 @@ local helmInfo =
                     { 2130, xi.item.CHUNK_OF_ROCK_SALT     },
                     { 1700, xi.item.SEASHELL               },
                     {  430, xi.item.CRAB_SHELL             },
-                    { 1490, xi.item.FISH_SCALES            },
+                    { 1490, xi.item.HANDFUL_OF_FISH_SCALES },
                     { 2130, xi.item.LUGWORM                },
                     { 1060, xi.item.SHELL_BUG              },
                     {  100, xi.item.CORAL_FRAGMENT         },
@@ -1494,7 +1494,7 @@ xi.helm.result = function(player, helmType, broke, itemID)
     -- Quest: Vanishing Act
     if
         helmType == xi.helmType.HARVESTING and
-        player:getQuestStatus(xi.quest.log_id.AHT_URHGAN, xi.quest.id.ahtUrhgan.VANISHING_ACT) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.AHT_URHGAN, xi.quest.id.ahtUrhgan.VANISHING_ACT) == xi.questStatus.QUEST_ACCEPTED and
         not player:hasKeyItem(xi.ki.RAINBOW_BERRY) and
         broke ~= 1 and
         zoneId == xi.zone.WAJAOM_WOODLANDS
@@ -1502,7 +1502,7 @@ xi.helm.result = function(player, helmType, broke, itemID)
         npcUtil.giveKeyItem(player, xi.ki.RAINBOW_BERRY)
     end
 
-    -- Missiom: AMK04
+    -- AMK mission 4 (index 3)
     if xi.settings.main.ENABLE_AMK == 1 then
         xi.amk.helpers.helmTrade(player, helmType, broke)
     end
@@ -1574,4 +1574,17 @@ xi.helm.onTrigger = function(player, helmType)
     local zoneId = player:getZoneID()
     local info = helmInfo[helmType]
     player:messageSpecial(zones[zoneId].text[info.message], info.tool)
+end
+
+xi.helm.weatherChange = function(currentWeather, neededWeather, pointTable)
+    local status = xi.status.DISAPPEAR
+    if utils.contains(currentWeather, neededWeather) then
+        status = xi.status.NORMAL
+    end
+
+    for point = 1, #pointTable do
+        if GetNPCByID(pointTable[point]):getStatus() ~= status then
+            GetNPCByID(pointTable[point]):setStatus(status)
+        end
+    end
 end

@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = zones[xi.zone.BASTOK_MINES]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -22,7 +23,7 @@ entity.onTrigger = function(player, npc)
         }
 
         player:showText(npc, ID.text.RODELLIEUX_OPEN_DIALOG)
-        xi.shop.general(player, stock, xi.quest.fame_area.BASTOK)
+        xi.shop.general(player, stock, xi.fameArea.BASTOK)
     end
 end
 

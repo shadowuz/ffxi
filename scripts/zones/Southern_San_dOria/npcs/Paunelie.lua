@@ -6,6 +6,7 @@
 -----------------------------------
 local ID = zones[xi.zone.SOUTHERN_SAN_DORIA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -14,8 +15,8 @@ end
 entity.onTrigger = function(player, npc)
     local stock =
     {
-        512,  8000,    -- Linkshell
-        16285, 375,    -- Pendant Compass
+        xi.item.NEW_LINKSHELL,   6000,
+        xi.item.PENDANT_COMPASS,  375,
     }
 
     player:showText(npc, ID.text.PAUNELIE_SHOP_DIALOG, 513)

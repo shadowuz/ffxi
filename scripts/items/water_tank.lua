@@ -3,9 +3,10 @@
 --  Water Tank
 --  When used, you will obtain one stack of Distilled Water
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

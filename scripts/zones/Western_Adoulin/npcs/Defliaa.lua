@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Western Adoulin
 --  NPC: Defliaa
--- Type: Quest NPC and Shop NPC
 -- Involved with Quest: 'All the Way to the Bank'
 -- !pos 43 2 -113 256
 -----------------------------------
 local ID = zones[xi.zone.WESTERN_ADOULIN]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

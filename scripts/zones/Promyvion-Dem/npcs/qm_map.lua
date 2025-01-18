@@ -8,13 +8,8 @@
 -----------------------------------
 local ID = zones[xi.zone.PROMYVION_DEM]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
-
-entity.onTrigger = function(player, npc)
-    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
-    -- TODO: The sphere is emitting an erie green glow. occurred when in posession of item, but not
-    -- with map, with map received nothing out of the ordinary.  Assumption: Glow is present until obtaining.
-end
 
 entity.onTrade = function(player, npc, trade)
     if
@@ -24,6 +19,14 @@ entity.onTrade = function(player, npc, trade)
         player:startEvent(49)
     else
         player:messageSpecial(ID.text.NOTHING_HAPPENS)
+    end
+end
+
+entity.onTrigger = function(player, npc)
+    if not player:hasKeyItem(xi.ki.MAP_OF_PROMYVION_DEM) then
+        player:messageSpecial(ID.text.EERIE_GREEN_GLOW)
+    else
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 

@@ -3,6 +3,7 @@
 --  NPC: Dilapidated Gate
 -- Note: Entrance to Misareaux Coast
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -10,7 +11,6 @@ end
 
 entity.onTrigger = function(player, npc)
     player:startEvent(553)
-    return 1
 end
 
 entity.onEventUpdate = function(player, csid, option, npc)

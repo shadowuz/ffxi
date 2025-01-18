@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 --  NPC: Chef Nonberry
--- Type: Quest NPC
 -- !pos -135.225 -1 -92.232 159
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

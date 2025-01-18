@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
 --  NPC: Ahko Mhalijikhari
--- Type: Quest NPC
 -- !pos -344.617 -12.226 -166.233 198
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

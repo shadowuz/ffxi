@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Kindlix
--- Standard Merchant NPC
 -- !pos -18.820 4.000 23.302 246
 -----------------------------------
 local ID = zones[xi.zone.PORT_JEUNO]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 local stock =

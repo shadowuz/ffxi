@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Selbina
 --  NPC: Chutarmire
--- Standard Merchant NPC
 -----------------------------------
 local ID = zones[xi.zone.SELBINA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S)
 --  NPC: Layton
--- Type: Standard Merchant NPC
 -- Note: Available during Campaign battles
 -- !pos 382.679 -39.999 3.541 175
 -----------------------------------
 local ID = zones[xi.zone.THE_ELDIEME_NECROPOLIS_S]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

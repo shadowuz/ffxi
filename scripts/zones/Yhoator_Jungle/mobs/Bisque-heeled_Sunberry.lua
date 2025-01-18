@@ -4,7 +4,13 @@
 -----------------------------------
 mixins = { require('scripts/mixins/families/tonberry') }
 -----------------------------------
+---@type TMobEntity
 local entity = {}
+
+entity.onMobSpawn = function(mob)
+    mob:addImmunity(xi.immunity.LIGHT_SLEEP)
+    mob:addImmunity(xi.immunity.DARK_SLEEP)
+end
 
 entity.onMobDeath = function(mob, player, optParams)
     xi.regime.checkRegime(player, mob, 133, 1, xi.regime.type.FIELDS)

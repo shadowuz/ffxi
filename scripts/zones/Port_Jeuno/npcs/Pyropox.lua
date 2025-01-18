@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Pyropox
--- Standard Merchant NPC
 -- !pos -17.580 4.000 24.600 246
 -----------------------------------
 local ID = zones[xi.zone.PORT_JEUNO]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 local stock =

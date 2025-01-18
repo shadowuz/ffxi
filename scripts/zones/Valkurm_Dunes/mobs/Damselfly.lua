@@ -5,7 +5,13 @@
 -----------------------------------
 local ID = zones[xi.zone.VALKURM_DUNES]
 -----------------------------------
+---@type TMobEntity
 local entity = {}
+
+local emperorPHList =
+{
+    [ID.mob.VALKURM_EMPEROR - 4] = ID.mob.VALKURM_EMPEROR, -- -228.957 2.776 -101.226
+}
 
 entity.onMobDeath = function(mob, player, optParams)
     xi.regime.checkRegime(player, mob, 9, 1, xi.regime.type.FIELDS)
@@ -13,7 +19,7 @@ entity.onMobDeath = function(mob, player, optParams)
 end
 
 entity.onMobDespawn = function(mob)
-    xi.mob.phOnDespawn(mob, ID.mob.VALKURM_EMPEROR_PH, 10, 3600) -- 1 hour
+    xi.mob.phOnDespawn(mob, emperorPHList, 10, 3600) -- 1 hour
 end
 
 return entity

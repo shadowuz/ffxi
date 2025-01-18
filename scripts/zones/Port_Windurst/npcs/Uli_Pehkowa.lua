@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Uli Pehkowa
--- Standard Merchant NPC
 -----------------------------------
 local ID = zones[xi.zone.PORT_WINDURST]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

@@ -1,20 +1,20 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
 
 ===========================================================================
 */
@@ -60,7 +60,7 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHistory(uint16 ItemID, bool stack)
                            "ORDER BY sell_date DESC "
                            "LIMIT 10";
 
-    auto rset = db::query(fmt::sprintf(fmtQuery, ItemID, stack));
+    auto rset = db::query(fmtQuery, ItemID, stack);
 
     if (rset && rset->rowsCount())
     {
@@ -68,11 +68,11 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHistory(uint16 ItemID, bool stack)
         {
             ahHistory* PAHHistory = new ahHistory;
 
-            PAHHistory->Price = rset->getUInt("sale");
-            PAHHistory->Data  = rset->getUInt("sell_date");
+            PAHHistory->Price = rset->get<uint32>("sale");
+            PAHHistory->Data  = rset->get<uint32>("sell_date");
 
-            PAHHistory->Name1 = rset->getString("seller_name");
-            PAHHistory->Name2 = rset->getString("buyer_name");
+            PAHHistory->Name1 = rset->get<std::string>("seller_name");
+            PAHHistory->Name2 = rset->get<std::string>("buyer_name");
 
             HistoryList.emplace_back(PAHHistory);
         }
@@ -119,13 +119,13 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, const
         {
             ahItem* PAHItem = new ahItem;
 
-            PAHItem->ItemID = rset->getInt("itemid");
+            PAHItem->ItemID = rset->get<uint16>("itemid");
 
-            PAHItem->SingleAmount = rset->getInt("COUNT(*)-SUM(stack)");
-            PAHItem->StackAmount  = rset->getInt("SUM(stack)");
+            PAHItem->SingleAmount = rset->getOrDefault<uint32>("COUNT(*)-SUM(stack)", 0);
+            PAHItem->StackAmount  = rset->getOrDefault<uint32>("SUM(stack)", 0);
             PAHItem->Category     = AHCategoryID;
 
-            if (rset->getInt("stackSize") == 1)
+            if (rset->get<uint32>("stackSize") == 1)
             {
                 PAHItem->StackAmount = -1;
             }
@@ -153,16 +153,16 @@ ahItem CDataLoader::GetAHItemFromItemID(uint16 ItemID)
                            "LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid "
                            "WHERE item_basic.itemid = %u";
 
-    auto rset = db::query(fmt::sprintf(fmtQuery, ItemID));
+    auto rset = db::query(fmtQuery, ItemID);
     if (rset && rset->rowsCount())
     {
         while (rset->next())
         {
-            CAHItem.Category     = rset->getInt("aH");
-            CAHItem.SingleAmount = rset->getInt("COUNT(*)-SUM(stack)");
-            CAHItem.StackAmount  = rset->getInt("SUM(stack)");
+            CAHItem.Category     = rset->get<uint16>("aH");
+            CAHItem.SingleAmount = rset->getOrDefault<uint32>("COUNT(*)-SUM(stack)", 0);
+            CAHItem.StackAmount  = rset->getOrDefault<uint32>("SUM(stack)", 0);
 
-            if (rset->getInt("COUNT(*)-SUM(stack)") == 1)
+            if (rset->getOrDefault<uint32>("COUNT(*)-SUM(stack)", 0) == 1)
             {
                 CAHItem.StackAmount = 0;
             }
@@ -182,10 +182,10 @@ uint32 CDataLoader::GetPlayersCount(const search_req& sr)
     uint8 jobid = sr.jobid;
     if (jobid > 0 && jobid < 21)
     {
-        auto rset = db::query(fmt::sprintf("SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u", jobid));
+        auto rset = db::query("SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u", jobid);
         if (rset && rset->rowsCount() && rset->next())
         {
-            return rset->getUInt("COUNT(*)");
+            return rset->get<uint32>("COUNT(*)");
         }
     }
     else
@@ -193,7 +193,7 @@ uint32 CDataLoader::GetPlayersCount(const search_req& sr)
         auto rset = db::query("SELECT COUNT(*) FROM accounts_sessions");
         if (rset && rset->rowsCount() && rset->next())
         {
-            return rset->getUInt("COUNT(*)");
+            return rset->get<uint32>("COUNT(*)");
         }
     }
     return 0;
@@ -244,13 +244,14 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
 
     std::string fmtQuery =
         "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, "
-        "rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl, languages, nnameflags, seacom_type "
+        "rank_windurst, race, mjob, sjob, mlvl, slvl, languages, settings, seacom_type, disconnecting, gmHiddenEnabled "
         "FROM accounts_sessions "
         "LEFT JOIN accounts_parties USING (charid) "
         "LEFT JOIN chars USING (charid) "
         "LEFT JOIN char_look USING (charid) "
         "LEFT JOIN char_stats USING (charid) "
         "LEFT JOIN char_profile USING(charid) "
+        "LEFT JOIN char_flags USING(charid) "
         "WHERE charname IS NOT NULL ";
 
     fmtQuery.append(filterQry);
@@ -265,43 +266,48 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
         {
             SearchEntity* PPlayer = new SearchEntity();
 
-            PPlayer->name = rset->getString("charname");
+            PPlayer->name = rset->get<std::string>("charname");
 
-            PPlayer->id       = rset->getUInt("charid");
-            PPlayer->zone     = (uint16)rset->getInt("pos_zone");
-            PPlayer->prevzone = (uint16)rset->getInt("pos_prevzone");
-            PPlayer->nation   = (uint8)rset->getInt("nation");
-            PPlayer->mjob     = (uint8)rset->getInt("mjob");
-            PPlayer->sjob     = (uint8)rset->getInt("sjob");
-            PPlayer->mlvl     = (uint8)rset->getInt("mlvl");
-            PPlayer->slvl     = (uint8)rset->getInt("slvl");
-            PPlayer->race     = (uint8)rset->getInt("race");
+            PPlayer->id       = rset->get<uint32>("charid");
+            PPlayer->zone     = rset->get<uint16>("pos_zone");
+            PPlayer->prevzone = rset->get<uint16>("pos_prevzone");
+            PPlayer->nation   = rset->get<uint8>("nation");
+            PPlayer->mjob     = rset->get<uint8>("mjob");
+            PPlayer->sjob     = rset->get<uint8>("sjob");
+            PPlayer->mlvl     = rset->get<uint8>("mlvl");
+            PPlayer->slvl     = rset->get<uint8>("slvl");
+            PPlayer->race     = rset->get<uint8>("race");
 
             // TODO: Use a nation enum?
             switch (PPlayer->nation)
             {
                 case 0:
-                    PPlayer->rank = (uint8)rset->getInt("rank_sandoria");
+                    PPlayer->rank = rset->get<uint8>("rank_sandoria");
                     break;
                 case 1:
-                    PPlayer->rank = (uint8)rset->getInt("rank_bastok");
+                    PPlayer->rank = rset->get<uint8>("rank_bastok");
                     break;
                 case 2:
-                    PPlayer->rank = (uint8)rset->getInt("rank_windurst");
+                    PPlayer->rank = rset->get<uint8>("rank_windurst");
                     break;
                 default:
                     ShowWarning("Inconsistent player nation allegiance : %d", PPlayer->nation);
-                    PPlayer->rank = (uint8)0;
+                    PPlayer->rank = static_cast<uint8>(0U);
                     break;
             }
 
-            PPlayer->zone        = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
-            PPlayer->languages   = (uint8)rset->getUInt("languages");
-            PPlayer->mentor      = rset->getUInt("nnameflags") & NFLAG_MENTOR;
-            PPlayer->seacom_type = (uint8)rset->getUInt("seacom_type");
+            uint32    settingsInt    = rset->get<uint32>("settings");
+            SAVE_CONF playerSettings = {};
+            std::memcpy(&playerSettings, &settingsInt, sizeof(uint32));
 
-            uint32 partyid  = rset->getUInt("partyid");
-            uint32 nameflag = rset->getUInt("nameflags");
+            PPlayer->zone          = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
+            PPlayer->languages     = rset->get<uint8>("languages");
+            PPlayer->mentor        = playerSettings.MentorFlg;
+            PPlayer->seacom_type   = rset->get<uint8>("seacom_type");
+            PPlayer->disconnecting = rset->get<bool>("disconnecting");
+            PPlayer->gmHidden      = rset->get<bool>("gmHiddenEnabled");
+
+            const auto partyid = rset->getOrDefault<uint32>("partyid", 0);
 
             if (PPlayer->mentor)
             {
@@ -318,12 +324,12 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
                 PPlayer->flags1 |= 0x0010;
             }
 
-            if (nameflag & FLAG_AWAY)
+            if (playerSettings.AwayFlg)
             {
                 PPlayer->flags1 |= 0x0100;
             }
 
-            if (nameflag & FLAG_DC)
+            if (PPlayer->disconnecting)
             {
                 PPlayer->flags1 |= 0x0800;
             }
@@ -333,12 +339,12 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
                 PPlayer->flags1 |= 0x2000;
             }
 
-            if (nameflag & FLAG_ANON)
+            if (playerSettings.AnonymityFlg)
             {
                 PPlayer->flags1 |= 0x4000;
             }
 
-            if (nameflag & FLAG_INVITE)
+            if (playerSettings.InviteFlg)
             {
                 PPlayer->flags1 |= 0x8000;
             }
@@ -443,11 +449,12 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
                     continue;
                 }
             }
-            // dont show hidden gm
-            if (nameflag & FLAG_ANON && nameflag & FLAG_GM)
+
+            if (PPlayer->gmHidden)
             {
                 continue;
             }
+
             if (visibleResults < 40)
             {
                 PlayersList.emplace_back(PPlayer);
@@ -476,57 +483,61 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID, uint32 Allian
     std::list<SearchEntity*> PartyList;
 
     const char* query =
-        "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl, languages, nnameflags, seacom_type "
+        "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, settings, mjob, sjob, mlvl, slvl, languages, seacom_type, disconnecting "
         "FROM accounts_sessions "
         "LEFT JOIN accounts_parties USING(charid) "
         "LEFT JOIN chars USING(charid) "
         "LEFT JOIN char_look USING(charid) "
         "LEFT JOIN char_stats USING(charid) "
         "LEFT JOIN char_profile USING(charid) "
+        "LEFT JOIN char_flags USING(charid) "
         "WHERE IF (allianceid <> 0, allianceid IN (SELECT allianceid FROM accounts_parties WHERE charid = %u) , partyid = %u) "
         "ORDER BY charname ASC "
         "LIMIT 64";
 
-    auto rset = db::query(fmt::sprintf(query, (!AllianceID ? PartyID : AllianceID), (!PartyID ? AllianceID : PartyID)));
+    auto rset = db::query(query, (!AllianceID ? PartyID : AllianceID), (!PartyID ? AllianceID : PartyID));
     if (rset && rset->rowsCount())
     {
         while (rset->next())
         {
             SearchEntity* PPlayer = new SearchEntity();
 
-            PPlayer->name   = rset->getString("charname");
-            PPlayer->id     = rset->getUInt("charid");
-            PPlayer->zone   = (uint16)rset->getInt("pos_zone");
-            PPlayer->nation = (uint8)rset->getInt("nation");
-            PPlayer->mjob   = (uint8)rset->getInt("mjob");
-            PPlayer->sjob   = (uint8)rset->getInt("sjob");
-            PPlayer->mlvl   = (uint8)rset->getInt("mlvl");
-            PPlayer->slvl   = (uint8)rset->getInt("slvl");
-            PPlayer->race   = (uint8)rset->getInt("race");
+            PPlayer->name   = rset->get<std::string>("charname");
+            PPlayer->id     = rset->get<uint32>("charid");
+            PPlayer->zone   = rset->get<uint16>("pos_zone");
+            PPlayer->nation = rset->get<uint8>("nation");
+            PPlayer->mjob   = rset->get<uint8>("mjob");
+            PPlayer->sjob   = rset->get<uint8>("sjob");
+            PPlayer->mlvl   = rset->get<uint8>("mlvl");
+            PPlayer->slvl   = rset->get<uint8>("slvl");
+            PPlayer->race   = rset->get<uint8>("race");
 
             // TODO: Use a nation enum?
             switch (PPlayer->nation)
             {
                 case 0:
-                    PPlayer->rank = (uint8)rset->getInt("rank_sandoria");
+                    PPlayer->rank = rset->get<uint8>("rank_sandoria");
                     break;
                 case 1:
-                    PPlayer->rank = (uint8)rset->getInt("rank_bastok");
+                    PPlayer->rank = rset->get<uint8>("rank_bastok");
                     break;
                 case 2:
-                    PPlayer->rank = (uint8)rset->getInt("rank_windurst");
+                    PPlayer->rank = rset->get<uint8>("rank_windurst");
                     break;
                 default:
                     ShowWarning("Inconsistent player nation allegiance : %d", PPlayer->nation);
-                    PPlayer->rank = (uint8)0;
+                    PPlayer->rank = static_cast<uint8>(0U);
                     break;
             }
 
-            PPlayer->languages   = (uint8)rset->getUInt("languages");
-            PPlayer->mentor      = rset->getUInt("nnameflags") & NFLAG_MENTOR;
-            PPlayer->seacom_type = (uint8)rset->getUInt("seacom_type");
+            uint32    settingsInt    = rset->get<uint32>("settings");
+            SAVE_CONF playerSettings = {};
+            std::memcpy(&playerSettings, &settingsInt, sizeof(uint32));
 
-            uint32 nameflag = rset->getUInt("nameflags");
+            PPlayer->languages     = rset->get<uint8>("languages");
+            PPlayer->mentor        = playerSettings.MentorFlg;
+            PPlayer->seacom_type   = rset->get<uint8>("seacom_type");
+            PPlayer->disconnecting = rset->get<bool>("disconnecting");
 
             if (PPlayer->mentor)
             {
@@ -540,11 +551,11 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID, uint32 Allian
             {
                 PPlayer->flags1 |= 0x0010;
             }
-            if (nameflag & FLAG_AWAY)
+            if (playerSettings.AwayFlg)
             {
                 PPlayer->flags1 |= 0x0100;
             }
-            if (nameflag & FLAG_DC)
+            if (PPlayer->disconnecting)
             {
                 PPlayer->flags1 |= 0x0800;
             }
@@ -552,11 +563,11 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID, uint32 Allian
             {
                 PPlayer->flags1 |= 0x2000;
             }
-            if (nameflag & FLAG_ANON)
+            if (playerSettings.AnonymityFlg)
             {
                 PPlayer->flags1 |= 0x4000;
             }
-            if (nameflag & FLAG_INVITE)
+            if (playerSettings.InviteFlg)
             {
                 PPlayer->flags1 |= 0x8000;
             }
@@ -578,47 +589,48 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID, uint32 Allian
 std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
-    const char*              fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, "
+    const char*              fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, settings, mjob, sjob, "
                                         "mlvl, slvl, linkshellid1, linkshellid2, "
-                                        "linkshellrank1, linkshellrank2 "
+                                        "linkshellrank1, linkshellrank2, disconnecting "
                                         "FROM accounts_sessions "
                                         "LEFT JOIN accounts_parties USING (charid) "
                                         "LEFT JOIN chars USING (charid) "
                                         "LEFT JOIN char_look USING (charid) "
                                         "LEFT JOIN char_stats USING (charid) "
                                         "LEFT JOIN char_profile USING(charid) "
+                                        "LEFT JOIN char_flags USING(charid) "
                                         "WHERE linkshellid1 = %u OR linkshellid2 = %u "
                                         "ORDER BY charname ASC "
                                         "LIMIT 18";
 
-    auto rset = db::query(fmt::sprintf(fmtQuery, LinkshellID, LinkshellID));
+    auto rset = db::query(fmtQuery, LinkshellID, LinkshellID);
     if (rset && rset->rowsCount())
     {
         while (rset->next())
         {
             SearchEntity* PPlayer = new SearchEntity();
 
-            PPlayer->name   = rset->getString("charname");
-            PPlayer->id     = rset->getUInt("charid");
-            PPlayer->zone   = (uint16)rset->getInt("pos_zone");
-            PPlayer->nation = (uint8)rset->getInt("nation");
-            PPlayer->mjob   = (uint8)rset->getInt("mjob");
-            PPlayer->sjob   = (uint8)rset->getInt("sjob");
-            PPlayer->mlvl   = (uint8)rset->getInt("mlvl");
-            PPlayer->slvl   = (uint8)rset->getInt("slvl");
-            PPlayer->race   = (uint8)rset->getInt("race");
+            PPlayer->name   = rset->get<std::string>("charname");
+            PPlayer->id     = rset->get<uint32>("charid");
+            PPlayer->zone   = rset->get<uint16>("pos_zone");
+            PPlayer->nation = rset->get<uint8>("nation");
+            PPlayer->mjob   = rset->get<uint8>("mjob");
+            PPlayer->sjob   = rset->get<uint8>("sjob");
+            PPlayer->mlvl   = rset->get<uint8>("mlvl");
+            PPlayer->slvl   = rset->get<uint8>("slvl");
+            PPlayer->race   = rset->get<uint8>("race");
 
             // TODO: Use a nation enum?
             switch (PPlayer->nation)
             {
                 case 0:
-                    PPlayer->rank = (uint8)rset->getInt("rank_sandoria");
+                    PPlayer->rank = rset->get<uint8>("rank_sandoria");
                     break;
                 case 1:
-                    PPlayer->rank = (uint8)rset->getInt("rank_bastok");
+                    PPlayer->rank = rset->get<uint8>("rank_bastok");
                     break;
                 case 2:
-                    PPlayer->rank = (uint8)rset->getInt("rank_windurst");
+                    PPlayer->rank = rset->get<uint8>("rank_windurst");
                     break;
                 default:
                     ShowWarning("Inconsistent player nation allegiance : %d", PPlayer->nation);
@@ -626,35 +638,41 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
                     break;
             }
 
-            PPlayer->linkshellid1   = rset->getInt("linkshellid1");
-            PPlayer->linkshellid2   = rset->getInt("linkshellid2");
-            PPlayer->linkshellrank1 = rset->getInt("linkshellrank1");
-            PPlayer->linkshellrank2 = rset->getInt("linkshellrank2");
+            PPlayer->linkshellid1   = rset->get<uint32>("linkshellid1");
+            PPlayer->linkshellid2   = rset->get<uint32>("linkshellid2");
+            PPlayer->linkshellrank1 = rset->get<uint8>("linkshellrank1");
+            PPlayer->linkshellrank2 = rset->get<uint8>("linkshellrank2");
+            PPlayer->disconnecting  = rset->get<bool>("disconnecting");
 
-            uint32 partyid  = rset->getUInt("partyid");
-            uint32 nameflag = rset->getUInt("nameflags");
+            const auto partyid = rset->getOrDefault<uint32>("partyid", 0);
+
+            uint32    settingsInt    = rset->get<uint32>("settings");
+            SAVE_CONF playerSettings = {};
+            std::memcpy(&playerSettings, &settingsInt, sizeof(uint32));
 
             if (partyid == PPlayer->id)
             {
                 PPlayer->flags1 |= 0x0008;
             }
-            if (nameflag & FLAG_AWAY)
+            if (playerSettings.AwayFlg)
             {
                 PPlayer->flags1 |= 0x0100;
             }
-            if (nameflag & FLAG_DC)
+
+            if (PPlayer->disconnecting)
             {
                 PPlayer->flags1 |= 0x0800;
             }
+
             if (partyid != 0)
             {
                 PPlayer->flags1 |= 0x2000;
             }
-            if (nameflag & FLAG_ANON)
+            if (playerSettings.AnonymityFlg)
             {
                 PPlayer->flags1 |= 0x4000;
             }
-            if (nameflag & FLAG_INVITE)
+            if (playerSettings.InviteFlg)
             {
                 PPlayer->flags1 |= 0x8000;
             }
@@ -673,7 +691,7 @@ std::string CDataLoader::GetSearchComment(uint32 playerId)
     auto rset = db::preparedStmt("SELECT seacom_message FROM accounts_sessions WHERE charid = (?)", playerId);
     if (rset && rset->rowsCount() && rset->next())
     {
-        return rset->getString("seacom_message").c_str();
+        return rset->get<std::string>("seacom_message").c_str();
     }
     return std::string();
 }
@@ -692,26 +710,24 @@ void CDataLoader::ExpireAHItems(uint16 expireAgeInDays)
 {
     ShowInfo(fmt::format("Expiring auction house listings over {} days old", expireAgeInDays).c_str());
 
-    auto sql2 = std::make_unique<SqlConnection>();
-
     std::vector<ListingToExpire> listingsToExpire;
 
-    std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
-                            T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >= %u AND buyer_name IS NULL;";
+    std::string query0 = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
+                            T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >= %u AND buyer_name IS NULL";
 
-    int32 ret             = sql2->Query(qStr.c_str(), expireAgeInDays);
-    int64 expiredAuctions = sql2->NumRows();
+    const auto rset0           = db::query(query0, expireAgeInDays);
+    const auto expiredAuctions = rset0->rowsCount();
 
-    if (ret != SQL_ERROR && expiredAuctions > 0)
+    if (rset0 && expiredAuctions > 0)
     {
-        while (sql2->NextRow() == SQL_SUCCESS)
+        while (rset0->next())
         {
             // Collect the items we're going to expire
-            uint32 saleID    = sql2->GetUIntData(0);
-            uint32 itemID    = sql2->GetUIntData(1);
-            uint8  itemStack = (uint8)sql2->GetUIntData(2);
-            uint8  ahStack   = (uint8)sql2->GetUIntData(3);
-            uint32 sellerID  = sql2->GetUIntData(4);
+            uint32 saleID    = rset0->get<uint32>("id");
+            uint32 itemID    = rset0->get<uint32>("itemid");
+            uint8  itemStack = rset0->get<uint8>("stacksize");
+            uint8  ahStack   = rset0->get<uint8>("stack");
+            uint32 sellerID  = rset0->get<uint32>("seller");
             // NOTE: seller name left out for now, we'll populate this later
 
             listingsToExpire.emplace_back(ListingToExpire{ saleID, itemID, itemStack, ahStack, sellerID, "?" });
@@ -720,23 +736,22 @@ void CDataLoader::ExpireAHItems(uint16 expireAgeInDays)
         for (auto listing : listingsToExpire)
         {
             // Populate name now
-            qStr = fmt::format("SELECT charname FROM chars WHERE charid={}", listing.sellerID);
-            ret  = sql2->Query(qStr.c_str());
-            if (ret != SQL_ERROR && sql2->NumRows() != 0 && sql2->NextRow() == SQL_SUCCESS)
+            const auto query1 = fmt::format("SELECT charname FROM chars WHERE charid={}", listing.sellerID);
+            const auto rset1  = db::query(query1);
+            if (rset1 && rset1->rowsCount() && rset1->next())
             {
-                listing.sellerName = sql2->GetStringData(0);
+                listing.sellerName = rset1->get<std::string>("charname");
             }
 
-            qStr = fmt::format("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
-                               "({}, '{}', 1, {}, 0, {}, 0, 'AH-Jeuno');",
-                               listing.sellerID, listing.sellerName, listing.itemID, listing.ahStack == 1 ? listing.itemStack : 1);
+            const auto query2 = fmt::format("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
+                                            "({}, '{}', 1, {}, 0, {}, 0, 'AH-Jeuno')",
+                                            listing.sellerID, listing.sellerName, listing.itemID, listing.ahStack == 1 ? listing.itemStack : 1);
 
-            ret = sql2->Query(qStr.c_str());
-
-            if (ret != SQL_ERROR && sql2->AffectedRows() > 0)
+            const auto [rset2, affectedRows] = db::preparedStmtWithAffectedRows(query2);
+            if (rset2 && affectedRows > 0)
             {
                 // delete the item from the auction house
-                sql2->Query("DELETE FROM auction_house WHERE id=%u", listing.saleID);
+                db::query("DELETE FROM auction_house WHERE id=%u", listing.saleID);
             }
         }
     }

@@ -3,9 +3,10 @@
 --  Apple au lait Tank
 --  When used, you will obtain one Apple au lait
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

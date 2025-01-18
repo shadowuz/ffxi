@@ -5,6 +5,7 @@
 local ID = zones[xi.zone.DRAGONS_AERY]
 mixins = { require('scripts/mixins/rage') }
 -----------------------------------
+---@type TMobEntity
 local entity = {}
 
 entity.onMobSpawn = function(mob)
@@ -13,6 +14,21 @@ entity.onMobSpawn = function(mob)
 
     -- Despawn the ???
     GetNPCByID(ID.npc.FAFNIR_QM):setStatus(xi.status.DISAPPEAR)
+end
+
+entity.onMobFight = function(mob, target)
+    local drawInTable =
+    {
+        conditions =
+        {
+            target:getXPos() > 95 and target:getZPos() > 56,
+            target:getXPos() < 60 and target:getZPos() < 23,
+        },
+        position = mob:getPos(),
+        wait = 3,
+    }
+
+    utils.drawIn(target, drawInTable)
 end
 
 entity.onMobDeath = function(mob, player, optParams)

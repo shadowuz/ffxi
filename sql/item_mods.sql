@@ -36,16 +36,20 @@ LOCK TABLES `item_mods` WRITE;
 INSERT INTO `item_mods` VALUES (10250,1,1); -- DEF: 1
 
 -- Decennial Coat
-INSERT INTO `item_mods` VALUES (10251,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10251,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10251,276,149); -- RSE (race specific equip)
 
 -- Decennial Dress
-INSERT INTO `item_mods` VALUES (10252,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10252,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10252,276,106); -- RSE (race specific equip)
 
 -- Decennial Coat +1
-INSERT INTO `item_mods` VALUES (10253,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10253,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10253,276,149); -- RSE (race specific equip)
 
 -- Decennial Dress +1
-INSERT INTO `item_mods` VALUES (10254,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10254,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10254,276,106); -- RSE (race specific equip)
 
 -- Matanca Harness
 INSERT INTO `item_mods` VALUES (10255,1,77);    -- DEF: 77
@@ -57,52 +61,68 @@ INSERT INTO `item_mods` VALUES (10255,23,22);   -- ATT: 22
 INSERT INTO `item_mods` VALUES (10255,384,300); -- HASTE_GEAR: 300
 
 -- Marine Gilet
-INSERT INTO `item_mods` VALUES (10256,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10256,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10256,276,1); -- RSE (race specific equip)
 
 -- Marine Top
-INSERT INTO `item_mods` VALUES (10257,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10257,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10257,276,2); -- RSE (race specific equip)
 
 -- Woodsy Gilet
-INSERT INTO `item_mods` VALUES (10258,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10258,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10258,276,4); -- RSE (race specific equip)
 
 -- Woodsy Top
-INSERT INTO `item_mods` VALUES (10259,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10259,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10259,276,8); -- RSE (race specific equip)
 
 -- Creek Maillot
-INSERT INTO `item_mods` VALUES (10260,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10260,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (10260,276,16); -- RSE (race specific equip)
 
 -- Creek Top
-INSERT INTO `item_mods` VALUES (10261,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10261,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (10261,276,32); -- RSE (race specific equip)
 
 -- River Top
-INSERT INTO `item_mods` VALUES (10262,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10262,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (10262,276,64); -- RSE (race specific equip)
 
 -- Dune Gilet
-INSERT INTO `item_mods` VALUES (10263,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10263,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10263,276,128); -- RSE (race specific equip)
 
 -- Marine Gilet +1
-INSERT INTO `item_mods` VALUES (10264,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10264,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10264,276,1); -- RSE (race specific equip)
 
 -- Marine Top +1
-INSERT INTO `item_mods` VALUES (10265,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10265,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10265,276,2); -- RSE (race specific equip)
 
 -- Woodsy Gilet +1
-INSERT INTO `item_mods` VALUES (10266,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10266,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10266,276,4); -- RSE (race specific equip)
 
 -- Woodsy Top +1
-INSERT INTO `item_mods` VALUES (10267,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10267,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10267,276,8); -- RSE (race specific equip)
 
 -- Creek Maillot +1
-INSERT INTO `item_mods` VALUES (10268,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10268,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (10268,276,16); -- RSE (race specific equip)
 
 -- Creek Top +1
-INSERT INTO `item_mods` VALUES (10269,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10269,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (10269,276,32); -- RSE (race specific equip)
 
 -- River Top +1
-INSERT INTO `item_mods` VALUES (10270,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10270,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (10270,276,64); -- RSE (race specific equip)
 
 -- Dune Gilet +1
-INSERT INTO `item_mods` VALUES (10271,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10271,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10271,276,128); -- RSE (race specific equip)
 
 -- Dux Scale Mail
 INSERT INTO `item_mods` VALUES (10272,1,68);     -- DEF: 68
@@ -466,52 +486,68 @@ INSERT INTO `item_mods` VALUES (10329,567,15); -- BARSPELL_AMOUNT: 15
 INSERT INTO `item_mods` VALUES (10329,832,1);  -- AQUAVEIL_COUNT: 1
 
 -- Marine Boxers
-INSERT INTO `item_mods` VALUES (10330,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10330,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10330,276,1); -- RSE (race specific equip)
 
 -- Marine Shorts
-INSERT INTO `item_mods` VALUES (10331,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10331,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10331,276,2); -- RSE (race specific equip)
 
 -- Woodsy Boxers
-INSERT INTO `item_mods` VALUES (10332,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10332,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10332,276,4); -- RSE (race specific equip)
 
 -- Woodsy Shorts
-INSERT INTO `item_mods` VALUES (10333,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10333,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (10333,276,8); -- RSE (race specific equip)
 
 -- Creek Boxers
-INSERT INTO `item_mods` VALUES (10334,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10334,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (10334,276,16); -- RSE (race specific equip)
 
 -- Creek Shorts
-INSERT INTO `item_mods` VALUES (10335,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10335,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (10335,276,32); -- RSE (race specific equip)
 
 -- River Shorts
-INSERT INTO `item_mods` VALUES (10336,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10336,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (10336,276,64); -- RSE (race specific equip)
 
 -- Dune Boxers
-INSERT INTO `item_mods` VALUES (10337,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10337,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10337,276,128); -- RSE (race specific equip)
 
 -- Marine Boxers +1
-INSERT INTO `item_mods` VALUES (10338,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10338,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10338,276,1); -- RSE (race specific equip)
 
 -- Marine Shorts +1
-INSERT INTO `item_mods` VALUES (10339,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10339,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10339,276,2); -- RSE (race specific equip)
 
 -- Woodsy Boxers +1
-INSERT INTO `item_mods` VALUES (10340,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10340,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10340,276,4); -- RSE (race specific equip)
 
 -- Woodsy Shorts +1
-INSERT INTO `item_mods` VALUES (10341,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10341,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (10341,276,8); -- RSE (race specific equip)
 
 -- Creek Boxers +1
-INSERT INTO `item_mods` VALUES (10342,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10342,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (10342,276,16); -- RSE (race specific equip)
 
 -- Creek Shorts +1
-INSERT INTO `item_mods` VALUES (10343,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10343,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (10343,276,32); -- RSE (race specific equip)
 
 -- River Shorts +1
-INSERT INTO `item_mods` VALUES (10344,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10344,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (10344,276,64); -- RSE (race specific equip)
 
 -- Dune Boxers +1
-INSERT INTO `item_mods` VALUES (10345,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10345,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10345,276,128); -- RSE (race specific equip)
 
 -- Dux Cuisses
 INSERT INTO `item_mods` VALUES (10346,1,55);     -- DEF: 55
@@ -655,7 +691,7 @@ INSERT INTO `item_mods` VALUES (10371,384,200); -- HASTE_GEAR: 200
 
 -- Plumb Boots
 INSERT INTO `item_mods` VALUES (10372,1,49);     -- DEF: 49
-INSERT INTO `item_mods` VALUES (10372,75,-12);   -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (10372,75,-20);   -- MOVE_SPEED_STACKABLE: -20
 INSERT INTO `item_mods` VALUES (10372,161,-500); -- DMGPHYS: -500
 
 -- Ocular Boots
@@ -861,16 +897,20 @@ INSERT INTO `item_mods` VALUES (10418,30,6); -- MACC: 6
 INSERT INTO `item_mods` VALUES (10429,1,1); -- DEF: 1
 
 -- Decennial Crown
-INSERT INTO `item_mods` VALUES (10430,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10430,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10430,276,149); -- RSE (race specific equip)
 
 -- Decennial Tiara
-INSERT INTO `item_mods` VALUES (10431,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10431,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10431,276,106); -- RSE (race specific equip)
 
 -- Decennial Crown +1
-INSERT INTO `item_mods` VALUES (10432,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10432,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10432,276,149); -- RSE (race specific equip)
 
 -- Decennial Tiara +1
-INSERT INTO `item_mods` VALUES (10433,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10433,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10433,276,106); -- RSE (race specific equip)
 
 -- Dux Visor
 INSERT INTO `item_mods` VALUES (10434,1,40);     -- DEF: 40
@@ -1965,16 +2005,20 @@ INSERT INTO `item_mods` VALUES (10582,289,5);   -- SUBTLE_BLOW: 5
 INSERT INTO `item_mods` VALUES (10582,384,400); -- HASTE_GEAR: 400
 
 -- Decennial Tights
-INSERT INTO `item_mods` VALUES (10593,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10593,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10593,276,149); -- RSE (race specific equip)
 
 -- Decennial Hose
-INSERT INTO `item_mods` VALUES (10594,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (10594,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (10594,276,106); -- RSE (race specific equip)
 
 -- Decennial Tights +1
-INSERT INTO `item_mods` VALUES (10595,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10595,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10595,276,149); -- RSE (race specific equip)
 
 -- Decennial Hose +1
-INSERT INTO `item_mods` VALUES (10596,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (10596,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (10596,276,106); -- RSE (race specific equip)
 
 -- Akasha Chaps
 INSERT INTO `item_mods` VALUES (10597,1,38);  -- DEF: 38
@@ -2511,7 +2555,7 @@ INSERT INTO `item_mods` VALUES (10671,11,8);  -- AGI: 8
 INSERT INTO `item_mods` VALUES (10671,291,2); -- COUNTER: 2
 INSERT INTO `item_mods` VALUES (10671,370,2); -- REGEN: 2
 
--- Clerics Briault +2
+-- Clerics Bliaut +2
 INSERT INTO `item_mods` VALUES (10672,1,55);   -- DEF: 55
 INSERT INTO `item_mods` VALUES (10672,5,41);   -- MP: 41
 INSERT INTO `item_mods` VALUES (10672,27,-5);  -- ENMITY: -5
@@ -2625,6 +2669,7 @@ INSERT INTO `item_mods` VALUES (10686,8,5);   -- STR: 5
 INSERT INTO `item_mods` VALUES (10686,11,5);  -- AGI: 5
 INSERT INTO `item_mods` VALUES (10686,24,12); -- RATT: 12
 INSERT INTO `item_mods` VALUES (10686,25,12); -- ACC: 12
+INSERT INTO `item_mods` VALUES (10686,220,5); -- RANDOM_DEAL_BONUS: 5
 
 -- Pantin Tobe +2
 INSERT INTO `item_mods` VALUES (10687,1,59);  -- DEF: 59
@@ -2658,13 +2703,13 @@ INSERT INTO `item_mods` VALUES (10690,23,17);    -- ATT: 17
 INSERT INTO `item_mods` VALUES (10690,161,-300); -- DMGPHYS: -300
 
 -- Melee Gloves +2
-INSERT INTO `item_mods` VALUES (10691,1,20);   -- DEF: 20
-INSERT INTO `item_mods` VALUES (10691,3,4);    -- HPP: 4
-INSERT INTO `item_mods` VALUES (10691,23,21);  -- ATT: 21
-INSERT INTO `item_mods` VALUES (10691,25,21);  -- ACC: 21
-INSERT INTO `item_mods` VALUES (10691,289,6);  -- SUBTLE_BLOW: 6
-INSERT INTO `item_mods` VALUES (10691,1026,8); -- CHAKRA_MULT: 8
-INSERT INTO `item_mods` VALUES (10691,1027,6); -- CHAKRA_REMOVAL: 6
+INSERT INTO `item_mods` VALUES (10691,1,20);    -- DEF: 20
+INSERT INTO `item_mods` VALUES (10691,3,4);     -- HPP: 4
+INSERT INTO `item_mods` VALUES (10691,23,21);   -- ATT: 21
+INSERT INTO `item_mods` VALUES (10691,25,21);   -- ACC: 21
+INSERT INTO `item_mods` VALUES (10691,289,6);   -- SUBTLE_BLOW: 6
+INSERT INTO `item_mods` VALUES (10691,1026,40); -- CHAKRA_MULT: 40 -- M = 0.4
+INSERT INTO `item_mods` VALUES (10691,1027,6);  -- CHAKRA_REMOVAL: 6
 
 -- Clerics Mitts +2
 INSERT INTO `item_mods` VALUES (10692,1,21);   -- DEF: 21
@@ -4104,6 +4149,7 @@ INSERT INTO `item_mods` VALUES (10961,2,50); -- HP: 50
 
 -- Lavalier +1
 INSERT INTO `item_mods` VALUES (10962,2,60); -- HP: 60
+-- INSERT INTO `item_mods` VALUES (10962,75,-10); -- MOVE_SPEED_STACKABLE: -10 (unconfirmed)
 
 -- Airmids Gorget
 INSERT INTO `item_mods` VALUES (10963,1,9);  -- DEF: 9
@@ -4151,9 +4197,9 @@ INSERT INTO `item_mods` VALUES (10969,8,5);   -- STR: 5
 INSERT INTO `item_mods` VALUES (10969,9,5);   -- DEX: 5
 
 -- Scuta Cape
-INSERT INTO `item_mods` VALUES (10970,1,20);    -- DEF: 20
-INSERT INTO `item_mods` VALUES (10970,75,-12);  -- MOVE_SPEED_STACKABLE: -12
-INSERT INTO `item_mods` VALUES (10970,370,2);   -- REGEN: 2
+INSERT INTO `item_mods` VALUES (10970,1,20);  -- DEF: 20
+INSERT INTO `item_mods` VALUES (10970,75,-5); -- MOVE_SPEED_STACKABLE: -5
+INSERT INTO `item_mods` VALUES (10970,370,2); -- REGEN: 2
 
 -- Strendu Mantle
 INSERT INTO `item_mods` VALUES (10971,1,12);  -- DEF: 12
@@ -4201,7 +4247,7 @@ INSERT INTO `item_mods` VALUES (10979,121,6); -- WIND: 6
 -- Mollusca Mantle
 INSERT INTO `item_mods` VALUES (10980,1,19);     -- DEF: 19
 INSERT INTO `item_mods` VALUES (10980,160,-500); -- DMG: -500
-INSERT INTO `item_mods` VALUES (10980,75,-12);   -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (10980,75,-5);    -- MOVE_SPEED_STACKABLE: -5
 
 -- Chela Cape
 INSERT INTO `item_mods` VALUES (10981,1,10); -- DEF: 10
@@ -4711,7 +4757,7 @@ INSERT INTO `item_mods` VALUES (11078,1,28);  -- DEF: 28
 INSERT INTO `item_mods` VALUES (11078,5,30);  -- MP: 30
 INSERT INTO `item_mods` VALUES (11078,117,9); -- SUMMONING: 9
 INSERT INTO `item_mods` VALUES (11078,369,2); -- REFRESH: 2
-INSERT INTO `item_mods` VALUES (11078,630,2); -- ENHANCES FAVOR: 2
+INSERT INTO `item_mods` VALUES (11078,141,2); -- ENHANCES FAVOR: 2
 
 -- Mavi Kavuk +2
 INSERT INTO `item_mods` VALUES (11079,1,34);    -- DEF: 34
@@ -4756,12 +4802,13 @@ INSERT INTO `item_mods` VALUES (11084,85,7);    -- GAXE: 7
 INSERT INTO `item_mods` VALUES (11084,1046,30); -- ENHANCES_BLOOD_RAGE: 30
 
 -- Tantra Cyclas +2
-INSERT INTO `item_mods` VALUES (11085,1,64);  -- DEF: 64
-INSERT INTO `item_mods` VALUES (11085,8,12);  -- STR: 12
-INSERT INTO `item_mods` VALUES (11085,10,12); -- VIT: 12
-INSERT INTO `item_mods` VALUES (11085,23,15); -- ATT: 15
-INSERT INTO `item_mods` VALUES (11085,25,15); -- ACC: 15
-INSERT INTO `item_mods` VALUES (11085,173,5); -- MARTIAL_ARTS: 5
+INSERT INTO `item_mods` VALUES (11085,1,64);   -- DEF: 64
+INSERT INTO `item_mods` VALUES (11085,8,12);   -- STR: 12
+INSERT INTO `item_mods` VALUES (11085,10,12);  -- VIT: 12
+INSERT INTO `item_mods` VALUES (11085,23,15);  -- ATT: 15
+INSERT INTO `item_mods` VALUES (11085,25,15);  -- ACC: 15
+INSERT INTO `item_mods` VALUES (11085,173,5);  -- MARTIAL_ARTS: 5
+INSERT INTO `item_mods` VALUES (11085,1097,2); -- AUGMENTS_IMPETUS: 2
 
 -- Orison Bliaud +2
 INSERT INTO `item_mods` VALUES (11086,1,49);   -- DEF: 49
@@ -5257,11 +5304,12 @@ INSERT INTO `item_mods` VALUES (11154,27,-8); -- ENMITY: -8
 INSERT INTO `item_mods` VALUES (11154,105,7); -- MARKSMAN: 7
 
 -- Unkai Sune-Ate +2
-INSERT INTO `item_mods` VALUES (11155,1,28);  -- DEF: 28
-INSERT INTO `item_mods` VALUES (11155,8,8);   -- STR: 8
-INSERT INTO `item_mods` VALUES (11155,23,15); -- ATT: 15
-INSERT INTO `item_mods` VALUES (11155,25,15); -- ACC: 15
-INSERT INTO `item_mods` VALUES (11155,73,6);  -- STORETP: 6
+INSERT INTO `item_mods` VALUES (11155,1,28);    -- DEF: 28
+INSERT INTO `item_mods` VALUES (11155,8,8);     -- STR: 8
+INSERT INTO `item_mods` VALUES (11155,23,15);   -- ATT: 15
+INSERT INTO `item_mods` VALUES (11155,25,15);   -- ACC: 15
+INSERT INTO `item_mods` VALUES (11155,73,6);    -- STORETP: 6
+INSERT INTO `item_mods` VALUES (11155,1090,10); -- SENGIKORI_BONUS : 10
 
 -- Iga Kyahan +2
 INSERT INTO `item_mods` VALUES (11156,1,23);    -- DEF: 23
@@ -5413,7 +5461,7 @@ INSERT INTO `item_mods` VALUES (11178,1,26);  -- DEF: 26
 INSERT INTO `item_mods` VALUES (11178,5,20);  -- MP: 20
 INSERT INTO `item_mods` VALUES (11178,117,6); -- SUMMONING: 6
 INSERT INTO `item_mods` VALUES (11178,369,1); -- REFRESH: 1
-INSERT INTO `item_mods` VALUES (11178,630,1); -- ENHANCES FAVOR: 1
+INSERT INTO `item_mods` VALUES (11178,141,1); -- ENHANCES FAVOR: 1
 
 -- Mavi Kavuk +1
 INSERT INTO `item_mods` VALUES (11179,1,32);    -- DEF: 32
@@ -5456,11 +5504,12 @@ INSERT INTO `item_mods` VALUES (11184,85,5);    -- GAXE: 5
 INSERT INTO `item_mods` VALUES (11184,1046,15); -- ENHANCES_BLOOD_RAGE: 15
 
 -- Tantra Cyclas +1
-INSERT INTO `item_mods` VALUES (11185,1,61);  -- DEF: 61
-INSERT INTO `item_mods` VALUES (11185,8,8);   -- STR: 8
-INSERT INTO `item_mods` VALUES (11185,10,8);  -- VIT: 8
-INSERT INTO `item_mods` VALUES (11185,23,12); -- ATT: 12
-INSERT INTO `item_mods` VALUES (11185,25,12); -- ACC: 12
+INSERT INTO `item_mods` VALUES (11185,1,61);   -- DEF: 61
+INSERT INTO `item_mods` VALUES (11185,8,8);    -- STR: 8
+INSERT INTO `item_mods` VALUES (11185,10,8);   -- VIT: 8
+INSERT INTO `item_mods` VALUES (11185,23,12);  -- ATT: 12
+INSERT INTO `item_mods` VALUES (11185,25,12);  -- ACC: 12
+INSERT INTO `item_mods` VALUES (11185,1097,1); -- AUGMENTS_IMPETUS: 1 -- Note, this still acts like Tantra Cyclas +2 (or higher) for now
 
 -- Orison Bliaud +1
 INSERT INTO `item_mods` VALUES (11186,1,46);   -- DEF: 46
@@ -5937,11 +5986,12 @@ INSERT INTO `item_mods` VALUES (11254,27,-5); -- ENMITY: -5
 INSERT INTO `item_mods` VALUES (11254,105,5); -- MARKSMAN: 5
 
 -- Unkai Sune-Ate +1
-INSERT INTO `item_mods` VALUES (11255,1,26);  -- DEF: 26
-INSERT INTO `item_mods` VALUES (11255,8,5);   -- STR: 5
-INSERT INTO `item_mods` VALUES (11255,23,10); -- ATT: 10
-INSERT INTO `item_mods` VALUES (11255,25,10); -- ACC: 10
-INSERT INTO `item_mods` VALUES (11255,73,4);  -- STORETP: 4
+INSERT INTO `item_mods` VALUES (11255,1,26);   -- DEF: 26
+INSERT INTO `item_mods` VALUES (11255,8,5);    -- STR: 5
+INSERT INTO `item_mods` VALUES (11255,23,10);  -- ATT: 10
+INSERT INTO `item_mods` VALUES (11255,25,10);  -- ACC: 10
+INSERT INTO `item_mods` VALUES (11255,73,4);   -- STORETP: 4
+INSERT INTO `item_mods` VALUES (11255,1090,5); -- SENGIKORI_BONUS : 5
 
 -- Iga Kyahan +1
 INSERT INTO `item_mods` VALUES (11256,1,21);    -- DEF: 21
@@ -5997,52 +6047,68 @@ INSERT INTO `item_mods` VALUES (11263,12,6);  -- INT: 6
 INSERT INTO `item_mods` VALUES (11263,115,7); -- ELEM: 7
 
 -- Custom Gilet
-INSERT INTO `item_mods` VALUES (11265,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11265,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (11265,276,1); -- RSE (race specific equip)
 
 -- Custom Top
-INSERT INTO `item_mods` VALUES (11266,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11266,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (11266,276,2); -- RSE (race specific equip)
 
 -- Magna Gilet
-INSERT INTO `item_mods` VALUES (11267,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11267,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (11267,276,4); -- RSE (race specific equip)
 
 -- Magna Top
-INSERT INTO `item_mods` VALUES (11268,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11268,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (11268,276,8); -- RSE (race specific equip)
 
 -- Wonder Maillot
-INSERT INTO `item_mods` VALUES (11269,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11269,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (11269,276,16); -- RSE (race specific equip)
 
 -- Wonder Top
-INSERT INTO `item_mods` VALUES (11270,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11270,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (11270,276,32); -- RSE (race specific equip)
 
 -- Savage Top
-INSERT INTO `item_mods` VALUES (11271,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11271,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (11271,276,64); -- RSE (race specific equip)
 
 -- Elder Gilet
-INSERT INTO `item_mods` VALUES (11272,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11272,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11272,276,128); -- RSE (race specific equip)
 
 -- Custom Gilet +1
-INSERT INTO `item_mods` VALUES (11273,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11273,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (11273,276,1); -- RSE (race specific equip)
 
 -- Custom Top +1
-INSERT INTO `item_mods` VALUES (11274,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11274,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (11274,276,2); -- RSE (race specific equip)
 
 -- Magna Gilet +1
-INSERT INTO `item_mods` VALUES (11275,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11275,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (11275,276,4); -- RSE (race specific equip)
 
 -- Magna Top +1
-INSERT INTO `item_mods` VALUES (11276,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11276,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (11276,276,8); -- RSE (race specific equip)
 
 -- Wonder Maillot +1
-INSERT INTO `item_mods` VALUES (11277,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11277,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (11277,276,16); -- RSE (race specific equip)
 
 -- Wonder Top +1
-INSERT INTO `item_mods` VALUES (11278,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11278,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (11278,276,32); -- RSE (race specific equip)
 
 -- Savage Top +1
-INSERT INTO `item_mods` VALUES (11279,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11279,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (11279,276,64); -- RSE (race specific equip)
 
 -- Elder Gilet +1
-INSERT INTO `item_mods` VALUES (11280,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11280,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (11280,276,128); -- RSE (race specific equip)
 
 -- Hachiryu Haramaki
 INSERT INTO `item_mods` VALUES (11281,1,52);  -- DEF: 52
@@ -6157,12 +6223,14 @@ INSERT INTO `item_mods` VALUES (11295,1,45); -- DEF: 45
 INSERT INTO `item_mods` VALUES (11295,8,3);  -- STR: 3
 INSERT INTO `item_mods` VALUES (11295,24,8); -- RATT: 8
 INSERT INTO `item_mods` VALUES (11295,25,8); -- ACC: 8
+INSERT INTO `item_mods` VALUES (11295,220,5); -- RANDOM_DEAL_BONUS: 5
 
 -- Commodore Frac +1
 INSERT INTO `item_mods` VALUES (11296,1,46);  -- DEF: 46
 INSERT INTO `item_mods` VALUES (11296,8,3);   -- STR: 3
 INSERT INTO `item_mods` VALUES (11296,24,10); -- RATT: 10
 INSERT INTO `item_mods` VALUES (11296,25,10); -- ACC: 10
+INSERT INTO `item_mods` VALUES (11296,220,5); -- RANDOM_DEAL_BONUS: 5
 
 -- Puppetry Tobe +1
 INSERT INTO `item_mods` VALUES (11297,1,37); -- DEF: 37
@@ -6189,20 +6257,22 @@ INSERT INTO `item_mods` VALUES (11300,1,2); -- DEF: 2
 INSERT INTO `item_mods` VALUES (11301,1,3); -- DEF: 3
 
 -- Dancers Casaque +1
-INSERT INTO `item_mods` VALUES (11302,1,39);   -- DEF: 39
-INSERT INTO `item_mods` VALUES (11302,2,25);   -- HP: 25
-INSERT INTO `item_mods` VALUES (11302,8,5);    -- STR: 5
-INSERT INTO `item_mods` VALUES (11302,9,5);    -- DEX: 5
-INSERT INTO `item_mods` VALUES (11302,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (11302,491,10); -- WALTZ_POTENCY: 10
+INSERT INTO `item_mods` VALUES (11302,1,39);    -- DEF: 39
+INSERT INTO `item_mods` VALUES (11302,2,25);    -- HP: 25
+INSERT INTO `item_mods` VALUES (11302,8,5);     -- STR: 5
+INSERT INTO `item_mods` VALUES (11302,9,5);     -- DEX: 5
+INSERT INTO `item_mods` VALUES (11302,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (11302,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (11302,491,10);  -- WALTZ_POTENCY: 10
 
 -- Dancers Casaque +1
-INSERT INTO `item_mods` VALUES (11303,1,39);   -- DEF: 39
-INSERT INTO `item_mods` VALUES (11303,2,25);   -- HP: 25
-INSERT INTO `item_mods` VALUES (11303,8,5);    -- STR: 5
-INSERT INTO `item_mods` VALUES (11303,9,5);    -- DEX: 5
-INSERT INTO `item_mods` VALUES (11303,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (11303,491,10); -- WALTZ_POTENCY: 10
+INSERT INTO `item_mods` VALUES (11303,1,39);    -- DEF: 39
+INSERT INTO `item_mods` VALUES (11303,2,25);    -- HP: 25
+INSERT INTO `item_mods` VALUES (11303,8,5);     -- STR: 5
+INSERT INTO `item_mods` VALUES (11303,9,5);     -- DEX: 5
+INSERT INTO `item_mods` VALUES (11303,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (11303,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (11303,491,10);  -- WALTZ_POTENCY: 10
 
 -- Scholars Gown +1
 INSERT INTO `item_mods` VALUES (11304,1,39);   -- DEF: 39
@@ -6243,16 +6313,19 @@ INSERT INTO `item_mods` VALUES (11308,113,7); -- ENHANCE: 7
 INSERT INTO `item_mods` VALUES (11308,401,1); -- SUBLIMATION_BONUS: 1
 
 -- Benedight Coat
-INSERT INTO `item_mods` VALUES (11309,1,4);   -- DEF: 4
-INSERT INTO `item_mods` VALUES (11309,21,15); -- LIGHT_RES: 15
+INSERT INTO `item_mods` VALUES (11309,1,4);     -- DEF: 4
+INSERT INTO `item_mods` VALUES (11309,21,15);   -- LIGHT_RES: 15
+INSERT INTO `item_mods` VALUES (11309,276,149); -- RSE (race specific equip)
 
 -- Argent Coat
-INSERT INTO `item_mods` VALUES (11310,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (11310,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (11310,1,5);     -- DEF: 5
+INSERT INTO `item_mods` VALUES (11310,14,1);    -- CHR: 1
+INSERT INTO `item_mods` VALUES (11310,276,149); -- RSE (race specific equip)
 
 -- Platino Coat
-INSERT INTO `item_mods` VALUES (11311,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (11311,14,3); -- CHR: 3
+INSERT INTO `item_mods` VALUES (11311,1,5);     -- DEF: 5
+INSERT INTO `item_mods` VALUES (11311,14,3);    -- CHR: 3
+INSERT INTO `item_mods` VALUES (11311,276,149); -- RSE (race specific equip)
 
 -- Ramblers Cloak
 INSERT INTO `item_mods` VALUES (11312,1,3); -- DEF: 3
@@ -6280,16 +6353,20 @@ INSERT INTO `item_mods` VALUES (11315,13,5); -- MND: 5
 INSERT INTO `item_mods` VALUES (11315,14,5); -- CHR: 5
 
 -- Otokogusa Yukata
-INSERT INTO `item_mods` VALUES (11316,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11316,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11316,276,149); -- RSE (race specific equip)
 
 -- Onnagusa Yukata
-INSERT INTO `item_mods` VALUES (11317,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11317,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11317,276,106); -- RSE (race specific equip)
 
 -- Otokoeshi Yukata
-INSERT INTO `item_mods` VALUES (11318,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11318,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (11318,276,149); -- RSE (race specific equip)
 
 -- Ominaeshi Yukata
-INSERT INTO `item_mods` VALUES (11319,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11319,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (11319,276,106); -- RSE (race specific equip)
 
 -- Orange Racing Silks
 INSERT INTO `item_mods` VALUES (11321,1,2);    -- DEF: 2
@@ -6706,22 +6783,24 @@ INSERT INTO `item_mods` VALUES (11392,500,0);  -- ITEM_ADDEFFECT_DMG: 0
 INSERT INTO `item_mods` VALUES (11392,501,20); -- ITEM_ADDEFFECT_CHANCE: 20
 
 -- Dancers Toe Shoes +1
-INSERT INTO `item_mods` VALUES (11393,1,15);   -- DEF: 15
-INSERT INTO `item_mods` VALUES (11393,2,12);   -- HP: 12
-INSERT INTO `item_mods` VALUES (11393,8,3);    -- STR: 3
-INSERT INTO `item_mods` VALUES (11393,11,3);   -- AGI: 3
-INSERT INTO `item_mods` VALUES (11393,23,5);   -- ATT: 5
-INSERT INTO `item_mods` VALUES (11393,68,5);   -- EVA: 5
-INSERT INTO `item_mods` VALUES (11393,492,25); -- JIG_DURATION: 25
+INSERT INTO `item_mods` VALUES (11393,1,15);    -- DEF: 15
+INSERT INTO `item_mods` VALUES (11393,2,12);    -- HP: 12
+INSERT INTO `item_mods` VALUES (11393,8,3);     -- STR: 3
+INSERT INTO `item_mods` VALUES (11393,11,3);    -- AGI: 3
+INSERT INTO `item_mods` VALUES (11393,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (11393,68,5);    -- EVA: 5
+INSERT INTO `item_mods` VALUES (11393,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (11393,492,25);  -- JIG_DURATION: 25
 
 -- Dancers Toe Shoes +1
-INSERT INTO `item_mods` VALUES (11394,1,15);   -- DEF: 15
-INSERT INTO `item_mods` VALUES (11394,2,12);   -- HP: 12
-INSERT INTO `item_mods` VALUES (11394,8,3);    -- STR: 3
-INSERT INTO `item_mods` VALUES (11394,11,3);   -- AGI: 3
-INSERT INTO `item_mods` VALUES (11394,23,5);   -- ATT: 5
-INSERT INTO `item_mods` VALUES (11394,68,5);   -- EVA: 5
-INSERT INTO `item_mods` VALUES (11394,492,25); -- JIG_DURATION: 25
+INSERT INTO `item_mods` VALUES (11394,1,15);    -- DEF: 15
+INSERT INTO `item_mods` VALUES (11394,2,12);    -- HP: 12
+INSERT INTO `item_mods` VALUES (11394,8,3);     -- STR: 3
+INSERT INTO `item_mods` VALUES (11394,11,3);    -- AGI: 3
+INSERT INTO `item_mods` VALUES (11394,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (11394,68,5);    -- EVA: 5
+INSERT INTO `item_mods` VALUES (11394,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (11394,492,25);  -- JIG_DURATION: 25
 
 -- Scholars Loafers +1
 INSERT INTO `item_mods` VALUES (11395,1,11);   -- DEF: 11
@@ -7208,20 +7287,22 @@ INSERT INTO `item_mods` VALUES (11473,71,3);  -- MPHEAL: 3
 INSERT INTO `item_mods` VALUES (11474,1,25); -- DEF: 25
 
 -- Dancers Tiara +1
-INSERT INTO `item_mods` VALUES (11475,1,19);   -- DEF: 19
-INSERT INTO `item_mods` VALUES (11475,2,15);   -- HP: 15
-INSERT INTO `item_mods` VALUES (11475,9,4);    -- DEX: 4
-INSERT INTO `item_mods` VALUES (11475,14,4);   -- CHR: 4
-INSERT INTO `item_mods` VALUES (11475,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (11475,490,30); -- SAMBA_DURATION: 30
+INSERT INTO `item_mods` VALUES (11475,1,19);    -- DEF: 19
+INSERT INTO `item_mods` VALUES (11475,2,15);    -- HP: 15
+INSERT INTO `item_mods` VALUES (11475,9,4);     -- DEX: 4
+INSERT INTO `item_mods` VALUES (11475,14,4);    -- CHR: 4
+INSERT INTO `item_mods` VALUES (11475,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (11475,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (11475,490,30);  -- SAMBA_DURATION: 30
 
 -- Dancers Tiara +1
-INSERT INTO `item_mods` VALUES (11476,1,19);   -- DEF: 19
-INSERT INTO `item_mods` VALUES (11476,2,15);   -- HP: 15
-INSERT INTO `item_mods` VALUES (11476,9,4);    -- DEX: 4
-INSERT INTO `item_mods` VALUES (11476,14,4);   -- CHR: 4
-INSERT INTO `item_mods` VALUES (11476,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (11476,490,30); -- SAMBA_DURATION: 30
+INSERT INTO `item_mods` VALUES (11476,1,19);    -- DEF: 19
+INSERT INTO `item_mods` VALUES (11476,2,15);    -- HP: 15
+INSERT INTO `item_mods` VALUES (11476,9,4);     -- DEX: 4
+INSERT INTO `item_mods` VALUES (11476,14,4);    -- CHR: 4
+INSERT INTO `item_mods` VALUES (11476,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (11476,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (11476,490,30);  -- SAMBA_DURATION: 30
 
 -- Scholars Mortarboard +1
 INSERT INTO `item_mods` VALUES (11477,1,16);  -- DEF: 16
@@ -8859,7 +8940,7 @@ INSERT INTO `item_mods` VALUES (11817,1,30);     -- DEF: 30
 INSERT INTO `item_mods` VALUES (11817,10,9);     -- VIT: 9
 INSERT INTO `item_mods` VALUES (11817,68,-14);   -- EVA: -14
 INSERT INTO `item_mods` VALUES (11817,161,-500); -- DMGPHYS: -500
-INSERT INTO `item_mods` VALUES (11817,75,-12);   -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (11817,75,-5);    -- MOVE_SPEED_STACKABLE: -5
 
 -- Oneiros Headgear
 INSERT INTO `item_mods` VALUES (11818,1,25);  -- DEF: 25
@@ -9101,14 +9182,16 @@ INSERT INTO `item_mods` VALUES (11852,115,10); -- ELEM: 10
 INSERT INTO `item_mods` VALUES (11852,117,10); -- SUMMONING: 10
 
 -- Novennial Coat
-INSERT INTO `item_mods` VALUES (11853,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (11853,2,9);  -- HP: 9
-INSERT INTO `item_mods` VALUES (11853,21,9); -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (11853,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11853,2,9);     -- HP: 9
+INSERT INTO `item_mods` VALUES (11853,21,9);    -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (11853,276,149); -- RSE (race specific equip)
 
 -- Novennial Dress
-INSERT INTO `item_mods` VALUES (11854,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (11854,2,9);  -- HP: 9
-INSERT INTO `item_mods` VALUES (11854,21,9); -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (11854,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11854,2,9);     -- HP: 9
+INSERT INTO `item_mods` VALUES (11854,21,9);    -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (11854,276,106); -- RSE (race specific equip)
 
 -- Mextli Harness
 INSERT INTO `item_mods` VALUES (11855,1,57);  -- DEF: 57
@@ -9162,10 +9245,12 @@ INSERT INTO `item_mods` VALUES (11860,115,11); -- ELEM: 11
 INSERT INTO `item_mods` VALUES (11860,117,11); -- SUMMONING: 11
 
 -- Hikogami Yukata
-INSERT INTO `item_mods` VALUES (11861,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11861,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11861,276,149); -- RSE (race specific equip)
 
 -- Himegami Yukata
-INSERT INTO `item_mods` VALUES (11862,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (11862,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11862,276,106); -- RSE (race specific equip)
 
 -- Ocelomeh Harness
 INSERT INTO `item_mods` VALUES (11863,1,58);  -- DEF: 58
@@ -9397,34 +9482,39 @@ INSERT INTO `item_mods` VALUES (11898,5,-40); -- MP: -40
 INSERT INTO `item_mods` VALUES (11898,8,5);   -- STR: 5
 INSERT INTO `item_mods` VALUES (11898,9,-5);  -- DEX: -5
 INSERT INTO `item_mods` VALUES (11898,11,5);  -- AGI: 5
+INSERT INTO `item_mods` VALUES (11898,276,3); -- RSE (race specific equip)
 
 -- Weald Gages
-INSERT INTO `item_mods` VALUES (11899,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11899,2,-50); -- HP: -50
-INSERT INTO `item_mods` VALUES (11899,5,80);  -- MP: 80
-INSERT INTO `item_mods` VALUES (11899,12,7);  -- INT: 7
-INSERT INTO `item_mods` VALUES (11899,13,-4); -- MND: -4
+INSERT INTO `item_mods` VALUES (11899,1,16);   -- DEF: 16
+INSERT INTO `item_mods` VALUES (11899,2,-50);  -- HP: -50
+INSERT INTO `item_mods` VALUES (11899,5,80);   -- MP: 80
+INSERT INTO `item_mods` VALUES (11899,12,7);   -- INT: 7
+INSERT INTO `item_mods` VALUES (11899,13,-4);  -- MND: -4
+INSERT INTO `item_mods` VALUES (11899,276,12); -- RSE (race specific equip)
 
 -- Savanna Gages
-INSERT INTO `item_mods` VALUES (11900,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11900,2,100); -- HP: 100
-INSERT INTO `item_mods` VALUES (11900,5,-80); -- MP: -80
-INSERT INTO `item_mods` VALUES (11900,8,7);   -- STR: 7
-INSERT INTO `item_mods` VALUES (11900,9,-4);  -- DEX: -4
+INSERT INTO `item_mods` VALUES (11900,1,16);   -- DEF: 16
+INSERT INTO `item_mods` VALUES (11900,2,100);  -- HP: 100
+INSERT INTO `item_mods` VALUES (11900,5,-80);  -- MP: -80
+INSERT INTO `item_mods` VALUES (11900,8,7);    -- STR: 7
+INSERT INTO `item_mods` VALUES (11900,9,-4);   -- DEX: -4
+INSERT INTO `item_mods` VALUES (11900,276,48); -- RSE (race specific equip)
 
 -- Tropic Gages
-INSERT INTO `item_mods` VALUES (11901,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11901,2,-40); -- HP: -40
-INSERT INTO `item_mods` VALUES (11901,5,50);  -- MP: 50
-INSERT INTO `item_mods` VALUES (11901,12,-4); -- INT: -4
-INSERT INTO `item_mods` VALUES (11901,13,7);  -- MND: 7
+INSERT INTO `item_mods` VALUES (11901,1,16);   -- DEF: 16
+INSERT INTO `item_mods` VALUES (11901,2,-40);  -- HP: -40
+INSERT INTO `item_mods` VALUES (11901,5,50);   -- MP: 50
+INSERT INTO `item_mods` VALUES (11901,12,-4);  -- INT: -4
+INSERT INTO `item_mods` VALUES (11901,13,7);   -- MND: 7
+INSERT INTO `item_mods` VALUES (11901,276,64); -- RSE (race specific equip)
 
 -- Strand Gages
-INSERT INTO `item_mods` VALUES (11902,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11902,2,-80); -- HP: -80
-INSERT INTO `item_mods` VALUES (11902,5,100); -- MP: 100
-INSERT INTO `item_mods` VALUES (11902,12,-4); -- INT: -4
-INSERT INTO `item_mods` VALUES (11902,13,7);  -- MND: 7
+INSERT INTO `item_mods` VALUES (11902,1,16);    -- DEF: 16
+INSERT INTO `item_mods` VALUES (11902,2,-80);   -- HP: -80
+INSERT INTO `item_mods` VALUES (11902,5,100);   -- MP: 100
+INSERT INTO `item_mods` VALUES (11902,12,-4);   -- INT: -4
+INSERT INTO `item_mods` VALUES (11902,13,7);    -- MND: 7
+INSERT INTO `item_mods` VALUES (11902,276,128); -- RSE (race specific equip)
 
 -- Tide Gages
 INSERT INTO `item_mods` VALUES (11903,1,16);  -- DEF: 16
@@ -9433,34 +9523,39 @@ INSERT INTO `item_mods` VALUES (11903,5,50);  -- MP: 50
 INSERT INTO `item_mods` VALUES (11903,10,-5); -- VIT: -5
 INSERT INTO `item_mods` VALUES (11903,12,5);  -- INT: 5
 INSERT INTO `item_mods` VALUES (11903,13,5);  -- MND: 5
+INSERT INTO `item_mods` VALUES (11903,276,3); -- RSE (race specific equip)
 
 -- Thicket Gages
-INSERT INTO `item_mods` VALUES (11904,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11904,2,80);  -- HP: 80
-INSERT INTO `item_mods` VALUES (11904,5,-50); -- MP: -50
-INSERT INTO `item_mods` VALUES (11904,8,7);   -- STR: 7
-INSERT INTO `item_mods` VALUES (11904,9,-4);  -- DEX: -4
+INSERT INTO `item_mods` VALUES (11904,1,16);   -- DEF: 16
+INSERT INTO `item_mods` VALUES (11904,2,80);   -- HP: 80
+INSERT INTO `item_mods` VALUES (11904,5,-50);  -- MP: -50
+INSERT INTO `item_mods` VALUES (11904,8,7);    -- STR: 7
+INSERT INTO `item_mods` VALUES (11904,9,-4);   -- DEX: -4
+INSERT INTO `item_mods` VALUES (11904,276,12); -- RSE (race specific equip)
 
 -- Brook Gages
-INSERT INTO `item_mods` VALUES (11905,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11905,2,-80); -- HP: -80
-INSERT INTO `item_mods` VALUES (11905,5,100); -- MP: 100
-INSERT INTO `item_mods` VALUES (11905,12,7);  -- INT: 7
-INSERT INTO `item_mods` VALUES (11905,13,-4); -- MND: -4
+INSERT INTO `item_mods` VALUES (11905,1,16);   -- DEF: 16
+INSERT INTO `item_mods` VALUES (11905,2,-80);  -- HP: -80
+INSERT INTO `item_mods` VALUES (11905,5,100);  -- MP: 100
+INSERT INTO `item_mods` VALUES (11905,12,7);   -- INT: 7
+INSERT INTO `item_mods` VALUES (11905,13,-4);  -- MND: -4
+INSERT INTO `item_mods` VALUES (11905,276,48); -- RSE (race specific equip)
 
 -- Wild Gages
-INSERT INTO `item_mods` VALUES (11906,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11906,2,50);  -- HP: 50
-INSERT INTO `item_mods` VALUES (11906,5,-40); -- MP: -40
-INSERT INTO `item_mods` VALUES (11906,8,-4);  -- STR: -4
-INSERT INTO `item_mods` VALUES (11906,9,7);   -- DEX: 7
+INSERT INTO `item_mods` VALUES (11906,1,16);   -- DEF: 16
+INSERT INTO `item_mods` VALUES (11906,2,50);   -- HP: 50
+INSERT INTO `item_mods` VALUES (11906,5,-40);  -- MP: -40
+INSERT INTO `item_mods` VALUES (11906,8,-4);   -- STR: -4
+INSERT INTO `item_mods` VALUES (11906,9,7);    -- DEX: 7
+INSERT INTO `item_mods` VALUES (11906,276,64); -- RSE (race specific equip)
 
 -- Torrid Gages
-INSERT INTO `item_mods` VALUES (11907,1,16);  -- DEF: 16
-INSERT INTO `item_mods` VALUES (11907,2,100); -- HP: 100
-INSERT INTO `item_mods` VALUES (11907,5,80);  -- MP: 80
-INSERT INTO `item_mods` VALUES (11907,10,7);  -- VIT: 7
-INSERT INTO `item_mods` VALUES (11907,11,-4); -- AGI: -4
+INSERT INTO `item_mods` VALUES (11907,1,16);    -- DEF: 16
+INSERT INTO `item_mods` VALUES (11907,2,100);   -- HP: 100
+INSERT INTO `item_mods` VALUES (11907,5,80);    -- MP: 80
+INSERT INTO `item_mods` VALUES (11907,10,7);    -- VIT: 7
+INSERT INTO `item_mods` VALUES (11907,11,-4);   -- AGI: -4
+INSERT INTO `item_mods` VALUES (11907,276,128); -- RSE (race specific equip)
 
 -- Brute Gauntlets
 INSERT INTO `item_mods` VALUES (11908,1,23);   -- DEF: 23
@@ -9765,14 +9860,16 @@ INSERT INTO `item_mods` VALUES (11955,30,5);  -- MACC: 5
 INSERT INTO `item_mods` VALUES (11955,170,2); -- FASTCAST: 2
 
 -- Novennial Hose
-INSERT INTO `item_mods` VALUES (11956,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (11956,5,9);  -- MP: 9
-INSERT INTO `item_mods` VALUES (11956,22,9); -- DARK_RES: 9
+INSERT INTO `item_mods` VALUES (11956,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11956,5,9);     -- MP: 9
+INSERT INTO `item_mods` VALUES (11956,22,9);    -- DARK_RES: 9
+INSERT INTO `item_mods` VALUES (11956,276,149); -- RSE (race specific equip)
 
 -- Novennial Thigh Boots
-INSERT INTO `item_mods` VALUES (11957,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (11957,5,9);  -- MP: 9
-INSERT INTO `item_mods` VALUES (11957,22,9); -- DARK_RES: 9
+INSERT INTO `item_mods` VALUES (11957,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (11957,5,9);     -- MP: 9
+INSERT INTO `item_mods` VALUES (11957,22,9);    -- DARK_RES: 9
+INSERT INTO `item_mods` VALUES (11957,276,106); -- RSE (race specific equip)
 
 -- Calmecac Trousers
 INSERT INTO `item_mods` VALUES (11958,1,46);    -- DEF: 46
@@ -9823,16 +9920,20 @@ INSERT INTO `item_mods` VALUES (11964,15,20);  -- FIRE_RES: 20
 INSERT INTO `item_mods` VALUES (11964,288,3);  -- DOUBLE_ATTACK: 3
 
 -- Dream Trousers
-INSERT INTO `item_mods` VALUES (11965,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11965,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (11965,276,149); -- RSE (race specific equip)
 
 -- Dream Trousers +1
-INSERT INTO `item_mods` VALUES (11966,1,3); -- DEF: 3
+INSERT INTO `item_mods` VALUES (11966,1,3);     -- DEF: 3
+INSERT INTO `item_mods` VALUES (11966,276,149); -- RSE (race specific equip)
 
 -- Dream Pants
-INSERT INTO `item_mods` VALUES (11967,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (11967,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (11967,276,106); -- RSE (race specific equip)
 
 -- Dream Pants +1
-INSERT INTO `item_mods` VALUES (11968,1,3); -- DEF: 3
+INSERT INTO `item_mods` VALUES (11968,1,3);     -- DEF: 3
+INSERT INTO `item_mods` VALUES (11968,276,106); -- RSE (race specific equip)
 
 -- Ogiers Breeches
 INSERT INTO `item_mods` VALUES (11969,1,55);     -- DEF: 55
@@ -12351,12 +12452,12 @@ INSERT INTO `item_mods` VALUES (12444,15,2);  -- FIRE_RES: 2
 INSERT INTO `item_mods` VALUES (12444,20,-1); -- WATER_RES: -1
 
 -- Dusk Mask
-INSERT INTO `item_mods` VALUES (12445,1,31);    -- DEF: 31
-INSERT INTO `item_mods` VALUES (12445,2,30);    -- HP: 30
-INSERT INTO `item_mods` VALUES (12445,10,5);    -- VIT: 5
-INSERT INTO `item_mods` VALUES (12445,25,5);    -- ACC: 5
-INSERT INTO `item_mods` VALUES (12445,68,5);    -- EVA: 5
-INSERT INTO `item_mods` VALUES (12445,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (12445,1,31);  -- DEF: 31
+INSERT INTO `item_mods` VALUES (12445,2,30);  -- HP: 30
+INSERT INTO `item_mods` VALUES (12445,10,5);  -- VIT: 5
+INSERT INTO `item_mods` VALUES (12445,25,5);  -- ACC: 5
+INSERT INTO `item_mods` VALUES (12445,68,5);  -- EVA: 5
+INSERT INTO `item_mods` VALUES (12445,75,-5); -- MOVE_SPEED_STACKABLE: -5
 
 -- Tiger Helm
 INSERT INTO `item_mods` VALUES (12446,1,21);  -- DEF: 21
@@ -12941,11 +13042,11 @@ INSERT INTO `item_mods` VALUES (12572,15,3);  -- FIRE_RES: 3
 INSERT INTO `item_mods` VALUES (12572,20,-1); -- WATER_RES: -1
 
 -- Dusk Jerkin
-INSERT INTO `item_mods` VALUES (12573,1,50);    -- DEF: 50
-INSERT INTO `item_mods` VALUES (12573,2,40);    -- HP: 40
-INSERT INTO `item_mods` VALUES (12573,25,2);    -- ACC: 2
-INSERT INTO `item_mods` VALUES (12573,75,-12);  -- MOVE_SPEED_STACKABLE: -12
-INSERT INTO `item_mods` VALUES (12573,370,1);   -- REGEN: 1
+INSERT INTO `item_mods` VALUES (12573,1,50);  -- DEF: 50
+INSERT INTO `item_mods` VALUES (12573,2,40);  -- HP: 40
+INSERT INTO `item_mods` VALUES (12573,25,2);  -- ACC: 2
+INSERT INTO `item_mods` VALUES (12573,75,-5); -- MOVE_SPEED_STACKABLE: -5
+INSERT INTO `item_mods` VALUES (12573,370,1); -- REGEN: 1
 
 -- Tiger Jerkin
 INSERT INTO `item_mods` VALUES (12574,1,41);  -- DEF: 41
@@ -13194,25 +13295,32 @@ INSERT INTO `item_mods` VALUES (12630,1,10); -- DEF: 10
 INSERT INTO `item_mods` VALUES (12630,16,5); -- ICE_RES: 5
 
 -- Hume Tunic
-INSERT INTO `item_mods` VALUES (12631,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12631,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12631,276,1); -- RSE (race specific equip)
 
 -- Hume Vest
-INSERT INTO `item_mods` VALUES (12632,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12632,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12632,276,2); -- RSE (race specific equip)
 
 -- Elvaan Jerkin
-INSERT INTO `item_mods` VALUES (12633,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12633,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12633,276,4); -- RSE (race specific equip)
 
 -- Elvaan Bodice
-INSERT INTO `item_mods` VALUES (12634,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12634,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12634,276,8); -- RSE (race specific equip)
 
 -- Tarutaru Kaftan
-INSERT INTO `item_mods` VALUES (12635,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12635,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (12635,276,48); -- RSE (race specific equip)
 
 -- Mithran Separates
-INSERT INTO `item_mods` VALUES (12636,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12636,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (12636,276,64); -- RSE (race specific equip)
 
 -- Galkan Surcoat
-INSERT INTO `item_mods` VALUES (12637,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12637,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (12637,276,128); -- RSE (race specific equip)
 
 -- Fighters Lorica
 INSERT INTO `item_mods` VALUES (12638,1,47);  -- DEF: 47
@@ -13226,10 +13334,10 @@ INSERT INTO `item_mods` VALUES (12639,1,41);    -- DEF: 41
 INSERT INTO `item_mods` VALUES (12639,2,20);    -- HP: 20
 INSERT INTO `item_mods` VALUES (12639,10,3);    -- VIT: 3
 INSERT INTO `item_mods` VALUES (12639,25,5);    -- ACC: 5
-INSERT INTO `item_mods` VALUES (12639,1026,10); -- CHAKRA_MULT: 10
+INSERT INTO `item_mods` VALUES (12639,1026,50); -- CHAKRA_MULT: 50 -- M = 0.5
 INSERT INTO `item_mods` VALUES (12639,1027,1);  -- CHAKRA_REMOVAL: 1
 
--- Healers Briault
+-- Healers Bliaut
 INSERT INTO `item_mods` VALUES (12640,1,40);   -- DEF: 40
 INSERT INTO `item_mods` VALUES (12640,5,15);   -- MP: 15
 INSERT INTO `item_mods` VALUES (12640,17,10);  -- WIND_RES: 10
@@ -13320,6 +13428,7 @@ INSERT INTO `item_mods` VALUES (12654,2,32);  -- HP: 32
 INSERT INTO `item_mods` VALUES (12654,10,3);  -- VIT: 3
 INSERT INTO `item_mods` VALUES (12654,12,-1); -- INT: -1
 INSERT INTO `item_mods` VALUES (12654,14,1);  -- CHR: 1
+INSERT INTO `item_mods` VALUES (12654,276,1); -- RSE (race specific equip)
 
 -- Custom Vest
 INSERT INTO `item_mods` VALUES (12655,1,18);  -- DEF: 18
@@ -13327,39 +13436,45 @@ INSERT INTO `item_mods` VALUES (12655,2,32);  -- HP: 32
 INSERT INTO `item_mods` VALUES (12655,10,3);  -- VIT: 3
 INSERT INTO `item_mods` VALUES (12655,12,-1); -- INT: -1
 INSERT INTO `item_mods` VALUES (12655,14,1);  -- CHR: 1
+INSERT INTO `item_mods` VALUES (12655,276,2); -- RSE (race specific equip)
 
 -- Magna Jerkin
-INSERT INTO `item_mods` VALUES (12656,1,18); -- DEF: 18
-INSERT INTO `item_mods` VALUES (12656,2,24); -- HP: 24
-INSERT INTO `item_mods` VALUES (12656,5,4);  -- MP: 4
-INSERT INTO `item_mods` VALUES (12656,9,1);  -- DEX: 1
-INSERT INTO `item_mods` VALUES (12656,12,1); -- INT: 1
+INSERT INTO `item_mods` VALUES (12656,1,18);  -- DEF: 18
+INSERT INTO `item_mods` VALUES (12656,2,24);  -- HP: 24
+INSERT INTO `item_mods` VALUES (12656,5,4);   -- MP: 4
+INSERT INTO `item_mods` VALUES (12656,9,1);   -- DEX: 1
+INSERT INTO `item_mods` VALUES (12656,12,1);  -- INT: 1
+INSERT INTO `item_mods` VALUES (12656,276,4); -- RSE (race specific equip)
 
 -- Magna Bodice
-INSERT INTO `item_mods` VALUES (12657,1,18); -- DEF: 18
-INSERT INTO `item_mods` VALUES (12657,2,24); -- HP: 24
-INSERT INTO `item_mods` VALUES (12657,5,4);  -- MP: 4
-INSERT INTO `item_mods` VALUES (12657,9,1);  -- DEX: 1
-INSERT INTO `item_mods` VALUES (12657,12,1); -- INT: 1
+INSERT INTO `item_mods` VALUES (12657,1,18);  -- DEF: 18
+INSERT INTO `item_mods` VALUES (12657,2,24);  -- HP: 24
+INSERT INTO `item_mods` VALUES (12657,5,4);   -- MP: 4
+INSERT INTO `item_mods` VALUES (12657,9,1);   -- DEX: 1
+INSERT INTO `item_mods` VALUES (12657,12,1);  -- INT: 1
+INSERT INTO `item_mods` VALUES (12657,276,8); -- RSE (race specific equip)
 
 -- Wonder Kaftan
-INSERT INTO `item_mods` VALUES (12658,1,18); -- DEF: 18
-INSERT INTO `item_mods` VALUES (12658,2,36); -- HP: 36
-INSERT INTO `item_mods` VALUES (12658,8,1);  -- STR: 1
-INSERT INTO `item_mods` VALUES (12658,10,2); -- VIT: 2
-INSERT INTO `item_mods` VALUES (12658,13,1); -- MND: 1
+INSERT INTO `item_mods` VALUES (12658,1,18);   -- DEF: 18
+INSERT INTO `item_mods` VALUES (12658,2,36);   -- HP: 36
+INSERT INTO `item_mods` VALUES (12658,8,1);    -- STR: 1
+INSERT INTO `item_mods` VALUES (12658,10,2);   -- VIT: 2
+INSERT INTO `item_mods` VALUES (12658,13,1);   -- MND: 1
+INSERT INTO `item_mods` VALUES (12658,276,48); -- RSE (race specific equip)
 
 -- Savage Separates
-INSERT INTO `item_mods` VALUES (12659,1,18); -- DEF: 18
-INSERT INTO `item_mods` VALUES (12659,2,32); -- HP: 32
-INSERT INTO `item_mods` VALUES (12659,8,1);  -- STR: 1
-INSERT INTO `item_mods` VALUES (12659,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (12659,1,18);   -- DEF: 18
+INSERT INTO `item_mods` VALUES (12659,2,32);   -- HP: 32
+INSERT INTO `item_mods` VALUES (12659,8,1);    -- STR: 1
+INSERT INTO `item_mods` VALUES (12659,14,1);   -- CHR: 1
+INSERT INTO `item_mods` VALUES (12659,276,64); -- RSE (race specific equip)
 
 -- Elders Surcoat
-INSERT INTO `item_mods` VALUES (12660,1,18); -- DEF: 18
-INSERT INTO `item_mods` VALUES (12660,5,32); -- MP: 32
-INSERT INTO `item_mods` VALUES (12660,12,1); -- INT: 1
-INSERT INTO `item_mods` VALUES (12660,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (12660,1,18);    -- DEF: 18
+INSERT INTO `item_mods` VALUES (12660,5,32);    -- MP: 32
+INSERT INTO `item_mods` VALUES (12660,12,1);    -- INT: 1
+INSERT INTO `item_mods` VALUES (12660,14,1);    -- CHR: 1
+INSERT INTO `item_mods` VALUES (12660,276,128); -- RSE (race specific equip)
 
 -- Solid Mail
 INSERT INTO `item_mods` VALUES (12661,1,12); -- DEF: 12
@@ -13533,7 +13648,7 @@ INSERT INTO `item_mods` VALUES (12700,20,-1); -- WATER_RES: -1
 INSERT INTO `item_mods` VALUES (12701,1,24);    -- DEF: 24
 INSERT INTO `item_mods` VALUES (12701,2,20);    -- HP: 20
 INSERT INTO `item_mods` VALUES (12701,23,5);    -- ATT: 5
-INSERT INTO `item_mods` VALUES (12701,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (12701,75,-5);   -- MOVE_SPEED_STACKABLE: -5
 INSERT INTO `item_mods` VALUES (12701,384,300); -- HASTE_GEAR: 300
 
 -- Tiger Gloves
@@ -13747,25 +13862,32 @@ INSERT INTO `item_mods` VALUES (12753,1,3);  -- DEF: 3
 INSERT INTO `item_mods` VALUES (12753,23,3); -- ATT: 3
 
 -- Hume M Gloves
-INSERT INTO `item_mods` VALUES (12754,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (12754,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (12754,276,1); -- RSE (race specific equip)
 
 -- Elvaan Gloves
-INSERT INTO `item_mods` VALUES (12755,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (12755,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (12755,276,4); -- RSE (race specific equip)
 
 -- Tarutaru Mitts
-INSERT INTO `item_mods` VALUES (12756,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (12756,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (12756,276,48); -- RSE (race specific equip)
 
 -- Mithran Gauntlets
-INSERT INTO `item_mods` VALUES (12757,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (12757,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (12757,276,64); -- RSE (race specific equip)
 
 -- Galkan Bracers
-INSERT INTO `item_mods` VALUES (12758,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (12758,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (12758,276,128); -- RSE (race specific equip)
 
 -- Elvaan Gauntlets
-INSERT INTO `item_mods` VALUES (12759,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (12759,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (12759,276,8); -- RSE (race specific equip)
 
 -- Hume F Gloves
-INSERT INTO `item_mods` VALUES (12760,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (12760,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (12760,276,2); -- RSE (race specific equip)
 
 -- Custom M Gloves
 INSERT INTO `item_mods` VALUES (12761,1,6);   -- DEF: 6
@@ -13775,6 +13897,7 @@ INSERT INTO `item_mods` VALUES (12761,8,3);   -- STR: 3
 INSERT INTO `item_mods` VALUES (12761,9,3);   -- DEX: 3
 INSERT INTO `item_mods` VALUES (12761,10,-1); -- VIT: -1
 INSERT INTO `item_mods` VALUES (12761,11,-1); -- AGI: -1
+INSERT INTO `item_mods` VALUES (12761,276,1); -- RSE (race specific equip)
 
 -- Custom F Gloves
 INSERT INTO `item_mods` VALUES (12762,1,6);   -- DEF: 6
@@ -13784,34 +13907,40 @@ INSERT INTO `item_mods` VALUES (12762,8,3);   -- STR: 3
 INSERT INTO `item_mods` VALUES (12762,9,3);   -- DEX: 3
 INSERT INTO `item_mods` VALUES (12762,10,-1); -- VIT: -1
 INSERT INTO `item_mods` VALUES (12762,11,-1); -- AGI: -1
+INSERT INTO `item_mods` VALUES (12762,276,2); -- RSE (race specific equip)
 
 -- Magna Gauntlets
-INSERT INTO `item_mods` VALUES (12763,1,6);  -- DEF: 6
-INSERT INTO `item_mods` VALUES (12763,5,24); -- MP: 24
-INSERT INTO `item_mods` VALUES (12763,9,2);  -- DEX: 2
-INSERT INTO `item_mods` VALUES (12763,12,1); -- INT: 1
+INSERT INTO `item_mods` VALUES (12763,1,6);   -- DEF: 6
+INSERT INTO `item_mods` VALUES (12763,5,24);  -- MP: 24
+INSERT INTO `item_mods` VALUES (12763,9,2);   -- DEX: 2
+INSERT INTO `item_mods` VALUES (12763,12,1);  -- INT: 1
+INSERT INTO `item_mods` VALUES (12763,276,4); -- RSE (race specific equip)
 
 -- Magna Gloves
-INSERT INTO `item_mods` VALUES (12764,1,6);  -- DEF: 6
-INSERT INTO `item_mods` VALUES (12764,5,24); -- MP: 24
-INSERT INTO `item_mods` VALUES (12764,9,2);  -- DEX: 2
-INSERT INTO `item_mods` VALUES (12764,12,1); -- INT: 1
+INSERT INTO `item_mods` VALUES (12764,1,6);   -- DEF: 6
+INSERT INTO `item_mods` VALUES (12764,5,24);  -- MP: 24
+INSERT INTO `item_mods` VALUES (12764,9,2);   -- DEX: 2
+INSERT INTO `item_mods` VALUES (12764,12,1);  -- INT: 1
+INSERT INTO `item_mods` VALUES (12764,276,8); -- RSE (race specific equip)
 
 -- Wonder Mitts
-INSERT INTO `item_mods` VALUES (12765,1,6);  -- DEF: 6
-INSERT INTO `item_mods` VALUES (12765,2,12); -- HP: 12
-INSERT INTO `item_mods` VALUES (12765,8,3);  -- STR: 3
+INSERT INTO `item_mods` VALUES (12765,1,6);    -- DEF: 6
+INSERT INTO `item_mods` VALUES (12765,2,12);   -- HP: 12
+INSERT INTO `item_mods` VALUES (12765,8,3);    -- STR: 3
+INSERT INTO `item_mods` VALUES (12765,276,48); -- RSE (race specific equip)
 
 -- Savage Gauntlets
-INSERT INTO `item_mods` VALUES (12766,1,6);  -- DEF: 6
-INSERT INTO `item_mods` VALUES (12766,5,16); -- MP: 16
-INSERT INTO `item_mods` VALUES (12766,10,4); -- VIT: 4
-INSERT INTO `item_mods` VALUES (12766,13,2); -- MND: 2
+INSERT INTO `item_mods` VALUES (12766,1,6);    -- DEF: 6
+INSERT INTO `item_mods` VALUES (12766,5,16);   -- MP: 16
+INSERT INTO `item_mods` VALUES (12766,10,4);   -- VIT: 4
+INSERT INTO `item_mods` VALUES (12766,13,2);   -- MND: 2
+INSERT INTO `item_mods` VALUES (12766,276,64); -- RSE (race specific equip)
 
 -- Elders Bracers
-INSERT INTO `item_mods` VALUES (12767,1,6);  -- DEF: 6
-INSERT INTO `item_mods` VALUES (12767,5,32); -- MP: 32
-INSERT INTO `item_mods` VALUES (12767,12,2); -- INT: 2
+INSERT INTO `item_mods` VALUES (12767,1,6);     -- DEF: 6
+INSERT INTO `item_mods` VALUES (12767,5,32);    -- MP: 32
+INSERT INTO `item_mods` VALUES (12767,12,2);    -- INT: 2
+INSERT INTO `item_mods` VALUES (12767,276,128); -- RSE (race specific equip)
 
 -- Solid Finger Gauntlets
 INSERT INTO `item_mods` VALUES (12768,1,4); -- DEF: 4
@@ -14230,52 +14359,59 @@ INSERT INTO `item_mods` VALUES (12870,1,17); -- DEF: 17
 INSERT INTO `item_mods` VALUES (12870,68,5); -- EVA: 5
 
 -- Custom Slacks
-INSERT INTO `item_mods` VALUES (12871,1,12); -- DEF: 12
-INSERT INTO `item_mods` VALUES (12871,5,32); -- MP: 32
-INSERT INTO `item_mods` VALUES (12871,8,-1); -- STR: -1
-INSERT INTO `item_mods` VALUES (12871,13,3); -- MND: 3
-INSERT INTO `item_mods` VALUES (12871,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (12871,1,12);  -- DEF: 12
+INSERT INTO `item_mods` VALUES (12871,5,32);  -- MP: 32
+INSERT INTO `item_mods` VALUES (12871,8,-1);  -- STR: -1
+INSERT INTO `item_mods` VALUES (12871,13,3);  -- MND: 3
+INSERT INTO `item_mods` VALUES (12871,14,1);  -- CHR: 1
+INSERT INTO `item_mods` VALUES (12871,276,1); -- RSE (race specific equip)
 
 -- Custom Pants
-INSERT INTO `item_mods` VALUES (12872,1,12); -- DEF: 12
-INSERT INTO `item_mods` VALUES (12872,5,32); -- MP: 32
-INSERT INTO `item_mods` VALUES (12872,8,-1); -- STR: -1
-INSERT INTO `item_mods` VALUES (12872,13,3); -- MND: 3
-INSERT INTO `item_mods` VALUES (12872,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (12872,1,12);  -- DEF: 12
+INSERT INTO `item_mods` VALUES (12872,5,32);  -- MP: 32
+INSERT INTO `item_mods` VALUES (12872,8,-1);  -- STR: -1
+INSERT INTO `item_mods` VALUES (12872,13,3);  -- MND: 3
+INSERT INTO `item_mods` VALUES (12872,14,1);  -- CHR: 1
+INSERT INTO `item_mods` VALUES (12872,276,2); -- RSE (race specific equip)
 
 -- Magna M Chausses
-INSERT INTO `item_mods` VALUES (12873,1,12); -- DEF: 12
-INSERT INTO `item_mods` VALUES (12873,2,12); -- HP: 12
-INSERT INTO `item_mods` VALUES (12873,5,12); -- MP: 12
-INSERT INTO `item_mods` VALUES (12873,9,2);  -- DEX: 2
-INSERT INTO `item_mods` VALUES (12873,11,2); -- AGI: 2
+INSERT INTO `item_mods` VALUES (12873,1,12);  -- DEF: 12
+INSERT INTO `item_mods` VALUES (12873,2,12);  -- HP: 12
+INSERT INTO `item_mods` VALUES (12873,5,12);  -- MP: 12
+INSERT INTO `item_mods` VALUES (12873,9,2);   -- DEX: 2
+INSERT INTO `item_mods` VALUES (12873,11,2);  -- AGI: 2
+INSERT INTO `item_mods` VALUES (12873,276,4); -- RSE (race specific equip)
 
 -- Magna F Chausses
-INSERT INTO `item_mods` VALUES (12874,1,12); -- DEF: 12
-INSERT INTO `item_mods` VALUES (12874,2,12); -- HP: 12
-INSERT INTO `item_mods` VALUES (12874,5,12); -- MP: 12
-INSERT INTO `item_mods` VALUES (12874,9,2);  -- DEX: 2
-INSERT INTO `item_mods` VALUES (12874,11,2); -- AGI: 2
+INSERT INTO `item_mods` VALUES (12874,1,12);  -- DEF: 12
+INSERT INTO `item_mods` VALUES (12874,2,12);  -- HP: 12
+INSERT INTO `item_mods` VALUES (12874,5,12);  -- MP: 12
+INSERT INTO `item_mods` VALUES (12874,9,2);   -- DEX: 2
+INSERT INTO `item_mods` VALUES (12874,11,2);  -- AGI: 2
+INSERT INTO `item_mods` VALUES (12874,276,8); -- RSE (race specific equip)
 
 -- Wonder Braccae
-INSERT INTO `item_mods` VALUES (12875,1,12); -- DEF: 12
-INSERT INTO `item_mods` VALUES (12875,2,21); -- HP: 21
-INSERT INTO `item_mods` VALUES (12875,8,1);  -- STR: 1
-INSERT INTO `item_mods` VALUES (12875,10,2); -- VIT: 2
-INSERT INTO `item_mods` VALUES (12875,13,2); -- MND: 2
+INSERT INTO `item_mods` VALUES (12875,1,12);   -- DEF: 12
+INSERT INTO `item_mods` VALUES (12875,2,21);   -- HP: 21
+INSERT INTO `item_mods` VALUES (12875,8,1);    -- STR: 1
+INSERT INTO `item_mods` VALUES (12875,10,2);   -- VIT: 2
+INSERT INTO `item_mods` VALUES (12875,13,2);   -- MND: 2
+INSERT INTO `item_mods` VALUES (12875,276,48); -- RSE (race specific equip)
 
 -- Savage Loincloth
-INSERT INTO `item_mods` VALUES (12876,1,12); -- DEF: 12
-INSERT INTO `item_mods` VALUES (12876,5,32); -- MP: 32
-INSERT INTO `item_mods` VALUES (12876,10,1); -- VIT: 1
-INSERT INTO `item_mods` VALUES (12876,13,1); -- MND: 1
+INSERT INTO `item_mods` VALUES (12876,1,12);   -- DEF: 12
+INSERT INTO `item_mods` VALUES (12876,5,32);   -- MP: 32
+INSERT INTO `item_mods` VALUES (12876,10,1);   -- VIT: 1
+INSERT INTO `item_mods` VALUES (12876,13,1);   -- MND: 1
+INSERT INTO `item_mods` VALUES (12876,276,64); -- RSE (race specific equip)
 
 -- Elders Braguette
-INSERT INTO `item_mods` VALUES (12877,1,12); -- DEF: 12
-INSERT INTO `item_mods` VALUES (12877,5,20); -- MP: 20
-INSERT INTO `item_mods` VALUES (12877,11,2); -- AGI: 2
-INSERT INTO `item_mods` VALUES (12877,12,1); -- INT: 1
-INSERT INTO `item_mods` VALUES (12877,14,2); -- CHR: 2
+INSERT INTO `item_mods` VALUES (12877,1,12);    -- DEF: 12
+INSERT INTO `item_mods` VALUES (12877,5,20);    -- MP: 20
+INSERT INTO `item_mods` VALUES (12877,11,2);    -- AGI: 2
+INSERT INTO `item_mods` VALUES (12877,12,1);    -- INT: 1
+INSERT INTO `item_mods` VALUES (12877,14,2);    -- CHR: 2
+INSERT INTO `item_mods` VALUES (12877,276,128); -- RSE (race specific equip)
 
 -- Coral Subligar
 INSERT INTO `item_mods` VALUES (12878,1,29);     -- DEF: 29
@@ -14285,11 +14421,11 @@ INSERT INTO `item_mods` VALUES (12878,14,1);     -- CHR: 1
 INSERT INTO `item_mods` VALUES (12878,163,-200); -- DMGMAGIC: -200
 
 -- Dusk Trousers
-INSERT INTO `item_mods` VALUES (12879,1,47);    -- DEF: 47
-INSERT INTO `item_mods` VALUES (12879,2,35);    -- HP: 35
-INSERT INTO `item_mods` VALUES (12879,23,14);   -- ATT: 14
-INSERT INTO `item_mods` VALUES (12879,26,10);   -- RACC: 10
-INSERT INTO `item_mods` VALUES (12879,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (12879,1,47);  -- DEF: 47
+INSERT INTO `item_mods` VALUES (12879,2,35);  -- HP: 35
+INSERT INTO `item_mods` VALUES (12879,23,14); -- ATT: 14
+INSERT INTO `item_mods` VALUES (12879,26,10); -- RACC: 10
+INSERT INTO `item_mods` VALUES (12879,75,-5); -- MOVE_SPEED_STACKABLE: -5
 
 -- Ogre Trousers
 INSERT INTO `item_mods` VALUES (12880,1,31);   -- DEF: 31
@@ -14309,25 +14445,32 @@ INSERT INTO `item_mods` VALUES (12882,1,12); -- DEF: 12
 INSERT INTO `item_mods` VALUES (12882,10,1); -- VIT: 1
 
 -- Hume Slacks
-INSERT INTO `item_mods` VALUES (12883,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12883,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12883,276,1); -- RSE (race specific equip)
 
 -- Hume Pants
-INSERT INTO `item_mods` VALUES (12884,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12884,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12884,276,2); -- RSE (race specific equip)
 
 -- Elvaan M Chausses
-INSERT INTO `item_mods` VALUES (12885,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12885,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12885,276,4); -- RSE (race specific equip)
 
 -- Tarutaru Braccae
-INSERT INTO `item_mods` VALUES (12886,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12886,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (12886,276,48); -- RSE (race specific equip)
 
 -- Mithran Loincloth
-INSERT INTO `item_mods` VALUES (12887,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12887,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (12887,276,64); -- RSE (race specific equip)
 
 -- Galkan Braguette
-INSERT INTO `item_mods` VALUES (12888,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12888,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (12888,276,128); -- RSE (race specific equip)
 
 -- Elvaan F Chausses
-INSERT INTO `item_mods` VALUES (12889,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (12889,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (12889,276,8); -- RSE (race specific equip)
 
 -- Chain Hose +1
 INSERT INTO `item_mods` VALUES (12890,1,17); -- DEF: 17
@@ -14608,7 +14751,7 @@ INSERT INTO `item_mods` VALUES (12956,20,-1); -- WATER_RES: -1
 INSERT INTO `item_mods` VALUES (12957,1,23);    -- DEF: 23
 INSERT INTO `item_mods` VALUES (12957,2,25);    -- HP: 25
 INSERT INTO `item_mods` VALUES (12957,23,4);    -- ATT: 4
-INSERT INTO `item_mods` VALUES (12957,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (12957,75,-5);   -- MOVE_SPEED_STACKABLE: -5
 INSERT INTO `item_mods` VALUES (12957,384,200); -- HASTE_GEAR: 200
 
 -- Tiger Ledelsens
@@ -14814,25 +14957,32 @@ INSERT INTO `item_mods` VALUES (13004,15,3); -- FIRE_RES: 3
 INSERT INTO `item_mods` VALUES (13004,16,3); -- ICE_RES: 3
 
 -- Hume M Boots
-INSERT INTO `item_mods` VALUES (13005,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13005,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (13005,276,1); -- RSE (race specific equip)
 
 -- Elvaan M Ledelsens
-INSERT INTO `item_mods` VALUES (13006,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13006,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (13006,276,4); -- RSE (race specific equip)
 
 -- Tarutaru Clomps
-INSERT INTO `item_mods` VALUES (13007,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13007,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (13007,276,48); -- RSE (race specific equip)
 
 -- Mithran Gaiters
-INSERT INTO `item_mods` VALUES (13008,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13008,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (13008,276,64); -- RSE (race specific equip)
 
 -- Galkan Sandals
-INSERT INTO `item_mods` VALUES (13009,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13009,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (13009,276,128); -- RSE (race specific equip)
 
 -- Hume F Boots
-INSERT INTO `item_mods` VALUES (13010,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13010,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (13010,276,2); -- RSE (race specific equip)
 
 -- Elvaan F Ledelsens
-INSERT INTO `item_mods` VALUES (13011,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13011,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (13011,276,8); -- RSE (race specific equip)
 
 -- Power Sandals
 INSERT INTO `item_mods` VALUES (13012,1,3);  -- DEF: 3
@@ -14857,6 +15007,7 @@ INSERT INTO `item_mods` VALUES (13015,9,-1);  -- DEX: -1
 INSERT INTO `item_mods` VALUES (13015,11,3);  -- AGI: 3
 INSERT INTO `item_mods` VALUES (13015,12,3);  -- INT: 3
 INSERT INTO `item_mods` VALUES (13015,13,-1); -- MND: -1
+INSERT INTO `item_mods` VALUES (13015,276,1); -- RSE (race specific equip)
 
 -- Custom F Boots
 INSERT INTO `item_mods` VALUES (13016,1,5);   -- DEF: 5
@@ -14866,35 +15017,41 @@ INSERT INTO `item_mods` VALUES (13016,9,-1);  -- DEX: -1
 INSERT INTO `item_mods` VALUES (13016,11,3);  -- AGI: 3
 INSERT INTO `item_mods` VALUES (13016,12,3);  -- INT: 3
 INSERT INTO `item_mods` VALUES (13016,13,-1); -- MND: -1
+INSERT INTO `item_mods` VALUES (13016,276,2); -- RSE (race specific equip)
 
 -- Magna M Ledelsens
-INSERT INTO `item_mods` VALUES (13017,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (13017,5,20); -- MP: 20
-INSERT INTO `item_mods` VALUES (13017,11,3); -- AGI: 3
-INSERT INTO `item_mods` VALUES (13017,12,2); -- INT: 2
+INSERT INTO `item_mods` VALUES (13017,1,5);   -- DEF: 5
+INSERT INTO `item_mods` VALUES (13017,5,20);  -- MP: 20
+INSERT INTO `item_mods` VALUES (13017,11,3);  -- AGI: 3
+INSERT INTO `item_mods` VALUES (13017,12,2);  -- INT: 2
+INSERT INTO `item_mods` VALUES (13017,276,4); -- RSE (race specific equip)
 
 -- Magna F Ledelsens
-INSERT INTO `item_mods` VALUES (13018,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (13018,5,20); -- MP: 20
-INSERT INTO `item_mods` VALUES (13018,11,3); -- AGI: 3
-INSERT INTO `item_mods` VALUES (13018,12,2); -- INT: 2
+INSERT INTO `item_mods` VALUES (13018,1,5);   -- DEF: 5
+INSERT INTO `item_mods` VALUES (13018,5,20);  -- MP: 20
+INSERT INTO `item_mods` VALUES (13018,11,3);  -- AGI: 3
+INSERT INTO `item_mods` VALUES (13018,12,2);  -- INT: 2
+INSERT INTO `item_mods` VALUES (13018,276,8); -- RSE (race specific equip)
 
 -- Wonder Clomps
-INSERT INTO `item_mods` VALUES (13019,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (13019,2,20); -- HP: 20
-INSERT INTO `item_mods` VALUES (13019,8,2);  -- STR: 2
+INSERT INTO `item_mods` VALUES (13019,1,5);    -- DEF: 5
+INSERT INTO `item_mods` VALUES (13019,2,20);   -- HP: 20
+INSERT INTO `item_mods` VALUES (13019,8,2);    -- STR: 2
+INSERT INTO `item_mods` VALUES (13019,276,48); -- RSE (race specific equip)
 
 -- Savage Gaiters
-INSERT INTO `item_mods` VALUES (13020,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (13020,2,16); -- HP: 16
-INSERT INTO `item_mods` VALUES (13020,8,3);  -- STR: 3
-INSERT INTO `item_mods` VALUES (13020,14,2); -- CHR: 2
+INSERT INTO `item_mods` VALUES (13020,1,5);    -- DEF: 5
+INSERT INTO `item_mods` VALUES (13020,2,16);   -- HP: 16
+INSERT INTO `item_mods` VALUES (13020,8,3);    -- STR: 3
+INSERT INTO `item_mods` VALUES (13020,14,2);   -- CHR: 2
+INSERT INTO `item_mods` VALUES (13020,276,64); -- RSE (race specific equip)
 
 -- Elders Sandals
-INSERT INTO `item_mods` VALUES (13021,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (13021,5,12); -- MP: 12
-INSERT INTO `item_mods` VALUES (13021,11,3); -- AGI: 3
-INSERT INTO `item_mods` VALUES (13021,12,2); -- INT: 2
+INSERT INTO `item_mods` VALUES (13021,1,5);     -- DEF: 5
+INSERT INTO `item_mods` VALUES (13021,5,12);    -- MP: 12
+INSERT INTO `item_mods` VALUES (13021,11,3);    -- AGI: 3
+INSERT INTO `item_mods` VALUES (13021,12,2);    -- INT: 2
+INSERT INTO `item_mods` VALUES (13021,276,128); -- RSE (race specific equip)
 
 -- Chestnut Sabots +1
 INSERT INTO `item_mods` VALUES (13022,1,6); -- DEF: 6
@@ -15819,129 +15976,149 @@ INSERT INTO `item_mods` VALUES (13251,2,30);  -- HP: 30
 INSERT INTO `item_mods` VALUES (13251,8,3);   -- STR: 3
 INSERT INTO `item_mods` VALUES (13251,9,2);   -- DEX: 2
 INSERT INTO `item_mods` VALUES (13251,12,-5); -- INT: -5
+INSERT INTO `item_mods` VALUES (13251,276,3); -- RSE (race specific equip)
 
 -- Forest Belt
-INSERT INTO `item_mods` VALUES (13252,1,5);   -- DEF: 5
-INSERT INTO `item_mods` VALUES (13252,2,20);  -- HP: 20
-INSERT INTO `item_mods` VALUES (13252,9,3);   -- DEX: 3
-INSERT INTO `item_mods` VALUES (13252,11,2);  -- AGI: 2
-INSERT INTO `item_mods` VALUES (13252,13,-5); -- MND: -5
+INSERT INTO `item_mods` VALUES (13252,1,5);    -- DEF: 5
+INSERT INTO `item_mods` VALUES (13252,2,20);   -- HP: 20
+INSERT INTO `item_mods` VALUES (13252,9,3);    -- DEX: 3
+INSERT INTO `item_mods` VALUES (13252,11,2);   -- AGI: 2
+INSERT INTO `item_mods` VALUES (13252,13,-5);  -- MND: -5
+INSERT INTO `item_mods` VALUES (13252,276,12); -- RSE (race specific equip)
 
 -- Steppe Belt
-INSERT INTO `item_mods` VALUES (13253,1,3);   -- DEF: 3
-INSERT INTO `item_mods` VALUES (13253,2,40);  -- HP: 40
-INSERT INTO `item_mods` VALUES (13253,8,2);   -- STR: 2
-INSERT INTO `item_mods` VALUES (13253,10,3);  -- VIT: 3
-INSERT INTO `item_mods` VALUES (13253,12,-5); -- INT: -5
+INSERT INTO `item_mods` VALUES (13253,1,3);    -- DEF: 3
+INSERT INTO `item_mods` VALUES (13253,2,40);   -- HP: 40
+INSERT INTO `item_mods` VALUES (13253,8,2);    -- STR: 2
+INSERT INTO `item_mods` VALUES (13253,10,3);   -- VIT: 3
+INSERT INTO `item_mods` VALUES (13253,12,-5);  -- INT: -5
+INSERT INTO `item_mods` VALUES (13253,276,48); -- RSE (race specific equip)
 
 -- Jungle Belt
-INSERT INTO `item_mods` VALUES (13254,1,4);   -- DEF: 4
-INSERT INTO `item_mods` VALUES (13254,2,30);  -- HP: 30
-INSERT INTO `item_mods` VALUES (13254,8,3);   -- STR: 3
-INSERT INTO `item_mods` VALUES (13254,10,2);  -- VIT: 2
-INSERT INTO `item_mods` VALUES (13254,12,-5); -- INT: -5
+INSERT INTO `item_mods` VALUES (13254,1,4);    -- DEF: 4
+INSERT INTO `item_mods` VALUES (13254,2,30);   -- HP: 30
+INSERT INTO `item_mods` VALUES (13254,8,3);    -- STR: 3
+INSERT INTO `item_mods` VALUES (13254,10,2);   -- VIT: 2
+INSERT INTO `item_mods` VALUES (13254,12,-5);  -- INT: -5
+INSERT INTO `item_mods` VALUES (13254,276,64); -- RSE (race specific equip)
 
 -- Desert Belt
-INSERT INTO `item_mods` VALUES (13255,1,5);   -- DEF: 5
-INSERT INTO `item_mods` VALUES (13255,2,20);  -- HP: 20
-INSERT INTO `item_mods` VALUES (13255,8,2);   -- STR: 2
-INSERT INTO `item_mods` VALUES (13255,11,3);  -- AGI: 3
-INSERT INTO `item_mods` VALUES (13255,12,-5); -- INT: -5
+INSERT INTO `item_mods` VALUES (13255,1,5);     -- DEF: 5
+INSERT INTO `item_mods` VALUES (13255,2,20);    -- HP: 20
+INSERT INTO `item_mods` VALUES (13255,8,2);     -- STR: 2
+INSERT INTO `item_mods` VALUES (13255,11,3);    -- AGI: 3
+INSERT INTO `item_mods` VALUES (13255,12,-5);   -- INT: -5
+INSERT INTO `item_mods` VALUES (13255,276,128); -- RSE (race specific equip)
 
 -- Ocean Stone
-INSERT INTO `item_mods` VALUES (13256,1,2);  -- DEF: 2
-INSERT INTO `item_mods` VALUES (13256,5,30); -- MP: 30
-INSERT INTO `item_mods` VALUES (13256,8,-5); -- STR: -5
-INSERT INTO `item_mods` VALUES (13256,12,3); -- INT: 3
-INSERT INTO `item_mods` VALUES (13256,13,2); -- MND: 2
+INSERT INTO `item_mods` VALUES (13256,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (13256,5,30);  -- MP: 30
+INSERT INTO `item_mods` VALUES (13256,8,-5);  -- STR: -5
+INSERT INTO `item_mods` VALUES (13256,12,3);  -- INT: 3
+INSERT INTO `item_mods` VALUES (13256,13,2);  -- MND: 2
+INSERT INTO `item_mods` VALUES (13256,276,3); -- RSE (race specific equip)
 
 -- Forest Stone
-INSERT INTO `item_mods` VALUES (13257,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (13257,5,40); -- MP: 40
-INSERT INTO `item_mods` VALUES (13257,9,-5); -- DEX: -5
-INSERT INTO `item_mods` VALUES (13257,11,2); -- AGI: 2
-INSERT INTO `item_mods` VALUES (13257,12,3); -- INT: 3
+INSERT INTO `item_mods` VALUES (13257,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (13257,5,40);   -- MP: 40
+INSERT INTO `item_mods` VALUES (13257,9,-5);   -- DEX: -5
+INSERT INTO `item_mods` VALUES (13257,11,2);   -- AGI: 2
+INSERT INTO `item_mods` VALUES (13257,12,3);   -- INT: 3
+INSERT INTO `item_mods` VALUES (13257,276,12); -- RSE (race specific equip)
 
 -- Steppe Stone
-INSERT INTO `item_mods` VALUES (13258,1,3);  -- DEF: 3
-INSERT INTO `item_mods` VALUES (13258,5,20); -- MP: 20
-INSERT INTO `item_mods` VALUES (13258,8,-5); -- STR: -5
-INSERT INTO `item_mods` VALUES (13258,10,2); -- VIT: 2
-INSERT INTO `item_mods` VALUES (13258,13,3); -- MND: 3
+INSERT INTO `item_mods` VALUES (13258,1,3);    -- DEF: 3
+INSERT INTO `item_mods` VALUES (13258,5,20);   -- MP: 20
+INSERT INTO `item_mods` VALUES (13258,8,-5);   -- STR: -5
+INSERT INTO `item_mods` VALUES (13258,10,2);   -- VIT: 2
+INSERT INTO `item_mods` VALUES (13258,13,3);   -- MND: 3
+INSERT INTO `item_mods` VALUES (13258,276,48); -- RSE (race specific equip)
 
 -- Jungle Stone
-INSERT INTO `item_mods` VALUES (13259,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (13259,5,30);  -- MP: 30
-INSERT INTO `item_mods` VALUES (13259,11,-5); -- AGI: -5
-INSERT INTO `item_mods` VALUES (13259,12,2);  -- INT: 2
-INSERT INTO `item_mods` VALUES (13259,13,3);  -- MND: 3
+INSERT INTO `item_mods` VALUES (13259,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (13259,5,30);   -- MP: 30
+INSERT INTO `item_mods` VALUES (13259,11,-5);  -- AGI: -5
+INSERT INTO `item_mods` VALUES (13259,12,2);   -- INT: 2
+INSERT INTO `item_mods` VALUES (13259,13,3);   -- MND: 3
+INSERT INTO `item_mods` VALUES (13259,276,64); -- RSE (race specific equip)
 
 -- Desert Stone
-INSERT INTO `item_mods` VALUES (13260,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (13260,5,40); -- MP: 40
-INSERT INTO `item_mods` VALUES (13260,9,-5); -- DEX: -5
-INSERT INTO `item_mods` VALUES (13260,12,3); -- INT: 3
-INSERT INTO `item_mods` VALUES (13260,14,2); -- CHR: 2
+INSERT INTO `item_mods` VALUES (13260,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (13260,5,40);    -- MP: 40
+INSERT INTO `item_mods` VALUES (13260,9,-5);    -- DEX: -5
+INSERT INTO `item_mods` VALUES (13260,12,3);    -- INT: 3
+INSERT INTO `item_mods` VALUES (13260,14,2);    -- CHR: 2
+INSERT INTO `item_mods` VALUES (13260,276,128); -- RSE (race specific equip)
 
 -- Ocean Sash
 INSERT INTO `item_mods` VALUES (13261,1,6);   -- DEF: 6
 INSERT INTO `item_mods` VALUES (13261,2,45);  -- HP: 45
 INSERT INTO `item_mods` VALUES (13261,8,4);   -- STR: 4
 INSERT INTO `item_mods` VALUES (13261,12,-4); -- INT: -4
+INSERT INTO `item_mods` VALUES (13261,276,3); -- RSE (race specific equip)
 
 -- Forest Sash
-INSERT INTO `item_mods` VALUES (13262,1,7);   -- DEF: 7
-INSERT INTO `item_mods` VALUES (13262,2,30);  -- HP: 30
-INSERT INTO `item_mods` VALUES (13262,9,4);   -- DEX: 4
-INSERT INTO `item_mods` VALUES (13262,12,-4); -- INT: -4
+INSERT INTO `item_mods` VALUES (13262,1,7);    -- DEF: 7
+INSERT INTO `item_mods` VALUES (13262,2,30);   -- HP: 30
+INSERT INTO `item_mods` VALUES (13262,9,4);    -- DEX: 4
+INSERT INTO `item_mods` VALUES (13262,12,-4);  -- INT: -4
+INSERT INTO `item_mods` VALUES (13262,276,12); -- RSE (race specific equip)
 
 -- Steppe Sash
-INSERT INTO `item_mods` VALUES (13263,1,5);   -- DEF: 5
-INSERT INTO `item_mods` VALUES (13263,2,60);  -- HP: 60
-INSERT INTO `item_mods` VALUES (13263,10,4);  -- VIT: 4
-INSERT INTO `item_mods` VALUES (13263,13,-4); -- MND: -4
+INSERT INTO `item_mods` VALUES (13263,1,5);    -- DEF: 5
+INSERT INTO `item_mods` VALUES (13263,2,60);   -- HP: 60
+INSERT INTO `item_mods` VALUES (13263,10,4);   -- VIT: 4
+INSERT INTO `item_mods` VALUES (13263,13,-4);  -- MND: -4
+INSERT INTO `item_mods` VALUES (13263,276,48); -- RSE (race specific equip)
 
 -- Jungle Sash
-INSERT INTO `item_mods` VALUES (13264,1,6);   -- DEF: 6
-INSERT INTO `item_mods` VALUES (13264,2,45);  -- HP: 45
-INSERT INTO `item_mods` VALUES (13264,8,4);   -- STR: 4
-INSERT INTO `item_mods` VALUES (13264,13,-4); -- MND: -4
+INSERT INTO `item_mods` VALUES (13264,1,6);    -- DEF: 6
+INSERT INTO `item_mods` VALUES (13264,2,45);   -- HP: 45
+INSERT INTO `item_mods` VALUES (13264,8,4);    -- STR: 4
+INSERT INTO `item_mods` VALUES (13264,13,-4);  -- MND: -4
+INSERT INTO `item_mods` VALUES (13264,276,64); -- RSE (race specific equip)
 
 -- Desert Sash
-INSERT INTO `item_mods` VALUES (13265,1,7);   -- DEF: 7
-INSERT INTO `item_mods` VALUES (13265,2,30);  -- HP: 30
-INSERT INTO `item_mods` VALUES (13265,11,4);  -- AGI: 4
-INSERT INTO `item_mods` VALUES (13265,12,-4); -- INT: -4
+INSERT INTO `item_mods` VALUES (13265,1,7);     -- DEF: 7
+INSERT INTO `item_mods` VALUES (13265,2,30);    -- HP: 30
+INSERT INTO `item_mods` VALUES (13265,11,4);    -- AGI: 4
+INSERT INTO `item_mods` VALUES (13265,12,-4);   -- INT: -4
+INSERT INTO `item_mods` VALUES (13265,276,128); -- RSE (race specific equip)
 
 -- Ocean Rope
-INSERT INTO `item_mods` VALUES (13266,1,4);  -- DEF: 4
-INSERT INTO `item_mods` VALUES (13266,5,45); -- MP: 45
-INSERT INTO `item_mods` VALUES (13266,8,-4); -- STR: -4
-INSERT INTO `item_mods` VALUES (13266,12,4); -- INT: 4
+INSERT INTO `item_mods` VALUES (13266,1,4);   -- DEF: 4
+INSERT INTO `item_mods` VALUES (13266,5,45);  -- MP: 45
+INSERT INTO `item_mods` VALUES (13266,8,-4);  -- STR: -4
+INSERT INTO `item_mods` VALUES (13266,12,4);  -- INT: 4
+INSERT INTO `item_mods` VALUES (13266,276,3); -- RSE (race specific equip)
 
 -- Forest Rope
-INSERT INTO `item_mods` VALUES (13267,1,3);  -- DEF: 3
-INSERT INTO `item_mods` VALUES (13267,5,60); -- MP: 60
-INSERT INTO `item_mods` VALUES (13267,9,-4); -- DEX: -4
-INSERT INTO `item_mods` VALUES (13267,12,4); -- INT: 4
+INSERT INTO `item_mods` VALUES (13267,1,3);    -- DEF: 3
+INSERT INTO `item_mods` VALUES (13267,5,60);   -- MP: 60
+INSERT INTO `item_mods` VALUES (13267,9,-4);   -- DEX: -4
+INSERT INTO `item_mods` VALUES (13267,12,4);   -- INT: 4
+INSERT INTO `item_mods` VALUES (13267,276,12); -- RSE (race specific equip)
 
 -- Steppe Rope
-INSERT INTO `item_mods` VALUES (13268,1,5);  -- DEF: 5
-INSERT INTO `item_mods` VALUES (13268,5,30); -- MP: 30
-INSERT INTO `item_mods` VALUES (13268,8,-4); -- STR: -4
-INSERT INTO `item_mods` VALUES (13268,13,4); -- MND: 4
+INSERT INTO `item_mods` VALUES (13268,1,5);    -- DEF: 5
+INSERT INTO `item_mods` VALUES (13268,5,30);   -- MP: 30
+INSERT INTO `item_mods` VALUES (13268,8,-4);   -- STR: -4
+INSERT INTO `item_mods` VALUES (13268,13,4);   -- MND: 4
+INSERT INTO `item_mods` VALUES (13268,276,48); -- RSE (race specific equip)
 
 -- Jungle Rope
-INSERT INTO `item_mods` VALUES (13269,1,4);  -- DEF: 4
-INSERT INTO `item_mods` VALUES (13269,5,45); -- MP: 45
-INSERT INTO `item_mods` VALUES (13269,9,-4); -- DEX: -4
-INSERT INTO `item_mods` VALUES (13269,12,4); -- INT: 4
+INSERT INTO `item_mods` VALUES (13269,1,4);    -- DEF: 4
+INSERT INTO `item_mods` VALUES (13269,5,45);   -- MP: 45
+INSERT INTO `item_mods` VALUES (13269,9,-4);   -- DEX: -4
+INSERT INTO `item_mods` VALUES (13269,12,4);   -- INT: 4
+INSERT INTO `item_mods` VALUES (13269,276,64); -- RSE (race specific equip)
 
 -- Desert Rope
-INSERT INTO `item_mods` VALUES (13270,1,3);   -- DEF: 3
-INSERT INTO `item_mods` VALUES (13270,5,60);  -- MP: 60
-INSERT INTO `item_mods` VALUES (13270,10,-4); -- VIT: -4
-INSERT INTO `item_mods` VALUES (13270,12,4);  -- INT: 4
+INSERT INTO `item_mods` VALUES (13270,1,3);     -- DEF: 3
+INSERT INTO `item_mods` VALUES (13270,5,60);    -- MP: 60
+INSERT INTO `item_mods` VALUES (13270,10,-4);   -- VIT: -4
+INSERT INTO `item_mods` VALUES (13270,12,4);    -- INT: 4
+INSERT INTO `item_mods` VALUES (13270,276,128); -- RSE (race specific equip)
 
 -- Corsette
 INSERT INTO `item_mods` VALUES (13271,1,4);   -- DEF: 4
@@ -18411,16 +18588,20 @@ INSERT INTO `item_mods` VALUES (13818,9,1);  -- DEX: 1
 INSERT INTO `item_mods` VALUES (13818,14,1); -- CHR: 1
 
 -- Onoko Yukata
-INSERT INTO `item_mods` VALUES (13819,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13819,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (13819,276,149); -- RSE (race specific equip)
 
 -- Omina Yukata
-INSERT INTO `item_mods` VALUES (13820,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (13820,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (13820,276,106); -- RSE (race specific equip)
 
 -- Lords Yukata
-INSERT INTO `item_mods` VALUES (13821,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (13821,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (13821,276,149); -- RSE (race specific equip)
 
 -- Ladys Yukata
-INSERT INTO `item_mods` VALUES (13822,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (13822,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (13822,276,106); -- RSE (race specific equip)
 
 -- Regen Cuirass
 INSERT INTO `item_mods` VALUES (13823,1,49); -- DEF: 49
@@ -19015,15 +19196,18 @@ INSERT INTO `item_mods` VALUES (13930,14,4);  -- CHR: 4
 INSERT INTO `item_mods` VALUES (13930,27,-6); -- ENMITY: -6
 
 -- Lilac Corsage
-INSERT INTO `item_mods` VALUES (13931,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (13931,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (13931,276,106); -- RSE (race specific equip)
 
 -- Gala Corsage
-INSERT INTO `item_mods` VALUES (13932,1,2);  -- DEF: 2
-INSERT INTO `item_mods` VALUES (13932,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (13932,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (13932,14,1);    -- CHR: 1
+INSERT INTO `item_mods` VALUES (13932,276,106); -- RSE (race specific equip)
 
 -- Bridal Corsage
-INSERT INTO `item_mods` VALUES (13933,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (13933,21,5); -- LIGHT_RES: 5
+INSERT INTO `item_mods` VALUES (13933,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (13933,21,5);    -- LIGHT_RES: 5
+INSERT INTO `item_mods` VALUES (13933,276,106); -- RSE (race specific equip)
 
 -- Shura Zunari Kabuto
 INSERT INTO `item_mods` VALUES (13934,1,20);  -- DEF: 20
@@ -19052,12 +19236,12 @@ INSERT INTO `item_mods` VALUES (13937,162,-600); -- DMGBREATH: -600
 INSERT INTO `item_mods` VALUES (13937,289,4);    -- SUBTLE_BLOW: 4
 
 -- Dusk Mask +1
-INSERT INTO `item_mods` VALUES (13938,1,32);    -- DEF: 32
-INSERT INTO `item_mods` VALUES (13938,2,32);    -- HP: 32
-INSERT INTO `item_mods` VALUES (13938,10,6);    -- VIT: 6
-INSERT INTO `item_mods` VALUES (13938,25,6);    -- ACC: 6
-INSERT INTO `item_mods` VALUES (13938,68,6);    -- EVA: 6
-INSERT INTO `item_mods` VALUES (13938,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (13938,1,32);  -- DEF: 32
+INSERT INTO `item_mods` VALUES (13938,2,32);  -- HP: 32
+INSERT INTO `item_mods` VALUES (13938,10,6);  -- VIT: 6
+INSERT INTO `item_mods` VALUES (13938,25,6);  -- ACC: 6
+INSERT INTO `item_mods` VALUES (13938,68,6);  -- EVA: 6
+INSERT INTO `item_mods` VALUES (13938,75,-5); -- MOVE_SPEED_STACKABLE: -5
 
 -- Austere Hat
 INSERT INTO `item_mods` VALUES (13939,1,13);  -- DEF: 13
@@ -20021,7 +20205,8 @@ INSERT INTO `item_mods` VALUES (14115,21,4);  -- LIGHT_RES: 4
 INSERT INTO `item_mods` VALUES (14115,22,-2); -- DARK_RES: -2
 
 -- Opaline Boots
-INSERT INTO `item_mods` VALUES (14116,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (14116,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (14116,276,106); -- RSE (race specific equip)
 
 -- Iron Greaves
 INSERT INTO `item_mods` VALUES (14118,1,8); -- DEF: 8
@@ -20051,12 +20236,14 @@ INSERT INTO `item_mods` VALUES (14124,12,3); -- INT: 3
 INSERT INTO `item_mods` VALUES (14124,14,3); -- CHR: 3
 
 -- Ceremonial Boots
-INSERT INTO `item_mods` VALUES (14125,1,2);  -- DEF: 2
-INSERT INTO `item_mods` VALUES (14125,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (14125,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (14125,14,1);    -- CHR: 1
+INSERT INTO `item_mods` VALUES (14125,276,106); -- RSE (race specific equip)
 
 -- Wedding Boots
-INSERT INTO `item_mods` VALUES (14126,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (14126,21,5); -- LIGHT_RES: 5
+INSERT INTO `item_mods` VALUES (14126,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (14126,21,5);    -- LIGHT_RES: 5
+INSERT INTO `item_mods` VALUES (14126,276,106); -- RSE (race specific equip)
 
 -- Thick Sollerets +1
 INSERT INTO `item_mods` VALUES (14127,1,13);  -- DEF: 13
@@ -20391,7 +20578,7 @@ INSERT INTO `item_mods` VALUES (14187,27,2); -- ENMITY: 2
 INSERT INTO `item_mods` VALUES (14188,1,24);    -- DEF: 24
 INSERT INTO `item_mods` VALUES (14188,2,27);    -- HP: 27
 INSERT INTO `item_mods` VALUES (14188,23,5);    -- ATT: 5
-INSERT INTO `item_mods` VALUES (14188,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (14188,75,-5);   -- MOVE_SPEED_STACKABLE: -5
 INSERT INTO `item_mods` VALUES (14188,384,300); -- HASTE_GEAR: 300
 
 -- Austere Sabots
@@ -20463,6 +20650,7 @@ INSERT INTO `item_mods` VALUES (14198,11,2);  -- AGI: 2
 INSERT INTO `item_mods` VALUES (14198,12,-3); -- INT: -3
 INSERT INTO `item_mods` VALUES (14198,13,-3); -- MND: -3
 INSERT INTO `item_mods` VALUES (14198,14,-3); -- CHR: -3
+INSERT INTO `item_mods` VALUES (14198,276,1); -- RSE (race specific equip)
 
 -- Marine F Boots
 INSERT INTO `item_mods` VALUES (14199,1,9);   -- DEF: 9
@@ -20474,50 +20662,57 @@ INSERT INTO `item_mods` VALUES (14199,11,2);  -- AGI: 2
 INSERT INTO `item_mods` VALUES (14199,12,-3); -- INT: -3
 INSERT INTO `item_mods` VALUES (14199,13,-3); -- MND: -3
 INSERT INTO `item_mods` VALUES (14199,14,-3); -- CHR: -3
+INSERT INTO `item_mods` VALUES (14199,276,2); -- RSE (race specific equip)
 
 -- Wood M Ledelsens
-INSERT INTO `item_mods` VALUES (14200,1,9);  -- DEF: 9
-INSERT INTO `item_mods` VALUES (14200,5,30); -- MP: 30
-INSERT INTO `item_mods` VALUES (14200,8,-3); -- STR: -3
-INSERT INTO `item_mods` VALUES (14200,11,6); -- AGI: 6
-INSERT INTO `item_mods` VALUES (14200,12,3); -- INT: 3
+INSERT INTO `item_mods` VALUES (14200,1,9);   -- DEF: 9
+INSERT INTO `item_mods` VALUES (14200,5,30);  -- MP: 30
+INSERT INTO `item_mods` VALUES (14200,8,-3);  -- STR: -3
+INSERT INTO `item_mods` VALUES (14200,11,6);  -- AGI: 6
+INSERT INTO `item_mods` VALUES (14200,12,3);  -- INT: 3
+INSERT INTO `item_mods` VALUES (14200,276,4); -- RSE (race specific equip)
 
 -- Wood F Ledelsens
-INSERT INTO `item_mods` VALUES (14201,1,9);  -- DEF: 9
-INSERT INTO `item_mods` VALUES (14201,5,30); -- MP: 30
-INSERT INTO `item_mods` VALUES (14201,8,-3); -- STR: -3
-INSERT INTO `item_mods` VALUES (14201,11,6); -- AGI: 6
-INSERT INTO `item_mods` VALUES (14201,12,3); -- INT: 3
+INSERT INTO `item_mods` VALUES (14201,1,9);   -- DEF: 9
+INSERT INTO `item_mods` VALUES (14201,5,30);  -- MP: 30
+INSERT INTO `item_mods` VALUES (14201,8,-3);  -- STR: -3
+INSERT INTO `item_mods` VALUES (14201,11,6);  -- AGI: 6
+INSERT INTO `item_mods` VALUES (14201,12,3);  -- INT: 3
+INSERT INTO `item_mods` VALUES (14201,276,8); -- RSE (race specific equip)
 
 -- Creek M Clomps
-INSERT INTO `item_mods` VALUES (14202,1,9);   -- DEF: 9
-INSERT INTO `item_mods` VALUES (14202,2,35);  -- HP: 35
-INSERT INTO `item_mods` VALUES (14202,5,-35); -- MP: -35
-INSERT INTO `item_mods` VALUES (14202,8,4);   -- STR: 4
-INSERT INTO `item_mods` VALUES (14202,10,4);  -- VIT: 4
-INSERT INTO `item_mods` VALUES (14202,12,-3); -- INT: -3
+INSERT INTO `item_mods` VALUES (14202,1,9);    -- DEF: 9
+INSERT INTO `item_mods` VALUES (14202,2,35);   -- HP: 35
+INSERT INTO `item_mods` VALUES (14202,5,-35);  -- MP: -35
+INSERT INTO `item_mods` VALUES (14202,8,4);    -- STR: 4
+INSERT INTO `item_mods` VALUES (14202,10,4);   -- VIT: 4
+INSERT INTO `item_mods` VALUES (14202,12,-3);  -- INT: -3
+INSERT INTO `item_mods` VALUES (14202,276,16); -- RSE (race specific equip)
 
 -- Creek F Clomps
-INSERT INTO `item_mods` VALUES (14203,1,9);   -- DEF: 9
-INSERT INTO `item_mods` VALUES (14203,2,35);  -- HP: 35
-INSERT INTO `item_mods` VALUES (14203,5,-35); -- MP: -35
-INSERT INTO `item_mods` VALUES (14203,8,4);   -- STR: 4
-INSERT INTO `item_mods` VALUES (14203,10,4);  -- VIT: 4
-INSERT INTO `item_mods` VALUES (14203,12,-3); -- INT: -3
+INSERT INTO `item_mods` VALUES (14203,1,9);    -- DEF: 9
+INSERT INTO `item_mods` VALUES (14203,2,35);   -- HP: 35
+INSERT INTO `item_mods` VALUES (14203,5,-35);  -- MP: -35
+INSERT INTO `item_mods` VALUES (14203,8,4);    -- STR: 4
+INSERT INTO `item_mods` VALUES (14203,10,4);   -- VIT: 4
+INSERT INTO `item_mods` VALUES (14203,12,-3);  -- INT: -3
+INSERT INTO `item_mods` VALUES (14203,276,32); -- RSE (race specific equip)
 
 -- River Gaiters
-INSERT INTO `item_mods` VALUES (14204,1,9);  -- DEF: 9
-INSERT INTO `item_mods` VALUES (14204,5,35); -- MP: 35
-INSERT INTO `item_mods` VALUES (14204,9,-3); -- DEX: -3
-INSERT INTO `item_mods` VALUES (14204,12,4); -- INT: 4
-INSERT INTO `item_mods` VALUES (14204,13,4); -- MND: 4
+INSERT INTO `item_mods` VALUES (14204,1,9);    -- DEF: 9
+INSERT INTO `item_mods` VALUES (14204,5,35);   -- MP: 35
+INSERT INTO `item_mods` VALUES (14204,9,-3);   -- DEX: -3
+INSERT INTO `item_mods` VALUES (14204,12,4);   -- INT: 4
+INSERT INTO `item_mods` VALUES (14204,13,4);   -- MND: 4
+INSERT INTO `item_mods` VALUES (14204,276,64); -- RSE (race specific equip)
 
 -- Dune Sandals
-INSERT INTO `item_mods` VALUES (14205,1,9);   -- DEF: 9
-INSERT INTO `item_mods` VALUES (14205,2,-20); -- HP: -20
-INSERT INTO `item_mods` VALUES (14205,5,45);  -- MP: 45
-INSERT INTO `item_mods` VALUES (14205,10,-3); -- VIT: -3
-INSERT INTO `item_mods` VALUES (14205,14,4);  -- CHR: 4
+INSERT INTO `item_mods` VALUES (14205,1,9);     -- DEF: 9
+INSERT INTO `item_mods` VALUES (14205,2,-20);   -- HP: -20
+INSERT INTO `item_mods` VALUES (14205,5,45);    -- MP: 45
+INSERT INTO `item_mods` VALUES (14205,10,-3);   -- VIT: -3
+INSERT INTO `item_mods` VALUES (14205,14,4);    -- CHR: 4
+INSERT INTO `item_mods` VALUES (14205,276,128); -- RSE (race specific equip)
 
 -- Garrison Boots
 INSERT INTO `item_mods` VALUES (14206,1,4);  -- DEF: 4
@@ -20776,15 +20971,18 @@ INSERT INTO `item_mods` VALUES (14248,14,5);  -- CHR: 5
 INSERT INTO `item_mods` VALUES (14248,68,-4); -- EVA: -4
 
 -- Opaline Hose
-INSERT INTO `item_mods` VALUES (14249,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (14249,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (14249,276,106); -- RSE (race specific equip)
 
 -- Ceremonial Hose
-INSERT INTO `item_mods` VALUES (14250,1,2);  -- DEF: 2
-INSERT INTO `item_mods` VALUES (14250,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (14250,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (14250,14,1);    -- CHR: 1
+INSERT INTO `item_mods` VALUES (14250,276,106); -- RSE (race specific equip)
 
 -- Wedding Hose
-INSERT INTO `item_mods` VALUES (14251,1,1);  -- DEF: 1
-INSERT INTO `item_mods` VALUES (14251,21,5); -- LIGHT_RES: 5
+INSERT INTO `item_mods` VALUES (14251,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (14251,21,5);    -- LIGHT_RES: 5
+INSERT INTO `item_mods` VALUES (14251,276,106); -- RSE (race specific equip)
 
 -- Thick Breeches +1
 INSERT INTO `item_mods` VALUES (14252,1,32);  -- DEF: 32
@@ -21100,11 +21298,11 @@ INSERT INTO `item_mods` VALUES (14306,162,-400); -- DMGBREATH: -400
 INSERT INTO `item_mods` VALUES (14306,289,6);    -- SUBTLE_BLOW: 6
 
 -- Dusk Trousers +1
-INSERT INTO `item_mods` VALUES (14307,1,48);    -- DEF: 48
-INSERT INTO `item_mods` VALUES (14307,2,37);    -- HP: 37
-INSERT INTO `item_mods` VALUES (14307,23,15);   -- ATT: 15
-INSERT INTO `item_mods` VALUES (14307,26,11);   -- RACC: 11
-INSERT INTO `item_mods` VALUES (14307,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (14307,1,48);  -- DEF: 48
+INSERT INTO `item_mods` VALUES (14307,2,37);  -- HP: 37
+INSERT INTO `item_mods` VALUES (14307,23,15); -- ATT: 15
+INSERT INTO `item_mods` VALUES (14307,26,11); -- RACC: 11
+INSERT INTO `item_mods` VALUES (14307,75,-5); -- MOVE_SPEED_STACKABLE: -5
 
 -- Hecatomb Subligar
 INSERT INTO `item_mods` VALUES (14308,1,42);      -- DEF: 42
@@ -21569,16 +21767,19 @@ INSERT INTO `item_mods` VALUES (14383,160,1500); -- DMG: 1500
 INSERT INTO `item_mods` VALUES (14383,369,1);    -- REFRESH: 1
 
 -- Opaline Dress
-INSERT INTO `item_mods` VALUES (14384,1,3);  -- DEF: 3
-INSERT INTO `item_mods` VALUES (14384,14,1); -- CHR: 1
+INSERT INTO `item_mods` VALUES (14384,1,3);     -- DEF: 3
+INSERT INTO `item_mods` VALUES (14384,14,1);    -- CHR: 1
+INSERT INTO `item_mods` VALUES (14384,276,106); -- RSE (race specific equip)
 
 -- Ceremonial Dress
-INSERT INTO `item_mods` VALUES (14385,1,3);  -- DEF: 3
-INSERT INTO `item_mods` VALUES (14385,14,2); -- CHR: 2
+INSERT INTO `item_mods` VALUES (14385,1,3);     -- DEF: 3
+INSERT INTO `item_mods` VALUES (14385,14,2);    -- CHR: 2
+INSERT INTO `item_mods` VALUES (14385,276,106); -- RSE (race specific equip)
 
 -- Wedding Dress
-INSERT INTO `item_mods` VALUES (14386,1,3);   -- DEF: 3
-INSERT INTO `item_mods` VALUES (14386,21,10); -- LIGHT_RES: 10
+INSERT INTO `item_mods` VALUES (14386,1,3);     -- DEF: 3
+INSERT INTO `item_mods` VALUES (14386,21,10);   -- LIGHT_RES: 10
+INSERT INTO `item_mods` VALUES (14386,276,106); -- RSE (race specific equip)
 
 -- Shura Togi
 INSERT INTO `item_mods` VALUES (14387,1,40);  -- DEF: 40
@@ -21609,11 +21810,11 @@ INSERT INTO `item_mods` VALUES (14390,162,-1200); -- DMGBREATH: -1200
 INSERT INTO `item_mods` VALUES (14390,289,12);    -- SUBTLE_BLOW: 12
 
 -- Dusk Jerkin +1
-INSERT INTO `item_mods` VALUES (14391,1,51);    -- DEF: 51
-INSERT INTO `item_mods` VALUES (14391,2,42);    -- HP: 42
-INSERT INTO `item_mods` VALUES (14391,25,3);    -- ACC: 3
-INSERT INTO `item_mods` VALUES (14391,75,-12);  -- MOVE_SPEED_STACKABLE: -12
-INSERT INTO `item_mods` VALUES (14391,370,1);   -- REGEN: 1
+INSERT INTO `item_mods` VALUES (14391,1,51);  -- DEF: 51
+INSERT INTO `item_mods` VALUES (14391,2,42);  -- HP: 42
+INSERT INTO `item_mods` VALUES (14391,25,3);  -- ACC: 3
+INSERT INTO `item_mods` VALUES (14391,75,-5); -- MOVE_SPEED_STACKABLE: -5
+INSERT INTO `item_mods` VALUES (14391,370,1); -- REGEN: 1
 
 -- Carpenters Apron
 INSERT INTO `item_mods` VALUES (14392,1,3);   -- DEF: 3
@@ -21919,53 +22120,67 @@ INSERT INTO `item_mods` VALUES (14449,2,52);  -- HP: 52
 INSERT INTO `item_mods` VALUES (14449,370,1); -- REGEN: 1
 
 -- Hume Gilet
-INSERT INTO `item_mods` VALUES (14450,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14450,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (14450,276,1); -- RSE (race specific equip)
 
 -- Hume Top
-INSERT INTO `item_mods` VALUES (14451,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14451,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (14451,276,2); -- RSE (race specific equip)
 
 -- Elvaan Gilet
-INSERT INTO `item_mods` VALUES (14452,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14452,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (14452,276,4); -- RSE (race specific equip)
 
 -- Elvaan Top
-INSERT INTO `item_mods` VALUES (14453,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14453,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (14453,276,8); -- RSE (race specific equip)
 
 -- Tarutaru Maillot
-INSERT INTO `item_mods` VALUES (14454,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14454,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (14454,276,16); -- RSE (race specific equip)
 
 -- Mithra Top
-INSERT INTO `item_mods` VALUES (14455,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14455,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (14455,276,64); -- RSE (race specific equip)
 
 -- Galka Gilet
-INSERT INTO `item_mods` VALUES (14456,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14456,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (14456,276,128); -- RSE (race specific equip)
 
 -- Hume Gilet +1
 INSERT INTO `item_mods` VALUES (14457,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (14457,276,1); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (14457,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Hume Top +1
 INSERT INTO `item_mods` VALUES (14458,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (14458,276,2); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (14458,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Elvaan Gilet +1
 INSERT INTO `item_mods` VALUES (14459,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (14459,276,4); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (14459,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Elvaan Top +1
 INSERT INTO `item_mods` VALUES (14460,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (14460,276,8); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (14460,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Tarutaru Maillot +1
-INSERT INTO `item_mods` VALUES (14461,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (14461,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
+INSERT INTO `item_mods` VALUES (14461,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (14461,276,16); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (14461,510,1);  -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Mithra Top +1
-INSERT INTO `item_mods` VALUES (14462,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (14462,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
+INSERT INTO `item_mods` VALUES (14462,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (14462,276,64); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (14462,510,1);  -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Galka Gilet +1
-INSERT INTO `item_mods` VALUES (14463,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (14463,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
+INSERT INTO `item_mods` VALUES (14463,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (14463,276,128); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (14463,510,1);   -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Trailers Tunica
 INSERT INTO `item_mods` VALUES (14464,1,14); -- DEF: 14
@@ -22015,11 +22230,13 @@ INSERT INTO `item_mods` VALUES (14470,21,15); -- LIGHT_RES: 15
 INSERT INTO `item_mods` VALUES (14470,22,15); -- DARK_RES: 15
 
 -- Tarutaru Top
-INSERT INTO `item_mods` VALUES (14471,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14471,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (14471,276,32); -- RSE (race specific equip)
 
 -- Tarutaru Top +1
-INSERT INTO `item_mods` VALUES (14472,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (14472,510,1); -- CLAMMING_REDUCED_INCIDENTS: 1
+INSERT INTO `item_mods` VALUES (14472,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (14472,276,32); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (14472,510,1);  -- CLAMMING_REDUCED_INCIDENTS: 1
 
 -- Fighters Lorica +1
 INSERT INTO `item_mods` VALUES (14473,1,50);  -- DEF: 50
@@ -22034,10 +22251,10 @@ INSERT INTO `item_mods` VALUES (14474,2,20);    -- HP: 20
 INSERT INTO `item_mods` VALUES (14474,8,6);     -- STR: 6
 INSERT INTO `item_mods` VALUES (14474,10,6);    -- VIT: 6
 INSERT INTO `item_mods` VALUES (14474,25,5);    -- ACC: 5
-INSERT INTO `item_mods` VALUES (14474,1026,10); -- CHAKRA_MULT: 10
+INSERT INTO `item_mods` VALUES (14474,1026,50); -- CHAKRA_MULT: 50 -- M = 0.5
 INSERT INTO `item_mods` VALUES (14474,1027,1);  -- CHAKRA_REMOVAL: 1
 
--- Healers Briault +1
+-- Healers Bliaut +1
 INSERT INTO `item_mods` VALUES (14475,1,40);   -- DEF: 40
 INSERT INTO `item_mods` VALUES (14475,5,35);   -- MP: 35
 INSERT INTO `item_mods` VALUES (14475,27,-4);  -- ENMITY: -4
@@ -22214,7 +22431,7 @@ INSERT INTO `item_mods` VALUES (14501,10,6);  -- VIT: 6
 INSERT INTO `item_mods` VALUES (14501,72,6);  -- HPHEAL: 6
 INSERT INTO `item_mods` VALUES (14501,370,1); -- REGEN: 1
 
--- Clerics Briault +1
+-- Clerics Bliaut +1
 INSERT INTO `item_mods` VALUES (14502,1,43);   -- DEF: 43
 INSERT INTO `item_mods` VALUES (14502,5,29);   -- MP: 29
 INSERT INTO `item_mods` VALUES (14502,27,-3);  -- ENMITY: -3
@@ -22401,16 +22618,20 @@ INSERT INTO `item_mods` VALUES (14530,165,1); -- CRITHITRATE: 1
 INSERT INTO `item_mods` VALUES (14531,1,21); -- DEF: 21
 
 -- Otoko Yukata
-INSERT INTO `item_mods` VALUES (14532,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14532,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (14532,276,149); -- RSE (race specific equip)
 
 -- Onago Yukata
-INSERT INTO `item_mods` VALUES (14533,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (14533,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (14533,276,106); -- RSE (race specific equip)
 
 -- Otokogimi Yukata
-INSERT INTO `item_mods` VALUES (14534,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (14534,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (14534,276,149); -- RSE (race specific equip)
 
 -- Onnagimi Yukata
-INSERT INTO `item_mods` VALUES (14535,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (14535,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (14535,276,106); -- RSE (race specific equip)
 
 -- Arakan Samue
 INSERT INTO `item_mods` VALUES (14536,1,50);  -- DEF: 50
@@ -22707,20 +22928,22 @@ INSERT INTO `item_mods` VALUES (14577,160,-500); -- DMG: -500
 INSERT INTO `item_mods` VALUES (14577,384,-500); -- HASTE_GEAR: -500
 
 -- Dancers Casaque
-INSERT INTO `item_mods` VALUES (14578,1,38);   -- DEF: 38
-INSERT INTO `item_mods` VALUES (14578,2,20);   -- HP: 20
-INSERT INTO `item_mods` VALUES (14578,8,2);    -- STR: 2
-INSERT INTO `item_mods` VALUES (14578,9,2);    -- DEX: 2
-INSERT INTO `item_mods` VALUES (14578,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (14578,491,10); -- WALTZ_POTENCY: 10
+INSERT INTO `item_mods` VALUES (14578,1,38);    -- DEF: 38
+INSERT INTO `item_mods` VALUES (14578,2,20);    -- HP: 20
+INSERT INTO `item_mods` VALUES (14578,8,2);     -- STR: 2
+INSERT INTO `item_mods` VALUES (14578,9,2);     -- DEX: 2
+INSERT INTO `item_mods` VALUES (14578,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (14578,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (14578,491,10);  -- WALTZ_POTENCY: 10
 
 -- Dancers Casaque
-INSERT INTO `item_mods` VALUES (14579,1,38);   -- DEF: 38
-INSERT INTO `item_mods` VALUES (14579,2,20);   -- HP: 20
-INSERT INTO `item_mods` VALUES (14579,8,2);    -- STR: 2
-INSERT INTO `item_mods` VALUES (14579,9,2);    -- DEX: 2
-INSERT INTO `item_mods` VALUES (14579,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (14579,491,10); -- WALTZ_POTENCY: 10
+INSERT INTO `item_mods` VALUES (14579,1,38);    -- DEF: 38
+INSERT INTO `item_mods` VALUES (14579,2,20);    -- HP: 20
+INSERT INTO `item_mods` VALUES (14579,8,2);     -- STR: 2
+INSERT INTO `item_mods` VALUES (14579,9,2);     -- DEX: 2
+INSERT INTO `item_mods` VALUES (14579,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (14579,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (14579,491,10);  -- WALTZ_POTENCY: 10
 
 -- Scholars Gown
 INSERT INTO `item_mods` VALUES (14580,1,38);   -- DEF: 38
@@ -23059,7 +23282,7 @@ INSERT INTO `item_mods` VALUES (14645,5,30);   -- MP: 30
 INSERT INTO `item_mods` VALUES (14645,21,-30); -- LIGHT_RES: -30
 
 -- Shadow Ring
-INSERT INTO `item_mods` VALUES (14646,255,5);  -- DEATHRES: 5
+INSERT INTO `item_mods` VALUES (14646,255,20); -- DEATHRES: 20
 INSERT INTO `item_mods` VALUES (14646,476,13); -- MAGIC_NULL: 13
 
 -- Telluric Ring
@@ -23519,44 +23742,54 @@ INSERT INTO `item_mods` VALUES (14791,72,4); -- HPHEAL: 4
 INSERT INTO `item_mods` VALUES (14792,71,2); -- MPHEAL: 2
 
 -- Belinkys Earring
-INSERT INTO `item_mods` VALUES (14793,2,10); -- HP: 10
-INSERT INTO `item_mods` VALUES (14793,9,1);  -- DEX: 1
-INSERT INTO `item_mods` VALUES (14793,10,1); -- VIT: 1
+INSERT INTO `item_mods` VALUES (14793,2,10);  -- HP: 10
+INSERT INTO `item_mods` VALUES (14793,9,1);   -- DEX: 1
+INSERT INTO `item_mods` VALUES (14793,10,1);  -- VIT: 1
+INSERT INTO `item_mods` VALUES (14793,276,3); -- RSE (race specific equip)
 
 -- Quantzs Earring
-INSERT INTO `item_mods` VALUES (14794,5,10); -- MP: 10
-INSERT INTO `item_mods` VALUES (14794,12,1); -- INT: 1
-INSERT INTO `item_mods` VALUES (14794,13,1); -- MND: 1
+INSERT INTO `item_mods` VALUES (14794,5,10);  -- MP: 10
+INSERT INTO `item_mods` VALUES (14794,12,1);  -- INT: 1
+INSERT INTO `item_mods` VALUES (14794,13,1);  -- MND: 1
+INSERT INTO `item_mods` VALUES (14794,276,3); -- RSE (race specific equip)
 
 -- Desamilions Earring
-INSERT INTO `item_mods` VALUES (14795,5,15); -- MP: 15
-INSERT INTO `item_mods` VALUES (14795,12,2); -- INT: 2
+INSERT INTO `item_mods` VALUES (14795,5,15);   -- MP: 15
+INSERT INTO `item_mods` VALUES (14795,12,2);   -- INT: 2
+INSERT INTO `item_mods` VALUES (14795,276,12); -- RSE (race specific equip)
 
 -- Melninas Earring
-INSERT INTO `item_mods` VALUES (14796,9,2);  -- DEX: 2
-INSERT INTO `item_mods` VALUES (14796,11,1); -- AGI: 1
+INSERT INTO `item_mods` VALUES (14796,9,2);    -- DEX: 2
+INSERT INTO `item_mods` VALUES (14796,11,1);   -- AGI: 1
+INSERT INTO `item_mods` VALUES (14796,276,12); -- RSE (race specific equip)
 
 -- Waetotos Earring
-INSERT INTO `item_mods` VALUES (14797,8,2);  -- STR: 2
-INSERT INTO `item_mods` VALUES (14797,10,1); -- VIT: 1
+INSERT INTO `item_mods` VALUES (14797,8,2);    -- STR: 2
+INSERT INTO `item_mods` VALUES (14797,10,1);   -- VIT: 1
+INSERT INTO `item_mods` VALUES (14797,276,48); -- RSE (race specific equip)
 
 -- Morukakas Earring
-INSERT INTO `item_mods` VALUES (14798,2,35); -- HP: 35
+INSERT INTO `item_mods` VALUES (14798,2,35);   -- HP: 35
+INSERT INTO `item_mods` VALUES (14798,276,48); -- RSE (race specific equip)
 
 -- Ryakhos Earring
-INSERT INTO `item_mods` VALUES (14799,2,10); -- HP: 10
-INSERT INTO `item_mods` VALUES (14799,13,2); -- MND: 2
+INSERT INTO `item_mods` VALUES (14799,2,10);   -- HP: 10
+INSERT INTO `item_mods` VALUES (14799,13,2);   -- MND: 2
+INSERT INTO `item_mods` VALUES (14799,276,64); -- RSE (race specific equip)
 
 -- Feyuhs Earring
-INSERT INTO `item_mods` VALUES (14800,8,1);  -- STR: 1
-INSERT INTO `item_mods` VALUES (14800,10,2); -- VIT: 2
+INSERT INTO `item_mods` VALUES (14800,8,1);    -- STR: 1
+INSERT INTO `item_mods` VALUES (14800,10,2);   -- VIT: 2
+INSERT INTO `item_mods` VALUES (14800,276,64); -- RSE (race specific equip)
 
 -- Zedomas Earring
-INSERT INTO `item_mods` VALUES (14801,5,30); -- MP: 30
+INSERT INTO `item_mods` VALUES (14801,5,30);    -- MP: 30
+INSERT INTO `item_mods` VALUES (14801,276,128); -- RSE (race specific equip)
 
 -- Gayanjs Earring
-INSERT INTO `item_mods` VALUES (14802,5,10); -- MP: 10
-INSERT INTO `item_mods` VALUES (14802,12,2); -- INT: 2
+INSERT INTO `item_mods` VALUES (14802,5,10);    -- MP: 10
+INSERT INTO `item_mods` VALUES (14802,12,2);    -- INT: 2
+INSERT INTO `item_mods` VALUES (14802,276,128); -- RSE (race specific equip)
 
 -- Optical Earring
 INSERT INTO `item_mods` VALUES (14803,1,1);   -- DEF: 1
@@ -23663,7 +23896,7 @@ INSERT INTO `item_mods` VALUES (14824,289,3); -- SUBTLE_BLOW: 3
 INSERT INTO `item_mods` VALUES (14825,1,25);    -- DEF: 25
 INSERT INTO `item_mods` VALUES (14825,2,22);    -- HP: 22
 INSERT INTO `item_mods` VALUES (14825,23,6);    -- ATT: 6
-INSERT INTO `item_mods` VALUES (14825,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (14825,75,-5);   -- MOVE_SPEED_STACKABLE: -5
 INSERT INTO `item_mods` VALUES (14825,384,400); -- HASTE_GEAR: 400
 
 -- Austere Cuffs
@@ -23717,6 +23950,7 @@ INSERT INTO `item_mods` VALUES (14833,11,-3); -- AGI: -3
 INSERT INTO `item_mods` VALUES (14833,12,4);  -- INT: 4
 INSERT INTO `item_mods` VALUES (14833,13,4);  -- MND: 4
 INSERT INTO `item_mods` VALUES (14833,14,3);  -- CHR: 3
+INSERT INTO `item_mods` VALUES (14833,276,1); -- RSE (race specific equip)
 
 -- Marine F Gloves
 INSERT INTO `item_mods` VALUES (14834,1,11);  -- DEF: 11
@@ -23726,6 +23960,7 @@ INSERT INTO `item_mods` VALUES (14834,11,-3); -- AGI: -3
 INSERT INTO `item_mods` VALUES (14834,12,4);  -- INT: 4
 INSERT INTO `item_mods` VALUES (14834,13,4);  -- MND: 4
 INSERT INTO `item_mods` VALUES (14834,14,3);  -- CHR: 3
+INSERT INTO `item_mods` VALUES (14834,276,2); -- RSE (race specific equip)
 
 -- Wood Gauntlets
 INSERT INTO `item_mods` VALUES (14835,1,11);  -- DEF: 11
@@ -23734,6 +23969,7 @@ INSERT INTO `item_mods` VALUES (14835,5,55);  -- MP: 55
 INSERT INTO `item_mods` VALUES (14835,9,4);   -- DEX: 4
 INSERT INTO `item_mods` VALUES (14835,10,-3); -- VIT: -3
 INSERT INTO `item_mods` VALUES (14835,12,4);  -- INT: 4
+INSERT INTO `item_mods` VALUES (14835,276,4); -- RSE (race specific equip)
 
 -- Wood Gloves
 INSERT INTO `item_mods` VALUES (14836,1,11);  -- DEF: 11
@@ -23742,35 +23978,40 @@ INSERT INTO `item_mods` VALUES (14836,5,55);  -- MP: 55
 INSERT INTO `item_mods` VALUES (14836,9,4);   -- DEX: 4
 INSERT INTO `item_mods` VALUES (14836,10,-3); -- VIT: -3
 INSERT INTO `item_mods` VALUES (14836,12,4);  -- INT: 4
+INSERT INTO `item_mods` VALUES (14836,276,8); -- RSE (race specific equip)
 
 -- Creek M Mitts
-INSERT INTO `item_mods` VALUES (14837,1,11);  -- DEF: 11
-INSERT INTO `item_mods` VALUES (14837,2,65);  -- HP: 65
-INSERT INTO `item_mods` VALUES (14837,8,6);   -- STR: 6
-INSERT INTO `item_mods` VALUES (14837,10,2);  -- VIT: 2
-INSERT INTO `item_mods` VALUES (14837,11,-3); -- AGI: -3
+INSERT INTO `item_mods` VALUES (14837,1,11);   -- DEF: 11
+INSERT INTO `item_mods` VALUES (14837,2,65);   -- HP: 65
+INSERT INTO `item_mods` VALUES (14837,8,6);    -- STR: 6
+INSERT INTO `item_mods` VALUES (14837,10,2);   -- VIT: 2
+INSERT INTO `item_mods` VALUES (14837,11,-3);  -- AGI: -3
+INSERT INTO `item_mods` VALUES (14837,276,16); -- RSE (race specific equip)
 
 -- Creek F Mitts
-INSERT INTO `item_mods` VALUES (14838,1,11);  -- DEF: 11
-INSERT INTO `item_mods` VALUES (14838,2,65);  -- HP: 65
-INSERT INTO `item_mods` VALUES (14838,8,6);   -- STR: 6
-INSERT INTO `item_mods` VALUES (14838,10,2);  -- VIT: 2
-INSERT INTO `item_mods` VALUES (14838,11,-3); -- AGI: -3
+INSERT INTO `item_mods` VALUES (14838,1,11);   -- DEF: 11
+INSERT INTO `item_mods` VALUES (14838,2,65);   -- HP: 65
+INSERT INTO `item_mods` VALUES (14838,8,6);    -- STR: 6
+INSERT INTO `item_mods` VALUES (14838,10,2);   -- VIT: 2
+INSERT INTO `item_mods` VALUES (14838,11,-3);  -- AGI: -3
+INSERT INTO `item_mods` VALUES (14838,276,32); -- RSE (race specific equip)
 
 -- River Gauntlets
-INSERT INTO `item_mods` VALUES (14839,1,11);  -- DEF: 11
-INSERT INTO `item_mods` VALUES (14839,2,60);  -- HP: 60
-INSERT INTO `item_mods` VALUES (14839,10,6);  -- VIT: 6
-INSERT INTO `item_mods` VALUES (14839,11,-5); -- AGI: -5
-INSERT INTO `item_mods` VALUES (14839,13,1);  -- MND: 1
+INSERT INTO `item_mods` VALUES (14839,1,11);   -- DEF: 11
+INSERT INTO `item_mods` VALUES (14839,2,60);   -- HP: 60
+INSERT INTO `item_mods` VALUES (14839,10,6);   -- VIT: 6
+INSERT INTO `item_mods` VALUES (14839,11,-5);  -- AGI: -5
+INSERT INTO `item_mods` VALUES (14839,13,1);   -- MND: 1
+INSERT INTO `item_mods` VALUES (14839,276,64); -- RSE (race specific equip)
 
 -- Dune Bracers
-INSERT INTO `item_mods` VALUES (14840,1,11);  -- DEF: 11
-INSERT INTO `item_mods` VALUES (14840,2,-35); -- HP: -35
-INSERT INTO `item_mods` VALUES (14840,5,65);  -- MP: 65
-INSERT INTO `item_mods` VALUES (14840,10,-5); -- VIT: -5
-INSERT INTO `item_mods` VALUES (14840,12,2);  -- INT: 2
-INSERT INTO `item_mods` VALUES (14840,13,2);  -- MND: 2
+INSERT INTO `item_mods` VALUES (14840,1,11);    -- DEF: 11
+INSERT INTO `item_mods` VALUES (14840,2,-35);   -- HP: -35
+INSERT INTO `item_mods` VALUES (14840,5,65);    -- MP: 65
+INSERT INTO `item_mods` VALUES (14840,10,-5);   -- VIT: -5
+INSERT INTO `item_mods` VALUES (14840,12,2);    -- INT: 2
+INSERT INTO `item_mods` VALUES (14840,13,2);    -- MND: 2
+INSERT INTO `item_mods` VALUES (14840,276,128); -- RSE (race specific equip)
 
 -- Garrison Gloves
 INSERT INTO `item_mods` VALUES (14841,1,4);  -- DEF: 4
@@ -24196,12 +24437,12 @@ INSERT INTO `item_mods` VALUES (14909,23,14); -- ATT: 14
 INSERT INTO `item_mods` VALUES (14909,27,2);  -- ENMITY: 2
 
 -- Melee Gloves +1
-INSERT INTO `item_mods` VALUES (14910,1,16);   -- DEF: 16
-INSERT INTO `item_mods` VALUES (14910,3,3);    -- HPP: 3
-INSERT INTO `item_mods` VALUES (14910,23,18);  -- ATT: 18
-INSERT INTO `item_mods` VALUES (14910,289,5);  -- SUBTLE_BLOW: 5
-INSERT INTO `item_mods` VALUES (14910,1026,6); -- CHAKRA_MULT: 6
-INSERT INTO `item_mods` VALUES (14910,1027,2); -- CHAKRA_REMOVAL: 2
+INSERT INTO `item_mods` VALUES (14910,1,16);    -- DEF: 16
+INSERT INTO `item_mods` VALUES (14910,3,3);     -- HPP: 3
+INSERT INTO `item_mods` VALUES (14910,23,18);   -- ATT: 18
+INSERT INTO `item_mods` VALUES (14910,289,5);   -- SUBTLE_BLOW: 5
+INSERT INTO `item_mods` VALUES (14910,1026,30); -- CHAKRA_MULT: 30 -- M = 0.3
+INSERT INTO `item_mods` VALUES (14910,1027,2);  -- CHAKRA_REMOVAL: 2
 
 -- Clerics Mitts +1
 INSERT INTO `item_mods` VALUES (14911,1,17);   -- DEF: 17
@@ -24730,18 +24971,20 @@ INSERT INTO `item_mods` VALUES (15001,25,4);  -- ACC: 4
 INSERT INTO `item_mods` VALUES (15001,27,-4); -- ENMITY: -4
 
 -- Dancers Bangles
-INSERT INTO `item_mods` VALUES (15002,1,15);   -- DEF: 15
-INSERT INTO `item_mods` VALUES (15002,2,12);   -- HP: 12
-INSERT INTO `item_mods` VALUES (15002,9,2);    -- DEX: 2
-INSERT INTO `item_mods` VALUES (15002,11,2);   -- AGI: 2
-INSERT INTO `item_mods` VALUES (15002,403,10); -- STEP_ACCURACY: 10
+INSERT INTO `item_mods` VALUES (15002,1,15);    -- DEF: 15
+INSERT INTO `item_mods` VALUES (15002,2,12);    -- HP: 12
+INSERT INTO `item_mods` VALUES (15002,9,2);     -- DEX: 2
+INSERT INTO `item_mods` VALUES (15002,11,2);    -- AGI: 2
+INSERT INTO `item_mods` VALUES (15002,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15002,403,10);  -- STEP_ACCURACY: 10
 
 -- Dancers Bangles
-INSERT INTO `item_mods` VALUES (15003,1,15);   -- DEF: 15
-INSERT INTO `item_mods` VALUES (15003,2,12);   -- HP: 12
-INSERT INTO `item_mods` VALUES (15003,9,2);    -- DEX: 2
-INSERT INTO `item_mods` VALUES (15003,11,2);   -- AGI: 2
-INSERT INTO `item_mods` VALUES (15003,403,10); -- STEP_ACCURACY: 10
+INSERT INTO `item_mods` VALUES (15003,1,15);    -- DEF: 15
+INSERT INTO `item_mods` VALUES (15003,2,12);    -- HP: 12
+INSERT INTO `item_mods` VALUES (15003,9,2);     -- DEX: 2
+INSERT INTO `item_mods` VALUES (15003,11,2);    -- AGI: 2
+INSERT INTO `item_mods` VALUES (15003,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15003,403,10);  -- STEP_ACCURACY: 10
 
 -- Scholars Bracers
 INSERT INTO `item_mods` VALUES (15004,1,13);   -- DEF: 13
@@ -24933,20 +25176,22 @@ INSERT INTO `item_mods` VALUES (15034,18,20);  -- EARTH_RES: 20
 INSERT INTO `item_mods` VALUES (15034,539,30); -- STONESKIN_BONUS_HP: 30
 
 -- Dancers Bangles +1
-INSERT INTO `item_mods` VALUES (15035,1,16);   -- DEF: 16
-INSERT INTO `item_mods` VALUES (15035,2,17);   -- HP: 17
-INSERT INTO `item_mods` VALUES (15035,9,4);    -- DEX: 4
-INSERT INTO `item_mods` VALUES (15035,11,4);   -- AGI: 4
-INSERT INTO `item_mods` VALUES (15035,23,5);   -- ATT: 5
-INSERT INTO `item_mods` VALUES (15035,403,10); -- STEP_ACCURACY: 10
+INSERT INTO `item_mods` VALUES (15035,1,16);    -- DEF: 16
+INSERT INTO `item_mods` VALUES (15035,2,17);    -- HP: 17
+INSERT INTO `item_mods` VALUES (15035,9,4);     -- DEX: 4
+INSERT INTO `item_mods` VALUES (15035,11,4);    -- AGI: 4
+INSERT INTO `item_mods` VALUES (15035,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (15035,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15035,403,10);  -- STEP_ACCURACY: 10
 
 -- Dancers Bangles +1
-INSERT INTO `item_mods` VALUES (15036,1,16);   -- DEF: 16
-INSERT INTO `item_mods` VALUES (15036,2,17);   -- HP: 17
-INSERT INTO `item_mods` VALUES (15036,9,4);    -- DEX: 4
-INSERT INTO `item_mods` VALUES (15036,11,4);   -- AGI: 4
-INSERT INTO `item_mods` VALUES (15036,23,5);   -- ATT: 5
-INSERT INTO `item_mods` VALUES (15036,403,10); -- STEP_ACCURACY: 10
+INSERT INTO `item_mods` VALUES (15036,1,16);    -- DEF: 16
+INSERT INTO `item_mods` VALUES (15036,2,17);    -- HP: 17
+INSERT INTO `item_mods` VALUES (15036,9,4);     -- DEX: 4
+INSERT INTO `item_mods` VALUES (15036,11,4);    -- AGI: 4
+INSERT INTO `item_mods` VALUES (15036,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (15036,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15036,403,10);  -- STEP_ACCURACY: 10
 
 -- Scholars Bracers +1
 INSERT INTO `item_mods` VALUES (15037,1,14);   -- DEF: 14
@@ -25255,7 +25500,7 @@ INSERT INTO `item_mods` VALUES (15088,10,5);  -- VIT: 5
 INSERT INTO `item_mods` VALUES (15088,72,6);  -- HPHEAL: 6
 INSERT INTO `item_mods` VALUES (15088,370,1); -- REGEN: 1
 
--- Clerics Briault
+-- Clerics Bliaut
 INSERT INTO `item_mods` VALUES (15089,1,42);   -- DEF: 42
 INSERT INTO `item_mods` VALUES (15089,5,24);   -- MP: 24
 INSERT INTO `item_mods` VALUES (15089,27,-2);  -- ENMITY: -2
@@ -25350,12 +25595,12 @@ INSERT INTO `item_mods` VALUES (15102,23,12); -- ATT: 12
 INSERT INTO `item_mods` VALUES (15102,27,2);  -- ENMITY: 2
 
 -- Melee Gloves
-INSERT INTO `item_mods` VALUES (15103,1,15);   -- DEF: 15
-INSERT INTO `item_mods` VALUES (15103,3,3);    -- HPP: 3
-INSERT INTO `item_mods` VALUES (15103,23,16);  -- ATT: 16
-INSERT INTO `item_mods` VALUES (15103,289,4);  -- SUBTLE_BLOW: 4
-INSERT INTO `item_mods` VALUES (15103,1026,6); -- CHAKRA_MULT: 6
-INSERT INTO `item_mods` VALUES (15103,1027,2); -- CHAKRA_REMOVAL: 2
+INSERT INTO `item_mods` VALUES (15103,1,15);    -- DEF: 15
+INSERT INTO `item_mods` VALUES (15103,3,3);     -- HPP: 3
+INSERT INTO `item_mods` VALUES (15103,23,16);   -- ATT: 16
+INSERT INTO `item_mods` VALUES (15103,289,4);   -- SUBTLE_BLOW: 4
+INSERT INTO `item_mods` VALUES (15103,1026,30); -- CHAKRA_MULT: 30 -- M = 0.3
+INSERT INTO `item_mods` VALUES (15103,1027,2);  -- CHAKRA_REMOVAL: 2
 
 -- Clerics Mitts
 INSERT INTO `item_mods` VALUES (15104,1,16);   -- DEF: 16
@@ -25551,7 +25796,7 @@ INSERT INTO `item_mods` VALUES (15133,1,15);   -- DEF: 15
 INSERT INTO `item_mods` VALUES (15133,3,4);    -- HPP: 4
 INSERT INTO `item_mods` VALUES (15133,9,4);    -- DEX: 4
 INSERT INTO `item_mods` VALUES (15133,107,12); -- GUARD: 12
-INSERT INTO `item_mods` VALUES (15133,543,5);  -- COUNTERSTANCE_EFFECT: 5
+INSERT INTO `item_mods` VALUES (15133,543,10);  -- COUNTERSTANCE_EFFECT: 10
 
 -- Clerics Duckbills
 INSERT INTO `item_mods` VALUES (15134,1,15);   -- DEF: 15
@@ -26921,12 +27166,14 @@ INSERT INTO `item_mods` VALUES (15388,1,23); -- DEF: 23
 INSERT INTO `item_mods` VALUES (15388,14,1); -- CHR: 1
 
 -- Vir Subligar
-INSERT INTO `item_mods` VALUES (15389,1,30); -- DEF: 30
-INSERT INTO `item_mods` VALUES (15389,21,9); -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (15389,1,30);    -- DEF: 30
+INSERT INTO `item_mods` VALUES (15389,21,9);    -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (15389,276,149); -- RSE (race specific equip)
 
 -- Femina Subligar
-INSERT INTO `item_mods` VALUES (15390,1,30); -- DEF: 30
-INSERT INTO `item_mods` VALUES (15390,21,9); -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (15390,1,30);    -- DEF: 30
+INSERT INTO `item_mods` VALUES (15390,21,9);    -- LIGHT_RES: 9
+INSERT INTO `item_mods` VALUES (15390,276,106); -- RSE (race specific equip)
 
 -- Blessed Trousers
 INSERT INTO `item_mods` VALUES (15391,1,32);    -- DEF: 32
@@ -27030,53 +27277,67 @@ INSERT INTO `item_mods` VALUES (15407,2,46); -- HP: 46
 INSERT INTO `item_mods` VALUES (15407,9,5);  -- DEX: 5
 
 -- Hume Trunks
-INSERT INTO `item_mods` VALUES (15408,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15408,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (15408,276,1); -- RSE (race specific equip)
 
 -- Hume Shorts
-INSERT INTO `item_mods` VALUES (15409,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15409,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (15409,276,2); -- RSE (race specific equip)
 
 -- Elvaan Trunks
-INSERT INTO `item_mods` VALUES (15410,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15410,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (15410,276,4); -- RSE (race specific equip)
 
 -- Elvaan Shorts
-INSERT INTO `item_mods` VALUES (15411,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15411,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (15411,276,8); -- RSE (race specific equip)
 
 -- Tarutaru Trunks
-INSERT INTO `item_mods` VALUES (15412,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15412,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (15412,276,16); -- RSE (race specific equip)
 
 -- Mithra Shorts
-INSERT INTO `item_mods` VALUES (15413,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15413,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (15413,276,64); -- RSE (race specific equip)
 
 -- Galka Trunks
-INSERT INTO `item_mods` VALUES (15414,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15414,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (15414,276,128); -- RSE (race specific equip)
 
 -- Hume Trunks +1
 INSERT INTO `item_mods` VALUES (15415,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (15415,276,1); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (15415,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Hume Shorts +1
 INSERT INTO `item_mods` VALUES (15416,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (15416,276,2); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (15416,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Elvaan Trunks +1
 INSERT INTO `item_mods` VALUES (15417,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (15417,276,4); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (15417,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Elvaan Shorts +1
 INSERT INTO `item_mods` VALUES (15418,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (15418,276,8); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (15418,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Tarutaru Trunks +1
-INSERT INTO `item_mods` VALUES (15419,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (15419,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
+INSERT INTO `item_mods` VALUES (15419,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (15419,276,16); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15419,509,1);  -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Mithra Shorts +1
-INSERT INTO `item_mods` VALUES (15420,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (15420,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
+INSERT INTO `item_mods` VALUES (15420,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (15420,276,64); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15420,509,1);  -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Galka Trunks +1
-INSERT INTO `item_mods` VALUES (15421,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (15421,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
+INSERT INTO `item_mods` VALUES (15421,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (15421,276,128); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15421,509,1);   -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Black Hose
 INSERT INTO `item_mods` VALUES (15422,1,16); -- DEF: 16
@@ -27084,11 +27345,13 @@ INSERT INTO `item_mods` VALUES (15422,8,1);  -- STR: 1
 INSERT INTO `item_mods` VALUES (15422,27,1); -- ENMITY: 1
 
 -- Tarutaru Shorts
-INSERT INTO `item_mods` VALUES (15423,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (15423,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (15423,276,32); -- RSE (race specific equip)
 
 -- Tarutaru Shorts +1
-INSERT INTO `item_mods` VALUES (15424,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (15424,509,1); -- CLAMMING_IMPROVED_RESULTS: 1
+INSERT INTO `item_mods` VALUES (15424,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (15424,276,32); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15424,509,1);  -- CLAMMING_IMPROVED_RESULTS: 1
 
 -- Galliard Trousers
 INSERT INTO `item_mods` VALUES (15425,1,30);  -- DEF: 30
@@ -28218,18 +28481,20 @@ INSERT INTO `item_mods` VALUES (15658,30,5);    -- MACC: 5
 INSERT INTO `item_mods` VALUES (15658,160,500); -- DMG: 500
 
 -- Dancers Tights
-INSERT INTO `item_mods` VALUES (15659,1,28);  -- DEF: 28
-INSERT INTO `item_mods` VALUES (15659,2,10);  -- HP: 10
-INSERT INTO `item_mods` VALUES (15659,14,3);  -- CHR: 3
-INSERT INTO `item_mods` VALUES (15659,25,3);  -- ACC: 3
-INSERT INTO `item_mods` VALUES (15659,27,-1); -- ENMITY: -1
+INSERT INTO `item_mods` VALUES (15659,1,28);    -- DEF: 28
+INSERT INTO `item_mods` VALUES (15659,2,10);    -- HP: 10
+INSERT INTO `item_mods` VALUES (15659,14,3);    -- CHR: 3
+INSERT INTO `item_mods` VALUES (15659,25,3);    -- ACC: 3
+INSERT INTO `item_mods` VALUES (15659,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15659,27,-1);   -- ENMITY: -1
 
 -- Dancers Tights
-INSERT INTO `item_mods` VALUES (15660,1,28);  -- DEF: 28
-INSERT INTO `item_mods` VALUES (15660,2,10);  -- HP: 10
-INSERT INTO `item_mods` VALUES (15660,14,3);  -- CHR: 3
-INSERT INTO `item_mods` VALUES (15660,25,3);  -- ACC: 3
-INSERT INTO `item_mods` VALUES (15660,27,-1); -- ENMITY: -1
+INSERT INTO `item_mods` VALUES (15660,1,28);    -- DEF: 28
+INSERT INTO `item_mods` VALUES (15660,2,10);    -- HP: 10
+INSERT INTO `item_mods` VALUES (15660,14,3);    -- CHR: 3
+INSERT INTO `item_mods` VALUES (15660,25,3);    -- ACC: 3
+INSERT INTO `item_mods` VALUES (15660,27,-1);   -- ENMITY: -1
+INSERT INTO `item_mods` VALUES (15660,276,106); -- RSE (race specific equip)
 
 -- Homam Gambieras
 INSERT INTO `item_mods` VALUES (15661,1,16);    -- DEF: 16
@@ -28267,7 +28532,7 @@ INSERT INTO `item_mods` VALUES (15666,1,16);   -- DEF: 16
 INSERT INTO `item_mods` VALUES (15666,3,4);    -- HPP: 4
 INSERT INTO `item_mods` VALUES (15666,9,5);    -- DEX: 5
 INSERT INTO `item_mods` VALUES (15666,107,14); -- GUARD: 14
-INSERT INTO `item_mods` VALUES (15666,543,5);  -- COUNTERSTANCE_EFFECT: 5
+INSERT INTO `item_mods` VALUES (15666,543,10);  -- COUNTERSTANCE_EFFECT: 10
 
 -- Clerics Duckbills +1
 INSERT INTO `item_mods` VALUES (15667,1,16);   -- DEF: 16
@@ -28459,7 +28724,8 @@ INSERT INTO `item_mods` VALUES (15697,20,6); -- WATER_RES: 6
 INSERT INTO `item_mods` VALUES (15697,26,2); -- RACC: 2
 
 -- Sneaking Boots
-INSERT INTO `item_mods` VALUES (15698,1,9); -- DEF: 9
+INSERT INTO `item_mods` VALUES (15698,1,9);   -- DEF: 9
+INSERT INTO `item_mods` VALUES (15698,358,1); -- STEALTH: 1 -- TODO: Stealth trait needs retail verification, real value unknown
 
 -- Templar Sabatons
 INSERT INTO `item_mods` VALUES (15699,1,11);  -- DEF: 11
@@ -28766,18 +29032,20 @@ INSERT INTO `item_mods` VALUES (15745,17,15);   -- WIND_RES: 15
 INSERT INTO `item_mods` VALUES (15745,384,100); -- HASTE_GEAR: 100
 
 -- Dancers Toe Shoes
-INSERT INTO `item_mods` VALUES (15746,1,14);   -- DEF: 14
-INSERT INTO `item_mods` VALUES (15746,2,7);    -- HP: 7
-INSERT INTO `item_mods` VALUES (15746,23,5);   -- ATT: 5
-INSERT INTO `item_mods` VALUES (15746,68,5);   -- EVA: 5
-INSERT INTO `item_mods` VALUES (15746,492,25); -- JIG_DURATION: 25
+INSERT INTO `item_mods` VALUES (15746,1,14);    -- DEF: 14
+INSERT INTO `item_mods` VALUES (15746,2,7);     -- HP: 7
+INSERT INTO `item_mods` VALUES (15746,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (15746,68,5);    -- EVA: 5
+INSERT INTO `item_mods` VALUES (15746,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15746,492,25);  -- JIG_DURATION: 25
 
 -- Dancers Toe Shoes
-INSERT INTO `item_mods` VALUES (15747,1,14);   -- DEF: 14
-INSERT INTO `item_mods` VALUES (15747,2,7);    -- HP: 7
-INSERT INTO `item_mods` VALUES (15747,23,5);   -- ATT: 5
-INSERT INTO `item_mods` VALUES (15747,68,5);   -- EVA: 5
-INSERT INTO `item_mods` VALUES (15747,492,25); -- JIG_DURATION: 25
+INSERT INTO `item_mods` VALUES (15747,1,14);    -- DEF: 14
+INSERT INTO `item_mods` VALUES (15747,2,7);     -- HP: 7
+INSERT INTO `item_mods` VALUES (15747,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (15747,68,5);    -- EVA: 5
+INSERT INTO `item_mods` VALUES (15747,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (15747,492,25);  -- JIG_DURATION: 25
 
 -- Scholars Loafers
 INSERT INTO `item_mods` VALUES (15748,1,10);   -- DEF: 10
@@ -28838,7 +29106,7 @@ INSERT INTO `item_mods` VALUES (15758,296,3); -- CONSERVE_MP: 3
 INSERT INTO `item_mods` VALUES (15759,1,9);      -- DEF: 9
 INSERT INTO `item_mods` VALUES (15759,28,2);     -- MATT: 2
 INSERT INTO `item_mods` VALUES (15759,29,2);     -- MDEF: 2
-INSERT INTO `item_mods` VALUES (15759,75,-12);   -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (15759,75,-5);    -- MOVE_SPEED_STACKABLE: -5
 INSERT INTO `item_mods` VALUES (15759,384,-500); -- HASTE_GEAR: -500
 
 -- Marabout Sandals
@@ -29036,28 +29304,36 @@ INSERT INTO `item_mods` VALUES (15817,73,1); -- STORETP: 1
 INSERT INTO `item_mods` VALUES (15818,8,4); -- STR: 4
 
 -- Carpenters Ring
-INSERT INTO `item_mods` VALUES (15819,144,1); -- ANTIHQ_WOOD: 1
+INSERT INTO `item_mods` VALUES (15819,144,1);  -- SYNTH_ANTI_HQ_WOODWORKING: 1
+INSERT INTO `item_mods` VALUES (15819,1098,1); -- SYNTH_SUCCESS_RATE_WOODWORKING: 1
 
 -- Smiths Ring
-INSERT INTO `item_mods` VALUES (15820,145,1); -- ANTIHQ_SMITH: 1
+INSERT INTO `item_mods` VALUES (15820,145,1);  -- SYNTH_ANTI_HQ_SMITHING: 1
+INSERT INTO `item_mods` VALUES (15820,1099,1); -- SYNTH_SUCCESS_RATE_SMITHING: 1
 
 -- Goldsmiths Ring
-INSERT INTO `item_mods` VALUES (15821,146,1); -- ANTIHQ_GOLDSMITH: 1
+INSERT INTO `item_mods` VALUES (15821,146,1);  -- SYNTH_ANTI_HQ_GOLDSMITHING: 1
+INSERT INTO `item_mods` VALUES (15821,1100,1); -- SYNTH_SUCCESS_RATE_GOLDSMITHING: 1
 
 -- Tailors Ring
-INSERT INTO `item_mods` VALUES (15822,147,1); -- ANTIHQ_CLOTH: 1
+INSERT INTO `item_mods` VALUES (15822,147,1);  -- SYNTH_ANTI_HQ_CLOTHCRAFT: 1
+INSERT INTO `item_mods` VALUES (15822,1101,1); -- SYNTH_SUCCESS_RATE_CLOTHCRAFT: 1
 
 -- Tanners Ring
-INSERT INTO `item_mods` VALUES (15823,148,1); -- ANTIHQ_LEATHER: 1
+INSERT INTO `item_mods` VALUES (15823,148,1);  -- SYNTH_ANTI_HQ_LEATHERCRAFT: 1
+INSERT INTO `item_mods` VALUES (15823,1102,1); -- SYNTH_SUCCESS_RATE_LEATHERCRAFT: 1
 
 -- Bonecrafters Ring
-INSERT INTO `item_mods` VALUES (15824,149,1); -- ANTIHQ_BONE: 1
+INSERT INTO `item_mods` VALUES (15824,149,1);  -- SYNTH_ANTI_HQ_BONECRAFT: 1
+INSERT INTO `item_mods` VALUES (15824,1103,1); -- SYNTH_SUCCESS_RATE_BONECRAFT: 1
 
 -- Alchemists Ring
-INSERT INTO `item_mods` VALUES (15825,150,1); -- ANTIHQ_ALCHEMY: 1
+INSERT INTO `item_mods` VALUES (15825,150,1);  -- SYNTH_ANTI_HQ_ALCHEMY: 1
+INSERT INTO `item_mods` VALUES (15825,1104,1); -- SYNTH_SUCCESS_RATE_ALCHEMY: 1
 
 -- Chefs Ring
-INSERT INTO `item_mods` VALUES (15826,151,1); -- ANTIHQ_COOK: 1
+INSERT INTO `item_mods` VALUES (15826,151,1);  -- SYNTH_ANTI_HQ_COOKING: 1
+INSERT INTO `item_mods` VALUES (15826,1105,1); -- SYNTH_SUCCESS_RATE_COOKING: 1
 
 -- Insect Ring
 INSERT INTO `item_mods` VALUES (15827,30,2);  -- MACC: 2
@@ -29102,6 +29378,12 @@ INSERT INTO `item_mods` VALUES (15839,122,2); -- BLUE: 2
 
 -- Patronus Ring
 INSERT INTO `item_mods` VALUES (15844,161,-200); -- DMGPHYS: -200
+
+-- Matrimony Ring
+INSERT INTO `item_mods` VALUES (15847,276,149); -- RSE (race specific equip)
+
+-- Matrimony Band
+INSERT INTO `item_mods` VALUES (15848,276,106); -- RSE (race specific equip)
 
 -- Krousis Ring
 INSERT INTO `item_mods` VALUES (15849,1,15); -- DEF: 15
@@ -30229,18 +30511,20 @@ INSERT INTO `item_mods` VALUES (16136,1,21); -- DEF: 21
 INSERT INTO `item_mods` VALUES (16137,1,21); -- DEF: 21
 
 -- Dancers Tiara
-INSERT INTO `item_mods` VALUES (16138,1,18);   -- DEF: 18
-INSERT INTO `item_mods` VALUES (16138,2,10);   -- HP: 10
-INSERT INTO `item_mods` VALUES (16138,14,4);   -- CHR: 4
-INSERT INTO `item_mods` VALUES (16138,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (16138,490,30); -- SAMBA_DURATION: 30
+INSERT INTO `item_mods` VALUES (16138,1,18);    -- DEF: 18
+INSERT INTO `item_mods` VALUES (16138,2,10);    -- HP: 10
+INSERT INTO `item_mods` VALUES (16138,14,4);    -- CHR: 4
+INSERT INTO `item_mods` VALUES (16138,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (16138,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (16138,490,30);  -- SAMBA_DURATION: 30
 
 -- Dancers Tiara
-INSERT INTO `item_mods` VALUES (16139,1,18);   -- DEF: 18
-INSERT INTO `item_mods` VALUES (16139,2,10);   -- HP: 10
-INSERT INTO `item_mods` VALUES (16139,14,4);   -- CHR: 4
-INSERT INTO `item_mods` VALUES (16139,27,-2);  -- ENMITY: -2
-INSERT INTO `item_mods` VALUES (16139,490,30); -- SAMBA_DURATION: 30
+INSERT INTO `item_mods` VALUES (16139,1,18);    -- DEF: 18
+INSERT INTO `item_mods` VALUES (16139,2,10);    -- HP: 10
+INSERT INTO `item_mods` VALUES (16139,14,4);    -- CHR: 4
+INSERT INTO `item_mods` VALUES (16139,27,-2);   -- ENMITY: -2
+INSERT INTO `item_mods` VALUES (16139,276,106); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (16139,490,30);  -- SAMBA_DURATION: 30
 
 -- Scholars Mortarboard
 INSERT INTO `item_mods` VALUES (16140,1,15);  -- DEF: 15
@@ -31065,52 +31349,68 @@ INSERT INTO `item_mods` VALUES (16320,9,5);  -- DEX: 5
 INSERT INTO `item_mods` VALUES (16320,10,5); -- VIT: 5
 
 -- Custom Trunks
-INSERT INTO `item_mods` VALUES (16321,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16321,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (16321,276,1); -- RSE (race specific equip)
 
 -- Custom Shorts
-INSERT INTO `item_mods` VALUES (16322,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16322,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (16322,276,2); -- RSE (race specific equip)
 
 -- Magna Trunks
-INSERT INTO `item_mods` VALUES (16323,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16323,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (16323,276,4); -- RSE (race specific equip)
 
 -- Magna Shorts
-INSERT INTO `item_mods` VALUES (16324,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16324,1,1);   -- DEF: 1
+INSERT INTO `item_mods` VALUES (16324,276,8); -- RSE (race specific equip)
 
 -- Wonder Trunks
-INSERT INTO `item_mods` VALUES (16325,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16325,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (16325,276,16); -- RSE (race specific equip)
 
 -- Wonder Shorts
-INSERT INTO `item_mods` VALUES (16326,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16326,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (16326,276,32); -- RSE (race specific equip)
 
 -- Savage Shorts
-INSERT INTO `item_mods` VALUES (16327,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16327,1,1);    -- DEF: 1
+INSERT INTO `item_mods` VALUES (16327,276,64); -- RSE (race specific equip)
 
 -- Elder Trunks
-INSERT INTO `item_mods` VALUES (16328,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (16328,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (16328,276,128); -- RSE (race specific equip)
 
 -- Custom Trunks +1
-INSERT INTO `item_mods` VALUES (16329,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16329,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (16329,276,1); -- RSE (race specific equip)
 
 -- Custom Shorts +1
-INSERT INTO `item_mods` VALUES (16330,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16330,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (16330,276,2); -- RSE (race specific equip)
 
 -- Magna Trunks +1
-INSERT INTO `item_mods` VALUES (16331,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16331,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (16331,276,4); -- RSE (race specific equip)
 
 -- Magna Shorts +1
-INSERT INTO `item_mods` VALUES (16332,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16332,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (16332,276,8); -- RSE (race specific equip)
 
 -- Wonder Trunks +1
-INSERT INTO `item_mods` VALUES (16333,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16333,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (16333,276,16); -- RSE (race specific equip)
 
 -- Wonder Shorts +1
-INSERT INTO `item_mods` VALUES (16334,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16334,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (16334,276,32); -- RSE (race specific equip)
 
 -- Savage Shorts +1
-INSERT INTO `item_mods` VALUES (16335,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16335,1,2);    -- DEF: 2
+INSERT INTO `item_mods` VALUES (16335,276,64); -- RSE (race specific equip)
 
 -- Elder Trunks +1
-INSERT INTO `item_mods` VALUES (16336,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (16336,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (16336,276,128); -- RSE (race specific equip)
 
 -- Hachiryu Haidate
 INSERT INTO `item_mods` VALUES (16337,1,42);  -- DEF: 42
@@ -31156,12 +31456,12 @@ INSERT INTO `item_mods` VALUES (16343,73,5);  -- STORETP: 5
 INSERT INTO `item_mods` VALUES (16343,289,5); -- SUBTLE_BLOW: 5
 
 -- Oily Trousers
-INSERT INTO `item_mods` VALUES (16344,1,35);    -- DEF: 35
-INSERT INTO `item_mods` VALUES (16344,9,5);     -- DEX: 5
-INSERT INTO `item_mods` VALUES (16344,11,5);    -- AGI: 5
-INSERT INTO `item_mods` VALUES (16344,25,5);    -- ACC: 5
-INSERT INTO `item_mods` VALUES (16344,26,5);    -- RACC: 5
-INSERT INTO `item_mods` VALUES (16344,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (16344,1,35);  -- DEF: 35
+INSERT INTO `item_mods` VALUES (16344,9,5);   -- DEX: 5
+INSERT INTO `item_mods` VALUES (16344,11,5);  -- AGI: 5
+INSERT INTO `item_mods` VALUES (16344,25,5);  -- ACC: 5
+INSERT INTO `item_mods` VALUES (16344,26,5);  -- RACC: 5
+INSERT INTO `item_mods` VALUES (16344,75,-4); -- MOVE_SPEED_STACKABLE: -4
 
 -- Magus Shalwar +1
 INSERT INTO `item_mods` VALUES (16345,1,34);   -- DEF: 34
@@ -31245,22 +31545,24 @@ INSERT INTO `item_mods` VALUES (16356,23,4);  -- ATT: 4
 INSERT INTO `item_mods` VALUES (16356,28,4);  -- MATT: 4
 
 -- Dancers Tights +1
-INSERT INTO `item_mods` VALUES (16357,1,29);  -- DEF: 29
-INSERT INTO `item_mods` VALUES (16357,2,15);  -- HP: 15
-INSERT INTO `item_mods` VALUES (16357,10,5);  -- VIT: 5
-INSERT INTO `item_mods` VALUES (16357,14,5);  -- CHR: 5
-INSERT INTO `item_mods` VALUES (16357,23,5);  -- ATT: 5
-INSERT INTO `item_mods` VALUES (16357,25,5);  -- ACC: 5
-INSERT INTO `item_mods` VALUES (16357,27,-1); -- ENMITY: -1
+INSERT INTO `item_mods` VALUES (16357,1,29);    -- DEF: 29
+INSERT INTO `item_mods` VALUES (16357,2,15);    -- HP: 15
+INSERT INTO `item_mods` VALUES (16357,10,5);    -- VIT: 5
+INSERT INTO `item_mods` VALUES (16357,14,5);    -- CHR: 5
+INSERT INTO `item_mods` VALUES (16357,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (16357,25,5);    -- ACC: 5
+INSERT INTO `item_mods` VALUES (16357,276,149); -- RSE (race specific equip)
+INSERT INTO `item_mods` VALUES (16357,27,-1);   -- ENMITY: -1
 
 -- Dancers Tights +1
-INSERT INTO `item_mods` VALUES (16358,1,29);  -- DEF: 29
-INSERT INTO `item_mods` VALUES (16358,2,15);  -- HP: 15
-INSERT INTO `item_mods` VALUES (16358,10,5);  -- VIT: 5
-INSERT INTO `item_mods` VALUES (16358,14,5);  -- CHR: 5
-INSERT INTO `item_mods` VALUES (16358,23,5);  -- ATT: 5
-INSERT INTO `item_mods` VALUES (16358,25,5);  -- ACC: 5
-INSERT INTO `item_mods` VALUES (16358,27,-1); -- ENMITY: -1
+INSERT INTO `item_mods` VALUES (16358,1,29);    -- DEF: 29
+INSERT INTO `item_mods` VALUES (16358,2,15);    -- HP: 15
+INSERT INTO `item_mods` VALUES (16358,10,5);    -- VIT: 5
+INSERT INTO `item_mods` VALUES (16358,14,5);    -- CHR: 5
+INSERT INTO `item_mods` VALUES (16358,23,5);    -- ATT: 5
+INSERT INTO `item_mods` VALUES (16358,25,5);    -- ACC: 5
+INSERT INTO `item_mods` VALUES (16358,27,-1);   -- ENMITY: -1
+INSERT INTO `item_mods` VALUES (16358,276,106); -- RSE (race specific equip)
 
 -- Scholars Pants +1
 INSERT INTO `item_mods` VALUES (16359,1,28);   -- DEF: 28
@@ -31301,15 +31603,18 @@ INSERT INTO `item_mods` VALUES (16363,27,-3); -- ENMITY: -3
 INSERT INTO `item_mods` VALUES (16363,116,7); -- DARK: 7
 
 -- Benedight Hose
-INSERT INTO `item_mods` VALUES (16364,1,2);   -- DEF: 2
-INSERT INTO `item_mods` VALUES (16364,21,10); -- LIGHT_RES: 10
+INSERT INTO `item_mods` VALUES (16364,1,2);     -- DEF: 2
+INSERT INTO `item_mods` VALUES (16364,21,10);   -- LIGHT_RES: 10
+INSERT INTO `item_mods` VALUES (16364,276,149); -- RSE (race specific equip)
 
 -- Argent Hose
-INSERT INTO `item_mods` VALUES (16365,1,4); -- DEF: 4
+INSERT INTO `item_mods` VALUES (16365,1,4);     -- DEF: 4
+INSERT INTO `item_mods` VALUES (16365,276,149); -- RSE (race specific equip)
 
 -- Platino Hose
-INSERT INTO `item_mods` VALUES (16366,1,4);  -- DEF: 4
-INSERT INTO `item_mods` VALUES (16366,14,2); -- CHR: 2
+INSERT INTO `item_mods` VALUES (16366,1,4);     -- DEF: 4
+INSERT INTO `item_mods` VALUES (16366,14,2);    -- CHR: 2
+INSERT INTO `item_mods` VALUES (16366,276,149); -- RSE (race specific equip)
 
 -- Phlegethons Trousers
 INSERT INTO `item_mods` VALUES (16367,1,10); -- DEF: 10
@@ -31804,8 +32109,8 @@ INSERT INTO `item_mods` VALUES (16504,250,2);   -- SLOWRES: 2
 INSERT INTO `item_mods` VALUES (16504,431,12);  -- ITEM_ADDEFFECT_TYPE: SELF_BUFF
 INSERT INTO `item_mods` VALUES (16504,499,23);  -- ITEM_SUBEFFECT: 23
 INSERT INTO `item_mods` VALUES (16504,501,10);  -- ITEM_ADDEFFECT_CHANCE: 10
-INSERT INTO `item_mods` VALUES (16504,951,3);   -- ITEM_ADDEFFECT_STATUS: 3
-INSERT INTO `item_mods` VALUES (16504,952,15);  -- ITEM_ADDEFFECT_POWER: 15
+INSERT INTO `item_mods` VALUES (16504,951,33);  -- ITEM_ADDEFFECT_STATUS: 33  -- Haste
+INSERT INTO `item_mods` VALUES (16504,952,15);  -- ITEM_ADDEFFECT_POWER: 1500 -- 15% haste -- https://ffxiclopedia.fandom.com/wiki/Oynos_Knife
 INSERT INTO `item_mods` VALUES (16504,953,180); -- ITEM_ADDEFFECT_DURATION: 180
 
 -- Venom Kukri
@@ -32746,7 +33051,7 @@ INSERT INTO `item_mods` VALUES (16897,953,20); -- ITEM_ADDEFFECT_DURATION: 20
 INSERT INTO `item_mods` VALUES (16899,25,3); -- ACC: 3
 
 -- Fudo
-INSERT INTO `item_mods` VALUES (16904,165,3); -- CRITHITRATE: 3
+INSERT INTO `item_mods` VALUES (16904,141,3); -- CRITHITRATE_ONLY_WEP: 3
 
 -- Bokuto
 INSERT INTO `item_mods` VALUES (16905,431,2);  -- ITEM_ADDEFFECT_TYPE: DEBUFF
@@ -34645,7 +34950,7 @@ INSERT INTO `item_mods` VALUES (17572,116,3); -- DARK: 3
 
 -- Himmel Stock
 INSERT INTO `item_mods` VALUES (17573,5,63);  -- MP: 63
-INSERT INTO `item_mods` VALUES (17573,357,3); -- BP_DELAY: 3
+INSERT INTO `item_mods` VALUES (17573,357,-3); -- BP_DELAY: 3
 
 -- Archalauss Pole
 INSERT INTO `item_mods` VALUES (17574,12,4); -- INT: 4
@@ -34711,7 +35016,7 @@ INSERT INTO `item_mods` VALUES (17594,72,4); -- HPHEAL: 4
 
 -- Hope Staff
 INSERT INTO `item_mods` VALUES (17595,11,7);  -- AGI: 7
-INSERT INTO `item_mods` VALUES (17595,826,2); -- AMMO_SWING_TYPE: 2
+INSERT INTO `item_mods` VALUES (17595,523,50); -- AMMO_SWING
 
 -- Steel-Splitter
 INSERT INTO `item_mods` VALUES (17596,9,2);  -- DEX: 2
@@ -35068,7 +35373,7 @@ INSERT INTO `item_mods` VALUES (17709,25,4);  -- ACC: 4
 
 -- Justice Sword
 INSERT INTO `item_mods` VALUES (17710,8,7);   -- STR: 7
-INSERT INTO `item_mods` VALUES (17710,826,1); -- AMMO_SWING_TYPE: 1
+INSERT INTO `item_mods` VALUES (17710,523,50); -- AMMO_SWING
 
 -- Shivas Shotel
 INSERT INTO `item_mods` VALUES (17711,12,4);   -- INT: 4
@@ -35374,8 +35679,8 @@ INSERT INTO `item_mods` VALUES (17812,8,1);  -- STR: 1
 INSERT INTO `item_mods` VALUES (17812,11,1); -- AGI: 1
 
 -- Raikiri
-INSERT INTO `item_mods` VALUES (17814,25,3);    -- ACC: 3
-INSERT INTO `item_mods` VALUES (17814,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (17814,25,3);   -- ACC: 3
+INSERT INTO `item_mods` VALUES (17814,75,-10); -- MOVE_SPEED_STACKABLE: -10
 
 -- Tachi Of Trials
 INSERT INTO `item_mods` VALUES (17815,2,20);  -- HP: 20
@@ -35592,7 +35897,7 @@ INSERT INTO `item_mods` VALUES (17945,345,1000); -- TP_BONUS: 1000
 
 -- Temperance Axe
 INSERT INTO `item_mods` VALUES (17948,14,7);  -- CHR: 7
-INSERT INTO `item_mods` VALUES (17948,826,1); -- AMMO_SWING_TYPE: 1
+INSERT INTO `item_mods` VALUES (17948,523,50); -- AMMO_SWING
 
 -- Furnace Tabarzin
 INSERT INTO `item_mods` VALUES (17949,2,10); -- HP: 10
@@ -35992,7 +36297,7 @@ INSERT INTO `item_mods` VALUES (18098,345,1000); -- TP_BONUS: 1000
 
 -- Love Halberd
 INSERT INTO `item_mods` VALUES (18100,9,7);   -- DEX: 7
-INSERT INTO `item_mods` VALUES (18100,826,2); -- AMMO_SWING_TYPE: 2
+INSERT INTO `item_mods` VALUES (18100,523,50); -- AMMO_SWING
 
 -- Fuscina
 INSERT INTO `item_mods` VALUES (18104,431,1);  -- ITEM_ADDEFFECT_TYPE: DAMAGE
@@ -36431,7 +36736,7 @@ INSERT INTO `item_mods` VALUES (18221,345,1000); -- TP_BONUS: 1000
 
 -- Fortitude Axe
 INSERT INTO `item_mods` VALUES (18222,10,7);  -- VIT: 7
-INSERT INTO `item_mods` VALUES (18222,826,2); -- AMMO_SWING_TYPE: 2
+INSERT INTO `item_mods` VALUES (18222,523,50); -- AMMO_SWING
 
 -- Toporok
 INSERT INTO `item_mods` VALUES (18223,2,10); -- HP: 10
@@ -36461,28 +36766,35 @@ INSERT INTO `item_mods` VALUES (18245,30,8); -- MACC: 8
 INSERT INTO `item_mods` VALUES (18246,11,1); -- AGI: 1
 
 -- Balm Sachet
-INSERT INTO `item_mods` VALUES (18247,8,1);  -- STR: 1
-INSERT INTO `item_mods` VALUES (18247,12,1); -- INT: 1
+INSERT INTO `item_mods` VALUES (18247,8,1);   -- STR: 1
+INSERT INTO `item_mods` VALUES (18247,12,1);  -- INT: 1
+INSERT INTO `item_mods` VALUES (18247,276,1); -- RSE (race specific equip)
 
 -- Millefleurs Sachet
-INSERT INTO `item_mods` VALUES (18248,8,1);  -- STR: 1
-INSERT INTO `item_mods` VALUES (18248,12,1); -- INT: 1
+INSERT INTO `item_mods` VALUES (18248,8,1);   -- STR: 1
+INSERT INTO `item_mods` VALUES (18248,12,1);  -- INT: 1
+INSERT INTO `item_mods` VALUES (18248,276,2); -- RSE (race specific equip)
 
 -- Olibanum Sachet
-INSERT INTO `item_mods` VALUES (18249,8,2); -- STR: 2
+INSERT INTO `item_mods` VALUES (18249,8,2);   -- STR: 2
+INSERT INTO `item_mods` VALUES (18249,276,4); -- RSE (race specific equip)
 
 -- Attar Sachet
-INSERT INTO `item_mods` VALUES (18250,8,2); -- STR: 2
+INSERT INTO `item_mods` VALUES (18250,8,2);   -- STR: 2
+INSERT INTO `item_mods` VALUES (18250,276,8); -- RSE (race specific equip)
 
 -- Sweet Sachet
-INSERT INTO `item_mods` VALUES (18251,12,2); -- INT: 2
+INSERT INTO `item_mods` VALUES (18251,12,2);   -- INT: 2
+INSERT INTO `item_mods` VALUES (18251,276,48); -- RSE (race specific equip)
 
 -- Civet Sachet
-INSERT INTO `item_mods` VALUES (18252,9,1);  -- DEX: 1
-INSERT INTO `item_mods` VALUES (18252,11,1); -- AGI: 1
+INSERT INTO `item_mods` VALUES (18252,9,1);    -- DEX: 1
+INSERT INTO `item_mods` VALUES (18252,11,1);   -- AGI: 1
+INSERT INTO `item_mods` VALUES (18252,276,64); -- RSE (race specific equip)
 
 -- Musk Sachet
-INSERT INTO `item_mods` VALUES (18253,10,2); -- VIT: 2
+INSERT INTO `item_mods` VALUES (18253,10,2);    -- VIT: 2
+INSERT INTO `item_mods` VALUES (18253,276,128); -- RSE (race specific equip)
 
 -- Tiphia Sting
 INSERT INTO `item_mods` VALUES (18254,2,-25); -- HP: -25
@@ -36556,16 +36868,20 @@ INSERT INTO `item_mods` VALUES (18276,23,20);   -- ATT: 20
 INSERT INTO `item_mods` VALUES (18276,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (18276,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (18276,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (18276,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (18276,506,50);  -- EXTRA_DMG_CHANCE: 50
 INSERT INTO `item_mods` VALUES (18276,507,300); -- OCC_DO_EXTRA_DMG: 300
+INSERT INTO `item_mods` VALUES (18276,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Excalibur
 INSERT INTO `item_mods` VALUES (18277,23,25);   -- ATT: 25
 INSERT INTO `item_mods` VALUES (18277,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (18277,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (18277,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (18277,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (18277,506,50);  -- EXTRA_DMG_CHANCE: 50
 INSERT INTO `item_mods` VALUES (18277,507,300); -- OCC_DO_EXTRA_DMG: 300
+INSERT INTO `item_mods` VALUES (18277,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Valhalla
 INSERT INTO `item_mods` VALUES (18281,256,4);  -- AFTERMATH: 4
@@ -36880,7 +37196,7 @@ INSERT INTO `item_mods` VALUES (18359,950,3);   -- ITEM_ADDEFFECT_ELEMENT: 3
 
 -- Faith Baghnakhs
 INSERT INTO `item_mods` VALUES (18360,13,7);  -- MND: 7
-INSERT INTO `item_mods` VALUES (18360,826,2); -- AMMO_SWING_TYPE: 2
+INSERT INTO `item_mods` VALUES (18360,523,50); -- AMMO_SWING
 
 -- Ponderous Manoples
 INSERT INTO `item_mods` VALUES (18361,10,2); -- VIT: 2
@@ -36978,7 +37294,7 @@ INSERT INTO `item_mods` VALUES (18396,25,-5); -- ACC: -5
 
 -- Prudence Rod
 INSERT INTO `item_mods` VALUES (18397,12,7);  -- INT: 7
-INSERT INTO `item_mods` VALUES (18397,826,1); -- AMMO_SWING_TYPE: 1
+INSERT INTO `item_mods` VALUES (18397,523,50); -- AMMO_SWING
 
 -- Mana Wand
 INSERT INTO `item_mods` VALUES (18402,12,2); -- INT: 2
@@ -37317,8 +37633,8 @@ INSERT INTO `item_mods` VALUES (18518,10,5); -- VIT: 5
 INSERT INTO `item_mods` VALUES (18518,25,5); -- ACC: 5
 
 -- Oneiros Axe
-INSERT INTO `item_mods` VALUES (18519,73,-15);  -- STORETP: -15
-INSERT INTO `item_mods` VALUES (18519,75,-12);  -- MOVE_SPEED_STACKABLE: -12
+INSERT INTO `item_mods` VALUES (18519,73,-15); -- STORETP: -15
+INSERT INTO `item_mods` VALUES (18519,75,-10);  -- MOVE_SPEED_STACKABLE: -10
 
 -- Laceratrice
 INSERT INTO `item_mods` VALUES (18520,165,4); -- CRITHITRATE: 4
@@ -37772,8 +38088,10 @@ INSERT INTO `item_mods` VALUES (18639,23,30);   -- ATT: 30
 INSERT INTO `item_mods` VALUES (18639,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (18639,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (18639,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (18639,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (18639,506,50);  -- EXTRA_DMG_CHANCE: 50
 INSERT INTO `item_mods` VALUES (18639,507,300); -- OCC_DO_EXTRA_DMG: 300
+INSERT INTO `item_mods` VALUES (18639,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Ragnarok
 INSERT INTO `item_mods` VALUES (18640,25,30);   -- ACC: 30
@@ -37886,9 +38204,11 @@ INSERT INTO `item_mods` VALUES (18653,23,35);   -- ATT: 35
 INSERT INTO `item_mods` VALUES (18653,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (18653,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (18653,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (18653,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (18653,506,50);  -- EXTRA_DMG_CHANCE: 50
 INSERT INTO `item_mods` VALUES (18653,507,300); -- OCC_DO_EXTRA_DMG: 300
 INSERT INTO `item_mods` VALUES (18653,613,25);  -- WSD+% (Knights Of Round): 25
+INSERT INTO `item_mods` VALUES (18653,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Ragnarok
 INSERT INTO `item_mods` VALUES (18654,25,35);   -- ACC: 35
@@ -38012,9 +38332,11 @@ INSERT INTO `item_mods` VALUES (18667,23,35);   -- ATT: 35
 INSERT INTO `item_mods` VALUES (18667,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (18667,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (18667,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (18667,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (18667,506,130); -- EXTRA_DMG_CHANCE: 130
 INSERT INTO `item_mods` VALUES (18667,507,300); -- OCC_DO_EXTRA_DMG: 300
 INSERT INTO `item_mods` VALUES (18667,613,25);  -- WSD+% (Knights Of Round): 25
+INSERT INTO `item_mods` VALUES (18667,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Ragnarok
 INSERT INTO `item_mods` VALUES (18668,25,35);   -- ACC: 35
@@ -38569,10 +38891,15 @@ INSERT INTO `item_mods` VALUES (18854,28,4);  -- MATT: 4
 INSERT INTO `item_mods` VALUES (18854,296,4); -- CONSERVE_MP: 4
 
 -- Deae Gratia
-INSERT INTO `item_mods` VALUES (18856,5,30);  -- MP: 30
-INSERT INTO `item_mods` VALUES (18856,23,9);  -- ATT: 9
-INSERT INTO `item_mods` VALUES (18856,25,9);  -- ACC: 9
-INSERT INTO `item_mods` VALUES (18856,291,1); -- COUNTER: 1
+INSERT INTO `item_mods` VALUES (18856,5,30);   -- MP: 30
+INSERT INTO `item_mods` VALUES (18856,23,9);   -- ATT: 9
+INSERT INTO `item_mods` VALUES (18856,25,9);   -- ACC: 9
+INSERT INTO `item_mods` VALUES (18856,291,1);  -- COUNTER: 1
+INSERT INTO `item_mods` VALUES (18856,431,5);  -- ITEM_ADDEFFECT_TYPE: HP_DRAIN
+INSERT INTO `item_mods` VALUES (18856,499,21); -- ITEM_SUBEFFECT: SUBEFFECT_HP_DRAIN
+INSERT INTO `item_mods` VALUES (18856,500,14); -- ITEM_ADDEFFECT_DMG: 14
+INSERT INTO `item_mods` VALUES (18856,501,5);  -- ITEM_ADDEFFECT_CHANCE: 5
+INSERT INTO `item_mods` VALUES (18856,950,8);  -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_DARK
 
 -- Antares
 INSERT INTO `item_mods` VALUES (18857,2,-20); -- HP: -20
@@ -39554,7 +39881,13 @@ INSERT INTO `item_mods` VALUES (19160,500,2); -- ITEM_ADDEFFECT_DMG: 20
 INSERT INTO `item_mods` VALUES (19160,501,5); -- ITEM_ADDEFFECT_CHANCE: 5
 
 -- Nightfall
-INSERT INTO `item_mods` VALUES (19163,368,10); -- REGAIN: 10
+INSERT INTO `item_mods` VALUES (19163,368,10);  -- REGAIN: 10
+INSERT INTO `item_mods` VALUES (19163,431,2);   -- ITEM_ADDEFFECT_TYPE: DEBUFF
+INSERT INTO `item_mods` VALUES (19163,499,16);  -- ITEM_SUBEFFECT: 16
+INSERT INTO `item_mods` VALUES (19163,501,5);   -- ITEM_ADDEFFECT_CHANCE: 5
+INSERT INTO `item_mods` VALUES (19163,951,28);  -- ITEM_ADDEFFECT_STATUS: TERROR: 28
+INSERT INTO `item_mods` VALUES (19163,952,1);   -- ITEM_ADDEFFECT_POWER: 1
+INSERT INTO `item_mods` VALUES (19163,953,10);  -- ITEM_ADDEFFECT_DURATION: 10
 
 -- Cratus Sword
 INSERT INTO `item_mods` VALUES (19165,10,3); -- VIT: 3
@@ -40547,9 +40880,11 @@ INSERT INTO `item_mods` VALUES (19748,23,40);   -- ATT: 40
 INSERT INTO `item_mods` VALUES (19748,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (19748,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (19748,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (19748,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (19748,506,130); -- EXTRA_DMG_CHANCE: 130
 INSERT INTO `item_mods` VALUES (19748,507,300); -- OCC_DO_EXTRA_DMG: 300
 INSERT INTO `item_mods` VALUES (19748,613,40);  -- WSD+% (Knights Of Round): 40
+INSERT INTO `item_mods` VALUES (19748,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Ragnarok
 INSERT INTO `item_mods` VALUES (19749,25,40);   -- ACC: 40
@@ -41061,9 +41396,11 @@ INSERT INTO `item_mods` VALUES (19841,23,40);   -- ATT: 40
 INSERT INTO `item_mods` VALUES (19841,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (19841,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (19841,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (19841,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (19841,506,130); -- EXTRA_DMG_CHANCE: 130
 INSERT INTO `item_mods` VALUES (19841,507,300); -- OCC_DO_EXTRA_DMG: 300
 INSERT INTO `item_mods` VALUES (19841,613,40);  -- WSD+% (Knights Of Round): 40
+INSERT INTO `item_mods` VALUES (19841,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Ragnarok
 INSERT INTO `item_mods` VALUES (19842,25,40);   -- ACC: 40
@@ -41948,18 +42285,22 @@ INSERT INTO `item_mods` VALUES (20645,23,40);   -- ATT: 40
 INSERT INTO `item_mods` VALUES (20645,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (20645,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (20645,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (20645,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (20645,506,130); -- EXTRA_DMG_CHANCE: 130
 INSERT INTO `item_mods` VALUES (20645,507,300); -- OCC_DO_EXTRA_DMG: 300
 INSERT INTO `item_mods` VALUES (20645,613,40);  -- WSD+% (Knights Of Round): 40
+INSERT INTO `item_mods` VALUES (20645,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Excalibur
 INSERT INTO `item_mods` VALUES (20646,23,40);   -- ATT: 40
 INSERT INTO `item_mods` VALUES (20646,256,3);   -- AFTERMATH: 3
 INSERT INTO `item_mods` VALUES (20646,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (20646,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (20646,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (20646,506,130); -- EXTRA_DMG_CHANCE: 130
 INSERT INTO `item_mods` VALUES (20646,507,300); -- OCC_DO_EXTRA_DMG: 300
 INSERT INTO `item_mods` VALUES (20646,613,40);  -- WSD+% (Knights Of Round): 40
+INSERT INTO `item_mods` VALUES (20646,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Murgleis
 INSERT INTO `item_mods` VALUES (20647,30,30);  -- MACC: 30
@@ -42063,9 +42404,11 @@ INSERT INTO `item_mods` VALUES (20685,23,60);   -- ATT: 60
 INSERT INTO `item_mods` VALUES (20685,256,17);  -- AFTERMATH: 17
 INSERT INTO `item_mods` VALUES (20685,355,43);  -- ADDS_WEAPONSKILL: 43
 INSERT INTO `item_mods` VALUES (20685,431,1);   -- ITEM_ADDEFFECT_TYPE: DAMAGE
+INSERT INTO `item_mods` VALUES (20685,499,7);   -- ITEM_SUBEFFECT: ENLIGHT
 INSERT INTO `item_mods` VALUES (20685,506,130); -- EXTRA_DMG_CHANCE: 130
 INSERT INTO `item_mods` VALUES (20685,507,300); -- OCC_DO_EXTRA_DMG: 300
 INSERT INTO `item_mods` VALUES (20685,613,40);  -- WSD+% (Knights Of Round): 40
+INSERT INTO `item_mods` VALUES (20685,950,7);   -- ITEM_ADDEFFECT_ELEMENT: ELEMENT_LIGHT -- TODO: This should be "slashing", change once we have support for physical damage types.
 
 -- Murgleis
 INSERT INTO `item_mods` VALUES (20686,30,40);   -- MACC: 40
@@ -44842,6 +45185,10 @@ INSERT INTO `item_mods` VALUES (21694,355,60);  -- ADDS_WEAPONSKILL: 60
 -- TODO: Aftermath
 -- TODO: Ultimate Skillchain
 
+-- Nibiru Faussar
+INSERT INTO `item_mods` VALUES (21699,832,1);  -- AQUAVEIL_COUNT: 1
+-- TODO: non-AQUAVEIL MODS
+
 -- Blurred Claymore
 INSERT INTO `item_mods` VALUES (21700,25,20); -- ACC: 20
 
@@ -46820,6 +47167,7 @@ INSERT INTO `item_mods` VALUES (23058,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (23058,31,63);   -- MEVA: 63
 INSERT INTO `item_mods` VALUES (23058,68,64);   -- EVA: 64
 INSERT INTO `item_mods` VALUES (23058,259,4);   -- DUAL_WIELD: 4
+INSERT INTO `item_mods` VALUES (23058,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23058,384,800); -- HASTE_GEAR: 800
 INSERT INTO `item_mods` VALUES (23058,403,25);  -- STEP_ACCURACY: 25
 INSERT INTO `item_mods` VALUES (23058,490,45);  -- SAMBA_DURATION: 45
@@ -46840,6 +47188,7 @@ INSERT INTO `item_mods` VALUES (23059,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (23059,31,63);   -- MEVA: 63
 INSERT INTO `item_mods` VALUES (23059,68,64);   -- EVA: 64
 INSERT INTO `item_mods` VALUES (23059,259,4);   -- DUAL_WIELD: 4
+INSERT INTO `item_mods` VALUES (23059,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23059,384,800); -- HASTE_GEAR: 800
 INSERT INTO `item_mods` VALUES (23059,403,25);  -- STEP_ACCURACY: 25
 INSERT INTO `item_mods` VALUES (23059,490,45);  -- SAMBA_DURATION: 45
@@ -47690,7 +48039,7 @@ INSERT INTO `item_mods` VALUES (23099,117,18);   -- SUMMONING: 18
 INSERT INTO `item_mods` VALUES (23099,160,-900); -- DMG: -9
 INSERT INTO `item_mods` VALUES (23099,369,3);    -- REFRESH: 3
 INSERT INTO `item_mods` VALUES (23099,384,600);  -- HASTE_GEAR: 6%
-INSERT INTO `item_mods` VALUES (23099,630,4);    -- AVATARS_FAVOR_ENHANCE: 4
+INSERT INTO `item_mods` VALUES (23099,141,4);    -- AVATARS_FAVOR_ENHANCE: 4
 
 -- Hashishin Kavuk +2
 INSERT INTO `item_mods` VALUES (23100,1,122);   -- DEF: 122
@@ -47883,10 +48232,10 @@ INSERT INTO `item_mods` VALUES (23108,31,63);   -- MEVA: 63
 INSERT INTO `item_mods` VALUES (23108,68,62);   -- EVA: 62
 INSERT INTO `item_mods` VALUES (23108,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23108,421,4);   -- CRIT_DMG_INCREASE: 4
-INSERT INTO `item_mods` VALUES (23108,1026,14); -- CHAKRA_MULT: 14
+INSERT INTO `item_mods` VALUES (23108,1026,64); -- CHAKRA_MULT: 64 -- M = 0.64
 INSERT INTO `item_mods` VALUES (23108,1027,1);  -- CHAKRA_REMOVAL: 1
 
--- Theophany Briault +2
+-- Theophany Bliaut +2
 INSERT INTO `item_mods` VALUES (23109,1,135);   -- DEF: 135
 INSERT INTO `item_mods` VALUES (23109,2,81);    -- HP: 81
 INSERT INTO `item_mods` VALUES (23109,5,88);    -- MP: 88
@@ -48224,6 +48573,7 @@ INSERT INTO `item_mods` VALUES (23125,25,46);   -- ACC: 46
 INSERT INTO `item_mods` VALUES (23125,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (23125,31,74);   -- MEVA: 74
 INSERT INTO `item_mods` VALUES (23125,68,69);   -- EVA: 69
+INSERT INTO `item_mods` VALUES (23125,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23125,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23125,491,17);  -- WALTZ_POTENCY: 17
 
@@ -48243,6 +48593,7 @@ INSERT INTO `item_mods` VALUES (23126,25,46);   -- ACC: 46
 INSERT INTO `item_mods` VALUES (23126,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (23126,31,74);   -- MEVA: 74
 INSERT INTO `item_mods` VALUES (23126,68,69);   -- EVA: 69
+INSERT INTO `item_mods` VALUES (23126,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23126,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23126,491,17);  -- WALTZ_POTENCY: 17
 
@@ -48679,7 +49030,7 @@ INSERT INTO `item_mods` VALUES (23146,31,74);    -- MEVA: 74
 INSERT INTO `item_mods` VALUES (23146,68,59);    -- EVA: 59
 INSERT INTO `item_mods` VALUES (23146,161,-500); -- DMGPHYS: -5%
 INSERT INTO `item_mods` VALUES (23146,384,400);  -- HASTE_GEAR: 4%
--- TODO: "Random Deal" effect +50: Occasionally allows Random Deal to restore two used job abilities.
+INSERT INTO `item_mods` VALUES (23146,220,50);   -- RANDOM_DEAL_BONUS: 50
 
 -- Pitre Tobe +2
 INSERT INTO `item_mods` VALUES (23147,1,143);   -- DEF: 143
@@ -48828,7 +49179,7 @@ INSERT INTO `item_mods` VALUES (23153,68,95);   -- EVA: 95
 INSERT INTO `item_mods` VALUES (23153,173,7);   -- MARTIAL_ARTS: 7
 INSERT INTO `item_mods` VALUES (23153,384,400); -- HASTE_GEAR: 4%
 INSERT INTO `item_mods` VALUES (23153,841,8);   -- ALL_WSDMG_FIRST_HIT: 8
--- TODO: Augments Impetus: Increases Critical Hit Damage by 1% and ACC by 2 for each consecutive successful attack while worn
+INSERT INTO `item_mods` VALUES (23153,1097,2);  -- AUGMENTS_IMPETUS: 2
 
 -- Ebers Bliaut +2
 INSERT INTO `item_mods` VALUES (23154,1,145);   -- DEF: 145
@@ -49407,7 +49758,7 @@ INSERT INTO `item_mods` VALUES (23180,31,36);    -- MEVA: 36
 INSERT INTO `item_mods` VALUES (23180,68,32);    -- EVA: 32
 INSERT INTO `item_mods` VALUES (23180,163,-600); -- DMGMAGIC: -600
 INSERT INTO `item_mods` VALUES (23180,384,400);  -- HASTE_GEAR: 400
-INSERT INTO `item_mods` VALUES (23180,485,1);    -- SHIELD_MASTERY_TP: 1
+INSERT INTO `item_mods` VALUES (23180,485,10);   -- SHIELD_MASTERY_TP: 10
 
 -- Ignominy Gauntlets +2
 INSERT INTO `item_mods` VALUES (23181,1,114);   -- DEF: 114
@@ -49632,6 +49983,7 @@ INSERT INTO `item_mods` VALUES (23192,25,38);   -- ACC: 38
 INSERT INTO `item_mods` VALUES (23192,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (23192,31,47);   -- MEVA: 47
 INSERT INTO `item_mods` VALUES (23192,68,44);   -- EVA: 44
+INSERT INTO `item_mods` VALUES (23192,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23192,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (23192,403,30);  -- STEP_ACCURACY: 30
 INSERT INTO `item_mods` VALUES (23192,841,5);   -- ALL_WSDMG_FIRST_HIT: 5
@@ -49651,6 +50003,7 @@ INSERT INTO `item_mods` VALUES (23193,25,38);   -- ACC: 38
 INSERT INTO `item_mods` VALUES (23193,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (23193,31,47);   -- MEVA: 47
 INSERT INTO `item_mods` VALUES (23193,68,44);   -- EVA: 44
+INSERT INTO `item_mods` VALUES (23193,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23193,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (23193,403,30);  -- STEP_ACCURACY: 30
 INSERT INTO `item_mods` VALUES (23193,841,5);   -- ALL_WSDMG_FIRST_HIT: 5
@@ -49752,7 +50105,7 @@ INSERT INTO `item_mods` VALUES (23198,68,32);   -- EVA: 32
 INSERT INTO `item_mods` VALUES (23198,73,5);    -- STORETP: 5
 INSERT INTO `item_mods` VALUES (23198,289,9);   -- SUBTLE_BLOW: 9
 INSERT INTO `item_mods` VALUES (23198,384,400); -- HASTE_GEAR: 4%
-INSERT INTO `item_mods` VALUES (23198,1026,15); -- CHAKRA_MULT: 15
+INSERT INTO `item_mods` VALUES (23198,1026,48); -- CHAKRA_MULT: 48 -- M = 0.48
 INSERT INTO `item_mods` VALUES (23198,1027,6);  -- CHAKRA_REMOVAL: 6
 
 -- Piety Mitts +2
@@ -51002,6 +51355,7 @@ INSERT INTO `item_mods` VALUES (23259,25,46);   -- ACC: 46
 INSERT INTO `item_mods` VALUES (23259,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (23259,31,79);   -- MEVA: 79
 INSERT INTO `item_mods` VALUES (23259,68,68);   -- EVA: 68
+INSERT INTO `item_mods` VALUES (23259,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23259,175,14);  -- SKILLCHAINDMG: 14
 INSERT INTO `item_mods` VALUES (23259,384,600); -- HASTE_GEAR: 600
 
@@ -51019,6 +51373,7 @@ INSERT INTO `item_mods` VALUES (23260,25,46);   -- ACC: 46
 INSERT INTO `item_mods` VALUES (23260,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (23260,31,79);   -- MEVA: 79
 INSERT INTO `item_mods` VALUES (23260,68,68);   -- EVA: 68
+INSERT INTO `item_mods` VALUES (23260,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23260,175,14);  -- SKILLCHAINDMG: 14
 INSERT INTO `item_mods` VALUES (23260,384,600); -- HASTE_GEAR: 600
 
@@ -52326,6 +52681,7 @@ INSERT INTO `item_mods` VALUES (23326,25,36);   -- ACC: 36
 INSERT INTO `item_mods` VALUES (23326,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (23326,31,79);   -- MEVA: 79
 INSERT INTO `item_mods` VALUES (23326,68,92);   -- EVA: 92
+INSERT INTO `item_mods` VALUES (23326,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23326,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23326,491,12);  -- WALTZ_POTENCY: 12
 INSERT INTO `item_mods` VALUES (23326,492,45);  -- JIG_DURATION: 45
@@ -52344,6 +52700,7 @@ INSERT INTO `item_mods` VALUES (23327,25,36);   -- ACC: 36
 INSERT INTO `item_mods` VALUES (23327,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (23327,31,79);   -- MEVA: 79
 INSERT INTO `item_mods` VALUES (23327,68,92);   -- EVA: 92
+INSERT INTO `item_mods` VALUES (23327,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23327,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23327,491,12);  -- WALTZ_POTENCY: 12
 INSERT INTO `item_mods` VALUES (23327,492,45);  -- JIG_DURATION: 45
@@ -53076,7 +53433,7 @@ INSERT INTO `item_mods` VALUES (23363,384,400); -- HASTE_GEAR: 4%
 INSERT INTO `item_mods` VALUES (23363,841,8);   -- ALL_WSDMG_FIRST_HIT: 8
 -- TODO: Enhances "Unlimited Shot" effect
 
--- Kasuga sune-ate +2
+-- Kasuga Sune-Ate +2
 INSERT INTO `item_mods` VALUES (23364,1,106);   -- DEF: 106
 INSERT INTO `item_mods` VALUES (23364,2,35);    -- HP:  35
 INSERT INTO `item_mods` VALUES (23364,8,26);    -- STR: 26
@@ -53093,8 +53450,8 @@ INSERT INTO `item_mods` VALUES (23364,31,120);  -- MEVA: 120
 INSERT INTO `item_mods` VALUES (23364,68,95);   -- EVA:  95
 INSERT INTO `item_mods` VALUES (23364,384,300); -- HASTE_GEAR: 3%
 INSERT INTO `item_mods` VALUES (23364,944,12);  -- CONSERVE_TP: 12
--- TODO: Physical damage limit +7%
--- TODO: "Sengikori"+12
+INSERT INTO `item_mods` VALUES (23364,1090,12); -- SENGIKORI_BONUS : 12
+INSERT INTO `item_mods` VALUES (23364,1081,12); -- DAMAGE_LIMITP : 7
 
 -- Hattori Kyahan +2
 INSERT INTO `item_mods` VALUES (23365,1,93);    -- DEF: 93
@@ -53675,6 +54032,7 @@ INSERT INTO `item_mods` VALUES (23393,25,47);   -- ACC: 47
 INSERT INTO `item_mods` VALUES (23393,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (23393,31,73);   -- MEVA: 73
 INSERT INTO `item_mods` VALUES (23393,68,74);   -- EVA: 74
+INSERT INTO `item_mods` VALUES (23393,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23393,259,8);   -- DUAL_WIELD: 8
 INSERT INTO `item_mods` VALUES (23393,384,800); -- HASTE_GEAR: 800
 INSERT INTO `item_mods` VALUES (23393,403,35);  -- STEP_ACCURACY: 35
@@ -53695,6 +54053,7 @@ INSERT INTO `item_mods` VALUES (23394,25,47);   -- ACC: 47
 INSERT INTO `item_mods` VALUES (23394,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (23394,31,73);   -- MEVA: 73
 INSERT INTO `item_mods` VALUES (23394,68,74);   -- EVA: 74
+INSERT INTO `item_mods` VALUES (23394,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23394,259,8);   -- DUAL_WIELD: 8
 INSERT INTO `item_mods` VALUES (23394,384,800); -- HASTE_GEAR: 800
 INSERT INTO `item_mods` VALUES (23394,403,35);  -- STEP_ACCURACY: 35
@@ -53942,10 +54301,10 @@ INSERT INTO `item_mods` VALUES (23443,31,73);   -- MEVA: 73
 INSERT INTO `item_mods` VALUES (23443,68,72);   -- EVA: 72
 INSERT INTO `item_mods` VALUES (23443,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23443,421,8);   -- CRIT_DMG_INCREASE: 8
-INSERT INTO `item_mods` VALUES (23443,1026,16); -- CHAKRA_MULT: 16
+INSERT INTO `item_mods` VALUES (23443,1026,66); -- CHAKRA_MULT: 66 -- M = 0.66
 INSERT INTO `item_mods` VALUES (23443,1027,1);  -- CHAKRA_REMOVAL: 1
 
--- Theophany Briault +3
+-- Theophany Bliaut +3
 INSERT INTO `item_mods` VALUES (23444,1,145);   -- DEF: 145
 INSERT INTO `item_mods` VALUES (23444,2,91);    -- HP: 91
 INSERT INTO `item_mods` VALUES (23444,5,98);    -- MP: 98
@@ -54283,6 +54642,7 @@ INSERT INTO `item_mods` VALUES (23460,25,56);   -- ACC: 56
 INSERT INTO `item_mods` VALUES (23460,29,7);    -- MDEF: 7
 INSERT INTO `item_mods` VALUES (23460,31,84);   -- MEVA: 84
 INSERT INTO `item_mods` VALUES (23460,68,79);   -- EVA: 79
+INSERT INTO `item_mods` VALUES (23460,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23460,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23460,491,19);  -- WALTZ_POTENCY: 19
 
@@ -54302,6 +54662,7 @@ INSERT INTO `item_mods` VALUES (23461,25,56);   -- ACC: 56
 INSERT INTO `item_mods` VALUES (23461,29,7);    -- MDEF: 7
 INSERT INTO `item_mods` VALUES (23461,31,84);   -- MEVA: 84
 INSERT INTO `item_mods` VALUES (23461,68,79);   -- EVA: 79
+INSERT INTO `item_mods` VALUES (23461,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23461,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23461,491,19);  -- WALTZ_POTENCY: 19
 
@@ -54531,7 +54892,7 @@ INSERT INTO `item_mods` VALUES (23515,31,46);    -- MEVA: 46
 INSERT INTO `item_mods` VALUES (23515,68,42);    -- EVA: 42
 INSERT INTO `item_mods` VALUES (23515,163,-700); -- DMGMAGIC: -700
 INSERT INTO `item_mods` VALUES (23515,384,400);  -- HASTE_GEAR: 400
-INSERT INTO `item_mods` VALUES (23515,485,2);    -- SHIELD_MASTERY_TP: 2
+INSERT INTO `item_mods` VALUES (23515,485,20);   -- SHIELD_MASTERY_TP: 20
 
 -- Ignominy Gauntlets +3
 INSERT INTO `item_mods` VALUES (23516,1,124);   -- DEF: 124
@@ -54756,6 +55117,7 @@ INSERT INTO `item_mods` VALUES (23527,25,48);   -- ACC: 48
 INSERT INTO `item_mods` VALUES (23527,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (23527,31,57);   -- MEVA: 57
 INSERT INTO `item_mods` VALUES (23527,68,54);   -- EVA: 54
+INSERT INTO `item_mods` VALUES (23527,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23527,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (23527,403,40);  -- STEP_ACCURACY: 40
 INSERT INTO `item_mods` VALUES (23527,841,10);  -- ALL_WSDMG_FIRST_HIT: 10
@@ -54775,6 +55137,7 @@ INSERT INTO `item_mods` VALUES (23528,25,48);   -- ACC: 48
 INSERT INTO `item_mods` VALUES (23528,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (23528,31,57);   -- MEVA: 57
 INSERT INTO `item_mods` VALUES (23528,68,54);   -- EVA: 54
+INSERT INTO `item_mods` VALUES (23528,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23528,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (23528,403,40);  -- STEP_ACCURACY: 40
 INSERT INTO `item_mods` VALUES (23528,841,10);  -- ALL_WSDMG_FIRST_HIT: 10
@@ -55236,6 +55599,7 @@ INSERT INTO `item_mods` VALUES (23594,25,56);   -- ACC: 56
 INSERT INTO `item_mods` VALUES (23594,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (23594,31,89);   -- MEVA: 89
 INSERT INTO `item_mods` VALUES (23594,68,78);   -- EVA: 78
+INSERT INTO `item_mods` VALUES (23594,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23594,175,16);  -- SKILLCHAINDMG: 16
 INSERT INTO `item_mods` VALUES (23594,384,600); -- HASTE_GEAR: 600
 
@@ -55253,6 +55617,7 @@ INSERT INTO `item_mods` VALUES (23595,25,56);   -- ACC: 56
 INSERT INTO `item_mods` VALUES (23595,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (23595,31,89);   -- MEVA: 89
 INSERT INTO `item_mods` VALUES (23595,68,78);   -- EVA: 78
+INSERT INTO `item_mods` VALUES (23595,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23595,175,16);  -- SKILLCHAINDMG: 16
 INSERT INTO `item_mods` VALUES (23595,384,600); -- HASTE_GEAR: 600
 
@@ -55716,6 +56081,7 @@ INSERT INTO `item_mods` VALUES (23661,25,46);   -- ACC: 46
 INSERT INTO `item_mods` VALUES (23661,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (23661,31,89);   -- MEVA: 89
 INSERT INTO `item_mods` VALUES (23661,68,102);  -- EVA: 102
+INSERT INTO `item_mods` VALUES (23661,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23661,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23661,491,14);  -- WALTZ_POTENCY: 14
 INSERT INTO `item_mods` VALUES (23661,492,50);  -- JIG_DURATION: 50
@@ -55734,6 +56100,7 @@ INSERT INTO `item_mods` VALUES (23662,25,46);   -- ACC: 46
 INSERT INTO `item_mods` VALUES (23662,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (23662,31,89);   -- MEVA: 89
 INSERT INTO `item_mods` VALUES (23662,68,102);  -- EVA: 102
+INSERT INTO `item_mods` VALUES (23662,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (23662,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (23662,491,14);  -- WALTZ_POTENCY: 14
 INSERT INTO `item_mods` VALUES (23662,492,50);  -- JIG_DURATION: 50
@@ -58657,6 +59024,12 @@ INSERT INTO `item_mods` VALUES (25600,68,33);   -- EVA: 33
 INSERT INTO `item_mods` VALUES (25600,306,5);   -- ZANSHIN: 5
 INSERT INTO `item_mods` VALUES (25600,384,700); -- HASTE_GEAR: 700
 
+-- Agent Hood
+INSERT INTO `item_mods` VALUES (25606,276,149); -- RSE (race specific equip)
+
+-- Starlet Flower
+INSERT INTO `item_mods` VALUES (25607,276,106); -- RSE (race specific equip)
+
 -- Emicho Coronet
 INSERT INTO `item_mods` VALUES (25609,1,115);   -- DEF: 115
 INSERT INTO `item_mods` VALUES (25609,2,45);    -- HP: 45
@@ -58869,6 +59242,9 @@ INSERT INTO `item_mods` VALUES (25629,68,36);    -- EVA: 36
 INSERT INTO `item_mods` VALUES (25629,161,-500); -- DMGPHYS: -500
 INSERT INTO `item_mods` VALUES (25629,384,700);  -- HASTE_GEAR: 700
 
+-- Carbie Cap +1
+INSERT INTO `item_mods` VALUES (25633,1,2);  -- DEF: 2
+
 -- Terminal Helm
 INSERT INTO `item_mods` VALUES (25634,1,111);    -- DEF: 111
 INSERT INTO `item_mods` VALUES (25634,2,41);     -- HP: 41
@@ -58927,6 +59303,10 @@ INSERT INTO `item_mods` VALUES (25643,31,86);   -- MEVA: 86
 INSERT INTO `item_mods` VALUES (25643,68,33);   -- EVA: 33
 INSERT INTO `item_mods` VALUES (25643,170,8);   -- FASTCAST: 8
 INSERT INTO `item_mods` VALUES (25643,384,600); -- HASTE_GEAR: 600
+
+-- Chironic Hat
+INSERT INTO `item_mods` VALUES (25644,832,1);  -- AQUAVEIL_COUNT: 1
+-- TODO: non-AQUAVEIL MODS
 
 -- Crab Cap
 INSERT INTO `item_mods` VALUES (25652,1,1); -- DEF: 1
@@ -60172,6 +60552,10 @@ INSERT INTO `item_mods` VALUES (25823,68,19);   -- EVA: 19
 INSERT INTO `item_mods` VALUES (25823,311,49);  -- MAGIC_DAMAGE: 49
 INSERT INTO `item_mods` VALUES (25823,384,400); -- HASTE_GEAR: 400
 
+-- Regal Cuffs
+INSERT INTO `item_mods` VALUES (25827,832,2);  -- AQUAVEIL_COUNT: 2
+-- TODO: non-AQUAVEIL MODS
+
 -- Fancy Trunks
 INSERT INTO `item_mods` VALUES (25838,1,2); -- DEF: 2
 INSERT INTO `item_mods` VALUES (25838,15,10); -- FIRE_RES: 10 (Summer Tidings)
@@ -61354,6 +61738,12 @@ INSERT INTO `item_mods` VALUES (26218,9,3);  -- DEX: 3
 INSERT INTO `item_mods` VALUES (26218,10,3); -- VIT: 3
 INSERT INTO `item_mods` VALUES (26218,11,3); -- AGI: 3
 
+-- Naji's Loop
+INSERT INTO `item_mods` VALUES (26219,27,-1); -- ENMITY: -1
+INSERT INTO `item_mods` VALUES (26219,170,1); -- FASTCAST: 1
+INSERT INTO `item_mods` VALUES (26219,260,1); -- CURE_POTENCY_II: 1
+INSERT INTO `item_mods` VALUES (26219,374,1); -- CURE_POTENCY: 1
+
 -- Sroda Ring
 INSERT INTO `item_mods` VALUES (26221,8,15);  -- STR: 15
 INSERT INTO `item_mods` VALUES (26221,9,-20); -- DEX: -20
@@ -61559,7 +61949,6 @@ INSERT INTO `item_mods` VALUES (26403,109,129);  -- SHIELD: 129
 INSERT INTO `item_mods` VALUES (26403,160,-800); -- DMG: -800
 -- TODO: Null all damage
 -- Kupo Shield
-INSERT INTO `item_mods` VALUES (26406,127,3); -- FISH: 3
 INSERT INTO `item_mods` VALUES (26406,128,3); -- WOOD: 3
 INSERT INTO `item_mods` VALUES (26406,129,3); -- SMITH: 3
 INSERT INTO `item_mods` VALUES (26406,130,3); -- GOLDSMITH: 3
@@ -63441,7 +63830,7 @@ INSERT INTO `item_mods` VALUES (26768,68,16);   -- EVA: 16
 INSERT INTO `item_mods` VALUES (26768,117,11);  -- SUMMONING: 11
 INSERT INTO `item_mods` VALUES (26768,369,2);   -- REFRESH: 2
 INSERT INTO `item_mods` VALUES (26768,384,500); -- HASTE_GEAR: 500
-INSERT INTO `item_mods` VALUES (26768,630,2);   -- ENHANCES FAVOR: 2
+INSERT INTO `item_mods` VALUES (26768,141,2);   -- ENHANCES FAVOR: 2
 
 -- Beckoners Horn +1
 INSERT INTO `item_mods` VALUES (26769,1,93);    -- DEF: 93
@@ -63460,7 +63849,7 @@ INSERT INTO `item_mods` VALUES (26769,68,36);   -- EVA: 36
 INSERT INTO `item_mods` VALUES (26769,117,13);  -- SUMMONING: 13
 INSERT INTO `item_mods` VALUES (26769,369,2);   -- REFRESH: 2
 INSERT INTO `item_mods` VALUES (26769,384,600); -- HASTE_GEAR: 600
-INSERT INTO `item_mods` VALUES (26769,630,3);   -- ENHANCES FAVOR: 3
+INSERT INTO `item_mods` VALUES (26769,141,3);   -- ENHANCES FAVOR: 3
 
 -- Hashishin Kavuk
 INSERT INTO `item_mods` VALUES (26770,1,71);    -- DEF: 71
@@ -63759,7 +64148,7 @@ INSERT INTO `item_mods` VALUES (26803,291,3);   -- COUNTER: 3
 INSERT INTO `item_mods` VALUES (26803,370,3);   -- REGEN: 3
 INSERT INTO `item_mods` VALUES (26803,384,400); -- HASTE_GEAR: 400
 
--- Piety Briault
+-- Piety Bliaut
 INSERT INTO `item_mods` VALUES (26804,1,88);    -- DEF: 88
 INSERT INTO `item_mods` VALUES (26804,2,25);    -- HP: 25
 INSERT INTO `item_mods` VALUES (26804,5,70);    -- MP: 70
@@ -63778,7 +64167,7 @@ INSERT INTO `item_mods` VALUES (26804,369,2);   -- REFRESH: 2
 INSERT INTO `item_mods` VALUES (26804,384,200); -- HASTE_GEAR: 200
 INSERT INTO `item_mods` VALUES (26804,838,28);  -- REGEN_MULTIPLIER: 28
 
--- Piety Briault +1
+-- Piety Bliaut +1
 INSERT INTO `item_mods` VALUES (26805,1,124);   -- DEF: 124
 INSERT INTO `item_mods` VALUES (26805,2,54);    -- HP: 54
 INSERT INTO `item_mods` VALUES (26805,5,85);    -- MP: 85
@@ -64311,6 +64700,7 @@ INSERT INTO `item_mods` VALUES (26832,31,43);    -- MEVA: 43
 INSERT INTO `item_mods` VALUES (26832,68,23);    -- EVA: 23
 INSERT INTO `item_mods` VALUES (26832,161,-300); -- DMGPHYS: -300
 INSERT INTO `item_mods` VALUES (26832,384,400);  -- HASTE_GEAR: 400
+INSERT INTO `item_mods` VALUES (26832,220,50);   -- RANDOM_DEAL_BONUS: 50
 
 -- Lanun Frac +1
 INSERT INTO `item_mods` VALUES (26833,1,131);    -- DEF: 131
@@ -64331,6 +64721,7 @@ INSERT INTO `item_mods` VALUES (26833,31,64);    -- MEVA: 64
 INSERT INTO `item_mods` VALUES (26833,68,49);    -- EVA: 49
 INSERT INTO `item_mods` VALUES (26833,161,-400); -- DMGPHYS: -400
 INSERT INTO `item_mods` VALUES (26833,384,400);  -- HASTE_GEAR: 400
+INSERT INTO `item_mods` VALUES (26833,220,50);   -- RANDOM_DEAL_BONUS: 50
 
 -- Pitre Tobe
 INSERT INTO `item_mods` VALUES (26834,1,94);    -- DEF: 94
@@ -65149,6 +65540,7 @@ INSERT INTO `item_mods` VALUES (26900,31,40);   -- MEVA: 40
 INSERT INTO `item_mods` VALUES (26900,68,25);   -- EVA: 25
 INSERT INTO `item_mods` VALUES (26900,173,5);   -- MARTIAL_ARTS: 5
 INSERT INTO `item_mods` VALUES (26900,384,400); -- HASTE_GEAR: 400
+INSERT INTO `item_mods` VALUES (26900,1097,2);  -- AUGMENTS_IMPETUS: 2
 
 -- Bhikku Cyclas +1
 INSERT INTO `item_mods` VALUES (26901,1,125);   -- DEF: 125
@@ -65167,6 +65559,7 @@ INSERT INTO `item_mods` VALUES (26901,31,59);   -- MEVA: 59
 INSERT INTO `item_mods` VALUES (26901,68,55);   -- EVA: 55
 INSERT INTO `item_mods` VALUES (26901,173,6);   -- MARTIAL_ARTS: 6
 INSERT INTO `item_mods` VALUES (26901,384,400); -- HASTE_GEAR: 400
+INSERT INTO `item_mods` VALUES (26901,1097,2);  -- AUGMENTS_IMPETUS: 2
 
 -- Ebers Bliaud
 INSERT INTO `item_mods` VALUES (26902,1,87);    -- DEF: 87
@@ -65942,6 +66335,18 @@ INSERT INTO `item_mods` VALUES (26963,288,10);    -- DOUBLE_ATTACK: 10
 INSERT INTO `item_mods` VALUES (26963,384,1600);  -- HASTE_GEAR: 1600
 INSERT INTO `item_mods` VALUES (26963,413,1);     -- EAT_RAW_MEAT: 1
 
+-- Ta Moko
+INSERT INTO `item_mods` VALUES (26965,276,149); -- RSE (race specific equip)
+
+-- Ta Moko +1
+INSERT INTO `item_mods` VALUES (26966,276,149); -- RSE (race specific equip)
+
+-- Cossie Top
+INSERT INTO `item_mods` VALUES (26967,276,106); -- RSE (race specific equip)
+
+-- Cossie Top +1
+INSERT INTO `item_mods` VALUES (26968,276,106); -- RSE (race specific equip)
+
 -- Vrikodara Jupon
 INSERT INTO `item_mods` VALUES (26969,1,135);   -- DEF: 135
 INSERT INTO `item_mods` VALUES (26969,2,54);    -- HP: 54
@@ -66005,6 +66410,12 @@ INSERT INTO `item_mods` VALUES (26971,905,3);    -- SHIELD_DEF_BONUS: 3
 -- Samnuha Coat
 INSERT INTO `item_mods` VALUES (26973,255,15); -- DEATHRES: 15
 
+-- Agent Coat
+INSERT INTO `item_mods` VALUES (26974,276,149); -- RSE (race specific equip)
+
+-- Starlet Jabot
+INSERT INTO `item_mods` VALUES (26975,276,106); -- RSE (race specific equip)
+
 -- Agoge Mufflers
 INSERT INTO `item_mods` VALUES (26976,1,70);     -- DEF: 70
 INSERT INTO `item_mods` VALUES (26976,2,40);     -- HP: 40
@@ -66055,7 +66466,7 @@ INSERT INTO `item_mods` VALUES (26978,31,18);   -- MEVA: 18
 INSERT INTO `item_mods` VALUES (26978,68,10);   -- EVA: 10
 INSERT INTO `item_mods` VALUES (26978,289,7);   -- SUBTLE_BLOW: 7
 INSERT INTO `item_mods` VALUES (26978,384,400); -- HASTE_GEAR: 400
-INSERT INTO `item_mods` VALUES (26978,1026,10); -- CHAKRA_MULT: 10
+INSERT INTO `item_mods` VALUES (26978,1026,42); -- CHAKRA_MULT: 42 -- M = 0.42
 INSERT INTO `item_mods` VALUES (26978,1027,6);  -- CHAKRA_REMOVAL: 6
 
 -- Hesychasts Gloves +1
@@ -66075,7 +66486,7 @@ INSERT INTO `item_mods` VALUES (26979,31,26);   -- MEVA: 26
 INSERT INTO `item_mods` VALUES (26979,68,22);   -- EVA: 22
 INSERT INTO `item_mods` VALUES (26979,289,8);   -- SUBTLE_BLOW: 8
 INSERT INTO `item_mods` VALUES (26979,384,400); -- HASTE_GEAR: 400
-INSERT INTO `item_mods` VALUES (26979,1026,12); -- CHAKRA_MULT: 12
+INSERT INTO `item_mods` VALUES (26979,1026,45); -- CHAKRA_MULT: 45 -- M = 0.45
 INSERT INTO `item_mods` VALUES (26979,1027,6);  -- CHAKRA_REMOVAL: 6
 
 -- Piety Mitts
@@ -67869,6 +68280,12 @@ INSERT INTO `item_mods` VALUES (27109,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (27109,384,300); -- HASTE_GEAR: 300
 INSERT INTO `item_mods` VALUES (27109,117,21);  -- SUMMONING: 21
 INSERT INTO `item_mods` VALUES (27109,1042,1);  -- CAIT_SITH_LVL_BONUS: 1
+
+-- Agent Cuffs
+INSERT INTO `item_mods` VALUES (27111,276,149); -- RSE (race specific equip)
+
+-- Starlet Gloves
+INSERT INTO `item_mods` VALUES (27112,276,106); -- RSE (race specific equip)
 
 -- Emicho Gauntlets
 INSERT INTO `item_mods` VALUES (27113,1,103);   -- DEF: 103
@@ -69960,6 +70377,18 @@ INSERT INTO `item_mods` VALUES (27289,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (27289,455,6);   -- SONG_SPELLCASTING_TIME: 6
 INSERT INTO `item_mods` VALUES (27289,519,15);  -- CURE_CAST_TIME: 15
 
+-- Swimming Togs
+INSERT INTO `item_mods` VALUES (27291,276,149); -- RSE (race specific equip)
+
+-- Swimming Togs +1
+INSERT INTO `item_mods` VALUES (27292,276,149); -- RSE (race specific equip)
+
+-- Cossie Bottom
+INSERT INTO `item_mods` VALUES (27293,276,106); -- RSE (race specific equip)
+
+-- Cossie Bottom +1
+INSERT INTO `item_mods` VALUES (27294,276,106); -- RSE (race specific equip)
+
 -- Samnuha Tights
 INSERT INTO `item_mods` VALUES (27295,1,116);   -- DEF: 116
 INSERT INTO `item_mods` VALUES (27295,2,41);    -- HP: 41
@@ -69977,6 +70406,12 @@ INSERT INTO `item_mods` VALUES (27295,31,75);   -- MEVA: 75
 INSERT INTO `item_mods` VALUES (27295,68,41);   -- EVA: 41
 INSERT INTO `item_mods` VALUES (27295,73,7);    -- STORETP: 7
 INSERT INTO `item_mods` VALUES (27295,384,600); -- HASTE_GEAR: 600
+
+-- Agent Pants
+INSERT INTO `item_mods` VALUES (27296,276,149); -- RSE (race specific equip)
+
+-- Starlet Skirt
+INSERT INTO `item_mods` VALUES (27297,276,106); -- RSE (race specific equip)
 
 -- Emicho Hose
 INSERT INTO `item_mods` VALUES (27298,1,129);   -- DEF: 129
@@ -71734,6 +72169,7 @@ INSERT INTO `item_mods` VALUES (27433,68,25);   -- EVA: 25
 INSERT INTO `item_mods` VALUES (27433,73,8);    -- STORETP: 8
 INSERT INTO `item_mods` VALUES (27433,306,10);  -- ZANSHIN: 10
 INSERT INTO `item_mods` VALUES (27433,384,300); -- HASTE_GEAR: 300
+INSERT INTO `item_mods` VALUES (27433,1090,10); -- SENGIKORI_BONUS : 10
 
 -- Kasuga Sune-Ate +1
 INSERT INTO `item_mods` VALUES (27434,1,86);    -- DEF: 86
@@ -71752,6 +72188,7 @@ INSERT INTO `item_mods` VALUES (27434,68,55);   -- EVA: 55
 INSERT INTO `item_mods` VALUES (27434,73,8);    -- STORETP: 8
 INSERT INTO `item_mods` VALUES (27434,306,11);  -- ZANSHIN: 11
 INSERT INTO `item_mods` VALUES (27434,384,300); -- HASTE_GEAR: 300
+INSERT INTO `item_mods` VALUES (27434,1090,11); -- SENGIKORI_BONUS : 11
 
 -- Hattori Kyahan
 INSERT INTO `item_mods` VALUES (27435,1,52);    -- DEF: 52
@@ -72110,6 +72547,12 @@ INSERT INTO `item_mods` VALUES (27466,109,13);   -- SHIELD: 13
 INSERT INTO `item_mods` VALUES (27466,161,-400); -- DMGPHYS: -400
 INSERT INTO `item_mods` VALUES (27466,240,15);   -- SLEEPRES: 15
 INSERT INTO `item_mods` VALUES (27466,384,300);  -- HASTE_GEAR: 300
+
+-- Agent Boots
+INSERT INTO `item_mods` VALUES (27467,276,149); -- RSE (race specific equip)
+
+-- Starlet Boots
+INSERT INTO `item_mods` VALUES (27468,276,106); -- RSE (race specific equip)
 
 -- Emicho Gambieras
 INSERT INTO `item_mods` VALUES (27469,1,87);    -- DEF: 87
@@ -72627,14 +73070,10 @@ INSERT INTO `item_mods` VALUES (27590,247,15); -- BINDRES: 15
 INSERT INTO `item_mods` VALUES (27590,249,15); -- GRAVITYRES: 15
 
 -- Orvail Ring
-INSERT INTO `item_mods` VALUES (27591,144,1); -- ANTIHQ_WOOD: 1
-INSERT INTO `item_mods` VALUES (27591,145,1); -- ANTIHQ_SMITH: 1
-INSERT INTO `item_mods` VALUES (27591,146,1); -- ANTIHQ_GOLDSMITH: 1
-INSERT INTO `item_mods` VALUES (27591,147,1); -- ANTIHQ_CLOTH: 1
-INSERT INTO `item_mods` VALUES (27591,148,1); -- ANTIHQ_LEATHER: 1
-INSERT INTO `item_mods` VALUES (27591,149,1); -- ANTIHQ_BONE: 1
-INSERT INTO `item_mods` VALUES (27591,150,1); -- ANTIHQ_ALCHEMY: 1
-INSERT INTO `item_mods` VALUES (27591,151,1); -- ANTIHQ_COOK: 1
+INSERT INTO `item_mods` VALUES (27591,851,1); -- SYNTH_SUCCESS_RATE: 1
+INSERT INTO `item_mods` VALUES (27591,852,5); -- SYNTH_SKILL_GAIN: 5
+INSERT INTO `item_mods` VALUES (27591,861,1); -- SYNTH_MATERIAL_LOSS: 1
+INSERT INTO `item_mods` VALUES (27591,862,1); -- SYNTH_HQ_RATE: 1
 
 -- Vengeful Ring
 INSERT INTO `item_mods` VALUES (27592,2,20); -- HP: 20
@@ -73172,6 +73611,7 @@ INSERT INTO `item_mods` VALUES (27681,14,18);   -- CHR: 18
 INSERT INTO `item_mods` VALUES (27681,29,1);    -- MDEF: 1
 INSERT INTO `item_mods` VALUES (27681,31,36);   -- MEVA: 36
 INSERT INTO `item_mods` VALUES (27681,68,20);   -- EVA: 20
+INSERT INTO `item_mods` VALUES (27681,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27681,384,700); -- HASTE_GEAR: 700
 INSERT INTO `item_mods` VALUES (27681,403,10);  -- STEP_ACCURACY: 10
 INSERT INTO `item_mods` VALUES (27681,498,45);  -- SAMBA_PDURATION: 45
@@ -73190,6 +73630,7 @@ INSERT INTO `item_mods` VALUES (27682,14,18);   -- CHR: 18
 INSERT INTO `item_mods` VALUES (27682,29,1);    -- MDEF: 1
 INSERT INTO `item_mods` VALUES (27682,31,36);   -- MEVA: 36
 INSERT INTO `item_mods` VALUES (27682,68,20);   -- EVA: 20
+INSERT INTO `item_mods` VALUES (27682,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27682,384,700); -- HASTE_GEAR: 700
 INSERT INTO `item_mods` VALUES (27682,403,10);  -- STEP_ACCURACY: 10
 INSERT INTO `item_mods` VALUES (27682,498,45);  -- SAMBA_PDURATION: 45
@@ -73554,6 +73995,7 @@ INSERT INTO `item_mods` VALUES (27702,14,24);   -- CHR: 24
 INSERT INTO `item_mods` VALUES (27702,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (27702,31,53);   -- MEVA: 53
 INSERT INTO `item_mods` VALUES (27702,68,44);   -- EVA: 44
+INSERT INTO `item_mods` VALUES (27702,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27702,384,800); -- HASTE_GEAR: 800
 INSERT INTO `item_mods` VALUES (27702,403,10);  -- STEP_ACCURACY: 10
 INSERT INTO `item_mods` VALUES (27702,498,45);  -- SAMBA_PDURATION: 45
@@ -73572,6 +74014,7 @@ INSERT INTO `item_mods` VALUES (27703,14,24);   -- CHR: 24
 INSERT INTO `item_mods` VALUES (27703,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (27703,31,53);   -- MEVA: 53
 INSERT INTO `item_mods` VALUES (27703,68,44);   -- EVA: 44
+INSERT INTO `item_mods` VALUES (27703,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27703,384,800); -- HASTE_GEAR: 800
 INSERT INTO `item_mods` VALUES (27703,403,10);  -- STEP_ACCURACY: 10
 INSERT INTO `item_mods` VALUES (27703,498,45);  -- SAMBA_PDURATION: 45
@@ -73902,6 +74345,9 @@ INSERT INTO `item_mods` VALUES (27732,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (27732,31,75);   -- MEVA: 75
 INSERT INTO `item_mods` VALUES (27732,68,36);   -- EVA: 36
 INSERT INTO `item_mods` VALUES (27732,384,600); -- HASTE_GEAR: 600
+
+-- Straw Hat
+INSERT INTO `item_mods` VALUES (27733,276,149); -- RSE (race specific equip)
 
 -- Enedron Glasses
 INSERT INTO `item_mods` VALUES (27735,1,50);    -- DEF: 50
@@ -74729,6 +75175,18 @@ INSERT INTO `item_mods` VALUES (27802,30,2);  -- MACC: 2
 INSERT INTO `item_mods` VALUES (27802,113,2); -- ENHANCE: 2
 INSERT INTO `item_mods` VALUES (27802,114,2); -- ENFEEBLE: 2
 
+-- Rustic Maillot
+INSERT INTO `item_mods` VALUES (27803,276,149); -- RSE (race specific equip)
+
+-- Shoal Maillot
+INSERT INTO `item_mods` VALUES (27804,276,106); -- RSE (race specific equip)
+
+-- Rustic Maillot +1
+INSERT INTO `item_mods` VALUES (27805,276,149); -- RSE (race specific equip)
+
+-- Shoal Maillot +1
+INSERT INTO `item_mods` VALUES (27806,276,106); -- RSE (race specific equip)
+
 -- Pummelers Lorica
 INSERT INTO `item_mods` VALUES (27807,1,102);   -- DEF: 102
 INSERT INTO `item_mods` VALUES (27807,2,29);    -- HP: 29
@@ -74762,10 +75220,10 @@ INSERT INTO `item_mods` VALUES (27808,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (27808,31,36);   -- MEVA: 36
 INSERT INTO `item_mods` VALUES (27808,68,24);   -- EVA: 24
 INSERT INTO `item_mods` VALUES (27808,384,400); -- HASTE_GEAR: 400
-INSERT INTO `item_mods` VALUES (27808,1026,12); -- CHAKRA_MULT: 12
+INSERT INTO `item_mods` VALUES (27808,1026,60); -- CHAKRA_MULT: 60 -- M = 0.6
 INSERT INTO `item_mods` VALUES (27808,1027,1);  -- CHAKRA_REMOVAL: 1
 
--- Theophany Briault
+-- Theophany Bliaut
 INSERT INTO `item_mods` VALUES (27809,1,89);    -- DEF: 89
 INSERT INTO `item_mods` VALUES (27809,2,25);    -- HP: 25
 INSERT INTO `item_mods` VALUES (27809,5,49);    -- MP: 49
@@ -75086,6 +75544,7 @@ INSERT INTO `item_mods` VALUES (27825,25,13);   -- ACC: 13
 INSERT INTO `item_mods` VALUES (27825,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (27825,31,43);   -- MEVA: 43
 INSERT INTO `item_mods` VALUES (27825,68,23);   -- EVA: 23
+INSERT INTO `item_mods` VALUES (27825,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27825,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (27825,491,15);  -- WALTZ_POTENCY: 15
 
@@ -75105,6 +75564,7 @@ INSERT INTO `item_mods` VALUES (27826,25,13);   -- ACC: 13
 INSERT INTO `item_mods` VALUES (27826,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (27826,31,43);   -- MEVA: 43
 INSERT INTO `item_mods` VALUES (27826,68,23);   -- EVA: 23
+INSERT INTO `item_mods` VALUES (27826,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27826,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (27826,491,15);  -- WALTZ_POTENCY: 15
 
@@ -75159,10 +75619,10 @@ INSERT INTO `item_mods` VALUES (27829,29,4);    -- MDEF: 4
 INSERT INTO `item_mods` VALUES (27829,31,53);   -- MEVA: 53
 INSERT INTO `item_mods` VALUES (27829,68,52);   -- EVA: 52
 INSERT INTO `item_mods` VALUES (27829,384,400); -- HASTE_GEAR: 400
-INSERT INTO `item_mods` VALUES (27829,1026,12); -- CHAKRA_MULT: 12
+INSERT INTO `item_mods` VALUES (27829,1026,62); -- CHAKRA_MULT: 62 -- M = 0.62
 INSERT INTO `item_mods` VALUES (27829,1027,1);  -- CHAKRA_REMOVAL: 1
 
--- Theophany Briault +1
+-- Theophany Bliaut +1
 INSERT INTO `item_mods` VALUES (27830,1,125);   -- DEF: 125
 INSERT INTO `item_mods` VALUES (27830,2,54);    -- HP: 54
 INSERT INTO `item_mods` VALUES (27830,5,59);    -- MP: 59
@@ -75483,6 +75943,7 @@ INSERT INTO `item_mods` VALUES (27846,25,13);   -- ACC: 13
 INSERT INTO `item_mods` VALUES (27846,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (27846,31,64);   -- MEVA: 64
 INSERT INTO `item_mods` VALUES (27846,68,49);   -- EVA: 49
+INSERT INTO `item_mods` VALUES (27846,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27846,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (27846,491,15);  -- WALTZ_POTENCY: 15
 
@@ -75502,6 +75963,7 @@ INSERT INTO `item_mods` VALUES (27847,25,13);   -- ACC: 13
 INSERT INTO `item_mods` VALUES (27847,29,6);    -- MDEF: 6
 INSERT INTO `item_mods` VALUES (27847,31,64);   -- MEVA: 64
 INSERT INTO `item_mods` VALUES (27847,68,49);   -- EVA: 49
+INSERT INTO `item_mods` VALUES (27847,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27847,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (27847,491,15);  -- WALTZ_POTENCY: 15
 
@@ -75607,6 +76069,12 @@ INSERT INTO `item_mods` VALUES (27858,170,7);   -- FASTCAST: 7
 INSERT INTO `item_mods` VALUES (27858,288,2);   -- DOUBLE_ATTACK: 2
 INSERT INTO `item_mods` VALUES (27858,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (27858,835,1);   -- MUG_EFFECT: 1
+
+-- Kengyu Happi
+INSERT INTO `item_mods` VALUES (27859,276,149); -- RSE (race specific equip)
+
+-- Shokujo Happi
+INSERT INTO `item_mods` VALUES (27860,276,106); -- RSE (race specific equip)
 
 -- Karmesin Vest
 INSERT INTO `item_mods` VALUES (27861,1,132);   -- DEF: 132
@@ -75855,6 +76323,12 @@ INSERT INTO `item_mods` VALUES (27878,31,80);   -- MEVA: 80
 INSERT INTO `item_mods` VALUES (27878,68,41);   -- EVA: 41
 INSERT INTO `item_mods` VALUES (27878,369,20);  -- REFRESH: 20
 INSERT INTO `item_mods` VALUES (27878,384,300); -- HASTE_GEAR: 300
+
+-- Overalls
+INSERT INTO `item_mods` VALUES (27879,276,149); -- RSE (race specific equip)
+
+-- Overalls
+INSERT INTO `item_mods` VALUES (27880,276,106); -- RSE (race specific equip)
 
 -- Outrider Mail
 INSERT INTO `item_mods` VALUES (27881,1,133);   -- DEF: 133
@@ -76130,6 +76604,12 @@ INSERT INTO `item_mods` VALUES (27897,14,20); -- CHR: 20
 INSERT INTO `item_mods` VALUES (27897,27,-5); -- ENMITY: -5
 INSERT INTO `item_mods` VALUES (27897,31,54); -- MEVA: 54
 INSERT INTO `item_mods` VALUES (27897,369,3); -- REFRESH: 3
+
+-- Morass Tunic
+INSERT INTO `item_mods` VALUES (27904,276,149); -- RSE (race specific equip)
+
+-- Woodland Tunic
+INSERT INTO `item_mods` VALUES (27905,276,106); -- RSE (race specific equip)
 
 -- Gorney Haubert
 INSERT INTO `item_mods` VALUES (27907,1,90);    -- DEF: 90
@@ -76900,6 +77380,7 @@ INSERT INTO `item_mods` VALUES (27961,23,15);   -- ATT: 15
 INSERT INTO `item_mods` VALUES (27961,29,1);    -- MDEF: 1
 INSERT INTO `item_mods` VALUES (27961,31,25);   -- MEVA: 25
 INSERT INTO `item_mods` VALUES (27961,68,11);   -- EVA: 11
+INSERT INTO `item_mods` VALUES (27961,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27961,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (27961,403,10);  -- STEP_ACCURACY: 10
 
@@ -76917,6 +77398,7 @@ INSERT INTO `item_mods` VALUES (27962,23,15);   -- ATT: 15
 INSERT INTO `item_mods` VALUES (27962,29,1);    -- MDEF: 1
 INSERT INTO `item_mods` VALUES (27962,31,25);   -- MEVA: 25
 INSERT INTO `item_mods` VALUES (27962,68,11);   -- EVA: 11
+INSERT INTO `item_mods` VALUES (27962,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27962,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (27962,403,10);  -- STEP_ACCURACY: 10
 
@@ -77062,6 +77544,7 @@ INSERT INTO `item_mods` VALUES (27970,31,26);    -- MEVA: 26
 INSERT INTO `item_mods` VALUES (27970,68,22);    -- EVA: 22
 INSERT INTO `item_mods` VALUES (27970,163,-500); -- DMGMAGIC: -500
 INSERT INTO `item_mods` VALUES (27970,384,400);  -- HASTE_GEAR: 400
+INSERT INTO `item_mods` VALUES (27970,485,10);   -- SHIELD_MASTERY_TP: 10
 
 -- Ignominy Gauntlets +1
 INSERT INTO `item_mods` VALUES (27971,1,104);   -- DEF: 104
@@ -77270,6 +77753,7 @@ INSERT INTO `item_mods` VALUES (27982,23,15);   -- ATT: 15
 INSERT INTO `item_mods` VALUES (27982,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (27982,31,37);   -- MEVA: 37
 INSERT INTO `item_mods` VALUES (27982,68,24);   -- EVA: 24
+INSERT INTO `item_mods` VALUES (27982,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27982,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (27982,403,20);  -- STEP_ACCURACY: 20
 
@@ -77287,6 +77771,7 @@ INSERT INTO `item_mods` VALUES (27983,23,15);   -- ATT: 15
 INSERT INTO `item_mods` VALUES (27983,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (27983,31,37);   -- MEVA: 37
 INSERT INTO `item_mods` VALUES (27983,68,24);   -- EVA: 24
+INSERT INTO `item_mods` VALUES (27983,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (27983,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (27983,403,20);  -- STEP_ACCURACY: 20
 
@@ -77716,6 +78201,12 @@ INSERT INTO `item_mods` VALUES (28022,29,3);    -- MDEF: 3
 INSERT INTO `item_mods` VALUES (28022,30,20);   -- MACC: 20
 INSERT INTO `item_mods` VALUES (28022,68,37);   -- EVA: 37
 INSERT INTO `item_mods` VALUES (28022,384,300); -- HASTE_GEAR: 300
+
+-- Work Gloves
+INSERT INTO `item_mods` VALUES (28023,276,149); -- RSE (race specific equip)
+
+-- Work Gloves
+INSERT INTO `item_mods` VALUES (28024,276,106); -- RSE (race specific equip)
 
 -- Regimen Mittens
 INSERT INTO `item_mods` VALUES (28025,1,90);    -- DEF: 90
@@ -78409,6 +78900,18 @@ INSERT INTO `item_mods` VALUES (28085,5,8);   -- MP: 8
 INSERT INTO `item_mods` VALUES (28085,13,2);  -- MND: 2
 INSERT INTO `item_mods` VALUES (28085,170,1); -- FASTCAST: 1
 
+-- Rustic Trunks
+INSERT INTO `item_mods` VALUES (28086,276,149); -- RSE (race specific equip)
+
+-- Shoal Trunks
+INSERT INTO `item_mods` VALUES (28087,276,106); -- RSE (race specific equip)
+
+-- Rustic Trunks +1
+INSERT INTO `item_mods` VALUES (28088,276,149); -- RSE (race specific equip)
+
+-- Shoal Trunks +1
+INSERT INTO `item_mods` VALUES (28089,276,106); -- RSE (race specific equip)
+
 -- Pummelers Cuisses
 INSERT INTO `item_mods` VALUES (28090,1,89);    -- DEF: 89
 INSERT INTO `item_mods` VALUES (28090,2,23);    -- HP: 23
@@ -78736,6 +79239,7 @@ INSERT INTO `item_mods` VALUES (28108,25,15);   -- ACC: 15
 INSERT INTO `item_mods` VALUES (28108,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (28108,31,47);   -- MEVA: 47
 INSERT INTO `item_mods` VALUES (28108,68,27);   -- EVA: 27
+INSERT INTO `item_mods` VALUES (28108,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28108,175,10);  -- SKILLCHAINDMG: 10
 INSERT INTO `item_mods` VALUES (28108,384,600); -- HASTE_GEAR: 600
 
@@ -78754,6 +79258,7 @@ INSERT INTO `item_mods` VALUES (28109,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (28109,31,47);   -- MEVA: 47
 INSERT INTO `item_mods` VALUES (28109,68,27);   -- EVA: 27
 INSERT INTO `item_mods` VALUES (28109,175,10);  -- SKILLCHAINDMG: 10
+INSERT INTO `item_mods` VALUES (28109,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28109,384,600); -- HASTE_GEAR: 600
 
 -- Academics Pants
@@ -79102,6 +79607,7 @@ INSERT INTO `item_mods` VALUES (28129,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (28129,31,69);   -- MEVA: 69
 INSERT INTO `item_mods` VALUES (28129,68,48);   -- EVA: 48
 INSERT INTO `item_mods` VALUES (28129,175,12);  -- SKILLCHAINDMG: 12
+INSERT INTO `item_mods` VALUES (28129,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28129,384,600); -- HASTE_GEAR: 600
 
 -- Maxixi Tights +1
@@ -79119,6 +79625,7 @@ INSERT INTO `item_mods` VALUES (28130,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (28130,31,69);   -- MEVA: 69
 INSERT INTO `item_mods` VALUES (28130,68,48);   -- EVA: 48
 INSERT INTO `item_mods` VALUES (28130,175,12);  -- SKILLCHAINDMG: 12
+INSERT INTO `item_mods` VALUES (28130,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28130,384,600); -- HASTE_GEAR: 600
 
 -- Academics Pants +1
@@ -79276,6 +79783,12 @@ INSERT INTO `item_mods` VALUES (28148,31,107);  -- MEVA: 107
 INSERT INTO `item_mods` VALUES (28148,68,27);   -- EVA: 27
 INSERT INTO `item_mods` VALUES (28148,384,500); -- HASTE_GEAR: 500
 INSERT INTO `item_mods` VALUES (28148,902,30);  -- OCCULT_ACUMEN: 30
+
+-- Kengyu Hanmomohiki
+INSERT INTO `item_mods` VALUES (28149,276,149); -- RSE (race specific equip)
+
+-- Shokujo Hanmomohiki
+INSERT INTO `item_mods` VALUES (28150,276,106); -- RSE (race specific equip)
 
 -- Sifahir Slacks
 INSERT INTO `item_mods` VALUES (28151,1,106);   -- DEF: 106
@@ -79782,6 +80295,12 @@ INSERT INTO `item_mods` VALUES (28184,31,73);   -- MEVA: 73
 INSERT INTO `item_mods` VALUES (28184,68,12);   -- EVA: 12
 INSERT INTO `item_mods` VALUES (28184,170,5);   -- FASTCAST: 5
 INSERT INTO `item_mods` VALUES (28184,384,100); -- HASTE_GEAR: 100
+
+-- Morass Pants
+INSERT INTO `item_mods` VALUES (28186,276,149); -- RSE (race specific equip)
+
+-- Woodland Pants
+INSERT INTO `item_mods` VALUES (28187,276,106); -- RSE (race specific equip)
 
 -- Gorney Brayettes
 INSERT INTO `item_mods` VALUES (28188,1,78);    -- DEF: 78
@@ -80540,6 +81059,7 @@ INSERT INTO `item_mods` VALUES (28241,23,10);   -- ATT: 10
 INSERT INTO `item_mods` VALUES (28241,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (28241,31,47);   -- MEVA: 47
 INSERT INTO `item_mods` VALUES (28241,68,33);   -- EVA: 33
+INSERT INTO `item_mods` VALUES (28241,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28241,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (28241,491,10);  -- WALTZ_POTENCY: 10
 INSERT INTO `item_mods` VALUES (28241,492,35);  -- JIG_DURATION: 35
@@ -80557,6 +81077,7 @@ INSERT INTO `item_mods` VALUES (28242,23,10);   -- ATT: 10
 INSERT INTO `item_mods` VALUES (28242,29,2);    -- MDEF: 2
 INSERT INTO `item_mods` VALUES (28242,31,47);   -- MEVA: 47
 INSERT INTO `item_mods` VALUES (28242,68,33);   -- EVA: 33
+INSERT INTO `item_mods` VALUES (28242,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28242,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (28242,491,10);  -- WALTZ_POTENCY: 10
 INSERT INTO `item_mods` VALUES (28242,492,35);  -- JIG_DURATION: 35
@@ -80908,6 +81429,7 @@ INSERT INTO `item_mods` VALUES (28262,23,10);   -- ATT: 10
 INSERT INTO `item_mods` VALUES (28262,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (28262,31,69);   -- MEVA: 69
 INSERT INTO `item_mods` VALUES (28262,68,72);   -- EVA: 72
+INSERT INTO `item_mods` VALUES (28262,276,149); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28262,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (28262,491,10);  -- WALTZ_POTENCY: 10
 INSERT INTO `item_mods` VALUES (28262,492,40);  -- JIG_DURATION: 40
@@ -80925,6 +81447,7 @@ INSERT INTO `item_mods` VALUES (28263,23,10);   -- ATT: 10
 INSERT INTO `item_mods` VALUES (28263,29,5);    -- MDEF: 5
 INSERT INTO `item_mods` VALUES (28263,31,69);   -- MEVA: 69
 INSERT INTO `item_mods` VALUES (28263,68,72);   -- EVA: 72
+INSERT INTO `item_mods` VALUES (28263,276,106); -- RSE (race specific equip)
 INSERT INTO `item_mods` VALUES (28263,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (28263,491,10);  -- WALTZ_POTENCY: 10
 INSERT INTO `item_mods` VALUES (28263,492,40);  -- JIG_DURATION: 40
@@ -81451,10 +81974,12 @@ INSERT INTO `item_mods` VALUES (28301,384,400); -- HASTE_GEAR: 400
 -- Thatch Boots
 INSERT INTO `item_mods` VALUES (28302,1,1);  -- DEF: 1
 INSERT INTO `item_mods` VALUES (28302,20,3); -- WATER_RES: 3
+INSERT INTO `item_mods` VALUES (28302,276,149); -- RSE (race specific equip)
 
 -- Thatch Boots
 INSERT INTO `item_mods` VALUES (28303,1,1);  -- DEF: 1
 INSERT INTO `item_mods` VALUES (28303,20,3); -- WATER_RES: 3
+INSERT INTO `item_mods` VALUES (28303,276,106); -- RSE (race specific equip)
 
 -- Litany Clogs
 INSERT INTO `item_mods` VALUES (28304,1,40);    -- DEF: 40
@@ -81790,10 +82315,12 @@ INSERT INTO `item_mods` VALUES (28323,384,400); -- HASTE_GEAR: 400
 INSERT INTO `item_mods` VALUES (28324,1,1); -- DEF: 1
 
 -- Morass Boots
-INSERT INTO `item_mods` VALUES (28325,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (28325,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (28325,276,149); -- RSE (race specific equip)
 
 -- Woodland Boots
-INSERT INTO `item_mods` VALUES (28326,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (28326,1,1);     -- DEF: 1
+INSERT INTO `item_mods` VALUES (28326,276,106); -- RSE (race specific equip)
 
 -- Gorney Sollerets
 INSERT INTO `item_mods` VALUES (28327,1,52);     -- DEF: 52
@@ -83165,13 +83692,13 @@ INSERT INTO `item_mods` VALUES (28584,27,4); -- ENMITY: 4
 INSERT INTO `item_mods` VALUES (28584,29,4); -- MDEF: 4
 
 -- Craftkeepers Ring
-INSERT INTO `item_mods` VALUES (28585,861,-1); -- SYNTH_FAIL_RATE: -1
+INSERT INTO `item_mods` VALUES (28585,861,1); -- SYNTH_MATERIAL_LOSS: 1
 
 -- Craftmasters Ring
 INSERT INTO `item_mods` VALUES (28586,862,1); -- SYNTH_HQ_RATE: 1
 
 -- Artificers Ring
-INSERT INTO `item_mods` VALUES (28587,851,1); -- SYNTH_SUCCESS: 1
+INSERT INTO `item_mods` VALUES (28587,851,1); -- SYNTH_SUCCESS_RATE: 1
 
 -- Karagoz Mantle +1
 INSERT INTO `item_mods` VALUES (28588,1,17); -- DEF: 17
@@ -83571,7 +84098,8 @@ INSERT INTO `item_mods` VALUES (28649,109,112);  -- SHIELD: 112
 INSERT INTO `item_mods` VALUES (28649,160,-500); -- DMG: -500
 
 -- She-Slime Shield
-INSERT INTO `item_mods` VALUES (28650,1,2); -- DEF: 2
+INSERT INTO `item_mods` VALUES (28650,1,1); -- DEF: 1
+INSERT INTO `item_mods` VALUES (28650,2,2); -- HP: 2
 
 -- Metal Slime Shield
 INSERT INTO `item_mods` VALUES (28651,1,3); -- DEF: 3

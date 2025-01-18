@@ -3,9 +3,10 @@
 -- Old Quiver +4
 -- When used, you will obtain one partial stack of Crude Arrows +4
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

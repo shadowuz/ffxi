@@ -206,7 +206,7 @@ CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
         return;
     }
 
-    memset(m_StatusIcons, 0xFF, sizeof(m_StatusIcons));
+    std::memset(m_StatusIcons, 0xFF, sizeof(m_StatusIcons));
 }
 
 CStatusEffectContainer::~CStatusEffectContainer()
@@ -224,6 +224,19 @@ uint8 CStatusEffectContainer::GetEffectsCount(EFFECT ID)
     for (CStatusEffect* PStatusEffect : m_StatusEffectSet)
     {
         if (PStatusEffect->GetStatusID() == ID && !PStatusEffect->deleted)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+uint8 CStatusEffectContainer::GetEffectsCountWithFlag(EFFECTFLAG flag)
+{
+    uint8 count = 0;
+    for (CStatusEffect* PStatusEffect : m_StatusEffectSet)
+    {
+        if (PStatusEffect->HasEffectFlag(flag) && PStatusEffect->GetDuration() > 0 && !PStatusEffect->deleted)
         {
             count++;
         }
@@ -261,17 +274,12 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
         case EFFECT_SLEEP_II:
         case EFFECT_LULLABY:
         {
-            if (m_POwner->hasImmunity(IMMUNITY_SLEEP))
-            {
-                return false;
-            }
-
             uint16 subPower = PStatusEffect->GetSubPower();
             if (subPower == ELEMENT_LIGHT && m_POwner->hasImmunity(IMMUNITY_LIGHT_SLEEP))
             {
                 return false;
             }
-            if (subPower == ELEMENT_DARK && m_POwner->hasImmunity(IMMUNITY_DARK_SLEEP))
+            else if (subPower == ELEMENT_DARK && m_POwner->hasImmunity(IMMUNITY_DARK_SLEEP))
             {
                 return false;
             }
@@ -340,6 +348,12 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
             break;
         case EFFECT_TERROR:
             if (m_POwner->hasImmunity(IMMUNITY_TERROR))
+            {
+                return false;
+            }
+            break;
+        case EFFECT_PETRIFICATION:
+            if (m_POwner->hasImmunity(IMMUNITY_PETRIFY))
             {
                 return false;
             }
@@ -615,7 +629,7 @@ void CStatusEffectContainer::RemoveStatusEffect(CStatusEffect* PStatusEffect, bo
             {
                 if (!silent && !(PStatusEffect->HasEffectFlag(EFFECTFLAG_NO_LOSS_MESSAGE)))
                 {
-                    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 206));
+                    PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, PStatusEffect->GetIcon(), 0, 206);
                 }
             }
 
@@ -628,7 +642,7 @@ void CStatusEffectContainer::RemoveStatusEffect(CStatusEffect* PStatusEffect, bo
         {
             if (!silent && PStatusEffect->GetIcon() != 0 && (!(PStatusEffect->HasEffectFlag(EFFECTFLAG_NO_LOSS_MESSAGE))) && !m_POwner->isDead())
             {
-                m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
+                m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, std::make_unique<CMessageBasicPacket>(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
             }
         }
     }
@@ -671,6 +685,19 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID)
     for (CStatusEffect* PStatusEffect : m_StatusEffectSet)
     {
         if (PStatusEffect->GetStatusID() == StatusID && PStatusEffect->GetSubID() == SubID && !PStatusEffect->deleted)
+        {
+            RemoveStatusEffect(PStatusEffect);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool CStatusEffectContainer::DelStatusEffectBySource(EFFECT StatusID, EffectSourceType sourceType, uint16 sourceTypeParam)
+{
+    for (CStatusEffect* PStatusEffect : m_StatusEffectSet)
+    {
+        if (PStatusEffect->GetStatusID() == StatusID && PStatusEffect->GetSourceType() == sourceType && PStatusEffect->GetSourceTypeParam() == sourceTypeParam && !PStatusEffect->deleted)
         {
             RemoveStatusEffect(PStatusEffect);
             return true;
@@ -792,6 +819,16 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint32 flag, bool silent)
     {
         if (PStatusEffect->HasEffectFlag(flag))
         {
+            // If this is an NM/Mob Nightmare sleep, it can be removed explictly by a cure
+            // see mobskills/nightmare.lua for full explanation
+            if (
+                flag & EFFECTFLAG_DAMAGE &&
+                PStatusEffect->GetStatusID() == EFFECT_SLEEP &&
+                PStatusEffect->GetTier() > 1)
+            {
+                continue;
+            }
+
             RemoveStatusEffect(PStatusEffect, silent);
         }
     }
@@ -1282,6 +1319,18 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 S
     return nullptr;
 }
 
+CStatusEffect* CStatusEffectContainer::GetStatusEffectBySource(EFFECT StatusID, EffectSourceType SourceType, uint16 SourceTypeParam)
+{
+    for (CStatusEffect* PStatusEffect : m_StatusEffectSet)
+    {
+        if (PStatusEffect->GetStatusID() == StatusID && PStatusEffect->GetSourceType() == SourceType && PStatusEffect->GetSourceTypeParam() == SourceTypeParam && !PStatusEffect->deleted)
+        {
+            return PStatusEffect;
+        }
+    }
+    return nullptr;
+}
+
 /************************************************************************
  *                                                                       *
  * Dispels one effect and returns it (used in mob abilities)             *
@@ -1306,7 +1355,8 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect(EFFECTFLAG flag)
 
         // make a copy
         CStatusEffect* EffectCopy = new CStatusEffect(oldEffect->GetStatusID(), oldEffect->GetIcon(), oldEffect->GetPower(), oldEffect->GetTickTime() / 1000,
-                                                      oldEffect->GetDuration() / 1000);
+                                                      oldEffect->GetDuration() / 1000, oldEffect->GetSubID(), oldEffect->GetSubPower(), oldEffect->GetTier(),
+                                                      oldEffect->GetEffectFlags());
 
         RemoveStatusEffect(oldEffect);
 
@@ -1331,7 +1381,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
     auto* PChar = static_cast<CCharEntity*>(m_POwner);
 
     m_Flags = 0;
-    memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
+    std::memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
 
     uint8 count = 0;
 
@@ -1488,17 +1538,45 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     std::string name;
     EFFECT      effect = StatusEffect->GetStatusID();
 
+    // check if status effect is special case from a usable equipped item that grants enchantment
+    bool effectFromItemEnchant = false;
+    if (StatusEffect->GetSourceType() != EffectSourceType::SOURCE_NONE && StatusEffect->GetSourceTypeParam() > 0)
+    {
+        if (StatusEffect->GetSourceType() == EffectSourceType::EQUIPPED_ITEM)
+        {
+            auto PItem = itemutils::GetItemPointer(StatusEffect->GetSourceTypeParam());
+            if (PItem != nullptr)
+            {
+                // get the item lua script and check if it has valid functions
+                auto itemName     = "globals/items/" + PItem->getName();
+                auto itemFullName = fmt::format("./scripts/{}.lua", itemName);
+                auto cacheEntry   = luautils::GetCacheEntryFromFilename(itemFullName);
+                auto onEffectGain = cacheEntry["onEffectGain"].get<sol::function>();
+                auto onEffectLose = cacheEntry["onEffectLose"].get<sol::function>();
+
+                effectFromItemEnchant = onEffectGain.valid() && onEffectLose.valid();
+
+                // if it does have valid functions then set the status effect name as the script (similar to actual status effects)
+                if (effectFromItemEnchant)
+                {
+                    name = itemName;
+                }
+            }
+        }
+    }
+
     // Determine if this is a BRD Song or COR Effect.
     if (subType == 0 ||
-        subType > 20000 ||
-        (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
-        (effect >= EFFECT_DOUBLE_UP_CHANCE && effect <= EFFECT_NATURALISTS_ROLL) ||
-        effect == EFFECT_RUNEISTS_ROLL ||
-        effect == EFFECT_DRAIN_DAZE ||
-        effect == EFFECT_ASPIR_DAZE ||
-        effect == EFFECT_HASTE_DAZE ||
-        effect == EFFECT_ATMA ||
-        effect == EFFECT_BATTLEFIELD)
+        ((subType > 20000 ||
+          (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
+          (effect >= EFFECT_DOUBLE_UP_CHANCE && effect <= EFFECT_NATURALISTS_ROLL) ||
+          effect == EFFECT_RUNEISTS_ROLL ||
+          effect == EFFECT_DRAIN_DAZE ||
+          effect == EFFECT_ASPIR_DAZE ||
+          effect == EFFECT_HASTE_DAZE ||
+          effect == EFFECT_ATMA ||
+          effect == EFFECT_BATTLEFIELD) &&
+         !effectFromItemEnchant))
     {
         name.insert(0, "effects/");
         name.insert(name.size(), effects::EffectsParams[effect].Name);
@@ -1556,13 +1634,13 @@ void CStatusEffectContainer::LoadStatusEffects()
     {
         while (rset->next())
         {
-            auto flags    = rset->getUInt("flags");
-            auto duration = rset->getUInt("duration");
-            auto effectID = (EFFECT)rset->getUInt("effectid");
+            auto flags    = rset->get<uint32>("flags");
+            auto duration = rset->get<uint32>("duration");
+            auto effectID = static_cast<EFFECT>(rset->get<uint32>("effectid"));
 
             if (flags & EFFECTFLAG_OFFLINE_TICK)
             {
-                auto timestamp = _sql->GetUIntData(9);
+                auto timestamp = rset->get<uint32>("timestamp");
                 if (server_clock::now() < time_point() + std::chrono::seconds(timestamp) + std::chrono::seconds(duration))
                 {
                     duration = (uint32)std::chrono::duration_cast<std::chrono::seconds>(time_point() + std::chrono::seconds(timestamp) +
@@ -1583,13 +1661,13 @@ void CStatusEffectContainer::LoadStatusEffects()
             }
             CStatusEffect* PStatusEffect =
                 new CStatusEffect(effectID,
-                                  (uint16)rset->getUInt("icon"),
-                                  (uint16)rset->getUInt("power"),
-                                  (uint16)rset->getUInt("tick"),
+                                  rset->get<uint16>("icon"),
+                                  rset->get<uint16>("power"),
+                                  rset->get<uint16>("tick"),
                                   duration,
-                                  (uint16)rset->getUInt("subid"),
-                                  (uint16)rset->getUInt("subpower"),
-                                  (uint16)rset->getUInt("tier"),
+                                  rset->get<uint16>("subid"),
+                                  rset->get<uint16>("subpower"),
+                                  rset->get<uint16>("tier"),
                                   flags);
 
             PEffectList.emplace_back(PStatusEffect);
@@ -1745,6 +1823,8 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
             PChar->ForPartyWithTrusts([&](CBattleEntity* PMember)
             {
                 if (PMember != nullptr &&
+                    m_POwner->loc.zone &&
+                    PMember->loc.zone &&
                     m_POwner->loc.zone->GetID() == PMember->loc.zone->GetID() &&
                     distance(m_POwner->loc.p, PMember->loc.p) <= aura_range &&
                     !PMember->isDead())
@@ -1754,6 +1834,17 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
                     if (PEffect && (PEffect->GetEffectFlags() & EFFECTFLAG_ALWAYS_EXPIRING) != 0)
                     {
                         PEffect->SetStartTime(server_clock::now());
+
+                        // Effect updated, probably from Ecliptic Attrition
+                        // Update status effect with new potency.
+                        // Take care to design your "owning" effects such as the EFFECT::EFFECT_COLURE_ACTIVE to control the subpower, rather than the resulting effect ticking down.
+                        // Otherwise odd things may happen
+                        if (PEffect->GetPower() != PStatusEffect->GetSubPower())
+                        {
+                            luautils::OnEffectLose(PMember, PEffect);
+                            PEffect->SetPower(PStatusEffect->GetSubPower());
+                            luautils::OnEffectGain(PMember, PEffect);
+                        }
                     }
                     else
                     {
@@ -1774,7 +1865,10 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
         {
             for (CBattleEntity* PTarget : *PEntity->PNotorietyContainer)
             { // Check for trust here so negitive effects wont affect trust
-                if (PTarget != nullptr && PTarget->objtype != TYPE_TRUST && PEntity->loc.zone->GetID() == PTarget->loc.zone->GetID() && distance(m_POwner->loc.p, PTarget->loc.p) <= aura_range &&
+                if (PTarget != nullptr &&
+                    PTarget->loc.zone &&
+                    PEntity->loc.zone &&
+                    PTarget->objtype != TYPE_TRUST && PEntity->loc.zone->GetID() == PTarget->loc.zone->GetID() && distance(m_POwner->loc.p, PTarget->loc.p) <= aura_range &&
                     !PTarget->isDead())
                 {
                     CStatusEffect* PEffect = PTarget->StatusEffectContainer->GetStatusEffect(static_cast<EFFECT>(PStatusEffect->GetSubID()));
@@ -1782,6 +1876,17 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
                     if (PEffect && (PEffect->GetEffectFlags() & EFFECTFLAG_ALWAYS_EXPIRING) != 0)
                     {
                         PEffect->SetStartTime(server_clock::now());
+
+                        // Effect updated, probably from Ecliptic Attrition
+                        // Update status effect with new potency.
+                        // Take care to design your "owning" effects such as the EFFECT::EFFECT_COLURE_ACTIVE to control the subpower, rather than the resulting effect ticking down.
+                        // Otherwise odd things may happen
+                        if (PEffect->GetPower() != PStatusEffect->GetSubPower())
+                        {
+                            luautils::OnEffectLose(PTarget, PEffect);
+                            PEffect->SetPower(PStatusEffect->GetSubPower());
+                            luautils::OnEffectGain(PTarget, PEffect);
+                        }
                     }
                     else
                     {
@@ -1805,7 +1910,10 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
             // clang-format off
             PEntity->ForParty([&](CBattleEntity* PMember)
             {
-                if (PMember != nullptr && PEntity->loc.zone->GetID() == PMember->loc.zone->GetID() && distance(m_POwner->loc.p, PMember->loc.p) <= aura_range &&
+                if (PMember != nullptr &&
+                    m_POwner->loc.zone &&
+                    PMember->loc.zone &&
+                    PEntity->loc.zone->GetID() == PMember->loc.zone->GetID() && distance(m_POwner->loc.p, PMember->loc.p) <= aura_range &&
                     !PMember->isDead())
                 {
                     CStatusEffect* PEffect = PMember->StatusEffectContainer->GetStatusEffect(static_cast<EFFECT>(PStatusEffect->GetSubID()));
@@ -1813,6 +1921,17 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
                     if (PEffect && (PEffect->GetEffectFlags() & EFFECTFLAG_ALWAYS_EXPIRING) != 0)
                     {
                         PEffect->SetStartTime(server_clock::now());
+
+                        // Effect updated, probably from Ecliptic Attrition
+                        // Update status effect with new potency.
+                        // Take care to design your "owning" effects such as the EFFECT::EFFECT_COLURE_ACTIVE to control the subpower, rather than the resulting effect ticking down.
+                        // Otherwise odd things may happen
+                        if (PEffect->GetPower() != PStatusEffect->GetSubPower())
+                        {
+                            luautils::OnEffectLose(PMember, PEffect);
+                            PEffect->SetPower(PStatusEffect->GetSubPower());
+                            luautils::OnEffectGain(PMember, PEffect);
+                        }
                     }
                     else
                     {
@@ -1836,7 +1955,10 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
             for (auto& enmityPair : *enmityList)
             {
                 auto* PTarget = enmityPair.second.PEnmityOwner;
-                if (PTarget != nullptr && PEntity->loc.zone->GetID() == PTarget->loc.zone->GetID() && distance(m_POwner->loc.p, PTarget->loc.p) <= aura_range &&
+                if (PTarget != nullptr &&
+                    PTarget->loc.zone &&
+                    PEntity->loc.zone &&
+                    PEntity->loc.zone->GetID() == PTarget->loc.zone->GetID() && distance(m_POwner->loc.p, PTarget->loc.p) <= aura_range &&
                     !PTarget->isDead())
                 {
                     CStatusEffect* PEffect = PTarget->StatusEffectContainer->GetStatusEffect(static_cast<EFFECT>(PStatusEffect->GetSubID()));
@@ -1844,6 +1966,17 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
                     if (PEffect && (PEffect->GetEffectFlags() & EFFECTFLAG_ALWAYS_EXPIRING) != 0)
                     {
                         PEffect->SetStartTime(server_clock::now());
+
+                        // Effect updated, probably from Ecliptic Attrition
+                        // Update status effect with new potency.
+                        // Take care to design your "owning" effects such as the EFFECT::EFFECT_COLURE_ACTIVE to control the subpower, rather than the resulting effect ticking down.
+                        // Otherwise odd things may happen
+                        if (PEffect->GetPower() != PStatusEffect->GetSubPower())
+                        {
+                            luautils::OnEffectLose(PTarget, PEffect);
+                            PEffect->SetPower(PStatusEffect->GetSubPower());
+                            luautils::OnEffectGain(PTarget, PEffect);
+                        }
                     }
                     else
                     {
@@ -1937,7 +2070,16 @@ void CStatusEffectContainer::TickRegen(time_point tick)
             {
                 DelStatusEffectSilent(EFFECT_HEALING);
                 m_POwner->takeDamage(damage);
-                WakeUp();
+
+                // If target has nightmare sleep. Don't break sleep from REGEN_DOWN damage
+                // see mobskills/nightmare.lua for full explanation
+                if (
+                    !(
+                        m_POwner->StatusEffectContainer->GetStatusEffect(EFFECT_SLEEP) &&
+                        m_POwner->StatusEffectContainer->GetStatusEffect(EFFECT_SLEEP)->GetTier() > 0))
+                {
+                    WakeUp();
+                }
             }
         }
 

@@ -23,6 +23,7 @@
 #include "battleutils.h"
 #include "charutils.h"
 #include "entities/automatonentity.h"
+#include "instance.h"
 #include "itemutils.h"
 #include "job_points.h"
 #include "lua/luautils.h"
@@ -51,14 +52,33 @@ namespace puppetutils
             {
                 // Make sure we don't delete a pet that is active
                 auto* PZone = zoneutils::GetZone(PChar->PAutomaton->getZone());
-                if (PZone == nullptr || PZone->GetEntity(PChar->PAutomaton->targid, TYPE_PET) == nullptr)
+                if (PZone == nullptr)
                 {
                     destroy(PChar->PAutomaton);
                 }
                 else
                 {
-                    PChar->PAutomaton->PMaster = nullptr;
+                    if (PChar->PAutomaton->PInstance)
+                    {
+                        if (PChar->PAutomaton->PInstance->GetEntity(PChar->PAutomaton->targid, TYPE_PET) == nullptr)
+                        {
+                            destroy(PChar->PAutomaton);
+                        }
+                        else
+                        {
+                            PChar->PAutomaton->PMaster = nullptr;
+                        }
+                    }
+                    else if (PZone->GetEntity(PChar->PAutomaton->targid, TYPE_PET) == nullptr)
+                    {
+                        destroy(PChar->PAutomaton);
+                    }
+                    else
+                    {
+                        PChar->PAutomaton->PMaster = nullptr;
+                    }
                 }
+
                 PChar->PPet       = nullptr;
                 PChar->PAutomaton = nullptr;
             }
@@ -68,7 +88,7 @@ namespace puppetutils
                 PChar->PAutomaton = new CAutomatonEntity();
                 PChar->PAutomaton->saveModifiers();
 
-                PChar->PAutomaton->name = rset->getString("name");
+                PChar->PAutomaton->name = rset->get<std::string>("name");
                 automaton_equip_t tempEquip;
                 db::extractFromBlob(rset, "equipped_attachments", tempEquip);
 
@@ -151,12 +171,12 @@ namespace puppetutils
 
             char unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
             char unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
-            memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
+            std::memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
             _sql->EscapeStringLen(unlockedAttachmentsEscaped, unlockedAttachments, sizeof(unlockedAttachments));
 
             char equippedAttachmentsEscaped[sizeof(PChar->PAutomaton->m_Equip) * 2 + 1];
             char equippedAttachments[sizeof(PChar->PAutomaton->m_Equip)];
-            memcpy(equippedAttachments, &PChar->PAutomaton->m_Equip, sizeof(equippedAttachments));
+            std::memcpy(equippedAttachments, &PChar->PAutomaton->m_Equip, sizeof(equippedAttachments));
             _sql->EscapeStringLen(equippedAttachmentsEscaped, equippedAttachments, sizeof(equippedAttachments));
 
             _sql->Query(Query, unlockedAttachmentsEscaped, equippedAttachmentsEscaped, PChar->id);
@@ -169,7 +189,7 @@ namespace puppetutils
 
             char unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
             char unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
-            memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
+            std::memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
             _sql->EscapeStringLen(unlockedAttachmentsEscaped, unlockedAttachments, sizeof(unlockedAttachments));
 
             _sql->Query(Query, unlockedAttachmentsEscaped, PChar->id);
@@ -193,7 +213,7 @@ namespace puppetutils
             if (addBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments)))
             {
                 SaveAutomaton(PChar);
-                PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
+                PChar->pushPacket<CCharJobExtraPacket>(PChar, PChar->GetMJob() == JOB_PUP);
                 return true;
             }
             return false;
@@ -203,7 +223,7 @@ namespace puppetutils
             if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames)))
             {
                 SaveAutomaton(PChar);
-                PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
+                PChar->pushPacket<CCharJobExtraPacket>(PChar, PChar->GetMJob() == JOB_PUP);
                 return true;
             }
             return false;
@@ -213,7 +233,7 @@ namespace puppetutils
             if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads)))
             {
                 SaveAutomaton(PChar);
-                PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
+                PChar->pushPacket<CCharJobExtraPacket>(PChar, PChar->GetMJob() == JOB_PUP);
                 return true;
             }
             return false;
@@ -566,6 +586,8 @@ namespace puppetutils
 
     void LoadAutomatonStats(CCharEntity* PChar)
     {
+        // Save this since LoadPet() below changes it, but we don't want this changed
+        auto origPetID = PChar->petZoningInfo.petID;
         switch (PChar->PAutomaton->getFrame())
         {
             default: // case FRAME_HARLEQUIN:
@@ -584,7 +606,8 @@ namespace puppetutils
                 petutils::LoadPet(PChar, PETID_STORMWAKERFRAME, false);
                 break;
         }
-        PChar->PPet = nullptr; // already saved as PAutomaton, don't need it twice unless it's summoned
+        PChar->PPet                = nullptr; // already saved as PAutomaton, don't need it twice unless it's summoned
+        PChar->petZoningInfo.petID = origPetID;
     }
 
     void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
@@ -672,7 +695,7 @@ namespace puppetutils
                 }
 
                 PChar->RealSkills.skill[SkillID] += SkillAmount;
-                PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, SkillAmount, 38));
+                PChar->pushPacket<CMessageBasicPacket>(PAutomaton, PAutomaton, SkillID, SkillAmount, 38);
 
                 if ((CurSkill / 10) < (CurSkill + SkillAmount) / 10) // if gone up a level
                 {
@@ -688,8 +711,8 @@ namespace puppetutils
                         PAutomaton->WorkingSkills.elemental       = amaSkill;
                         PAutomaton->WorkingSkills.dark            = amaSkill;
                     }
-                    PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
-                    PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, (CurSkill + SkillAmount) / 10, 53));
+                    PChar->pushPacket<CCharJobExtraPacket>(PChar, PChar->GetMJob() == JOB_PUP);
+                    PChar->pushPacket<CMessageBasicPacket>(PAutomaton, PAutomaton, SkillID, (CurSkill + SkillAmount) / 10, 53);
                 }
                 charutils::SaveCharSkills(PChar, SkillID);
             }

@@ -603,6 +603,9 @@ namespace mobutils
         if (PMob->getMobMod(MOBMOD_DUAL_WIELD))
         {
             PMob->m_dualWield = true;
+            // if mob is going to dualWield then need to have sub slot
+            // assume it is the same damage as the main slot
+            static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_SUB])->setDamage(GetWeaponDamage(PMob, SLOT_MAIN));
         }
 
         uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
@@ -715,22 +718,27 @@ namespace mobutils
             }
         }
 
-        PMob->addModifier(Mod::DEF, GetBaseDefEva(PMob, PMob->defRank)); // Base Defense for all mobs
-        PMob->addModifier(Mod::EVA, GetBaseDefEva(PMob, PMob->evaRank)); // Base Evasion for all mobs
-        PMob->addModifier(Mod::ATT, GetBaseSkill(PMob, PMob->attRank));  // Base Attack for all mobs is Rank A+ but pull from DB for specific cases
-        PMob->addModifier(Mod::ACC, GetBaseSkill(PMob, PMob->accRank));  // Base Accuracy for all mobs is Rank A+ but pull from DB for specific cases
-        PMob->addModifier(Mod::RATT, GetBaseSkill(PMob, PMob->attRank)); // Base Ranged Attack for all mobs is Rank A+ but pull from DB for specific cases
-        PMob->addModifier(Mod::RACC, GetBaseSkill(PMob, PMob->accRank)); // Base Ranged Accuracy for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::DEF, GetBaseDefEva(PMob, PMob->defRank));                   // Base Defense for all mobs
+        PMob->addModifier(Mod::EVA, GetBaseDefEva(PMob, JobSkillRankToBaseEvaRank(mJob))); // Evasion is based off main job rank. // TODO: add family bonuses (colibri has static evasion+ porrogos have % boost.)
+        PMob->addModifier(Mod::ATT, GetBaseSkill(PMob, PMob->attRank));                    // Base Attack for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::ACC, GetBaseSkill(PMob, PMob->accRank));                    // Base Accuracy for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::RATT, GetBaseSkill(PMob, PMob->attRank));                   // Base Ranged Attack for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::RACC, GetBaseSkill(PMob, PMob->accRank));                   // Base Ranged Accuracy for all mobs is Rank A+ but pull from DB for specific cases
 
-        // Note: Known Base Parry for all mobs is Rank C
-        // MOBMOD_CAN_PARRY uses the mod value as the rank. It is unknown if mobs in current retail or somewhere else have a different parry rank
-        // Known mobs to have parry rating
-        // 1) Dynamis Mobs
-        // 2) ???
-        // 3) ???
+        // Known Base Parry for all mobs is Rank C
+        // MOBMOD_CAN_PARRY uses the mod value as the rank, unknown if mobs in current retail or somewhere else have a different parry rank
+        // Known mobs to have parry rating:
+        // Dynamis beastmen mobs
+        // Fantoccini (not yet coded)
         if (PMob->getMobMod(MOBMOD_CAN_PARRY) > 0)
         {
-            PMob->addModifier(Mod::PARRY, GetBaseSkill(PMob, PMob->getMobMod(MOBMOD_CAN_PARRY)));
+            PMob->WorkingSkills.skill[SKILL_PARRY] = GetBaseSkill(PMob, PMob->getMobMod(MOBMOD_CAN_PARRY));
+        }
+
+        // Assume base guard for MNK and PUP mobs is the same as parry (Rank C)
+        if ((PMob->GetMJob() == JOB_MNK || PMob->GetMJob() == JOB_PUP) && PMob->getMobMod(MOBMOD_CANNOT_GUARD) == 0)
+        {
+            PMob->WorkingSkills.skill[SKILL_GUARD] = GetBaseSkill(PMob, 3);
         }
 
         // natural magic evasion
@@ -760,7 +768,7 @@ namespace mobutils
             SetupPetSkills(PMob);
         }
 
-        PMob->m_Behaviour |= PMob->getMobMod(MOBMOD_BEHAVIOR);
+        PMob->m_Behavior |= PMob->getMobMod(MOBMOD_BEHAVIOR);
 
         if (zoneType & ZONE_TYPE::DUNGEON)
         {
@@ -897,6 +905,14 @@ namespace mobutils
                 {
                     PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658); // catapult only used while at range
                 }
+                else if (PMob->m_Family == 246) // Trolls
+                {
+                    PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1747); // Zarraqa only used while at range
+                    PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 0);
+                    PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 14);
+                    PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
+                    break;
+                }
                 else if (PMob->m_Family == 3) // Aern
                 {
                     PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
@@ -1014,6 +1030,34 @@ namespace mobutils
         }
     }
 
+    uint8 JobSkillRankToBaseEvaRank(JOBTYPE job)
+    {
+        uint8 evasionSkillRank = battleutils::GetSkillRank(SKILL_EVASION, job);
+
+        switch (evasionSkillRank)
+        {
+            case 1:
+            case 2:
+                return 1; // A, A+; A- doesnt exist anymore
+            case 3:
+            case 4:
+            case 5:
+                return 2; // B+, B, B-
+            case 6:
+            case 7:
+            case 8:
+                return 3; // C+, C, C-
+            case 9:
+                return 4; // D
+            case 10:
+                return 5; // E
+            default:
+                ShowError("JobSkillRankToBaseEvaRank: rank not implemented. Job SKILL_EVASION rank is likely not valid or no longer exists (A- rank in particular.)");
+        }
+
+        return 3; // Give them C rank as a fallback.
+    };
+
     void SetupDynamisMob(CMobEntity* PMob)
     {
         // no gil drop and no mugging!
@@ -1052,7 +1096,7 @@ namespace mobutils
         PMob->SetDespawnTime(0s);
 
         // Stop early if this is a new battlefield
-        if (PMob->PBattlefield != nullptr && PMob->PBattlefield->isInteraction())
+        if (PMob->PBattlefield != nullptr)
         {
             return;
         }
@@ -1541,7 +1585,7 @@ namespace mobutils
                 PMob->m_maxLevel = (uint8)_sql->GetIntData(9);
 
                 uint16 sqlModelID[10];
-                memcpy(&sqlModelID, _sql->GetData(10), 20);
+                std::memcpy(&sqlModelID, _sql->GetData(10), 20);
                 PMob->look = look_t(sqlModelID);
 
                 PMob->SetMJob(_sql->GetIntData(11));
@@ -1553,15 +1597,16 @@ namespace mobutils
                 ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((_sql->GetIntData(15) * 1000) / 60);
                 ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((_sql->GetIntData(15) * 1000) / 60);
 
-                PMob->m_Behaviour   = (uint16)_sql->GetIntData(16);
+                PMob->m_Behavior    = (uint16)_sql->GetIntData(16);
                 PMob->m_Link        = (uint8)_sql->GetIntData(17);
                 PMob->m_Type        = (uint8)_sql->GetIntData(18);
                 PMob->m_Immunity    = (IMMUNITY)_sql->GetIntData(19);
                 PMob->m_EcoSystem   = (ECOSYSTEM)_sql->GetIntData(20);
                 PMob->m_ModelRadius = (float)_sql->GetIntData(21);
 
-                PMob->speed    = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined speed
-                PMob->speedsub = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined speedsub
+                PMob->baseSpeed      = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined baseSpeed
+                PMob->speed          = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined speed
+                PMob->animationSpeed = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined animationSpeed
 
                 PMob->strRank = (uint8)_sql->GetIntData(23);
                 PMob->dexRank = (uint8)_sql->GetIntData(24);
@@ -1702,7 +1747,7 @@ namespace mobutils
                 PMob->m_maxLevel = (uint8)_sql->GetIntData(9);
 
                 uint16 sqlModelID[10];
-                memcpy(&sqlModelID, _sql->GetData(10), 20);
+                std::memcpy(&sqlModelID, _sql->GetData(10), 20);
                 PMob->look = look_t(sqlModelID);
 
                 PMob->SetMJob(_sql->GetIntData(11));
@@ -1714,15 +1759,16 @@ namespace mobutils
                 ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((_sql->GetIntData(15) * 1000) / 60);
                 ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((_sql->GetIntData(15) * 1000) / 60);
 
-                PMob->m_Behaviour   = (uint16)_sql->GetIntData(16);
+                PMob->m_Behavior    = (uint16)_sql->GetIntData(16);
                 PMob->m_Link        = (uint8)_sql->GetIntData(17);
                 PMob->m_Type        = (uint8)_sql->GetIntData(18);
                 PMob->m_Immunity    = (IMMUNITY)_sql->GetIntData(19);
                 PMob->m_EcoSystem   = (ECOSYSTEM)_sql->GetIntData(20);
                 PMob->m_ModelRadius = (float)_sql->GetIntData(21);
 
-                PMob->speed    = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined speed
-                PMob->speedsub = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined speedsub
+                PMob->baseSpeed      = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined baseSpeed
+                PMob->speed          = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined speed
+                PMob->animationSpeed = (uint8)_sql->GetIntData(22); // Overwrites baseentity.cpp's defined animationSpeed
 
                 PMob->strRank = (uint8)_sql->GetIntData(23);
                 PMob->dexRank = (uint8)_sql->GetIntData(24);
@@ -1820,7 +1866,7 @@ namespace mobutils
         actionTarget_t& target = list.getNewActionTarget();
         target.animation       = animationID;
         target.param           = 2582;
-        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(action));
+        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, std::make_unique<CActionPacket>(action));
     }
 
 }; // namespace mobutils

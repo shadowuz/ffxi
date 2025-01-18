@@ -6,6 +6,7 @@
 --  Shadow per hit
 --  Range: Unknown range
 -----------------------------------
+---@type TMobSkill
 local mobskillObject = {}
 
 mobskillObject.onMobSkillCheck = function(target, mob, skill)
@@ -19,9 +20,9 @@ mobskillObject.onMobSkillCheck = function(target, mob, skill)
         end
     end
 
-    --[[TODO: Khimaira should only use this when its wings are up, which is animationsub() == 0.
+    --[[ TODO: Khimaira should only use this when its wings are up, which is animationsub() == 0.
     There's no system to put them "down" yet, so it's not really fair to leave it active.
-    Tyger's fair game, though. :)]]
+    Tyger's fair game, though. :) ]]
     return 0
 end
 

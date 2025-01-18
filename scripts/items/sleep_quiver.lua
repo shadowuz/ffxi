@@ -3,9 +3,10 @@
 -- Sleep Quiver
 -- When used, you will obtain one stack of Sleep Arrows
 -----------------------------------
+---@type TItem
 local itemObject = {}
 
-itemObject.onItemCheck = function(target)
+itemObject.onItemCheck = function(target, item, param, caster)
     return xi.itemUtils.itemBoxOnItemCheck(target)
 end
 

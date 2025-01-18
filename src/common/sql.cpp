@@ -87,6 +87,7 @@ SqlConnection::SqlConnection(const char* user, const char* passwd, const char* h
     // these members will be set up in SetupKeepalive(), they need to be init'd here to appease clang-tidy
     m_PingInterval = 0;
     m_LastPing     = 0;
+
     SetupKeepalive();
 }
 
@@ -99,6 +100,11 @@ SqlConnection::~SqlConnection()
         FreeResult();
         destroy(self);
     }
+}
+
+std::string SqlConnection::GetDatabaseName()
+{
+    return fmt::format("database name: {}", settings::get<std::string>("network.SQL_DATABASE").c_str());
 }
 
 std::string SqlConnection::GetClientVersion()

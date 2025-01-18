@@ -3,8 +3,7 @@
 -----------------------------------
 require('scripts/globals/dark_ixion')
 -----------------------------------
-local ID = zones[xi.zone.GRAUBERG_S]
------------------------------------
+---@type TZone
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
@@ -34,18 +33,6 @@ zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
 zoneObject.onZoneWeatherChange = function(weather)
-    local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS)
-
-    if npc ~= nil then
-        if
-            weather == xi.weather.WIND or
-            weather == xi.weather.GALES
-        then
-            npc:setStatus(xi.status.NORMAL)
-        else
-            npc:setStatus(xi.status.DISAPPEAR)
-        end
-    end
 end
 
 zoneObject.onEventUpdate = function(player, csid, option, npc)

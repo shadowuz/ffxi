@@ -6,11 +6,12 @@
 -----------------------------------
 local ID = zones[xi.zone.CASTLE_ZVAHL_KEEP]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
     if
-        player:getQuestStatus(xi.quest.log_id.WINDURST, xi.quest.id.windurst.RECOLLECTIONS) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.RECOLLECTIONS) == xi.questStatus.QUEST_ACCEPTED and
         player:getCharVar('recollectionsQuest') == 2
     then
         if
@@ -24,7 +25,6 @@ end
 
 entity.onTrigger = function(player, npc)
     player:startEvent(9)
-    return 1
 end
 
 entity.onEventUpdate = function(player, csid, option, npc)

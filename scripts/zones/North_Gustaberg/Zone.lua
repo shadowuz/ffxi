@@ -3,11 +3,8 @@
 -----------------------------------
 require('scripts/quests/i_can_hear_a_rainbow')
 -----------------------------------
+---@type TZone
 local zoneObject = {}
-
-zoneObject.onChocoboDig = function(player, precheck)
-    return xi.chocoboDig.start(player, precheck)
-end
 
 zoneObject.onInitialize = function(zone)
     xi.conq.setRegionalConquestOverseers(zone:getRegionID())
@@ -30,6 +27,10 @@ zoneObject.onZoneIn = function(player, prevZone)
     end
 
     return cs
+end
+
+zoneObject.afterZoneIn = function(player)
+    xi.chocoboGame.handleMessage(player)
 end
 
 zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)

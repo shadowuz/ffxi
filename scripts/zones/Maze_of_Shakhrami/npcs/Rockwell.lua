@@ -6,21 +6,22 @@
 -----------------------------------
 local ID = zones[xi.zone.MAZE_OF_SHAKHRAMI]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
     if
-        player:getQuestStatus(xi.quest.log_id.JEUNO, xi.quest.id.jeuno.YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.JEUNO, xi.quest.id.jeuno.YOUR_CRYSTAL_BALL) == xi.questStatus.QUEST_ACCEPTED and
         npcUtil.tradeHas(trade, xi.item.AHRIMAN_LENS)
     then
         player:setCharVar('QuestYourCrystalBall_prog', 1)
-        player:confirmTrade(trade)
+        player:confirmTrade()
     end
 end
 
 entity.onTrigger = function(player, npc)
     if
-        player:getQuestStatus(xi.quest.log_id.JEUNO, xi.quest.id.jeuno.YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.JEUNO, xi.quest.id.jeuno.YOUR_CRYSTAL_BALL) == xi.questStatus.QUEST_ACCEPTED and
         player:getCharVar('QuestYourCrystalBall_prog') == 1
     then
         player:startEvent(52)

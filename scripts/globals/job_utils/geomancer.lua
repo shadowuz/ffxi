@@ -180,6 +180,22 @@ xi.job_utils.geomancer.geoOnLifeCycleAbilityCheck = function(player, target, abi
     return 0, 0
 end
 
+xi.job_utils.geomancer.geoOnEclipticAttritionCheck = function(player, target, ability)
+    local luopan = getLuopan(player)
+
+    -- TODO: this never fires if you dont have a bubble up and says "Unable to attack that target." Core issue?
+    if not luopan then
+        return xi.msg.basic.REQUIRE_LUOPAN, 0
+    end
+
+    if luopan:getLocalVar('eclipticAttrition') ~= 0 then
+        -- This message is guessed
+        return xi.msg.basic.UNABLE_TO_USE_JA, 0
+    end
+
+    return 0, 0
+end
+
 -----------------------------------
 -- GEO/INDI Potency Function
 -----------------------------------
@@ -276,7 +292,13 @@ xi.job_utils.geomancer.lastingEmanation = function(player, target, ability)
     target:setMod(xi.mod.REGEN_DOWN, hpDrain - math.floor(target:getMainLvl() / 14))
 end
 
+-- TODO: allegedly Blaze of Glory is additive to this, but we aren't keeping track of that potency, so BoG + Ecliptic Attrition is stronger than it should be.
+--       That is probably fixable with some localvars on the bubble...?
 xi.job_utils.geomancer.eclipticAttrition = function(player, target, ability)
+    if target:getLocalVar('eclipticAttrition') ~= 0 then
+        return
+    end
+
     local hpDrain = target:getMod(xi.mod.REGEN_DOWN)
     target:setMod(xi.mod.REGEN_DOWN, hpDrain + math.floor(target:getMainLvl() / 16))
 
@@ -284,10 +306,14 @@ xi.job_utils.geomancer.eclipticAttrition = function(player, target, ability)
         return
     end
 
-    local potency = target:getStatusEffect(xi.effect.COLURE_ACTIVE):getSubPower()
-    local bonusPotency = 0.25 * potency
-    local finalPotency = potency + bonusPotency
-    target:getStatusEffect(xi.effect.COLURE_ACTIVE):setSubPower(finalPotency)
+    local effect = target:getStatusEffect(xi.effect.COLURE_ACTIVE)
+    if effect then
+        local finalPotency = math.floor(1.25 * effect:getSubPower())
+
+        -- This floors https://www.bg-wiki.com/ffxi/Ecliptic_Attrition
+        effect:setSubPower(finalPotency)
+        target:setLocalVar('eclipticAttrition', 1)
+    end
 end
 
 xi.job_utils.geomancer.collimatedFervor = function(player, target, ability) -- TODO: cardinal direction stuff
@@ -337,6 +363,9 @@ xi.job_utils.geomancer.geoOnMagicCastingCheck = function(caster, target, spell)
         return xi.msg.basic.ALREADY_HAS_A_PET
     elseif not caster:canUseMisc(xi.zoneMisc.PET) then
         return xi.msg.basic.CANT_BE_USED_IN_AREA
+    elseif caster:getMainJob() ~= xi.job.GEO then
+        -- wikis are incorrect, does not require handbell
+        return xi.msg.basic.MAGIC_CANNOT_CAST
     else
         return 0
     end

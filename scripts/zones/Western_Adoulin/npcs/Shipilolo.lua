@@ -9,30 +9,31 @@
 -----------------------------------
 local ID = zones[xi.zone.WESTERN_ADOULIN]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    local tomath = player:getQuestStatus(xi.quest.log_id.ADOULIN, xi.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON)
-    local fertileGround = player:getQuestStatus(xi.quest.log_id.ADOULIN, xi.quest.id.adoulin.FERTILE_GROUND)
-    local waywardWaypoints = player:getQuestStatus(xi.quest.log_id.ADOULIN, xi.quest.id.adoulin.WAYWARD_WAYPOINTS)
-    waywardWaypoints = waywardWaypoints == QUEST_ACCEPTED and player:getCharVar('WW_Need_Shipilolo') > 0
-    local soaMission = player:getCurrentMission(xi.mission.log_id.SOA)
+    local fertileGround    = player:getQuestStatus(xi.questLog.ADOULIN, xi.quest.id.adoulin.FERTILE_GROUND)
 
-    if soaMission >= xi.mission.id.soa.LIFE_ON_THE_FRONTIER then
-        if tomath == QUEST_ACCEPTED and player:hasKeyItem(xi.ki.BROKEN_HARPOON) then
+    if player:getCurrentMission(xi.mission.log_id.SOA) >= xi.mission.id.soa.LIFE_ON_THE_FRONTIER then
+        if
+            player:getQuestStatus(xi.questLog.ADOULIN, xi.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON) == xi.questStatus.QUEST_ACCEPTED and
+            player:hasKeyItem(xi.ki.BROKEN_HARPOON)
+        then
             -- Progresses Quest: 'The Old Man and the Harpoon'
             player:startEvent(2543)
         elseif
-            fertileGround == QUEST_ACCEPTED and
+            fertileGround == xi.questStatus.QUEST_ACCEPTED and
             not player:hasKeyItem(xi.ki.BOTTLE_OF_FERTILIZER_X)
         then
             -- Progresses Quest: 'Fertile Ground'
             player:startEvent(2850)
         elseif
-            waywardWaypoints and
+            player:getQuestStatus(xi.questLog.ADOULIN, xi.quest.id.adoulin.WAYWARD_WAYPOINTS) == xi.questStatus.QUEST_ACCEPTED and
+            player:getCharVar('WW_Need_Shipilolo') > 0 and
             not player:hasKeyItem(xi.ki.WAYPOINT_RECALIBRATION_KIT)
         then
             -- Progresses Quest: 'Wayward Waypoints'

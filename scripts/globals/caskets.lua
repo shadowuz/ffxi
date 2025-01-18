@@ -86,10 +86,11 @@ local casketInfo =
 
 -----------------------------------
 -- Desc: Helper function for making it easier to read time between spawns.
+-- TODO: Simplify and deprecate this function, as its only used in timeElapsedCheck
 -----------------------------------
 local function convertTime(rawTime)
     local rawSeconds = tonumber(rawTime)
-    local timeTable = { 0, 0, 0 }
+    local timeTable = { '', '', '' }
 
     timeTable[1] = string.format('%02.f', math.floor(rawSeconds / 3600))
     timeTable[2] = string.format('%02.f', math.floor(rawSeconds / 60 - (timeTable[1] * 60)))
@@ -184,7 +185,7 @@ local function dropChance(player)
     --end
 
     if player:hasStatusEffect(xi.effect.PROWESS_CASKET_RATE) then
-        prowessCasketsPower = casketProwessEffect:getPower()
+        prowessCasketsPower = casketProwessEffect:getPower() / 100
     end
 
     local rand = math.random()
@@ -494,7 +495,7 @@ local function getDrops(npc, dropType, zoneId)
             if item == 0 or item == nil then
                 items[i] = 4112 -- default to potion
             else
-                if math.random() < 0.05 then
+                if math.random(1, 100) <= 5 then
                     items[1] = xi.casket_loot.casketItems[zoneId].regionalItems[math.random(1, #xi.casket_loot.casketItems[zoneId].regionalItems)]
                 else
                     items[i] = item

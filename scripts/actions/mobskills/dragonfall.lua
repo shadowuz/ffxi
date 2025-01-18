@@ -7,6 +7,7 @@
 --  Range: Melee
 -- Special weaponskill unique to Ark Angel GK. Deals ~100-300 damage.
 -----------------------------------
+---@type TMobSkill
 local mobskillObject = {}
 
 mobskillObject.onMobSkillCheck = function(target, mob, skill)
@@ -24,7 +25,7 @@ mobskillObject.onMobWeaponSkill = function(target, mob, skill)
 
     xi.mobskills.mobStatusEffectMove(mob, target, xi.effect.BIND, 1, 0, 30)
 
-    target:takeDamage(dmg, mob, xi.attackType.PHYSICAL, xi.damageType.PIERCING)
+    target:takeDamage(dmg, mob, xi.attackType.PHYSICAL, xi.damageType.PIERCING, { breakBind = false })
     return dmg
 end
 

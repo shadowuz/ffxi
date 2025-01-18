@@ -105,15 +105,22 @@ xi.settings.map =
     -- Enable/disable jobs other than BST and RNG having widescan
     ALL_JOBS_WIDESCAN = true,
 
-    -- Modifier to apply to player speed. 0 is the retail accurate default. Negative numbers will reduce it.
-    SPEED_MOD = 0,
+    -- Base player movement speed
+    BASE_SPEED = 50,
 
-    -- Modifier to apply to mount speed. 0 is the retail accurate default. Negative numbers will reduce it.
-    -- Note retail treats the mounted speed as double what it actually is.
-    MOUNT_SPEED_MOD = 0,
+    -- Player movement speed limit
+    SPEED_LIMIT = 80,
 
-    -- Modifier to apply to agro'd monster speed. 0 is the retail accurate default. Negative numbers will reduce it.
-    MOB_SPEED_MOD = 0,
+    -- Mount speed, expressed as player speed. Can surpass speed limit.
+    MOUNT_SPEED = 80,
+
+    -- Player animation speed divisor
+    -- Raising this increases the players movement animation speed
+    ANIMATION_SPEED_DIVISOR = 1.0,
+
+    -- Multiplier for speed of engaged mobs when their target is out of range.
+    -- The default for almost all mobs on retail is 2.5x their normal speed.
+    MOB_RUN_SPEED_MULTIPLIER = 2.5,
 
     -- Allows you to manipulate the constant multiplier in the skill-up rate formulas, having a potent effect on skill-up rates.
     SKILLUP_CHANCE_MULTIPLIER = 1.0,
@@ -138,8 +145,14 @@ xi.settings.map =
     -- Amount of points allowed in crafts over the level defined above. Points are shared across all crafting skills. (Retail = 400; All skills can go to max = 3200)
     CRAFT_SPECIALIZATION_POINTS = 400,
 
-    -- Enables fishing. 0 = Disabled. 1 = Enable. ENABLE AT YOUR OWN RISK.
+    -- Multiplier applied to high quality chance
+    CRAFT_HQ_CHANCE_MULTIPLIER = 1.0,
+
+    -- Enable/disable all fishing, including quests. ENABLE AT YOUR OWN RISK.
     FISHING_ENABLE = false,
+
+    -- Sets the minimum level a character must be to fish.
+    FISHING_MIN_LEVEL = 1,
 
     -- Multiplier for fishing skill-up chance. Default = 1.0, very hard.
     FISHING_SKILL_MULTIPLIER = 1.0,
@@ -224,6 +237,9 @@ xi.settings.map =
 
     -- Enable/disable level cap of mission battlefields stored in database.
     LV_CAP_MISSION_BCNM = false,
+
+    -- Allow players to enter BCNMs which are flagged as experimental
+    BCNM_ENABLE_EXPERIMENTAL = true,
 
     -- Max allowed merits points players can hold
     -- 10 classic

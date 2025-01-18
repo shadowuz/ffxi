@@ -6,6 +6,7 @@
 -----------------------------------
 local ID = zones[xi.zone.CASTLE_OZTROJA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -26,7 +27,6 @@ end
 entity.onTrigger = function(player, npc)
     if npc:getAnimation() == xi.anim.CLOSE_DOOR then
         player:messageSpecial(ID.text.ITS_LOCKED)
-        return 1
     end
 end
 

@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Gekko
--- Standard Merchant NPC
 -----------------------------------
 local ID = zones[xi.zone.PORT_JEUNO]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

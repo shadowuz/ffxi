@@ -4,6 +4,7 @@
 -- Finish Quest: Borghertz's Hands (AF Hands, Many jobs)
 -- !pos -51 8 -4 246
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -37,7 +38,7 @@ entity.onEventFinish = function(player, csid, option, npc)
         local reward = 13960 + questJob
 
         if
-            npcUtil.completeQuest(player, xi.quest.log_id.JEUNO, quest, {
+            npcUtil.completeQuest(player, xi.questLog.JEUNO, quest, {
                 item = reward,
                 var = { 'BorghertzCS', 'BorghertzAlreadyActiveWithJob' },
             })

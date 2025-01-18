@@ -3,6 +3,7 @@
 --  NPC: Etsa Rhuyuli
 -- !pos 62.482 -8.499 -139.836 241
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 local pathNodes =
@@ -26,7 +27,7 @@ entity.onTrigger = function(player, npc)
     local wildcatWindurst = player:getCharVar('WildcatWindurst')
 
     if
-        player:getQuestStatus(xi.quest.log_id.WINDURST, xi.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.LURE_OF_THE_WILDCAT) == xi.questStatus.QUEST_ACCEPTED and
         not utils.mask.getBit(wildcatWindurst, 1)
     then
         player:startEvent(734)

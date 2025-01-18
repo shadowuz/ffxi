@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Upper Jeuno
 --  NPC: Deadly Minnow
--- Standard Merchant NPC
 -- Involved in Quest: Borghertz's Hands (1st quest only)
 -- !pos -5 1 48 244
 -----------------------------------
 local ID = zones[xi.zone.UPPER_JEUNO]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

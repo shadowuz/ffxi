@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = zones[xi.zone.NORTHERN_SAN_DORIA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -16,12 +17,12 @@ entity.onTrigger = function(player, npc)
     else
         local stock =
         {
-            4382,  29,    -- Frost Turnip
-            638,  170,    -- Sage
+            xi.item.SPRIG_OF_SAGE, 192,
+            xi.item.FROST_TURNIP,   33,
         }
 
         player:showText(npc, ID.text.PALGUEVION_OPEN_DIALOG)
-        xi.shop.general(player, stock, xi.quest.fame_area.SANDORIA)
+        xi.shop.general(player, stock, xi.fameArea.SANDORIA)
     end
 end
 

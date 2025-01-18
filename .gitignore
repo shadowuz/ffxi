@@ -109,6 +109,7 @@ AppPackages/
 TestResults
 [Tt]est[Rr]esult*
 *.Cache
+*.cache
 ClientBin
 [Ss]tyle[Cc]op.*
 ~$*
@@ -132,10 +133,10 @@ UpgradeLog*.XML
 *.app
 
 # Generated executables
-/xi_connect
-/xi_map
-/xi_search
-/xi_world
+/xi_connect*
+/xi_map*
+/xi_search*
+/xi_world*
 
 # Generated files, mostly autotools-related
 .deps
@@ -170,6 +171,9 @@ log/leaks.txt
 .vs
 /win32/.vs/xi/v15
 .luarc.json
+lua-language-server*
+check.json
+lua_lang_errors.txt
 
 # VSCode
 .vscode
@@ -177,6 +181,7 @@ log/leaks.txt
 # Visual Studio
 **/*.vcxproj*
 **/*.sln
+enc_temp_folder
 
 # CMake files
 CMakeCache.txt
@@ -242,3 +247,12 @@ xi_search.dSYM
 # Keys and Certs
 **/*.key
 **/*.cert
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

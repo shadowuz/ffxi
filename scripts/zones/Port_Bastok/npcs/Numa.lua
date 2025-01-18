@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Port Bastok
 --  NPC: Numa
--- Standard Merchant NPC
 -----------------------------------
 local ID = zones[xi.zone.PORT_BASTOK]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
 --  NPC: Bajahb
--- Standard Merchant NPC
 -----------------------------------
 local ID = zones[xi.zone.AHT_URHGAN_WHITEGATE]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

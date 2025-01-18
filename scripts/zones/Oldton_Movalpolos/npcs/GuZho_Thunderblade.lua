@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Oldton Movalpolos
 --  NPC: Gu'Zho Thunderblade
--- Type: NPC Quest
 -- !pos -316.427 7.124 -260.868 11
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

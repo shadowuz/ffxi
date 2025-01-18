@@ -1,20 +1,20 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
 
 ===========================================================================
 */
@@ -26,6 +26,8 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "entities/baseentity.h"
 #include "entities/mobentity.h"
 #include "lua/luautils.h"
+#include "mob_modifier.h"
+#include "status_effect_container.h"
 #include "zone.h"
 
 #include <cfloat>
@@ -359,17 +361,23 @@ void CPathFind::FollowPath(time_point tick)
 void CPathFind::StepTo(const position_t& pos, bool run)
 {
     TracyZoneScoped;
-    float speed = GetRealSpeed();
-
-    int8 mode = 2;
-
-    if (!run)
+    bool speedChange = false;
+    if (auto* PBattleEntity = dynamic_cast<CBattleEntity*>(m_POwner))
     {
-        mode = 1;
-        speed /= 2;
+        speedChange = PBattleEntity->speed != PBattleEntity->UpdateSpeed(run);
     }
 
-    float stepDistance = (speed / 10) / 2;
+    float speed = m_POwner->speed;
+
+    if (const auto* PMobEntity = dynamic_cast<CMobEntity*>(m_POwner))
+    {
+        if (PMobEntity->speed == 0 && (m_roamFlags & ROAMFLAG_WORM))
+        {
+            speed = 20;
+        }
+    }
+
+    float stepDistance = speed / (run ? 50 : 40);
     float distanceTo   = distance(m_POwner->loc.p, pos);
     float diff_y       = pos.y - m_POwner->loc.p.y;
 
@@ -432,12 +440,9 @@ void CPathFind::StepTo(const position_t& pos, bool run)
         }
     }
 
-    m_POwner->loc.p.moving += (uint16)((0x36 * ((float)m_POwner->speed / 0x28)) - (0x14 * (mode - 1)));
+    m_POwner->loc.p.moving += speedChange ? 0x28 : 0x35;
 
-    if (m_POwner->loc.p.moving > 0x2fff)
-    {
-        m_POwner->loc.p.moving = 0;
-    }
+    m_POwner->loc.p.moving %= 0x2000;
 
     m_POwner->updatemask |= UPDATE_POS;
 }
@@ -559,32 +564,6 @@ void CPathFind::LookAt(const position_t& point)
 bool CPathFind::OnPoint() const
 {
     return m_onPoint;
-}
-
-float CPathFind::GetRealSpeed()
-{
-    uint8 realSpeed = m_POwner->speed;
-
-    // 'GetSpeed()' factors in movement bonuses such as map confs and modifiers.
-    if (m_POwner->objtype != TYPE_NPC)
-    {
-        realSpeed = ((CBattleEntity*)m_POwner)->GetSpeed();
-    }
-
-    // Lets not check mob things on non mobs
-    if (m_POwner->objtype == TYPE_MOB)
-    {
-        if (realSpeed == 0 && (m_roamFlags & ROAMFLAG_WORM))
-        {
-            realSpeed = 20;
-        }
-        else if (m_POwner->animation == ANIMATION_ATTACK)
-        {
-            realSpeed = realSpeed + settings::get<int8>("map.MOB_SPEED_MOD");
-        }
-    }
-
-    return realSpeed;
 }
 
 bool CPathFind::IsFollowingPath()

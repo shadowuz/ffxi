@@ -6,11 +6,12 @@
 -----------------------------------
 local ID = zones[xi.zone.SOUTHERN_SAN_DORIA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
     -- Flyers_For_Regine needs to be reviewed.
-    local flyerForRegine = player:getQuestStatus(xi.quest.log_id.SANDORIA, xi.quest.id.sandoria.FLYERS_FOR_REGINE)
+    local flyerForRegine = player:getQuestStatus(xi.questLog.SANDORIA, xi.quest.id.sandoria.FLYERS_FOR_REGINE)
 
     if flyerForRegine == 1 then
         if npcUtil.tradeHasExactly(trade, xi.item.MAGICMART_FLYER) then

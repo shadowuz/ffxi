@@ -6,6 +6,7 @@
 -----------------------------------
 local ID = zones[xi.zone.WEST_SARUTABARUTA_S]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -13,7 +14,7 @@ end
 
 entity.onTrigger = function(player, npc)
     if
-        player:getQuestStatus(xi.quest.log_id.CRYSTAL_WAR, xi.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.CRYSTAL_WAR, xi.quest.id.crystalWar.THE_TIGRESS_STIRS) == xi.questStatus.QUEST_ACCEPTED and
         not player:hasKeyItem(xi.ki.SMALL_STARFRUIT)
     then
         player:addKeyItem(xi.ki.SMALL_STARFRUIT)

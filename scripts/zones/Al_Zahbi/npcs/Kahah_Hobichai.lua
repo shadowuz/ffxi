@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Al Zahbi
 --  NPC: Kahah Hobichai
--- Standard Merchant NPC
 -- TODO: Stock needs to be modified based on
 --       status of Astral Candescence
 -----------------------------------
 local ID = zones[xi.zone.AL_ZAHBI]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

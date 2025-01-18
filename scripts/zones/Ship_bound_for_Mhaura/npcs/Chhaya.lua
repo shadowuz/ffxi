@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Ship Bound for Mhaura
 --  NPC: Chhaya
--- Standard Merchant NPC
 -- !pos -1.139 -2.101 -9.000 221
 -----------------------------------
 local ID = zones[xi.zone.SHIP_BOUND_FOR_MHAURA]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

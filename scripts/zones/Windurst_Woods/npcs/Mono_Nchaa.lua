@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Windurst Woods
 --  NPC: Mono Nchaa
--- Standard Merchant NPC
--- Confirmed shop stock, August 2013
 -----------------------------------
 local ID = zones[xi.zone.WINDURST_WOODS]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)

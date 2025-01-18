@@ -3,6 +3,7 @@
 --  NPC: Postern (door _1f0)
 -- Shortcut back into Aht Urgan Whitegate, North Harbor
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -10,7 +11,6 @@ end
 
 entity.onTrigger = function(player, npc)
     player:startEvent(502)
-    return 1
 end
 
 entity.onEventUpdate = function(player, csid, option, npc)

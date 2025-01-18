@@ -1,11 +1,13 @@
 -----------------------------------
 -- Zone: Windurst_Woods (241)
 -----------------------------------
+---@type TZone
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     xi.events.harvestFestival.applyHalloweenNpcCostumes(zone:getID())
     xi.chocobo.initZone(zone)
+    xi.chocoboGame.clearRecord(zone)
     xi.conquest.toggleRegionalNPCs(zone)
 end
 

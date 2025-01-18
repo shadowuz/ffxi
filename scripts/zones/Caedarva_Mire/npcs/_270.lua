@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = zones[xi.zone.CAEDARVA_MIRE]
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -15,7 +16,7 @@ entity.onTrigger = function(player, npc)
         if player:getZPos() > -438 then
             player:messageSpecial(ID.text.STAGING_GATE_AZOUPH)
             player:messageSpecial(ID.text.STAGING_GATE_INTERACT)
-            player:startEvent(120)
+            player:startOptionalCutscene(120)
         elseif not player:hasKeyItem(xi.ki.LEUJAOAM_ASSAULT_ORDERS) then
             player:messageSpecial(ID.text.STAGING_GATE_AZOUPH)
             player:messageSpecial(ID.text.STAGING_GATE_INTERACT)

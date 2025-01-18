@@ -4,6 +4,7 @@
 -- Involved in Quests
 -- !pos -232 41 425
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
@@ -11,7 +12,7 @@ end
 
 entity.onTrigger = function(player, npc)
     if
-        player:getQuestStatus(xi.quest.log_id.CRYSTAL_WAR, xi.quest.id.crystalWar.BETTER_PART_OF_VALOR) == QUEST_ACCEPTED and
+        player:getQuestStatus(xi.questLog.CRYSTAL_WAR, xi.quest.id.crystalWar.BETTER_PART_OF_VALOR) == xi.questStatus.QUEST_ACCEPTED and
         player:getCharVar('BetterPartOfValProg') == 1
     then
         player:startEvent(3)

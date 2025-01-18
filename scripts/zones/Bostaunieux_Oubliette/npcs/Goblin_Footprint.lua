@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
 --  NPC: Goblin Footprint
--- Type: NPC
 -- !pos  111.806 -24.007 57.266 167
 -----------------------------------
+---@type TNpcEntity
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
