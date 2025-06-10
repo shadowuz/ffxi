@@ -19,8 +19,6 @@
 ===========================================================================
 */
 
-#include "common/socket.h"
-
 #include <cstring>
 
 #include "guild_menu_sell.h"
@@ -52,6 +50,12 @@ CGuildMenuSellPacket::CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* P
         {
             ShowError("CGuildMenuSellPacket::CGuildMenuSellPacket() - PItem was null for SlotID: %d", SlotID);
             return;
+        }
+
+        if (PItem->getFlag() & ITEM_FLAG_NOSALE)
+        {
+            // Skip items that cannot be sold to NPCs
+            continue;
         }
 
         if (ItemCount == 30)

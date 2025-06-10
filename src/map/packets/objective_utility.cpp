@@ -1,4 +1,23 @@
-﻿#include "common/socket.h"
+﻿/*
+===========================================================================
+
+  Copyright (c) 2025 LandSandBoat Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+===========================================================================
+*/
 
 #include "objective_utility.h"
 
@@ -21,7 +40,7 @@ CObjectiveUtilityPacket::CObjectiveUtilityPacket(uint32 duration, uint32 warning
 void CObjectiveUtilityPacket::addCountdown(uint32 duration, uint32 warning /* = 0 */)
 {
     ref<uint32>(0x04) = ref<uint32>(0x04) == 0 ? 0x01 : ref<uint32>(0x04);
-    ref<uint32>(0x08) = CVanaTime::getInstance()->getVanaTime();
+    ref<uint32>(0x08) = earth_time::vanadiel_timestamp();
     ref<uint32>(0x0C) = duration;
     ref<uint32>(0x10) = warning; // If 0, defaults to 60.
     ref<uint8>(0x24) |= OBJECTIVEUTILITY_COUNTDOWN;
@@ -60,10 +79,10 @@ void CObjectiveUtilityPacket::addScoreboard(const std::pair<int32, int32>& score
     ref<uint32>(0x44) = data[5];      // Stronghold Name Override - When non-zero, replace Stronghold name with Balamor's Adumbration.
 }
 
-void CObjectiveUtilityPacket::addFence(float x, float y, float radius, float render, bool blue /* = false */)
+void CObjectiveUtilityPacket::addFence(float x, float z, float radius, float render, bool blue /* = false */)
 {
     ref<int32>(0x14)  = static_cast<int32>(x * 1000);
-    ref<int32>(0x18)  = static_cast<int32>(y * 1000);
+    ref<int32>(0x18)  = static_cast<int32>(z * 1000);
     ref<uint32>(0x1C) = static_cast<uint32>(radius * 1000);
     ref<uint32>(0x20) = static_cast<uint32>(render * 1000);
     ref<uint8>(0x24) |= OBJECTIVEUTILITY_FENCE;

@@ -1,23 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters
 --  NPC: Olaky-Yayulaky
--- Type: Item Depository
--- !pos -61.247 -4.5 72.551 238
+--  Item Depository NPC (not implemented)
+--  !pos -60 -3.5 71 238
 -----------------------------------
 ---@type TNpcEntity
 local entity = {}
-
-entity.onTrade = function(player, npc, trade)
-end
 
 entity.onTrigger = function(player, npc)
     player:startEvent(910)
 end
 
-entity.onEventUpdate = function(player, csid, option, npc)
-end
-
 entity.onEventFinish = function(player, csid, option, npc)
+    -- TODO: Implement
+    -- Must account for race change item swaps. See http://www.playonline.com/ff11eu/envi/racechange/
 end
 
 return entity
